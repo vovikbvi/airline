@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>https://github.com/vovikbvi/airline.git</groupId>
+	<groupId>by.bogdevich.training.airline</groupId>
 	<artifactId>low-cost-airline</artifactId>
 	<version>1.0.0</version>
 
@@ -13,17 +13,6 @@
 	</properties>
 
 	
-	<dependencyManagement>
-		<dependencies>
-
-			<dependency>
-				<groupId>https://github.com/vovikbvi/airline.git</groupId>
-				<artifactId>datamodel</artifactId>
-				<version>1.0.0</version>
-			</dependency>
-
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 
@@ -51,4 +40,9 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<modules>
+		<module>dataaccess</module>
+		<module>datamodel</module>
+		<module>services</module>
+	</modules>
 </project>
