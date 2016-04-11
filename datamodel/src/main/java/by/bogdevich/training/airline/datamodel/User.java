@@ -7,7 +7,7 @@ public class User extends AbstractModel {
 	private String lastName;
 	private String eMail;
 	private String passportNumber;
-	private Integer phoneNumber;
+	private String phoneNumber;
 	private Integer countOder;
 	private Boolean vip;
 	private UserRole role;
@@ -60,11 +60,11 @@ public class User extends AbstractModel {
 		this.passportNumber = passportNumber;
 	}
 
-	public Integer getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(Integer phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

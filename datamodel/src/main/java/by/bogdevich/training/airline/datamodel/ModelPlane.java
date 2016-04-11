@@ -7,16 +7,8 @@ public class ModelPlane extends AbstractModel {
 	private Integer colPassangerFirstclass;
 	private Integer colPassangerEconomy;
 	private Integer weightAllBaggage;
-	private Integer AvgSpeed;
+	private Integer avgSpeed;
 	private ClassWeight classWeight;
-
-	public ClassWeight getClassWeight() {
-		return classWeight;
-	}
-
-	public void setClassWeight(ClassWeight classWeight) {
-		this.classWeight = classWeight;
-	}
 
 	public ManufacturedPlain getManufacturedPlain() {
 		return manufacturedPlain;
@@ -67,11 +59,19 @@ public class ModelPlane extends AbstractModel {
 	}
 
 	public Integer getAvgSpeed() {
-		return AvgSpeed;
+		return avgSpeed;
 	}
 
 	public void setAvgSpeed(Integer avgSpeed) {
-		AvgSpeed = avgSpeed;
+		this.avgSpeed = avgSpeed;
+	}
+
+	public ClassWeight getClassWeight() {
+		return classWeight;
+	}
+
+	public void setClassWeight(ClassWeight classWeight) {
+		this.classWeight = classWeight;
 	}
 
 }

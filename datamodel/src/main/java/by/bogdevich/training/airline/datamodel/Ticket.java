@@ -1,15 +1,15 @@
 package by.bogdevich.training.airline.datamodel;
 
-import java.sql.Date;
+import java.util.Date;
 
-public class Ticket {
+public class Ticket extends AbstractModel {
 	private Flight flight;
 	private User passanger;
 	private Boolean paid;
 	private Integer numberSeats;
 	private Date dateBought;
 	private Boolean baggage;
-	private Integer weightBaggage;
+	private Double weightBaggage;
 	private TicketTupe ticketTupe;
 	private TicketClass ticketClass;
 	private Boolean priorityRegistration;
@@ -65,11 +65,11 @@ public class Ticket {
 		this.baggage = baggage;
 	}
 
-	public Integer getWeightBaggage() {
+	public Double getWeightBaggage() {
 		return weightBaggage;
 	}
 
-	public void setWeightBaggage(Integer weightBaggage) {
+	public void setWeightBaggage(Double weightBaggage) {
 		this.weightBaggage = weightBaggage;
 	}
 
@@ -120,4 +120,5 @@ public class Ticket {
 	public void setForBaby(Boolean forBaby) {
 		this.forBaby = forBaby;
 	}
+
 }

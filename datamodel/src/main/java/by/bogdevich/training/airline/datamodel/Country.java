@@ -1,13 +1,14 @@
 package by.bogdevich.training.airline.datamodel;
 
-public class Country {
-	private String nameCountry;
+public class Country extends AbstractModel {
+	private String name;
 
-	public String getNameCountry() {
-		return nameCountry;
+	public String getName() {
+		return name;
 	}
 
-	public void setNameCountry(String nameCountry) {
-		this.nameCountry = nameCountry;
+	public void setName(String name) {
+		this.name = name;
 	}
+
 }

@@ -1,6 +1,6 @@
 package by.bogdevich.training.airline.datamodel;
 
-public class ManufacturedPlain {
+public class ManufacturedPlain extends AbstractModel {
 	private String name;
 
 	public String getName() {

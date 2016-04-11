@@ -3,9 +3,8 @@ package by.bogdevich.training.airline.datamodel;
 public class FlightCatalog extends AbstractModel {
 	private Airport airportStart;
 	private Airport airportFinish;
-	private Integer Distance;
-	private Integer basicPrice;
-	private Integer priceBaggage;
+	private Integer distance;
+	private Boolean international;
 
 	public Airport getAirportStart() {
 		return airportStart;
@@ -24,27 +23,19 @@ public class FlightCatalog extends AbstractModel {
 	}
 
 	public Integer getDistance() {
-		return Distance;
+		return distance;
 	}
 
 	public void setDistance(Integer distance) {
-		Distance = distance;
+		this.distance = distance;
 	}
 
-	public Integer getBasicPrice() {
-		return basicPrice;
+	public Boolean getInternational() {
+		return international;
 	}
 
-	public void setBasicPrice(Integer basicPrice) {
-		this.basicPrice = basicPrice;
-	}
-
-	public Integer getPriceBaggage() {
-		return priceBaggage;
-	}
-
-	public void setPriceBaggage(Integer priceBaggage) {
-		this.priceBaggage = priceBaggage;
+	public void setInternational(Boolean international) {
+		this.international = international;
 	}
 
 }

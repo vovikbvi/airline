@@ -1,9 +1,10 @@
 package by.bogdevich.training.airline.datamodel;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Flight extends AbstractModel {
 	private FlightCatalog flightsCatalog;
+	private Date registrTime;
 	private Date departureTime;
 	private Date arrivalTime;
 	private Plane plane;
@@ -15,6 +16,14 @@ public class Flight extends AbstractModel {
 
 	public void setFlightsCatalog(FlightCatalog flightsCatalog) {
 		this.flightsCatalog = flightsCatalog;
+	}
+
+	public Date getRegistrTime() {
+		return registrTime;
+	}
+
+	public void setRegistrTime(Date registrTime) {
+		this.registrTime = registrTime;
 	}
 
 	public Date getDepartureTime() {

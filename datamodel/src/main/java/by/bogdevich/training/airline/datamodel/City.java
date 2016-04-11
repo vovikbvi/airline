@@ -1,15 +1,15 @@
 package by.bogdevich.training.airline.datamodel;
 
 public class City extends AbstractModel {
-	private String city;
+	private String name;
 	private Country country;
 
-	public String getCity() {
-		return city;
+	public String getName() {
+		return name;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Country getCountry() {
