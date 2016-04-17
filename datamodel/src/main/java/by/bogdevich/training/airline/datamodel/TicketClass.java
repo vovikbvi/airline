@@ -1,5 +1,5 @@
 package by.bogdevich.training.airline.datamodel;
 
 public enum TicketClass {
-	businesClass, firstClass, economy
+	BUSINES_CLASS, FIRST_CLASS, ECONOMY
 }

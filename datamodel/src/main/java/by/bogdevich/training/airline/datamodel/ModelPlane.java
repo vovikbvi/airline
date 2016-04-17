@@ -1,13 +1,38 @@
 package by.bogdevich.training.airline.datamodel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class ModelPlane extends AbstractModel {
+	
+	@ManyToOne(targetEntity = ManufacturedPlain.class, fetch = FetchType.LAZY)
 	private ManufacturedPlain manufacturedPlain;
+	
+	@Column
 	private String model;
+	
+	@Column
 	private Integer colPassangerBuisnes;
+	
+	@Column
 	private Integer colPassangerFirstclass;
+	
+	@Column
 	private Integer colPassangerEconomy;
+	
+	@Column
 	private Integer weightAllBaggage;
+	
+	@Column
 	private Integer avgSpeed;
+	
+	@Column
+	@Enumerated(value = EnumType.STRING)
 	private ClassWeight classWeight;
 
 	public ManufacturedPlain getManufacturedPlain() {

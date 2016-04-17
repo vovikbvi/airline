@@ -1,16 +1,24 @@
 package by.bogdevich.training.airline.datamodel;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class Price extends AbstractModel {
-	private Date dataChange;
+	
+	@Column
+	private LocalDateTime dataChange;
+	
+	@Column
 	private Double basicPrice;
 
-	public Date getDataChange() {
+	public LocalDateTime getDataChange() {
 		return dataChange;
 	}
 
-	public void setDataChange(Date dataChange) {
+	public void setDataChange(LocalDateTime dataChange) {
 		this.dataChange = dataChange;
 	}
 

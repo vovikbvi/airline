@@ -1,9 +1,23 @@
 package by.bogdevich.training.airline.datamodel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class FlightCatalog extends AbstractModel {
+	
+	@ManyToOne(targetEntity = Airport.class, fetch = FetchType.LAZY)
 	private Airport airportStart;
+
+	@ManyToOne(targetEntity = Airport.class, fetch = FetchType.LAZY)
 	private Airport airportFinish;
+	
+	@Column
 	private Integer distance;
+	
+	@Column
 	private Boolean international;
 
 	public Airport getAirportStart() {

@@ -1,5 +1,5 @@
 package by.bogdevich.training.airline.datamodel;
 
 public enum ClassWeight {
-	superHeavy, heavy, medium, light, suprLight
+	SUPER_HEAVY, HEAVY, MEDIUM, LIGHT, SUPER_LIGHT
 }

@@ -45,4 +45,21 @@
 		<module>datamodel</module>
 		<module>services</module>
 	</modules>
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>by.bogdevich.training.airline</groupId>
+				<artifactId>datamodel</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.1-api</artifactId>
+				<version>1.0.0.Final</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
 </project>

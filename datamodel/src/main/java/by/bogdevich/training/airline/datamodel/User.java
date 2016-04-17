@@ -1,15 +1,42 @@
 package by.bogdevich.training.airline.datamodel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+@Entity
 public class User extends AbstractModel {
+	
+    @Column(updatable = false)
 	private String login;
+	
+	@Column
 	private String password;
+	
+	@Column
 	private String firstName;
+	
+	@Column
 	private String lastName;
+	
+	@Column
 	private String eMail;
+	
+	@Column
 	private String passportNumber;
+	
+	@Column
 	private String phoneNumber;
+	
+	@Column
 	private Integer countOder;
+	
+	@Column
 	private Boolean vip;
+	
+	@Column
+	@Enumerated(value = EnumType.STRING)
 	private UserRole role;
 
 	public String getLogin() {

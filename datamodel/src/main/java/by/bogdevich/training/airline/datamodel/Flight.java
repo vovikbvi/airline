@@ -1,14 +1,32 @@
 package by.bogdevich.training.airline.datamodel;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Flight extends AbstractModel {
+
+	@ManyToOne(targetEntity = FlightCatalog.class, fetch = FetchType.LAZY)
 	private FlightCatalog flightsCatalog;
-	private Date registrTime;
-	private Date departureTime;
-	private Date arrivalTime;
+
+	@Column
+	private LocalDateTime registrTime;
+
+	@Column
+	private LocalDateTime departureTime;
+
+	@Column
+	private LocalDateTime arrivalTime;
+
+	@ManyToOne(targetEntity = Plane.class, fetch = FetchType.LAZY)
 	private Plane plane;
-	private Date startSaleTicket;
+
+	@Column
+	private LocalDateTime startSaleTicket;
 
 	public FlightCatalog getFlightsCatalog() {
 		return flightsCatalog;
@@ -18,27 +36,27 @@ public class Flight extends AbstractModel {
 		this.flightsCatalog = flightsCatalog;
 	}
 
-	public Date getRegistrTime() {
+	public LocalDateTime getRegistrTime() {
 		return registrTime;
 	}
 
-	public void setRegistrTime(Date registrTime) {
+	public void setRegistrTime(LocalDateTime registrTime) {
 		this.registrTime = registrTime;
 	}
 
-	public Date getDepartureTime() {
+	public LocalDateTime getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Date departureTime) {
+	public void setDepartureTime(LocalDateTime departureTime) {
 		this.departureTime = departureTime;
 	}
 
-	public Date getArrivalTime() {
+	public LocalDateTime getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(Date arrivalTime) {
+	public void setArrivalTime(LocalDateTime arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 
@@ -50,11 +68,11 @@ public class Flight extends AbstractModel {
 		this.plane = plane;
 	}
 
-	public Date getStartSaleTicket() {
+	public LocalDateTime getStartSaleTicket() {
 		return startSaleTicket;
 	}
 
-	public void setStartSaleTicket(Date startSaleTicket) {
+	public void setStartSaleTicket(LocalDateTime startSaleTicket) {
 		this.startSaleTicket = startSaleTicket;
 	}
 

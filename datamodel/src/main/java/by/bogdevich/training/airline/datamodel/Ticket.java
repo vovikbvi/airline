@@ -1,20 +1,56 @@
 package by.bogdevich.training.airline.datamodel;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Ticket extends AbstractModel {
+	
+	@ManyToOne(targetEntity = Flight.class, fetch = FetchType.LAZY)	
 	private Flight flight;
+	
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
 	private User passanger;
+	
+	@Column
 	private Boolean paid;
+	
+	@Column
 	private Integer numberSeats;
-	private Date dateBought;
+	
+	@Column
+	private LocalDateTime dateBought;
+	
+	@Column
 	private Boolean baggage;
+	
+	@Column
 	private Double weightBaggage;
+	
+	@Column
+	@Enumerated(value = EnumType.STRING)
 	private TicketTupe ticketTupe;
+	
+	@Column
+	@Enumerated(value = EnumType.STRING)
 	private TicketClass ticketClass;
+	
+	@Column
 	private Boolean priorityRegistration;
+	
+	@Column
 	private Boolean prioritySeats;
+	
+	@Column
 	private Double costs;
+	
+	@Column
 	private Boolean forBaby;
 
 	public Flight getFlight() {
@@ -49,11 +85,11 @@ public class Ticket extends AbstractModel {
 		this.numberSeats = numberSeats;
 	}
 
-	public Date getDateBought() {
+	public LocalDateTime getDateBought() {
 		return dateBought;
 	}
 
-	public void setDateBought(Date dateBought) {
+	public void setDateBought(LocalDateTime dateBought) {
 		this.dateBought = dateBought;
 	}
 

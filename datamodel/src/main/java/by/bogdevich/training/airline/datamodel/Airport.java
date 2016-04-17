@@ -1,11 +1,32 @@
 package by.bogdevich.training.airline.datamodel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Airport extends AbstractModel {
+	
+	@Column
 	private String codeIata;
+	
+	@Column
 	private String codeIcao;
+	
+	@ManyToOne(targetEntity = City.class, fetch = FetchType.LAZY)
 	private City city;
+	
+	@Column
+	@Enumerated(value = EnumType.STRING)
 	private ClassWeight classWeight;
+	
+	@Column
 	private Double coordinatesX;
+	
+	@Column
 	private Double coordinatesY;
 
 	public ClassWeight getClassWeight() {
