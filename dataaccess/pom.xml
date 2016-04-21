@@ -10,5 +10,23 @@
 	</parent>
 
 	<artifactId>dataaccess</artifactId>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>by.bogdevich.training.airline</groupId>
+			<artifactId>datamodel</artifactId>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+
+	</dependencies>
+
+
 	
 </project>
