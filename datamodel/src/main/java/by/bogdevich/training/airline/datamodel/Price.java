@@ -14,20 +14,5 @@ public class Price extends AbstractModel {
 	@Column
 	private Double basicPrice;
 
-	public LocalDateTime getDataChange() {
-		return dataChange;
-	}
-
-	public void setDataChange(LocalDateTime dataChange) {
-		this.dataChange = dataChange;
-	}
-
-	public Double getBasicPrice() {
-		return basicPrice;
-	}
-
-	public void setBasicPrice(Double basicPrice) {
-		this.basicPrice = basicPrice;
-	}
 
 }

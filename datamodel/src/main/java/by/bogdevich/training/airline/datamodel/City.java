@@ -14,6 +14,9 @@ public class City extends AbstractModel {
 	@ManyToOne(targetEntity = Country.class, fetch = FetchType.LAZY)
 	private Country country;
 
+	@Column
+	private Double timezone;
+
 	public String getName() {
 		return name;
 	}
@@ -28,6 +31,14 @@ public class City extends AbstractModel {
 
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+
+	public Double getTimezone() {
+		return timezone;
+	}
+
+	public void setTimezone(Double timezone) {
+		this.timezone = timezone;
 	}
 
 }

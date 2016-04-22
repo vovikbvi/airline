@@ -23,7 +23,7 @@ public class Flight extends AbstractModel {
 	private LocalDateTime arrivalTime;
 
 	@ManyToOne(targetEntity = Plane.class, fetch = FetchType.LAZY)
-	private Plane plane;
+	private Plane plane_id;
 
 	@Column
 	private LocalDateTime startSaleTicket;
@@ -60,12 +60,12 @@ public class Flight extends AbstractModel {
 		this.arrivalTime = arrivalTime;
 	}
 
-	public Plane getPlane() {
-		return plane;
+	public Plane getPlane_id() {
+		return plane_id;
 	}
 
-	public void setPlane(Plane plane) {
-		this.plane = plane;
+	public void setPlane_id(Plane plane_id) {
+		this.plane_id = plane_id;
 	}
 
 	public LocalDateTime getStartSaleTicket() {
@@ -76,4 +76,5 @@ public class Flight extends AbstractModel {
 		this.startSaleTicket = startSaleTicket;
 	}
 
+	
 }

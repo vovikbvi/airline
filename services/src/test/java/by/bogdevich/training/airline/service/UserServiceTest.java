@@ -11,7 +11,9 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+
 import by.bogdevich.training.airline.dataaccess.CountryDao;
+import by.bogdevich.training.airline.dataaccess.PriceDao;
 import by.bogdevich.training.airline.dataaccess.impl.AbstractDaoImpl;
 
 
@@ -23,8 +25,12 @@ public class UserServiceTest {
 	private CountryService countryService;
 	
 	@Inject
-	private CountryDao countruDao;
+	private CountryDao countryDao;
 
+	
+	@Inject
+	private PriceDao priceDao;
+	
 	@Test
 	public void test() {
 		Assert.assertNotNull(countryService);
@@ -35,7 +41,7 @@ public class UserServiceTest {
     public void testEntityManagerInitialization() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         Field f = AbstractDaoImpl.class.getDeclaredField("entityManager");
         f.setAccessible(true);
-        EntityManager em = (EntityManager) f.get(countryService);
+        EntityManager em = (EntityManager) f.get(countryDao);
 
         Assert.assertNotNull(em);
     }

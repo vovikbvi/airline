@@ -5,10 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="country")
 public class Country extends AbstractModel {
 	
-	@Column(name="name")
+	@Column
 	private String name;
 
 	public String getName() {

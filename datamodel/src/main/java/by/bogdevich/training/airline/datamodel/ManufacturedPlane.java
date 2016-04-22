@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class ManufacturedPlain extends AbstractModel {
+public class ManufacturedPlane extends AbstractModel {
 	
 	@Column
 	private String name;

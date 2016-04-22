@@ -10,8 +10,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class ModelPlane extends AbstractModel {
 	
-	@ManyToOne(targetEntity = ManufacturedPlain.class, fetch = FetchType.LAZY)
-	private ManufacturedPlain manufacturedPlain;
+	@ManyToOne(targetEntity = ManufacturedPlane.class, fetch = FetchType.LAZY)
+	private ManufacturedPlane manufacturedPlain;
 	
 	@Column
 	private String model;
@@ -35,11 +35,11 @@ public class ModelPlane extends AbstractModel {
 	@Enumerated(value = EnumType.STRING)
 	private ClassWeight classWeight;
 
-	public ManufacturedPlain getManufacturedPlain() {
+	public ManufacturedPlane getManufacturedPlain() {
 		return manufacturedPlain;
 	}
 
-	public void setManufacturedPlain(ManufacturedPlain manufacturedPlain) {
+	public void setManufacturedPlain(ManufacturedPlane manufacturedPlain) {
 		this.manufacturedPlain = manufacturedPlain;
 	}
 
@@ -99,4 +99,5 @@ public class ModelPlane extends AbstractModel {
 		this.classWeight = classWeight;
 	}
 
+	
 }

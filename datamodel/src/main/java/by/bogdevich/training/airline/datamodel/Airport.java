@@ -9,48 +9,35 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Airport extends AbstractModel {
-	
+
+	@Column
+	private String name;
+
 	@Column
 	private String codeIata;
-	
+
 	@Column
 	private String codeIcao;
-	
+
 	@ManyToOne(targetEntity = City.class, fetch = FetchType.LAZY)
 	private City city;
-	
+
 	@Column
 	@Enumerated(value = EnumType.STRING)
 	private ClassWeight classWeight;
-	
+
 	@Column
 	private Double coordinatesX;
-	
+
 	@Column
 	private Double coordinatesY;
 
-	public ClassWeight getClassWeight() {
-		return classWeight;
+	public String getName() {
+		return name;
 	}
 
-	public void setClassWeight(ClassWeight classWeight) {
-		this.classWeight = classWeight;
-	}
-
-	public Double getCoordinatesX() {
-		return coordinatesX;
-	}
-
-	public void setCoordinatesX(Double coordinatesX) {
-		this.coordinatesX = coordinatesX;
-	}
-
-	public Double getCoordinatesY() {
-		return coordinatesY;
-	}
-
-	public void setCoordinatesY(Double coordinatesY) {
-		this.coordinatesY = coordinatesY;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCodeIata() {
@@ -75,6 +62,30 @@ public class Airport extends AbstractModel {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public ClassWeight getClassWeight() {
+		return classWeight;
+	}
+
+	public void setClassWeight(ClassWeight classWeight) {
+		this.classWeight = classWeight;
+	}
+
+	public Double getCoordinatesX() {
+		return coordinatesX;
+	}
+
+	public void setCoordinatesX(Double coordinatesX) {
+		this.coordinatesX = coordinatesX;
+	}
+
+	public Double getCoordinatesY() {
+		return coordinatesY;
+	}
+
+	public void setCoordinatesY(Double coordinatesY) {
+		this.coordinatesY = coordinatesY;
 	}
 
 }
