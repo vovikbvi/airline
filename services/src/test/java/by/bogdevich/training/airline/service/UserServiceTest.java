@@ -31,14 +31,27 @@ public class UserServiceTest {
 	@Inject
 	private PriceDao priceDao;
 	
+	@Inject
+	private TicketService ticketService;
+	
 	@Test
 	public void test() {
-		Assert.assertNotNull(countryService);
+		Assert.assertNotNull(ticketService);
 	}
 	
 	
     @Test
     public void testEntityManagerInitialization() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+        Field f = AbstractDaoImpl.class.getDeclaredField("entityManager");
+        f.setAccessible(true);
+        EntityManager em = (EntityManager) f.get(priceDao);
+
+        Assert.assertNotNull(em);
+    }
+
+    
+    @Test
+    public void testEntityManagerInitialization1() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         Field f = AbstractDaoImpl.class.getDeclaredField("entityManager");
         f.setAccessible(true);
         EntityManager em = (EntityManager) f.get(countryDao);
