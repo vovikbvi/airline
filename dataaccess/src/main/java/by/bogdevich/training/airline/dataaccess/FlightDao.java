@@ -1,5 +1,7 @@
 package by.bogdevich.training.airline.dataaccess;
 
-public interface FlightDao {
+import by.bogdevich.training.airline.datamodel.Flight;
+
+public interface FlightDao extends AbstractDao<Flight, Long>{
 
 }

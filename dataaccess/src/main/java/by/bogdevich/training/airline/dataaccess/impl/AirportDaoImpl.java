@@ -6,18 +6,11 @@ import by.bogdevich.training.airline.dataaccess.AirportDao;
 import by.bogdevich.training.airline.datamodel.Airport;
 
 @Repository
-public class AirportDaoImpl extends AbstractDaoImpl implements AirportDao{
+public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements AirportDao{
 
-	@Override
-	public Airport get(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	protected AirportDaoImpl() {
+		super(Airport.class);
 	}
 
-	@Override
-	public Airport save() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

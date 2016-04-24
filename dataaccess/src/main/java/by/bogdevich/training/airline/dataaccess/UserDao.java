@@ -1,5 +1,7 @@
 package by.bogdevich.training.airline.dataaccess;
 
-public interface UserDao {
+import by.bogdevich.training.airline.datamodel.User;
+
+public interface UserDao extends AbstractDao<User, Long>{
 
 }

@@ -6,17 +6,13 @@ import by.bogdevich.training.airline.dataaccess.CountryDao;
 import by.bogdevich.training.airline.datamodel.Country;
 
 
+
 @Repository
-public class CountryDaoImpl extends AbstractDaoImpl implements CountryDao {
+public class CountryDaoImpl extends AbstractDaoImpl<Country, Long> implements CountryDao {
 
-	@Override
-	public Country get(Long id) {
-		return null;
+	protected CountryDaoImpl() {
+		super(Country.class);
 	}
 
-	@Override
-	public Country save() {
-		return null;
-	}
 
 }

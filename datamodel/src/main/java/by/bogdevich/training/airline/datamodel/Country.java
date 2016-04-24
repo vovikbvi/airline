@@ -10,6 +10,7 @@ public class Country extends AbstractModel {
 	@Column
 	private String name;
 
+	
 	public String getName() {
 		return name;
 	}

@@ -1,5 +1,7 @@
 package by.bogdevich.training.airline.dataaccess;
 
-public interface PriceDao {
+import by.bogdevich.training.airline.datamodel.Price;
+
+public interface PriceDao extends AbstractDao<Price, Long>{
 
 }

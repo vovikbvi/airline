@@ -2,9 +2,6 @@ package by.bogdevich.training.airline.dataaccess;
 
 import by.bogdevich.training.airline.datamodel.Country;
 
-public interface CountryDao {
+public interface CountryDao extends AbstractDao<Country, Long>{
 	
-	Country get(Long id);
-	
-	Country save();
 }

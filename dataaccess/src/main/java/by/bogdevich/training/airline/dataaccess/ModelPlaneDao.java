@@ -1,5 +1,7 @@
 package by.bogdevich.training.airline.dataaccess;
 
-public interface ModelPlaneDao {
+import by.bogdevich.training.airline.datamodel.ModelPlane;
+
+public interface ModelPlaneDao extends AbstractDao<ModelPlane, Long>{
 
 }

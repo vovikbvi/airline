@@ -1,5 +1,7 @@
 package by.bogdevich.training.airline.dataaccess;
 
-public interface CityDao {
+import by.bogdevich.training.airline.datamodel.City;
+
+public interface CityDao extends AbstractDao<City, Long>{
 
 }
