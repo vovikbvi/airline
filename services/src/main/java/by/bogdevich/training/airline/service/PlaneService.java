@@ -4,21 +4,21 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import by.bogdevich.training.airline.datamodel.City;
+import by.bogdevich.training.airline.datamodel.Plane;
 
-public interface CityService {
-	
-	@Transactional
-	void update(City city);
+public interface PlaneService {
 
 	@Transactional
-	void insert(City city);
+	void insert(Plane plane);
+
+	@Transactional
+	void update(Plane plane);
 
 	@Transactional
 	void delete(Long id);
 
-	City get(Long id);
+	Plane get(Long id);
 
-	List<City> getAll();
+	List<Plane> getAll();
 
 }

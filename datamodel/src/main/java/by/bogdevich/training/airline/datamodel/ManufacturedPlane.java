@@ -17,4 +17,9 @@ public class ManufacturedPlane extends AbstractModel {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "ManufacturedPlane [name=" + name + "]";
+	}
+
 }

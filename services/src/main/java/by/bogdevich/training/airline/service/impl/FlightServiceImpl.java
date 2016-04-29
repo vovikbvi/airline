@@ -1,10 +1,66 @@
 package by.bogdevich.training.airline.service.impl;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-
+import by.bogdevich.training.airline.dataaccess.FlightDao;
+import by.bogdevich.training.airline.datamodel.ClassWeight;
+import by.bogdevich.training.airline.datamodel.Flight;
+import by.bogdevich.training.airline.service.FlightService;
 
 @Service
-public class FlightServiceImpl{
+public class FlightServiceImpl implements FlightService {
+	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
 
+	@Inject
+	FlightDao flightDao;
+
+	@Override
+	public void update(Flight flight) {
+		flightDao.update(flight);
+		LOGGER.info("Update flight {}", flight);
+	}
+
+	private Boolean checkPlane(Flight flight) {
+		ClassWeight classWeightPlane = flight.getPlane().getModelPlane().getClassWeight();
+		ClassWeight classWeightAirport = flight.getFlightsCatalog().getAirportFinish().getClassWeight();
+		if (classWeightPlane.compareTo(classWeightAirport) <= 0) {
+			return true;
+		}
+		return false;
+
+	}
+
+	@Override
+	public void insert(Flight flight) {
+
+		if (checkPlane(flight)) {
+			flightDao.insert(flight);
+			LOGGER.info("Insert flight {}", flight);
+		} else {
+			LOGGER.info("You can't use this plane {}", flight);
+		}
+	}
+
+	@Override
+	public void delete(Long id) {
+		Flight flight = flightDao.get(id);
+		flightDao.delete(id);
+		LOGGER.info("Delete flight {}", flight);
+	}
+
+	@Override
+	public Flight get(Long id) {
+		return flightDao.get(id);
+	}
+
+	@Override
+	public List<Flight> getAll() {
+		return flightDao.getAll();
+	}
 }

@@ -12,8 +12,6 @@ public class CityDaoImpl extends AbstractDaoImpl<City, Long> implements CityDao 
 		super(City.class);
 	}
 	
-	public void test(){
-		
-	}
+	
 	
 }

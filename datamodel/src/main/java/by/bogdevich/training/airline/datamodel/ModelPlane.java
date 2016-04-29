@@ -99,5 +99,13 @@ public class ModelPlane extends AbstractModel {
 		this.classWeight = classWeight;
 	}
 
+	@Override
+	public String toString() {
+		return "ModelPlane [manufacturedPlain=" + manufacturedPlain + ", model=" + model + ", colPassangerBuisnes="
+				+ colPassangerBuisnes + ", colPassangerFirstclass=" + colPassangerFirstclass + ", colPassangerEconomy="
+				+ colPassangerEconomy + ", weightAllBaggage=" + weightAllBaggage + ", avgSpeed=" + avgSpeed
+				+ ", classWeight=" + classWeight + "]";
+	}
+
 	
 }

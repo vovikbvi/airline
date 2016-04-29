@@ -1,9 +1,8 @@
 package by.bogdevich.training.airline.service;
 
-import java.lang.reflect.Field;
+import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,53 +10,97 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-
-import by.bogdevich.training.airline.dataaccess.CountryDao;
-import by.bogdevich.training.airline.dataaccess.PriceDao;
-import by.bogdevich.training.airline.dataaccess.impl.AbstractDaoImpl;
-
+import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
+import by.bogdevich.training.airline.datamodel.UserProfile;
+import by.bogdevich.training.airline.datamodel.UserRole;
+import by.bogdevich.training.airline.datamodel.UserProfile_;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
 public class UserServiceTest {
 
 	@Inject
-	private CountryService countryService;
-	
-	@Inject
-	private CountryDao countryDao;
+	private UserProfileService userProfileService;
 
-	
-	@Inject
-	private PriceDao priceDao;
-	
-	@Inject
-	private TicketService ticketService;
-	
+	// add user
 	@Test
-	public void test() {
-		Assert.assertNotNull(ticketService);
+	public void testUser() {
+		// clean all data from user
+		List<UserProfile> all = userProfileService.getAll();
+		for (UserProfile userProfile : all) {
+			userProfileService.delete(userProfile.getId());
+		}
+
+
+		int i = 20;
+		UserProfile userProfile = new UserProfile();
+		userProfile.setLogin("login" + i);
+		userProfile.setPassword("pas" + i);
+		userProfile.setFirstName("FirstName" + i);
+		userProfile.setLastName("LastName" + i);
+		userProfile.setEmail("vovik@mail.ru");
+		userProfile.setPassportNumber("abcdfe" + i);
+		userProfile.setPhoneNumber("+375297121212" + i);
+		userProfile.setCountOder(1);
+		userProfile.setVip(false);
+		userProfile.setRole(UserRole.ADMIN);
+		userProfile.setAceptRegistr(false);
+
+		userProfileService.registration(userProfile);
+
+		UserProfile userProfileAdd = userProfileService.get(userProfile.getId());
+
+		Assert.assertNotNull(userProfileAdd);
+
+		//test del
+		userProfileService.delete(userProfileAdd.getId());
+		Assert.assertNull(userProfileService.get(userProfile.getId()));
 	}
+
+	  @Test
+	    public void testSearch() {
+		  
+			for(int i =0; i<10; i++){
+			UserProfile userProfile = new UserProfile();
+			userProfile.setLogin("login" + i);
+			userProfile.setPassword("pas" + Math.random());
+			userProfile.setFirstName("FirstName" + Math.random());
+			userProfile.setLastName("LastName" + i);
+			userProfile.setEmail("vovik@mail.ru");
+			userProfile.setPassportNumber("abcdfe" + i);
+			userProfile.setPhoneNumber("+375297121212" + i);
+			userProfile.setCountOder(1);
+			userProfile.setVip(false);
+			userProfile.setRole(UserRole.ADMIN);
+			userProfile.setAceptRegistr(false);
+			
+			userProfileService.registration(userProfile);
+			}
+	    	
+	        UserProfileFilter filter = new UserProfileFilter();
+	        List<UserProfile> result = userProfileService.find(filter);
+	        Assert.assertEquals(10, result.size());
+	        
+	        // test paging
+	        filter.setFetchCredentials(true);
+	        int limit = 5;
+	        filter.setLimit(limit);
+	        filter.setOffset(0);
+	        result = userProfileService.find(filter);
+	        Assert.assertEquals(limit, result.size());
+            
+	   //     for (UserProfile userProfile : result) {
+	   //     System.out.println("++++++++++++++++++++"+userProfile); 
+	   //     }
+	        // test sort
+
+	        filter.setLimit(null);
+	        filter.setOffset(null);
+	        filter.setSortOrder(true);
+	        filter.setSortProperty(UserProfile_.firstName);
+	        result = userProfileService.find(filter);
+ 	        Assert.assertEquals(10, result.size());
+
+	    }
 	
-	
-    @Test
-    public void testEntityManagerInitialization() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-        Field f = AbstractDaoImpl.class.getDeclaredField("entityManager");
-        f.setAccessible(true);
-        EntityManager em = (EntityManager) f.get(priceDao);
-
-        Assert.assertNotNull(em);
-    }
-
-    
-    @Test
-    public void testEntityManagerInitialization1() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-        Field f = AbstractDaoImpl.class.getDeclaredField("entityManager");
-        f.setAccessible(true);
-        EntityManager em = (EntityManager) f.get(countryDao);
-
-        Assert.assertNotNull(em);
-    }
-
-
 }

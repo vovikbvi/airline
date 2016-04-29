@@ -12,6 +12,12 @@
 	<artifactId>datamodel</artifactId>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -31,7 +37,39 @@
 			<artifactId>commons-dbcp</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<compilerArguments>
+						<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

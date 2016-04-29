@@ -19,4 +19,11 @@ public class Country extends AbstractModel {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "Country [name=" + name + "]";
+	}
+
+	
+	
 }

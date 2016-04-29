@@ -30,4 +30,9 @@ public class Plane extends AbstractModel {
 		this.modelPlane = modelPlane;
 	}
 
+	@Override
+	public String toString() {
+		return "Plane [bortNumber=" + bortNumber + ", modelPlane=" + modelPlane + "]";
+	}
+
 }

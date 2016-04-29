@@ -3,53 +3,57 @@ package by.bogdevich.training.airline.datamodel;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConverter;
+
 @Entity
 public class Ticket extends AbstractModel {
-	
-	@ManyToOne(targetEntity = Flight.class, fetch = FetchType.LAZY)	
+
+	@ManyToOne(targetEntity = Flight.class, fetch = FetchType.LAZY)
 	private Flight flight;
-	
-	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-	private User passanger;
-	
+
+	@ManyToOne(targetEntity = UserProfile.class, fetch = FetchType.LAZY)
+	private UserProfile userProfile;
+
 	@Column
 	private Boolean paid;
-	
+
 	@Column
 	private Integer numberSeats;
-	
+
 	@Column
+	@Convert(converter = LocalDateTimePersistenceConverter.class)
 	private LocalDateTime dateBought;
-	
+
 	@Column
 	private Boolean baggage;
-	
+
 	@Column
 	private Double weightBaggage;
-	
+
 	@Column
 	@Enumerated(value = EnumType.STRING)
 	private TicketTupe ticketTupe;
-	
+
 	@Column
 	@Enumerated(value = EnumType.STRING)
 	private TicketClass ticketClass;
-	
+
 	@Column
 	private Boolean priorityRegistration;
-	
+
 	@Column
 	private Boolean prioritySeats;
-	
+
 	@Column
 	private Double costs;
-	
+
 	@Column
 	private Boolean forBaby;
 
@@ -61,12 +65,12 @@ public class Ticket extends AbstractModel {
 		this.flight = flight;
 	}
 
-	public User getPassanger() {
-		return passanger;
+	public UserProfile getUserProfile() {
+		return userProfile;
 	}
 
-	public void setPassanger(User passanger) {
-		this.passanger = passanger;
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
 	}
 
 	public Boolean getPaid() {
@@ -155,6 +159,15 @@ public class Ticket extends AbstractModel {
 
 	public void setForBaby(Boolean forBaby) {
 		this.forBaby = forBaby;
+	}
+
+	@Override
+	public String toString() {
+		return "Ticket [flight=" + flight + ", userProfile=" + userProfile + ", paid=" + paid + ", numberSeats="
+				+ numberSeats + ", dateBought=" + dateBought + ", baggage=" + baggage + ", weightBaggage="
+				+ weightBaggage + ", ticketTupe=" + ticketTupe + ", ticketClass=" + ticketClass
+				+ ", priorityRegistration=" + priorityRegistration + ", prioritySeats=" + prioritySeats + ", costs="
+				+ costs + ", forBaby=" + forBaby + "]";
 	}
 
 }

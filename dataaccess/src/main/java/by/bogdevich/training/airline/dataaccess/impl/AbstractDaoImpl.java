@@ -8,7 +8,9 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import by.bogdevich.training.airline.dataaccess.AbstractDao;
 
+
 public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
+		
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -19,6 +21,7 @@ public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
 		this.entityClass = entityClass;
 	}
 
+	
 	@Override
 	public List<T> getAll() {
 		final CriteriaQuery<T> query = entityManager.getCriteriaBuilder().createQuery(getEntityClass());
@@ -54,5 +57,9 @@ public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
 	public Class<T> getEntityClass() {
 		return entityClass;
 	}
+ 
+	protected EntityManager getEntityManager() {
+        return entityManager;
+    }
 
 }

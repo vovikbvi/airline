@@ -8,6 +8,8 @@
 
 	<packaging>pom</packaging>
 
+	<url>http://maven.apache.org</url>
+
 	<properties>
 		<spring.version>4.0.3.RELEASE</spring.version>
 	</properties>
@@ -17,7 +19,7 @@
 		<module>datamodel</module>
 		<module>services</module>
 	</modules>
-	
+
 
 	<dependencyManagement>
 		<dependencies>
@@ -50,13 +52,22 @@
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
 				<version>4.3.8.Final</version>
+
 			</dependency>
+
 			<dependency>
 				<groupId>org.postgresql</groupId>
 				<artifactId>postgresql</artifactId>
 				<version>9.3-1100-jdbc41</version>
 			</dependency>
 
+			<!-- for generate jpa model -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-jpamodelgen</artifactId>
+				<version>4.3.4.Final</version>
+				<scope>provided</scope>
+			</dependency>
 
 
 			<dependency>
@@ -117,7 +128,36 @@
 				<version>4.11</version>
 				<scope>test</scope>
 			</dependency>
-	
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4</version>
+			</dependency>
+
+			<!-- for loger -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-jcl</artifactId>
+				<version>2.1</version>
+			</dependency>
+
+
+
 		</dependencies>
 	</dependencyManagement>
 
