@@ -46,7 +46,7 @@ public class FlightCatalogServiceImpl implements FlightCatalogService {
 	@Override
 	public void insert(FlightCatalog flightCatalog) {
 		
-		CheckInternatoinal(flightCatalog);
+		//CheckInternatoinal(flightCatalog);
 		flightCatalogDao.insert(flightCatalog);
 		LOGGER.info("Insert flight catalog {}", flightCatalog);
 	}

@@ -14,7 +14,7 @@ import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConv
 public class Flight extends AbstractModel {
 
 	@ManyToOne(targetEntity = FlightCatalog.class, fetch = FetchType.LAZY)
-	private FlightCatalog flightsCatalog;
+	private FlightCatalog flightCatalog;
 
 	@Column
 	@Convert(converter = LocalDateTimePersistenceConverter.class)
@@ -35,73 +35,49 @@ public class Flight extends AbstractModel {
 	@Convert(converter = LocalDateTimePersistenceConverter.class)
 	private LocalDateTime startSaleTicket;
 
-
-
-	public FlightCatalog getFlightsCatalog() {
-		return flightsCatalog;
+	public FlightCatalog getFlightCatalog() {
+		return flightCatalog;
 	}
 
-
-
-	public void setFlightsCatalog(FlightCatalog flightsCatalog) {
-		this.flightsCatalog = flightsCatalog;
+	public void setFlightCatalog(FlightCatalog flightsCatalog) {
+		this.flightCatalog = flightsCatalog;
 	}
-
-
 
 	public LocalDateTime getRegistrTime() {
 		return registrTime;
 	}
 
-
-
 	public void setRegistrTime(LocalDateTime registrTime) {
 		this.registrTime = registrTime;
 	}
-
-
 
 	public LocalDateTime getDepartureTime() {
 		return departureTime;
 	}
 
-
-
 	public void setDepartureTime(LocalDateTime departureTime) {
 		this.departureTime = departureTime;
 	}
-
-
 
 	public LocalDateTime getArrivalTime() {
 		return arrivalTime;
 	}
 
-
-
 	public void setArrivalTime(LocalDateTime arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
-
-
 
 	public Plane getPlane() {
 		return plane;
 	}
 
-
-
-	public void setPlane(Plane plane) {
-		this.plane = plane;
+	public void setPlane(Plane plane_id) {
+		this.plane = plane_id;
 	}
-
-
 
 	public LocalDateTime getStartSaleTicket() {
 		return startSaleTicket;
 	}
-
-
 
 	public void setStartSaleTicket(LocalDateTime startSaleTicket) {
 		this.startSaleTicket = startSaleTicket;
@@ -109,12 +85,4 @@ public class Flight extends AbstractModel {
 
 
 
-	@Override
-	public String toString() {
-		return "Flight [flightsCatalog=" + flightsCatalog + ", registrTime=" + registrTime + ", departureTime="
-				+ departureTime + ", arrivalTime=" + arrivalTime + ", plane_id=" + plane + ", startSaleTicket="
-				+ startSaleTicket + "]";
-	}
-
-	
 }

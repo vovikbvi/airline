@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import by.bogdevich.training.airline.dataaccess.FlightDao;
-import by.bogdevich.training.airline.datamodel.ClassWeight;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.service.FlightService;
 
@@ -26,25 +25,12 @@ public class FlightServiceImpl implements FlightService {
 		LOGGER.info("Update flight {}", flight);
 	}
 
-	private Boolean checkPlane(Flight flight) {
-		ClassWeight classWeightPlane = flight.getPlane().getModelPlane().getClassWeight();
-		ClassWeight classWeightAirport = flight.getFlightsCatalog().getAirportFinish().getClassWeight();
-		if (classWeightPlane.compareTo(classWeightAirport) <= 0) {
-			return true;
-		}
-		return false;
-
-	}
-
 	@Override
 	public void insert(Flight flight) {
 
-		if (checkPlane(flight)) {
-			flightDao.insert(flight);
-			LOGGER.info("Insert flight {}", flight);
-		} else {
-			LOGGER.info("You can't use this plane {}", flight);
-		}
+		flightDao.insert(flight);
+		LOGGER.info("Insert flight {}", flight);
+
 	}
 
 	@Override

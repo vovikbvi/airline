@@ -23,13 +23,13 @@ public class Airport extends AbstractModel {
 	private City city;
 
 	@Column
-	@Enumerated(value = EnumType.STRING)
+	@Enumerated(value = EnumType.ORDINAL)
 	private ClassWeight classWeight;
 
-	@Column
+	@Column(name="coordinates_x")
 	private Double coordinatesX;
 
-	@Column
+	@Column(name="coordinates_y")
 	private Double coordinatesY;
 
 	public String getName() {

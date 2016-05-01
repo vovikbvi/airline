@@ -1,10 +1,10 @@
-CREATE TABLE "flights_catalog" (
+CREATE TABLE "flight_catalog" (
 	"id" serial NOT NULL,
 	"airport_start_id" int,
 	"airport_finish_id" int,
 	"distance" int,
 	"international" BOOLEAN,
-	CONSTRAINT flights_catalog_pk PRIMARY KEY ("id")
+	CONSTRAINT flight_catalog_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -18,8 +18,8 @@ CREATE TABLE "airport" (
 	"code_icao" character varying(4),
 	"city_id" int,
 	"class_weight" int,
-	"coordinates_X" DECIMAL,
-	"coordinates_Y" DECIMAL,
+	"coordinates_x" DECIMAL,
+	"coordinates_y" DECIMAL,
 	CONSTRAINT airport_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -51,7 +51,7 @@ CREATE TABLE "country" (
 
 CREATE TABLE "flight" (
 	"id" serial NOT NULL,
-	"flights_catalog_id" int,
+	"flight_catalog_id" int,
 	"registr_time" TIMESTAMP,
 	"departure_time" TIMESTAMP,
 	"arrival_time" TIMESTAMP,
@@ -131,11 +131,11 @@ CREATE TABLE "user_profile" (
 	"first_name" character varying(50) NOT NULL,
 	"last_name" character varying(50) NOT NULL,
 	"email" character varying(100),
-	"pasport_number" character varying(20),
+	"passport_number" character varying(20),
 	"phone_number" character varying(20),
 	"count_oder" int DEFAULT '0',
 	"vip" BOOLEAN,
-	"data_registr" TIMESTAMP,
+	"date_registr" TIMESTAMP,
 	"role" int,
 	"acept_registr" BOOLEAN DEFAULT '0',
 	CONSTRAINT user_profile_pk PRIMARY KEY ("id")
@@ -156,15 +156,15 @@ CREATE TABLE "price" (
 
 
 
-ALTER TABLE "flights_catalog" ADD CONSTRAINT "flights_catalog_fk0" FOREIGN KEY ("airport_start_id") REFERENCES "airport"("id");
-ALTER TABLE "flights_catalog" ADD CONSTRAINT "flights_catalog_fk1" FOREIGN KEY ("airport_finish_id") REFERENCES "airport"("id");
+ALTER TABLE "flight_catalog" ADD CONSTRAINT "flight_catalog_fk0" FOREIGN KEY ("airport_start_id") REFERENCES "airport"("id");
+ALTER TABLE "flight_catalog" ADD CONSTRAINT "flight_catalog_fk1" FOREIGN KEY ("airport_finish_id") REFERENCES "airport"("id");
 
 ALTER TABLE "airport" ADD CONSTRAINT "airport_fk0" FOREIGN KEY ("city_id") REFERENCES "city"("id");
 
 ALTER TABLE "city" ADD CONSTRAINT "city_fk0" FOREIGN KEY ("country_id") REFERENCES "country"("id");
 
 
-ALTER TABLE "flight" ADD CONSTRAINT "flight_fk0" FOREIGN KEY ("flights_catalog_id") REFERENCES "flights_catalog"("id");
+ALTER TABLE "flight" ADD CONSTRAINT "flight_fk0" FOREIGN KEY ("flight_catalog_id") REFERENCES "flight_catalog"("id");
 ALTER TABLE "flight" ADD CONSTRAINT "flight_fk1" FOREIGN KEY ("plane_id") REFERENCES "plane"("id");
 
 ALTER TABLE "plane" ADD CONSTRAINT "plane_fk0" FOREIGN KEY ("model_plane_id") REFERENCES "model_plane"("id");
