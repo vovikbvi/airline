@@ -31,7 +31,6 @@ public class UserServiceTest {
 			userProfileService.delete(userProfile.getId());
 		}
 
-
 		int i = 28;
 		UserProfile userProfile = new UserProfile();
 		userProfile.setLogin("login" + i);
@@ -52,18 +51,23 @@ public class UserServiceTest {
 
 		Assert.assertNotNull(userProfileAdd);
 
-		//test del
+		// test del
 		userProfileService.delete(userProfileAdd.getId());
 		Assert.assertNull(userProfileService.get(userProfile.getId()));
 	}
 
-	  @Test
-	    public void testSearch() {
-		  
-			for(int i =0; i<10; i++){
+	@Test
+	public void testSearch() {
+
+		List<UserProfile> all = userProfileService.getAll();
+		for (UserProfile userProfile : all) {
+			userProfileService.delete(userProfile.getId());
+		}
+
+		for (int i = 0; i < 10; i++) {
 			UserProfile userProfile = new UserProfile();
-			userProfile.setLogin("login" + i);
-			userProfile.setPassword("pas" + Math.random());
+			userProfile.setLogin("login" + ((int) Math.random() * 1000) + i);
+			userProfile.setPassword("pas");
 			userProfile.setFirstName("FirstName" + Math.random());
 			userProfile.setLastName("LastName" + i);
 			userProfile.setEmail("vovik@mail.ru");
@@ -73,34 +77,62 @@ public class UserServiceTest {
 			userProfile.setVip(false);
 			userProfile.setRole(UserRole.ADMIN);
 			userProfile.setAceptRegistr(false);
-			
+
 			userProfileService.registration(userProfile);
-			}
-	    	
-	        UserProfileFilter filter = new UserProfileFilter();
-	        List<UserProfile> result = userProfileService.find(filter);
-	        Assert.assertEquals(10, result.size());
-	        
-	        // test paging
-	        filter.setFetchCredentials(true);
-	        int limit = 5;
-	        filter.setLimit(limit);
-	        filter.setOffset(0);
-	        result = userProfileService.find(filter);
-	        Assert.assertEquals(limit, result.size());
-            
-	   //     for (UserProfile userProfile : result) {
-	   //     System.out.println("++++++++++++++++++++"+userProfile); 
-	   //     }
-	        // test sort
+		}
 
-	        filter.setLimit(null);
-	        filter.setOffset(null);
-	        filter.setSortOrder(true);
-	        filter.setSortProperty(UserProfile_.firstName);
-	        result = userProfileService.find(filter);
- 	        Assert.assertEquals(10, result.size());
+		UserProfileFilter filter = new UserProfileFilter();
+		List<UserProfile> result = userProfileService.find(filter);
+		Assert.assertEquals(10, result.size());
 
-	    }
-	
+		// test paging
+		filter.setFetchCredentials(true);
+		int limit = 5;
+		filter.setLimit(limit);
+		filter.setOffset(0);
+		result = userProfileService.find(filter);
+		Assert.assertEquals(limit, result.size());
+
+		// test sort
+		filter.setLimit(null);
+		filter.setOffset(null);
+		filter.setSortOrder(true);
+		filter.setSortProperty(UserProfile_.firstName);
+		result = userProfileService.find(filter);
+		// Assert.assertEquals(10, result.size());
+	}
+
+	@Test
+	public void testFiend() {
+		for (int i = 0; i < 10; i++) {
+			UserProfile userProfile = new UserProfile();
+			userProfile.setLogin("login" + i);
+			userProfile.setPassword("pas");
+			userProfile.setFirstName("FirstName"+i);
+			userProfile.setLastName("LastName");
+			userProfile.setEmail("vovik@mail.ru");
+			userProfile.setPassportNumber("abcdfe");
+			userProfile.setPhoneNumber("+375297121212");
+			userProfile.setCountOder(0);
+			userProfile.setVip(false);
+			userProfile.setRole(UserRole.ADMIN);
+			userProfile.setAceptRegistr(false);
+
+			userProfileService.registration(userProfile);
+		}
+
+		UserProfileFilter filter = new UserProfileFilter();
+		List<UserProfile> result = userProfileService.find(filter);
+
+		
+		filter.setFirstName("First*");
+		result = userProfileService.find(filter);
+		Assert.assertEquals(10, result.size());
+
+		List<UserProfile> all = userProfileService.getAll();
+		for (UserProfile userProfile : all) {
+			userProfileService.delete(userProfile.getId());
+
+		}
+	}
 }

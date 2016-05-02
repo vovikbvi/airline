@@ -7,9 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import by.bogdevich.training.airline.datamodel.Airport;
-import by.bogdevich.training.airline.datamodel.ClassWeight;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
 
 @RunWith(SpringJUnit4ClassRunner.class)

@@ -11,8 +11,6 @@ public class UserProfileFilter {
 	private Integer offset;
 	private Integer limit;
 	private boolean isFetchCredentials;
-	
-	
 
 	public Boolean getShowLogin() {
 		return showLogin;

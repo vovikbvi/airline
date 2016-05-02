@@ -11,19 +11,19 @@ import javax.persistence.ManyToOne;
 public class ModelPlane extends AbstractModel {
 	
 	@ManyToOne(targetEntity = ManufacturedPlane.class, fetch = FetchType.LAZY)
-	private ManufacturedPlane manufacturedPlain;
+	private ManufacturedPlane manufacturedPlane;
 	
 	@Column
 	private String model;
 	
 	@Column
-	private Integer colPassangerBuisnes;
+	private Integer colPassangersBuisnes;
 	
 	@Column
-	private Integer colPassangerFirstclass;
+	private Integer colPassangersFirstclass;
 	
 	@Column
-	private Integer colPassangerEconomy;
+	private Integer colPassangersEconomy;
 	
 	@Column
 	private Integer weightAllBaggage;
@@ -32,15 +32,15 @@ public class ModelPlane extends AbstractModel {
 	private Integer avgSpeed;
 	
 	@Column
-	@Enumerated(value = EnumType.STRING)
+	@Enumerated(value = EnumType.ORDINAL)
 	private ClassWeight classWeight;
 
-	public ManufacturedPlane getManufacturedPlain() {
-		return manufacturedPlain;
+	public ManufacturedPlane getManufacturedPlane() {
+		return manufacturedPlane;
 	}
 
-	public void setManufacturedPlain(ManufacturedPlane manufacturedPlain) {
-		this.manufacturedPlain = manufacturedPlain;
+	public void setManufacturedPlane(ManufacturedPlane manufacturedPlane) {
+		this.manufacturedPlane = manufacturedPlane;
 	}
 
 	public String getModel() {
@@ -51,28 +51,28 @@ public class ModelPlane extends AbstractModel {
 		this.model = model;
 	}
 
-	public Integer getColPassangerBuisnes() {
-		return colPassangerBuisnes;
+	public Integer getColPassangersBuisnes() {
+		return colPassangersBuisnes;
 	}
 
-	public void setColPassangerBuisnes(Integer colPassangerBuisnes) {
-		this.colPassangerBuisnes = colPassangerBuisnes;
+	public void setColPassangersBuisnes(Integer colPassangersBuisnes) {
+		this.colPassangersBuisnes = colPassangersBuisnes;
 	}
 
-	public Integer getColPassangerFirstclass() {
-		return colPassangerFirstclass;
+	public Integer getColPassangersFirstclass() {
+		return colPassangersFirstclass;
 	}
 
-	public void setColPassangerFirstclass(Integer colPassangerFirstclass) {
-		this.colPassangerFirstclass = colPassangerFirstclass;
+	public void setColPassangersFirstclass(Integer colPassangersFirstclass) {
+		this.colPassangersFirstclass = colPassangersFirstclass;
 	}
 
-	public Integer getColPassangerEconomy() {
-		return colPassangerEconomy;
+	public Integer getColPassangersEconomy() {
+		return colPassangersEconomy;
 	}
 
-	public void setColPassangerEconomy(Integer colPassangerEconomy) {
-		this.colPassangerEconomy = colPassangerEconomy;
+	public void setColPassangersEconomy(Integer colPassangersEconomy) {
+		this.colPassangersEconomy = colPassangersEconomy;
 	}
 
 	public Integer getWeightAllBaggage() {
@@ -101,11 +101,12 @@ public class ModelPlane extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return "ModelPlane [manufacturedPlain=" + manufacturedPlain + ", model=" + model + ", colPassangerBuisnes="
-				+ colPassangerBuisnes + ", colPassangerFirstclass=" + colPassangerFirstclass + ", colPassangerEconomy="
-				+ colPassangerEconomy + ", weightAllBaggage=" + weightAllBaggage + ", avgSpeed=" + avgSpeed
-				+ ", classWeight=" + classWeight + "]";
+		return "ModelPlane [manufacturedPlane=" + manufacturedPlane + ", model=" + model + ", colPassangersBuisnes="
+				+ colPassangersBuisnes + ", colPassangersFirstclass=" + colPassangersFirstclass
+				+ ", colPassangersEconomy=" + colPassangersEconomy + ", weightAllBaggage=" + weightAllBaggage
+				+ ", avgSpeed=" + avgSpeed + ", classWeight=" + classWeight + "]";
 	}
 
+	
 	
 }

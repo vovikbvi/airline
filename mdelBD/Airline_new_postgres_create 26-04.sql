@@ -77,12 +77,12 @@ CREATE TABLE "plane" (
 
 CREATE TABLE "model_plane" (
 	"id" serial NOT NULL,
-	"manufacturad_plane_id" int,
+	"manufactured_plane_id" int,
 	"model" character varying(50),
 	"col_passangers_buisnes" int NOT NULL DEFAULT '0',
 	"col_passangers_firstclass" int NOT NULL DEFAULT '0',
 	"col_passangers_economy" int NOT NULL DEFAULT '0',
-	"wieight_all_baggage" int NOT NULL,
+	"weight_all_baggage" int NOT NULL,
 	"avg_speed" int,
 	"class_weight" int,
 	CONSTRAINT model_plane_pk PRIMARY KEY ("id")
@@ -169,7 +169,7 @@ ALTER TABLE "flight" ADD CONSTRAINT "flight_fk1" FOREIGN KEY ("plane_id") REFERE
 
 ALTER TABLE "plane" ADD CONSTRAINT "plane_fk0" FOREIGN KEY ("model_plane_id") REFERENCES "model_plane"("id");
 
-ALTER TABLE "model_plane" ADD CONSTRAINT "model_plane_fk0" FOREIGN KEY ("manufacturad_plane_id") REFERENCES "manufactured_plane"("id");
+ALTER TABLE "model_plane" ADD CONSTRAINT "model_plane_fk0" FOREIGN KEY ("manufactured_plane_id") REFERENCES "manufactured_plane"("id");
 
 
 ALTER TABLE "ticket" ADD CONSTRAINT "ticket_fk0" FOREIGN KEY ("flight_id") REFERENCES "flight"("id");

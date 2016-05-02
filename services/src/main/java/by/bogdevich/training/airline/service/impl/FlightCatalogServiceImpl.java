@@ -24,14 +24,10 @@ public class FlightCatalogServiceImpl implements FlightCatalogService {
 	@Inject
 	CityDao cityDao;
 
-	private void CheckInternatoinal(FlightCatalog flightCatalog) {
-		Country countryStart = flightCatalog.getAirportFinish().getCity().getCountry();
+	private boolean CheckInternatoinal(FlightCatalog flightCatalog) {
+		Country countryStart = flightCatalog.getAirportStart().getCity().getCountry();
 		Country countryFinish = flightCatalog.getAirportFinish().getCity().getCountry();
-		if (countryStart.equals(countryFinish)){
-			flightCatalog.setInternational(false);
-		} else{
-			flightCatalog.setInternational(true);
-		}
+		return countryStart.equals(countryFinish);
 	}
 
 	
@@ -46,7 +42,7 @@ public class FlightCatalogServiceImpl implements FlightCatalogService {
 	@Override
 	public void insert(FlightCatalog flightCatalog) {
 		
-		//CheckInternatoinal(flightCatalog);
+		flightCatalog.setInternational(true);
 		flightCatalogDao.insert(flightCatalog);
 		LOGGER.info("Insert flight catalog {}", flightCatalog);
 	}
