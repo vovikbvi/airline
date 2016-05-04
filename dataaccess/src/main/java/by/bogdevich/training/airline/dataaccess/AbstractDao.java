@@ -2,6 +2,8 @@ package by.bogdevich.training.airline.dataaccess;
 
 import java.util.List;
 
+import by.bogdevich.training.airline.datamodel.Flight;
+
 public interface AbstractDao<T, ID> {
 
 	List<T> getAll();
@@ -13,5 +15,7 @@ public interface AbstractDao<T, ID> {
 	T update(T entity);
 
 	void delete(ID id);
+
+
 
 }

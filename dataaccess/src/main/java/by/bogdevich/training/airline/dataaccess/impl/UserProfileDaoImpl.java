@@ -16,6 +16,7 @@ import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 
 import by.bogdevich.training.airline.dataaccess.UserProfileDao;
+import by.bogdevich.training.airline.dataaccess.filtres.AbstractFilter;
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
@@ -53,13 +54,13 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
         cq.select(from);
         
         if (filter.getFirstName() != null) {
-           // Predicate fName = cb.equal(from.get(UserProfile_.firstName), filter.getFirstName());
-         Predicate fName = cb.like(from.get(UserProfile_.firstName), filter.getFirstName());
+         Predicate fName = cb.equal(from.get(UserProfile_.firstName), filter.getFirstName());
+        // Predicate fName = cb.like(from.get(UserProfile_.firstName), filter.getFirstName());
             cq.where(fName);
         }
         
         
-        // set fetching
+     // set fetching
      //   if (filter.isFetchCredentials()) {
      //       from.fetch(UserProfile_.credentials, JoinType.LEFT);
      //   }

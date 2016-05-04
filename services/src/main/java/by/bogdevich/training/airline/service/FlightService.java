@@ -20,5 +20,7 @@ public interface FlightService {
 	Flight get(Long id);
 
 	List<Flight> getAll();
+	
+	public Integer getColPassangersBuisnes(Flight flight);
 
 }

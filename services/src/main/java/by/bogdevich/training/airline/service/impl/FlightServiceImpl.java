@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import by.bogdevich.training.airline.dataaccess.FlightDao;
+import by.bogdevich.training.airline.dataaccess.ModelPlaneDao;
+import by.bogdevich.training.airline.datamodel.ClassWeight;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.service.FlightService;
 
@@ -18,19 +20,30 @@ public class FlightServiceImpl implements FlightService {
 
 	@Inject
 	FlightDao flightDao;
+	
+	@Inject
+	ModelPlaneDao modelPlaneDao;
+
+	private boolean checkClassWeight(Flight flight) {
+		ClassWeight classWeightAirport = flight.getPlane().getModelPlane().getClassWeight();
+		ClassWeight classWeightPlane = flight.getFlightCatalog().getAirportFinish().getClassWeight();
+
+		if (classWeightAirport.ordinal() >= classWeightPlane.ordinal()) {
+			return true;
+		}
+		return true;
+	}
+
+	@Override
+	public void insert(Flight flight) {
+			flightDao.insert(flight);
+			LOGGER.info("Insert flight {}", flight);
+	}
 
 	@Override
 	public void update(Flight flight) {
 		flightDao.update(flight);
 		LOGGER.info("Update flight {}", flight);
-	}
-
-	@Override
-	public void insert(Flight flight) {
-
-		flightDao.insert(flight);
-		LOGGER.info("Insert flight {}", flight);
-
 	}
 
 	@Override
@@ -48,5 +61,10 @@ public class FlightServiceImpl implements FlightService {
 	@Override
 	public List<Flight> getAll() {
 		return flightDao.getAll();
+	}
+	
+	@Override
+	public Integer getColPassangersBuisnes(Flight flight){
+		return flightDao.getColPassangersBuisnes(flight);
 	}
 }

@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.City;
 import by.bogdevich.training.airline.datamodel.ClassWeight;
@@ -19,6 +20,9 @@ import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.Plane;
+import by.bogdevich.training.airline.datamodel.Ticket;
+import by.bogdevich.training.airline.datamodel.TicketClass;
+import by.bogdevich.training.airline.datamodel.TicketTupe;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserRole;
 
@@ -52,6 +56,9 @@ public class InsertAllTable {
 
 	@Inject
 	private UserProfileService userProfileService;
+
+	@Inject
+	private TicketService ticketService;
 
 	private Country countryAdd() {
 		Country country = new Country();
@@ -147,7 +154,7 @@ public class InsertAllTable {
 		modelPlane.setColPassangersEconomy(15);
 		modelPlane.setWeightAllBaggage(300);
 		modelPlane.setAvgSpeed(340);
-		modelPlane.setClassWeight(ClassWeight.LIGHT);
+		modelPlane.setClassWeight(ClassWeight.MEDIUM);
 
 		modelPlaneService.insert(modelPlane);
 		return modelPlaneService.get(modelPlane.getId());
@@ -189,13 +196,15 @@ public class InsertAllTable {
 
 	@Test
 	public void testFlight() {
+		Flight flight = flightAdd();
+		int ff = flightService.getColPassangersBuisnes(flight);
+		Flight flightTest = flightAdd();
 		Assert.assertNotNull(flightAdd());
 	}
 
-	
-	private UserProfile userProfileAdd(){
+	private UserProfile userProfileAdd() {
 		UserProfile userProfile = new UserProfile();
-		userProfile.setLogin("login" + (int)(Math.random()*10000));
+		userProfile.setLogin("login" + (int) (Math.random() * 10000));
 		userProfile.setPassword("pas");
 		userProfile.setFirstName("FirstName");
 		userProfile.setLastName("LastName");
@@ -211,12 +220,37 @@ public class InsertAllTable {
 
 		return userProfileService.get(userProfile.getId());
 	}
-	
+
 	@Test
-	public void testUserPrifile(){
+	public void testUserProfile() {
+
 		Assert.assertNotNull(userProfileAdd());
 
 	}
-	
+
+	private Ticket ticketAdd() {
+		Ticket ticket = new Ticket();
+		ticket.setFlight(flightAdd());
+		ticket.setUserProfile(userProfileAdd());
+		ticket.setPaid(true);
+		ticket.setNumberSeats(2);
+		ticket.setDateBought(LocalDateTime.now());
+		ticket.setBaggage(false);
+		ticket.setWeightBaggage(15.0);
+		ticket.setTicketTupe(TicketTupe.SINGLE_TICKET);
+		ticket.setTicketClass(TicketClass.ECONOMY);
+		ticket.setPriorityRegistration(true);
+		ticket.setPrioritySeats(true);
+		ticket.setCosts(35.2);
+		ticket.setForBaby(false);
+
+		ticketService.insert(ticket);
+
+		return ticketService.get(ticket.getId());
+
+	}
+
+	// @Test
+	// public void
 
 }

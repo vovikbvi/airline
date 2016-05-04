@@ -1,11 +1,14 @@
 package by.bogdevich.training.airline.datamodel;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ModelPlane extends AbstractModel {
@@ -34,6 +37,9 @@ public class ModelPlane extends AbstractModel {
 	@Column
 	@Enumerated(value = EnumType.ORDINAL)
 	private ClassWeight classWeight;
+	
+ //   @OneToMany(mappedBy = "modelPlane", fetch = FetchType.LAZY)
+ //   private List<Plane> variantsModel;
 
 	public ManufacturedPlane getManufacturedPlane() {
 		return manufacturedPlane;

@@ -1,14 +1,18 @@
 package by.bogdevich.training.airline.datamodel;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConverter;
+
+
 
 @Entity
 public class Flight extends AbstractModel {
@@ -34,6 +38,8 @@ public class Flight extends AbstractModel {
 	@Column
 	@Convert(converter = LocalDateTimePersistenceConverter.class)
 	private LocalDateTime startSaleTicket;
+	
+
 
 	public FlightCatalog getFlightCatalog() {
 		return flightCatalog;
@@ -82,7 +88,5 @@ public class Flight extends AbstractModel {
 	public void setStartSaleTicket(LocalDateTime startSaleTicket) {
 		this.startSaleTicket = startSaleTicket;
 	}
-
-
 
 }
