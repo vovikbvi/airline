@@ -38,11 +38,11 @@ public class Ticket extends AbstractModel {
 	private Double weightBaggage;
 
 	@Column
-	@Enumerated(value = EnumType.STRING)
+	@Enumerated(value = EnumType.ORDINAL)
 	private TicketTupe ticketTupe;
 
 	@Column
-	@Enumerated(value = EnumType.STRING)
+	@Enumerated(value = EnumType.ORDINAL)
 	private TicketClass ticketClass;
 
 	@Column

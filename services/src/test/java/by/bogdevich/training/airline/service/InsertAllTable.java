@@ -20,6 +20,7 @@ import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.Plane;
+import by.bogdevich.training.airline.datamodel.Price;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.TicketClass;
 import by.bogdevich.training.airline.datamodel.TicketTupe;
@@ -60,6 +61,9 @@ public class InsertAllTable {
 	@Inject
 	private TicketService ticketService;
 
+	@Inject
+	private PriceService priceService;
+
 	private Country countryAdd() {
 		Country country = new Country();
 		country.setName("FR");
@@ -68,10 +72,32 @@ public class InsertAllTable {
 
 	}
 
+	// test country
+
 	@Test
-	public void testCountry() {
+	public void testAddCountry() {
 		Assert.assertNotNull(countryAdd());
 	}
+
+	@Test
+	public void testUpdateCountry() {
+		String updatedField = "updatedName";
+		Country country = countryAdd();
+		country.setName(updatedField);
+		countryService.update(country);
+
+		Assert.assertEquals(updatedField, countryService.get(country.getId()).getName());
+	}
+
+	@Test
+	public void testDeletCountry() {
+		Country country = countryAdd();
+		countryService.delet(country.getId());
+
+		Assert.assertNull(countryService.get(country.getId()));
+	}
+
+	// end test country
 
 	private City cityAdd() {
 		City city = new City();
@@ -84,12 +110,34 @@ public class InsertAllTable {
 
 	}
 
+	// test city
+
 	@Test
-	public void testCity() {
+	public void testAddCity() {
 
 		Assert.assertNotNull(cityAdd());
 
 	}
+
+	@Test
+	public void testUpdateCity() {
+		String updatedField = "updatedName";
+		City city = cityAdd();
+		city.setName(updatedField);
+		cityService.update(city);
+
+		Assert.assertEquals(updatedField, cityService.get(city.getId()).getName());
+	}
+
+	@Test
+	public void testDeletCity() {
+		City city = cityAdd();
+		cityService.delete(city.getId());
+
+		Assert.assertNull(cityService.get(city.getId()));
+	}
+
+	// end test city
 
 	private Airport airportAdd() {
 		Airport airport = new Airport();
@@ -107,11 +155,32 @@ public class InsertAllTable {
 
 	}
 
+	// test airport
 	@Test
-	public void testAirport() {
+	public void testAddAirport() {
 
 		Assert.assertNotNull(airportAdd());
 	}
+
+	@Test
+	public void testUpdateAirport() {
+		String updatedField = "updatedName";
+		Airport airport = airportAdd();
+		airport.setName(updatedField);
+		airportService.update(airport);
+
+		Assert.assertEquals(updatedField, airportService.get(airport.getId()).getName());
+	}
+
+	@Test
+	public void testDeletAirport() {
+		Airport airport = airportAdd();
+		airportService.delete(airport.getId());
+
+		Assert.assertNull(airportService.get(airport.getId()));
+	}
+
+	// end test airport
 
 	private FlightCatalog flightCatalogAdd() {
 		FlightCatalog flightCatalog = new FlightCatalog();
@@ -125,10 +194,32 @@ public class InsertAllTable {
 
 	}
 
+	// test flight catalog
+
 	@Test
-	public void testFlightCatalog() {
+	public void testAddFlightCatalog() {
 		Assert.assertNotNull(flightCatalogAdd());
 	}
+
+	@Test
+	public void testUpdateFlightCatalog() {
+		Integer updatedField = 200;
+		FlightCatalog flightCatalog = flightCatalogAdd();
+		flightCatalog.setDistance(updatedField);
+		flightCatalogService.update(flightCatalog);
+
+		Assert.assertEquals((long) updatedField, (long) flightCatalogService.get(flightCatalog.getId()).getDistance());
+	}
+
+	@Test
+	public void testDeletFlightCatalog() {
+		FlightCatalog flightCatalog = flightCatalogAdd();
+		flightCatalogService.delete(flightCatalog.getId());
+
+		Assert.assertNull(flightCatalogService.get(flightCatalog.getId()));
+	}
+
+	// end test flight catalog
 
 	private ManufacturedPlane manufacturedPlaneAdd() {
 		ManufacturedPlane manufacturedPlane = new ManufacturedPlane();
@@ -139,11 +230,33 @@ public class InsertAllTable {
 
 	}
 
+	// test Manufactured Plane
+
 	@Test
-	public void testManufacturedPlane() {
+	public void testAddManufacturedPlane() {
 		Assert.assertNotNull(manufacturedPlaneAdd());
 
 	}
+
+	@Test
+	public void testUpdateManufacturedPlane() {
+		String updatedField = "UpdateField";
+		ManufacturedPlane manufacturedPlane = manufacturedPlaneAdd();
+		manufacturedPlane.setName(updatedField);
+		manufacturedPlameService.update(manufacturedPlane);
+
+		Assert.assertEquals(updatedField, manufacturedPlameService.get(manufacturedPlane.getId()).getName());
+	}
+
+	@Test
+	public void testDeletManufacturedPlane() {
+		ManufacturedPlane manufacturedPlane = manufacturedPlaneAdd();
+		manufacturedPlameService.delete(manufacturedPlane.getId());
+
+		Assert.assertNull(manufacturedPlameService.get(manufacturedPlane.getId()));
+	}
+
+	// end test Manufactured Plane
 
 	private ModelPlane modelPlaneAdd() {
 		ModelPlane modelPlane = new ModelPlane();
@@ -161,10 +274,33 @@ public class InsertAllTable {
 
 	}
 
+	// test model plane
+
 	@Test
-	public void testModelPlane() {
+	public void testAddModelPlane() {
 		Assert.assertNotNull(modelPlaneAdd());
 	}
+
+	@Test
+	public void testUpdateModelPlane() {
+		int updatedField = 62;
+		ModelPlane modelPlane = modelPlaneAdd();
+		modelPlane.setColPassangersBuisnes(updatedField);
+		modelPlaneService.update(modelPlane);
+
+		Assert.assertEquals((long) updatedField,
+				(long) modelPlaneService.get(modelPlane.getId()).getColPassangersBuisnes());
+	}
+
+	@Test
+	public void testDeletModelPlane() {
+		ModelPlane modelPlane = modelPlaneAdd();
+		modelPlaneService.delete(modelPlane.getId());
+
+		Assert.assertNull(modelPlaneService.get(modelPlane.getId()));
+	}
+
+	// end test model plane
 
 	private Plane planeAdd() {
 		Plane plane = new Plane();
@@ -175,11 +311,37 @@ public class InsertAllTable {
 		return planeService.get(plane.getId());
 	}
 
+	
+	
+	//test plane
+	
 	@Test
-	public void testPlane() {
+	public void testAddPlane() {
 		Assert.assertNotNull(planeAdd());
 	}
+	
+	@Test
+	public void testUpdatePlane() {
+		String updatedField = "new field";
+		Plane plane = planeAdd();
+		plane.setBortNumber(updatedField);
+		planeService.update(plane);
 
+		Assert.assertEquals(updatedField, planeService.get(plane.getId()).getBortNumber());
+	}
+
+	@Test
+	public void testDeletPlane() {
+		Plane plane = planeAdd();
+		planeService.delete(plane.getId());
+
+		Assert.assertNull(planeService.get(plane.getId()));
+	}
+
+	
+	//end test plane
+	
+	
 	private Flight flightAdd() {
 		Flight flight = new Flight();
 		flight.setFlightCatalog(flightCatalogAdd());
@@ -250,7 +412,23 @@ public class InsertAllTable {
 
 	}
 
-	// @Test
-	// public void
+	@Test
+	public void testAddTicket() {
+		Assert.assertNotNull(ticketAdd());
+	}
+
+	private Price priceAdd() {
+		Price price = new Price();
+		price.setBasicPrice(15.2);
+		price.setDataChange(LocalDateTime.now());
+		priceService.insert(price);
+
+		return priceService.get(price.getId());
+	}
+
+	@Test
+	public void testPrice() {
+		Assert.assertNotNull(priceAdd());
+	}
 
 }
