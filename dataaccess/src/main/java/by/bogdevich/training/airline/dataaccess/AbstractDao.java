@@ -16,6 +16,8 @@ public interface AbstractDao<T, ID> {
 
 	void delete(ID id);
 
+	
+
 
 
 }

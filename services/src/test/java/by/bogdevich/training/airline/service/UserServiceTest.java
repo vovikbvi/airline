@@ -124,11 +124,12 @@ public class UserServiceTest {
 		UserProfileFilter filter = new UserProfileFilter();
 		List<UserProfile> result = userProfileService.find(filter);
 
-		/*
-		 * filter.setFirstName("FirstName"); result =
-		 * userProfileService.find(filter); Assert.assertEquals(10,
-		 * result.size());
-		 * 
+		
+		 filter.setFirstName("FirstName"); result =
+		 userProfileService.find(filter); Assert.assertEquals(10,
+		 result.size());
+		 
+		/* 
 		 * List<UserProfile> all = userProfileService.getAll(); for (UserProfile
 		 * userProfile : all) { userProfileService.delete(userProfile.getId());
 		 * 

@@ -43,4 +43,12 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 		return em.createQuery(cq).getFirstResult();
 		
 	}
+	
+	@Override
+	public Integer getColPassangerB(){
+		EntityManager em = getEntityManager();
+		String qery ="SELECT m.col_passangers_buisnes FROM ticket t LEFT JOIN flight f on t.flight_id = f.id LEFT JOIN plane p on f.plane_id = p.id LEFT JOIN model_plane m on p.model_plane_id = m.id WHERE t.id = 1";
+		Integer result = em.createNamedQuery(qery).getFirstResult();
+		return result;
+	}
 }

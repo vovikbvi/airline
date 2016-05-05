@@ -54,12 +54,10 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
         cq.select(from);
         
         if (filter.getFirstName() != null) {
-         Predicate fName = cb.equal(from.get(UserProfile_.firstName), filter.getFirstName());
-        // Predicate fName = cb.like(from.get(UserProfile_.firstName), filter.getFirstName());
-            cq.where(fName);
+        Predicate fName = cb.equal(from.get(UserProfile_.firstName), filter.getFirstName());
+        Predicate lName = cb.equal(from.get(UserProfile_.lastName), filter.getFirstName());
+        cq.where(cb.or(fName, lName));
         }
-        
-        
      // set fetching
      //   if (filter.isFetchCredentials()) {
      //       from.fetch(UserProfile_.credentials, JoinType.LEFT);
@@ -83,21 +81,4 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
         return allitems;
     }
 
-	@Override
-	public List<UserProfile> sel() {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		Root<UserProfile> from = cq.from(UserProfile.class);
-
-		cq.multiselect(from.get(UserProfile_.login));
-		
-	//	TypedQuery<UserProfile> q = em.createQuery(cq);
-	//	List<UserProfile> allitems = cq.getResultList();
-		return null;
-
-	}
-
-    
-    
 }

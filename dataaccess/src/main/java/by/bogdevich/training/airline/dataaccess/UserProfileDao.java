@@ -11,6 +11,4 @@ public interface UserProfileDao extends AbstractDao<UserProfile, Long> {
 	public Long countLogin(String login);
 
 	public List<UserProfile> find(UserProfileFilter filter);
-	
-	public List<UserProfile> sel();
 }
