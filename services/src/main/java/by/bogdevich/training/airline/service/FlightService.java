@@ -21,6 +21,6 @@ public interface FlightService {
 
 	List<Flight> getAll();
 	
-	public Integer getColPassangersBuisnes(Flight flight);
+	Flight getFullFlieght(Flight flight);
 
 }

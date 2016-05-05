@@ -36,6 +36,7 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public void insert(Flight flight) {
+		  //  boolean tes = checkClassWeight(flight);
 			flightDao.insert(flight);
 			LOGGER.info("Insert flight {}", flight);
 	}
@@ -64,7 +65,7 @@ public class FlightServiceImpl implements FlightService {
 	}
 	
 	@Override
-	public Integer getColPassangersBuisnes(Flight flight){
-		return flightDao.getColPassangersBuisnes(flight);
+	public Flight getFullFlieght(Flight flight){
+		return flightDao.getFullFlieght(flight);
 	}
 }

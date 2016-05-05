@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.City;
 import by.bogdevich.training.airline.datamodel.ClassWeight;
@@ -311,15 +310,13 @@ public class InsertAllTable {
 		return planeService.get(plane.getId());
 	}
 
-	
-	
-	//test plane
-	
+	// test plane
+
 	@Test
 	public void testAddPlane() {
 		Assert.assertNotNull(planeAdd());
 	}
-	
+
 	@Test
 	public void testUpdatePlane() {
 		String updatedField = "new field";
@@ -338,10 +335,8 @@ public class InsertAllTable {
 		Assert.assertNull(planeService.get(plane.getId()));
 	}
 
-	
-	//end test plane
-	
-	
+	// end test plane
+
 	private Flight flightAdd() {
 		Flight flight = new Flight();
 		flight.setFlightCatalog(flightCatalogAdd());
@@ -356,13 +351,40 @@ public class InsertAllTable {
 
 	}
 
+	// Test flieght
 	@Test
-	public void testFlight() {
+	public void testAddFlight() {
 		Flight flight = flightAdd();
-		int ff = flightService.getColPassangersBuisnes(flight);
-		Flight flightTest = flightAdd();
+	//	int ff = flightService.getColPassangersBuisnes(flight);
+		
+		Flight flightTest = flightService.getFullFlieght(flight);
+		
+		int tt = flightService.getFullFlieght(flight).getPlane().getModelPlane().getColPassangersBuisnes();
+	
+		System.out.println(tt +" "+ flightTest);
 		Assert.assertNotNull(flightAdd());
 	}
+
+	@Test
+	public void testUpdateFlieght() {
+		LocalDateTime updatedField = LocalDateTime.now();
+		updatedField.plusDays(1);
+		Flight flight = flightAdd();
+		flight.setDepartureTime(updatedField);
+		flightService.update(flight);
+
+		Assert.assertTrue(updatedField.equals(flightService.get(flight.getId()).getDepartureTime()));
+	}
+
+	@Test
+	public void testDeletFlight() {
+		Flight flight = flightAdd();
+		flightService.delete(flight.getId());
+
+		Assert.assertNull(flightService.get(flight.getId()));
+	}
+
+	// end Test flieght
 
 	private UserProfile userProfileAdd() {
 		UserProfile userProfile = new UserProfile();
@@ -383,12 +405,34 @@ public class InsertAllTable {
 		return userProfileService.get(userProfile.getId());
 	}
 
+	// test user profile
+
 	@Test
-	public void testUserProfile() {
+	public void testAddUserProfile() {
 
 		Assert.assertNotNull(userProfileAdd());
 
 	}
+
+	@Test
+	public void testUpdateUserProfile() {
+		String updatedField = "new field";
+		UserProfile userProfile = userProfileAdd();
+		userProfile.setLastName(updatedField);
+		userProfileService.update(userProfile);
+
+		Assert.assertEquals(updatedField, userProfileService.get(userProfile.getId()).getLastName());
+	}
+
+	@Test
+	public void testDeletUserProfile() {
+		UserProfile userProfile = userProfileAdd();
+		userProfileService.delete(userProfile.getId());
+
+		Assert.assertNull(userProfileService.get(userProfile.getId()));
+	}
+
+	// end test user profile
 
 	private Ticket ticketAdd() {
 		Ticket ticket = new Ticket();
@@ -412,10 +456,31 @@ public class InsertAllTable {
 
 	}
 
+	// test ticket
 	@Test
 	public void testAddTicket() {
 		Assert.assertNotNull(ticketAdd());
 	}
+
+	@Test
+	public void testUpdateTicket() {
+		Integer updatedField = 4;
+		Ticket ticket = ticketAdd();
+		ticket.setNumberSeats(updatedField);
+		ticketService.update(ticket);
+
+		Assert.assertEquals((long) updatedField, (long) ticketService.get(ticket.getId()).getNumberSeats());
+	}
+
+	@Test
+	public void testDeletTicket() {
+		Ticket ticket = ticketAdd();
+		ticketService.delete(ticket.getId());
+
+		Assert.assertNull(ticketService.get(ticket.getId()));
+	}
+
+	// test ticket
 
 	private Price priceAdd() {
 		Price price = new Price();
@@ -426,9 +491,29 @@ public class InsertAllTable {
 		return priceService.get(price.getId());
 	}
 
+	// test price
 	@Test
-	public void testPrice() {
+	public void testAddPrice() {
 		Assert.assertNotNull(priceAdd());
 	}
 
+	@Test
+	public void testUpdatePrice() {
+		Double updatedField = 32.2;
+		Price price = priceAdd();
+		price.setBasicPrice(updatedField);
+		priceService.update(price);
+
+		Assert.assertEquals(updatedField, priceService.get(price.getId()).getBasicPrice());
+	}
+
+	@Test
+	public void testDeletPrice() {
+		Price price = priceAdd();
+		priceService.delete(price.getId());
+
+		Assert.assertNull(priceService.get(price.getId()));
+	}
+
+	// end test price
 }

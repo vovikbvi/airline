@@ -1,8 +1,10 @@
 package by.bogdevich.training.airline.dataaccess;
 
+import java.util.List;
+
 import by.bogdevich.training.airline.datamodel.Flight;
 
 public interface FlightDao extends AbstractDao<Flight, Long> {
 
-	public Integer getColPassangersBuisnes(Flight flight);
+	public Flight getFullFlieght(Flight flight);
 }

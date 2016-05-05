@@ -21,6 +21,7 @@ public class Plane extends AbstractModel {
     @OneToMany(mappedBy = "plane", fetch = FetchType.LAZY)
     private List<Flight> flights;
 
+    
 
 	public String getBortNumber() {
 		return bortNumber;

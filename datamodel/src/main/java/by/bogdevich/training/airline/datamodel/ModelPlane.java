@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+
+
 @Entity
 public class ModelPlane extends AbstractModel {
 	
@@ -37,9 +39,15 @@ public class ModelPlane extends AbstractModel {
 	@Column
 	@Enumerated(value = EnumType.ORDINAL)
 	private ClassWeight classWeight;
+
+/*
+ * 
+ *  @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<ProductVariant> variants;
+ * */
 	
- //   @OneToMany(mappedBy = "modelPlane", fetch = FetchType.LAZY)
- //   private List<Plane> variantsModel;
+    @OneToMany(mappedBy = "modelPlane", fetch = FetchType.LAZY)
+    private List<Plane> variantModel;
 
 	public ManufacturedPlane getManufacturedPlane() {
 		return manufacturedPlane;

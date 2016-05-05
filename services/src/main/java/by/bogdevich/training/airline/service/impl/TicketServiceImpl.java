@@ -54,4 +54,6 @@ public class TicketServiceImpl implements TicketService {
 	public List<Ticket> getAll() {
 		return ticketDao.getAll();
 	}
+	
+	
 }
