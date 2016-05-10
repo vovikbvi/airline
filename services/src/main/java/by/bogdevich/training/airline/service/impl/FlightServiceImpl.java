@@ -20,25 +20,25 @@ public class FlightServiceImpl implements FlightService {
 
 	@Inject
 	FlightDao flightDao;
-	
-	@Inject
-	ModelPlaneDao modelPlaneDao;
 
-	private boolean checkClassWeight(Flight flight) {
-		ClassWeight classWeightAirport = flight.getPlane().getModelPlane().getClassWeight();
-		ClassWeight classWeightPlane = flight.getFlightCatalog().getAirportFinish().getClassWeight();
+	private Boolean checkClassWeight(Flight flight) {//перенести в логику web
+		Flight fullFlieght = flightDao.getFullFlieght(flight);
 
-		if (classWeightAirport.ordinal() >= classWeightPlane.ordinal()) {
+		int classWeightAirport = fullFlieght.getPlane().getModelPlane().getClassWeight().ordinal();
+		int classWeightPlane = flight.getFlightCatalog().getAirportFinish().getClassWeight().ordinal();
+
+		if (classWeightAirport <= classWeightPlane) {
 			return true;
 		}
-		return true;
+
+		return false; 
 	}
 
 	@Override
 	public void insert(Flight flight) {
-		  //  boolean tes = checkClassWeight(flight);
-			flightDao.insert(flight);
-			LOGGER.info("Insert flight {}", flight);
+
+		flightDao.insert(flight);
+		LOGGER.info("Insert flight {}", flight);
 	}
 
 	@Override
@@ -63,9 +63,9 @@ public class FlightServiceImpl implements FlightService {
 	public List<Flight> getAll() {
 		return flightDao.getAll();
 	}
-	
+
 	@Override
-	public Flight getFullFlieght(Flight flight){
+	public Flight getFullFlieght(Flight flight) {
 		return flightDao.getFullFlieght(flight);
 	}
 }

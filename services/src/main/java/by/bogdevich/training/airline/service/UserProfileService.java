@@ -1,5 +1,6 @@
 package by.bogdevich.training.airline.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -23,6 +24,6 @@ public interface UserProfileService {
 
 	public List<UserProfile> getAll();
 	
-	public List<UserProfile> find(UserProfileFilter filter);
+	public List<UserProfile> getRecordsSorted(UserProfileFilter filter);
 
 }

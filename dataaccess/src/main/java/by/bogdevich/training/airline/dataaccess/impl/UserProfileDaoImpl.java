@@ -37,48 +37,48 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 		Root<UserProfile> from = cq.from(UserProfile.class);
 
 		cq.select(cb.count(from.get(UserProfile_.login)));
-	    cq.where(cb.equal(from.get(UserProfile_.login), login));
+		cq.where(cb.equal(from.get(UserProfile_.login), login));
 
 		return em.createQuery(cq).getSingleResult();
 
 	}
-	
-    @Override
-    public List<UserProfile> find(UserProfileFilter filter) {
-        EntityManager em = getEntityManager();
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<UserProfile> cq = cb.createQuery(UserProfile.class);
-        Root<UserProfile> from = cq.from(UserProfile.class);
 
+	@Override
+	public List<UserProfile> getRecordsSorted(UserProfileFilter filter) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<UserProfile> cq = cb.createQuery(UserProfile.class);
+		Root<UserProfile> from = cq.from(UserProfile.class);
 
-        cq.select(from);
-        
-        if (filter.getFirstName() != null) {
-        Predicate fName = cb.equal(from.get(UserProfile_.firstName), filter.getFirstName());
-        Predicate lName = cb.equal(from.get(UserProfile_.lastName), filter.getFirstName());
-        cq.where(cb.or(fName, lName));
-        }
-     // set fetching
-     //   if (filter.isFetchCredentials()) {
-     //       from.fetch(UserProfile_.credentials, JoinType.LEFT);
-     //   }
+		cq.select(from);
 
-        // set sort params
-        if (filter.getSortProperty() != null) {
-            cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
-        }
+		if (filter.getFirstName() != null) {
+			Predicate fName = cb.equal(from.get(UserProfile_.firstName), filter.getFirstName());
+			Predicate lName = cb.equal(from.get(UserProfile_.lastName), filter.getFirstName());
+			cq.where(cb.or(fName, lName));
+		}
+		
+		// set fetching
+	//	if (filter.isFetchCredentials()) {
+	//		from.fetch(UserProfile_., JoinType.LEFT);
+	//	}
 
-        TypedQuery<UserProfile> q = em.createQuery(cq);
+		// set sort params
+		if (filter.getSortProperty() != null) {
+			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
+		}
 
-        // set paging
-        if (filter.getOffset() != null && filter.getLimit() != null) {
-            q.setFirstResult(filter.getOffset());
-            q.setMaxResults(filter.getLimit());
-        }
+		TypedQuery<UserProfile> q = em.createQuery(cq);
 
-        // set execute query
-        List<UserProfile> allitems = q.getResultList();
-        return allitems;
-    }
+		// set paging
+		if (filter.getOffset() != null && filter.getLimit() != null) {
+			q.setFirstResult(filter.getOffset());
+			q.setMaxResults(filter.getLimit());
+		}
+
+		// set execute query
+		List<UserProfile> allitems = q.getResultList();
+		return allitems;
+	}
 
 }

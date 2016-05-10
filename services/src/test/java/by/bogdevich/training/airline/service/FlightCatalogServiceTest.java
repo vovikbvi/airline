@@ -2,6 +2,7 @@ package by.bogdevich.training.airline.service;
 
 import javax.inject.Inject;
 
+import org.hibernate.cfg.ExtendsQueueEntry;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +13,7 @@ import by.bogdevich.training.airline.datamodel.FlightCatalog;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
 
-public class FlightCatalogServiceTest {
+public class FlightCatalogServiceTest extends AbstractTest{
 
 	@Inject
 	FlightCatalogService flightCatalogService;
@@ -20,8 +21,8 @@ public class FlightCatalogServiceTest {
 	@Test
 	public void testFlightCatalog() {
 		FlightCatalog flightCatalog = new FlightCatalog();
-		//flightCatalog.setAirportStart(airportAdd());
-		//flightCatalog.setAirportFinish(airportAdd());
+		flightCatalog.setAirportStart(airportAdd());
+		flightCatalog.setAirportFinish(airportAdd());
 		flightCatalog.setDistance(1000);
 
 		flightCatalogService.insert(flightCatalog);

@@ -17,7 +17,7 @@ CREATE TABLE "airport" (
 	"code_iata" character varying(3) NOT NULL,
 	"code_icao" character varying(4),
 	"city_id" int,
-	"class_weight" int,
+	"class_weight" int NOT NULL DEFAULT '0',
 	"coordinates_x" DECIMAL,
 	"coordinates_y" DECIMAL,
 	CONSTRAINT airport_pk PRIMARY KEY ("id")
@@ -84,7 +84,7 @@ CREATE TABLE "model_plane" (
 	"col_passangers_economy" int NOT NULL DEFAULT '0',
 	"weight_all_baggage" int NOT NULL,
 	"avg_speed" int,
-	"class_weight" int,
+	"class_weight" int NOT NULL DEFAULT '2',
 	CONSTRAINT model_plane_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE

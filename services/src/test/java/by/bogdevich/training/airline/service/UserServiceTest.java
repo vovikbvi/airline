@@ -1,5 +1,6 @@
 package by.bogdevich.training.airline.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import by.bogdevich.training.airline.dataaccess.UserProfileDao;
 import by.bogdevich.training.airline.dataaccess.filtres.AbstractFilter;
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
@@ -23,15 +25,18 @@ public class UserServiceTest {
 	@Inject
 	private UserProfileService userProfileService;
 
+	@Inject
+	UserProfileDao userProfileDao;
+
 	// add user
 	@Test
 	public void testUser() {
 		// clean all data from user
-	/*	List<UserProfile> all = userProfileService.getAll();
-		for (UserProfile userProfile : all) {
-			userProfileService.delete(userProfile.getId());
-		}
-*/
+		/*
+		 * List<UserProfile> all = userProfileService.getAll(); for (UserProfile
+		 * userProfile : all) { userProfileService.delete(userProfile.getId());
+		 * }
+		 */
 		int i = 28;
 		UserProfile userProfile = new UserProfile();
 		userProfile.setLogin("login" + i);
@@ -59,11 +64,11 @@ public class UserServiceTest {
 
 	@Test
 	public void testSearch() {
-		/*
-		 * List<UserProfile> all = userProfileService.getAll(); for (UserProfile
-		 * userProfile : all) { userProfileService.delete(userProfile.getId());
-		 * }
-		 */
+		
+		  List<UserProfile> all = userProfileService.getAll(); for (UserProfile
+		userProfile : all) { userProfileService.delete(userProfile.getId());
+		 }
+		 
 		for (int i = 0; i < 10; i++) {
 			UserProfile userProfile = new UserProfile();
 			userProfile.setLogin("login" + ((int) Math.random() * 1000) + i);
@@ -82,15 +87,15 @@ public class UserServiceTest {
 		}
 
 		UserProfileFilter filter = new UserProfileFilter();
-		List<UserProfile> result = userProfileService.find(filter);
-//		Assert.assertEquals(10, result.size());
+		List<UserProfile> result = userProfileService.getRecordsSorted(filter);
+		// Assert.assertEquals(10, result.size());
 
 		// test paging
 		filter.setFetchCredentials(true);
 		int limit = 5;
 		filter.setLimit(limit);
 		filter.setOffset(0);
-		result = userProfileService.find(filter);
+		result = userProfileService.getRecordsSorted(filter);
 		Assert.assertEquals(limit, result.size());
 
 		// test sort
@@ -98,7 +103,7 @@ public class UserServiceTest {
 		filter.setOffset(null);
 		filter.setSortOrder(true);
 		filter.setSortProperty(UserProfile_.firstName);
-		result = userProfileService.find(filter);
+		result = userProfileService.getRecordsSorted(filter);
 		// Assert.assertEquals(10, result.size());
 	}
 
@@ -122,18 +127,41 @@ public class UserServiceTest {
 		}
 
 		UserProfileFilter filter = new UserProfileFilter();
-		List<UserProfile> result = userProfileService.find(filter);
+		List<UserProfile> result = userProfileService.getRecordsSorted(filter);
 
 		
 		 filter.setFirstName("FirstName"); result =
-		 userProfileService.find(filter); Assert.assertEquals(10,
+		 userProfileService.getRecordsSorted(filter); Assert.assertEquals(10,
 		 result.size());
 		 
-		/* 
-		 * List<UserProfile> all = userProfileService.getAll(); for (UserProfile
-		 * userProfile : all) { userProfileService.delete(userProfile.getId());
-		 * 
-		 * }
-		 */
+/*	 List<UserProfile> all = userProfileService.getAll();
+		 for (UserProfile userProfile : all){
+		 userProfileService.delete(userProfile.getId());
+		
 	}
+*/
+	}
+	@Test
+	public void userExsist() {
+
+		UserProfile userProfile = new UserProfile();
+		userProfile.setLogin("LoginExist");
+		userProfile.setPassword("pas");
+		userProfile.setFirstName("FirstName");
+		userProfile.setLastName("LastName");
+		userProfile.setEmail("vovik@mail.ru");
+		userProfile.setPassportNumber("abcdfe");
+		userProfile.setPhoneNumber("+375297121212");
+		userProfile.setVip(false);
+		userProfile.setRole(UserRole.ADMIN);
+		userProfile.setAceptRegistr(false);
+
+		userProfileService.registration(userProfile);
+
+		boolean userNotExist = (userProfileDao.countLogin(userProfile.getLogin()) == 0);
+
+		Assert.assertFalse(userNotExist);
+
+	}
+
 }

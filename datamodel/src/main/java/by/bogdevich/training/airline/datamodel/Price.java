@@ -1,5 +1,6 @@
 package by.bogdevich.training.airline.datamodel;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -18,21 +19,26 @@ public class Price extends AbstractModel {
 	@Column
 	private Double basicPrice;
 
+
 	public LocalDateTime getDataChange() {
 		return dataChange;
 	}
+
 
 	public void setDataChange(LocalDateTime dataChange) {
 		this.dataChange = dataChange;
 	}
 
+
 	public Double getBasicPrice() {
 		return basicPrice;
 	}
 
+
 	public void setBasicPrice(Double basicPrice) {
 		this.basicPrice = basicPrice;
 	}
+
 
 	@Override
 	public String toString() {

@@ -1,10 +1,16 @@
 package by.bogdevich.training.airline.service.impl;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
+import javax.persistence.RollbackException;
 
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
+import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -60,8 +66,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public void delete(Long id) {
 		UserProfile userProfile = userProfileDao.get(id);
-		userProfileDao.delete(id);
-		LOGGER.info("Delete user profile {}", userProfile);
+		try {
+			userProfileDao.delete(id);
+			LOGGER.info("Delete user profile {}", userProfile);	
+		} catch (PersistenceException e) {
+			// TODO: handle exception
+		}
 	}
 
 	@Override
@@ -75,7 +85,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	}
 
     @Override
-    public List<UserProfile> find(UserProfileFilter filter) {
-        return userProfileDao.find(filter);
+    public List<UserProfile> getRecordsSorted(UserProfileFilter filter) {
+        return userProfileDao.getRecordsSorted(filter);
     }
 }
