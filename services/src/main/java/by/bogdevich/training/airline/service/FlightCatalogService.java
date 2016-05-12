@@ -21,4 +21,6 @@ public interface FlightCatalogService {
 
 	List<FlightCatalog> getAll();
 
+	Boolean checkInternatoinal(FlightCatalog flightCatalog);
+
 }

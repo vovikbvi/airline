@@ -7,9 +7,11 @@ import by.bogdevich.training.airline.datamodel.Flight;
 
 public interface FlightDao extends AbstractDao<Flight, Long> {
 
-	public Flight getFullFlieght(Flight flight);
+
 
 	List<Flight> getRecordsSorted(FlightFilter filter);
+
+	Flight getFullFlieght(Flight flight);
 
 //	Integer getColPassangersBuisnes(Flight flight);
 }

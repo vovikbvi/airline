@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import by.bogdevich.training.airline.datamodel.ClassWeight;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 
@@ -47,4 +48,9 @@ public class FlieghtServiceTest extends AbstractTest{
 	}
 
 	
+	@Test
+	public void classWeightTest(){
+		boolean result = flightService.checkClassWeight(flightAdd());
+		Assert.assertTrue(result);
+	}
 }

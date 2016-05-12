@@ -70,23 +70,6 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 	  return result; }
 */
 	
-	@Override
-	public Flight getFullFlieght(Flight flight) {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Flight> cq = cb.createQuery(Flight.class);
-		Root<Flight> from = cq.from(Flight.class);
-
-		// cq.select(from.get(Flight_.plane).get(Plane_.modelPlane).get(ModelPlane_.colPassangersBuisnes));
-		cq.select(from);
-		from.fetch(Flight_.plane, JoinType.LEFT).fetch(Plane_.modelPlane, JoinType.LEFT);
-		from.fetch(Flight_.flightCatalog, JoinType.LEFT).fetch(FlightCatalog_.airportStart);
-		
-		cq.where(cb.equal(from.get(Flight_.id), flight.getId()));
-
-		Flight result = em.createQuery(cq).getSingleResult();
-		return result;
-	}
 
 	@Override
 	public List<Flight> getRecordsSorted(FlightFilter filter) {
@@ -121,6 +104,23 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 		// set execute query
 		List<Flight> allitems = q.getResultList();
 		return allitems;
+	}
+
+	@Override
+	public Flight getFullFlieght(Flight flight) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Flight> cq = cb.createQuery(Flight.class);
+		Root<Flight> from = cq.from(Flight.class);
+
+		cq.select(from);
+		from.fetch(Flight_.plane, JoinType.LEFT).fetch(Plane_.modelPlane, JoinType.LEFT);
+		from.fetch(Flight_.flightCatalog, JoinType.LEFT).fetch(FlightCatalog_.airportStart);
+		
+		cq.where(cb.equal(from, flight));
+
+		Flight result = em.createQuery(cq).getSingleResult();
+		return result;
 	}
 
 }

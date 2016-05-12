@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -16,6 +17,7 @@ import by.bogdevich.training.airline.dataaccess.AirportDao;
 import by.bogdevich.training.airline.dataaccess.filtres.AirportFilter;
 import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.Airport_;
+import by.bogdevich.training.airline.datamodel.City_;
 
 
 @Repository
@@ -60,6 +62,21 @@ public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements Ai
 		// set execute query
 		List<Airport> allitems = q.getResultList();
 		return allitems;
+	}
+	
+	@Override
+	public Airport getFullAirport(Airport airport) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Airport> cq = cb.createQuery(Airport.class);
+		Root<Airport> from = cq.from(Airport.class);
+
+		cq.select(from);
+		from.fetch(Airport_.city, JoinType.LEFT).fetch(City_.country);
+		cq.where(cb.equal(from, airport));
+
+		Airport result = em.createQuery(cq).getSingleResult();
+		return result;
 	}
 
 }

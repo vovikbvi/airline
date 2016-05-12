@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
+import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
 import by.bogdevich.training.airline.datamodel.Plane_;
@@ -128,5 +129,5 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 		return em.createQuery(cq).getSingleResult();
 	}
 	
-	
+
 }

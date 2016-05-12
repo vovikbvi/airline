@@ -8,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import by.bogdevich.training.airline.dataaccess.FlightCatalogDao;
 import by.bogdevich.training.airline.dataaccess.FlightDao;
 import by.bogdevich.training.airline.dataaccess.ModelPlaneDao;
+import by.bogdevich.training.airline.dataaccess.PlaneDao;
 import by.bogdevich.training.airline.datamodel.ClassWeight;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.service.FlightService;
@@ -21,17 +23,32 @@ public class FlightServiceImpl implements FlightService {
 	@Inject
 	FlightDao flightDao;
 
-	private Boolean checkClassWeight(Flight flight) {//перенести в логику web
-		Flight fullFlieght = flightDao.getFullFlieght(flight);
+	@Inject
+	FlightCatalogDao flightCatalogDao;
+	
+	@Inject
+	PlaneDao planeDao;
 
-		int classWeightAirport = fullFlieght.getPlane().getModelPlane().getClassWeight().ordinal();
-		int classWeightPlane = flight.getFlightCatalog().getAirportFinish().getClassWeight().ordinal();
+	@Override
+	public Boolean checkClassWeight(Flight flight) {// перенести в логику web
+		// Flight fullFlieght = flightDao.getFullFlieght(flight);
 
-		if (classWeightAirport <= classWeightPlane) {
+		int classWeightAirportStart = flightCatalogDao.getFullFlightCatalog(flight.getFlightCatalog()).getAirportStart()
+				.getClassWeight().ordinal();
+
+		int classWeightAirportFinish = flightCatalogDao.getFullFlightCatalog(flight.getFlightCatalog()).getAirportFinish()
+				.getClassWeight().ordinal();
+
+		int classWeightPlane = planeDao.getFullPlane(flight.getPlane()).getModelPlane().getClassWeight().ordinal();
+
+		boolean checkClassWeightStart = classWeightAirportStart <= classWeightPlane;
+		boolean checkClassWeightStartFinish = classWeightAirportFinish <= classWeightPlane;
+		
+		if (checkClassWeightStart && checkClassWeightStartFinish) {
 			return true;
 		}
 
-		return false; 
+		return false;
 	}
 
 	@Override
@@ -43,6 +60,7 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public void update(Flight flight) {
+
 		flightDao.update(flight);
 		LOGGER.info("Update flight {}", flight);
 	}

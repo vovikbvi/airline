@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.jpa.criteria.OrderImpl;
@@ -14,6 +15,10 @@ import org.springframework.stereotype.Repository;
 
 import by.bogdevich.training.airline.dataaccess.PlaneDao;
 import by.bogdevich.training.airline.dataaccess.filtres.PlaneFilter;
+import by.bogdevich.training.airline.datamodel.Airport_;
+import by.bogdevich.training.airline.datamodel.City_;
+import by.bogdevich.training.airline.datamodel.FlightCatalog;
+import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.datamodel.Plane;
 import by.bogdevich.training.airline.datamodel.Plane_;
 
@@ -61,6 +66,21 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 		// set execute query
 		List<Plane> allitems = q.getResultList();
 		return allitems;
+	}
+
+	@Override
+	public Plane getFullPlane(Plane plane) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Plane> cq = cb.createQuery(Plane.class);
+		Root<Plane> from = cq.from(Plane.class);
+
+		cq.select(from);
+		from.fetch(Plane_.modelPlane);
+		cq.where(cb.equal(from, plane));
+
+		Plane result = em.createQuery(cq).getSingleResult();
+		return result;
 	}
 
 }

@@ -95,17 +95,18 @@ public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> i
 	*/
 
 	@Override
-	public Airport getFullAirport(Airport airport) {
+	public FlightCatalog getFullFlightCatalog(FlightCatalog flightCatalog) {
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Airport> cq = cb.createQuery(Airport.class);
-		Root<Airport> from = cq.from(Airport.class);
+		CriteriaQuery<FlightCatalog> cq = cb.createQuery(FlightCatalog.class);
+		Root<FlightCatalog> from = cq.from(FlightCatalog.class);
 
 		cq.select(from);
-		from.fetch(Airport_.city, JoinType.LEFT).fetch(City_.country);
-		cq.where(cb.equal(from.get(Airport_.id), airport.getId()));
+		from.fetch(FlightCatalog_.airportStart).fetch(Airport_.city, JoinType.LEFT).fetch(City_.country);
+		from.fetch(FlightCatalog_.airportFinish).fetch(Airport_.city, JoinType.LEFT).fetch(City_.country);
+		cq.where(cb.equal(from, flightCatalog));
 
-		Airport result = em.createQuery(cq).getSingleResult();
+		FlightCatalog result = em.createQuery(cq).getSingleResult();
 		return result;
 	}
 

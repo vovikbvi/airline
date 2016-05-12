@@ -23,4 +23,6 @@ public interface FlightService {
 	
 	Flight getFullFlieght(Flight flight);
 
+	Boolean checkClassWeight(Flight flight);
+
 }
