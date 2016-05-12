@@ -1,23 +1,17 @@
 package by.bogdevich.training.airline.dataaccess.impl;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
-
 import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
-
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
@@ -45,18 +39,8 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 		from.fetch(Ticket_.flight, JoinType.LEFT).fetch(Flight_.plane, JoinType.LEFT).fetch(Plane_.modelPlane,
 				JoinType.LEFT);
 		cq.where(cb.equal(from.get(Ticket_.id), 1));
-		// List<Ticket> allitems = em.createQuery(cq).getFirstResult();
-		// return allitems;
-		return em.createQuery(cq).getFirstResult();
+	return em.createQuery(cq).getFirstResult();
 
-	}
-
-	@Override
-	public Integer getColPassangerB() {
-		EntityManager em = getEntityManager();
-		String qery = "SELECT m.col_passangers_buisnes FROM ticket t LEFT JOIN flight f on t.flight_id = f.id LEFT JOIN plane p on f.plane_id = p.id LEFT JOIN model_plane m on p.model_plane_id = m.id WHERE t.id = 1";
-		Integer result = em.createNamedQuery(qery).getFirstResult();
-		return result;
 	}
 
 	@Override
@@ -68,15 +52,6 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 
 		cq.select(from);
 
-		/*
-		 * if (filter.getFirstName() != null) { Predicate fName =
-		 * cb.equal(from.get(UserProfile_.firstName), filter.getFirstName());
-		 * Predicate lName = cb.equal(from.get(UserProfile_.lastName),
-		 * filter.getFirstName()); cq.where(cb.or(fName, lName)); }
-		 * 
-		 * // set fetching if (filter.isFetchCredentials()) {
-		 * from.fetch(UserProfile_., JoinType.LEFT); }
-		 */
 		// set sort params
 
 		if (filter.getSortProperty() != null) {
@@ -109,43 +84,49 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 		return em.createQuery(cq).getSingleResult();
 
 	}
-	
+
 	@Override
-	public Integer fiendDate(LocalDateTime dateDeparture){
-		EntityManager em = getEntityManager();
-		return
-		em.createQuery("SELECT basicPrice FROM Price WHERE dataChange = "
-				+ "(SELECT max(dataChange) FROM Price p WHERE dataChange < :dateDeparture)")
-		        .setParameter(":dateDeparture", dateDeparture)
-		        .getFirstResult();
-		
-		
-	}
-	
-/*
-	private Date fiendDateBasicPrice(Date dateDeparture){
+	public Double countAllBaggage (Flight flight) {
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Number> cq = cb.createQuery(Number.class);
+		CriteriaQuery<Double> cq = cb.createQuery(Double.class);
+		Root<Ticket> from = cq.from(Ticket.class);
+
+		cq.select(cb.sum(from.get(Ticket_.weightBaggage)));
+		cq.where(cb.equal(from.get(Ticket_.flight), flight));  
+		Double result = em.createQuery(cq).getSingleResult();
+		return result;
+
+	}
+	
+	
+	private LocalDateTime fiendDate (LocalDateTime dateDeparture){
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<LocalDateTime> cq = cb.createQuery(LocalDateTime.class);
 		Root<Price> from = cq.from(Price.class);
 		
-		cq.select(cb.max(from.get(Price_.dataChange)));
-		cq.where(cb.equal(from.get(Ticket_.flight), flight));
+		cq.select(cb.greatest(from.get(Price_.dataChange)));
+		cq.where(cb.lessThan(from.get(Price_.dataChange), dateDeparture));
+		return em.createQuery(cq).getSingleResult();
+		
+		
+		
 	}
-	
-	public Long fiendBasicPrice (Date dateDeparture){
+    @Override
+	public Double fiendBasicPrice (LocalDateTime dateDeparture){
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		CriteriaQuery<Double> cq = cb.createQuery(Double.class);
 		Root<Price> from = cq.from(Price.class);
 
 		
-		cq.select(cb.max(from.get(Price_.dataChange)));
-		cq.where(cb.equal(from.get(Ticket_.flight), flight));
+		cq.select(from.get(Price_.basicPrice));
+		cq.where(cb.equal(from.get(Price_.dataChange), fiendDate(dateDeparture)));
         
 	
-		return null;
+		return em.createQuery(cq).getSingleResult();
 	}
 	
-	*/
+	
 }

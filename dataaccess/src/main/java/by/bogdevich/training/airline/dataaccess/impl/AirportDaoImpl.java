@@ -14,10 +14,9 @@ import org.springframework.stereotype.Repository;
 
 import by.bogdevich.training.airline.dataaccess.AirportDao;
 import by.bogdevich.training.airline.dataaccess.filtres.AirportFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.Airport_;
-import by.bogdevich.training.airline.datamodel.Ticket;
+
 
 @Repository
 public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements AirportDao{

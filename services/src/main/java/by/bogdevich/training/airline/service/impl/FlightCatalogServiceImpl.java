@@ -8,8 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import by.bogdevich.training.airline.dataaccess.AirportDao;
 import by.bogdevich.training.airline.dataaccess.CityDao;
 import by.bogdevich.training.airline.dataaccess.FlightCatalogDao;
+import by.bogdevich.training.airline.dataaccess.filtres.FlightCatalogFilter;
+import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
+import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.Country;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.service.FlightCatalogService;
@@ -23,18 +27,21 @@ public class FlightCatalogServiceImpl implements FlightCatalogService {
 	
 	@Inject
 	CityDao cityDao;
+	
+	@Inject
+	AirportDao airportDao;
 
 	private boolean CheckInternatoinal(FlightCatalog flightCatalog) {
-		Country countryStart = flightCatalog.getAirportStart().getCity().getCountry();
-		Country countryFinish = flightCatalog.getAirportFinish().getCity().getCountry();
-		return countryStart.equals(countryFinish);
+			Country countryStart =  flightCatalogDao.getFullAirport(flightCatalog.getAirportStart()).getCity().getCountry();  
+			Country countryFinish = flightCatalogDao.getFullAirport(flightCatalog.getAirportFinish()).getCity().getCountry();
+			return countryStart.equals(countryFinish);
+
 	}
 
-	
 	@Override
 	public void update(FlightCatalog flightCatalog) {
 
-		//CheckInternatoinal(flightCatalog);
+		CheckInternatoinal(flightCatalog);
 		flightCatalogDao.update(flightCatalog);
 		LOGGER.info("Update flight catalog {}", flightCatalog);
 	}
@@ -67,4 +74,5 @@ public class FlightCatalogServiceImpl implements FlightCatalogService {
 		return flightCatalogDao.getAll();
 	}
 
+	
 }

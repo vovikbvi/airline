@@ -4,7 +4,7 @@ import javax.persistence.metamodel.SingularAttribute;
 
 public class AbstractFilter {
 
-	private boolean isFetchCredentials;
+	
 	private SingularAttribute sortProperty;
 	private boolean sortOrder;
 	private Integer offset;
@@ -14,13 +14,6 @@ public class AbstractFilter {
 		super();
 	}
 
-	public boolean isFetchCredentials() {
-		return isFetchCredentials;
-	}
-
-	public void setFetchCredentials(boolean isFetchCredentials) {
-		this.isFetchCredentials = isFetchCredentials;
-	}
 
 	public SingularAttribute getSortProperty() {
 		return sortProperty;

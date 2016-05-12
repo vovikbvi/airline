@@ -1,9 +1,5 @@
 package by.bogdevich.training.airline.service;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,28 +10,31 @@ import by.bogdevich.training.airline.datamodel.City;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
-public class CitySrviceTest {
-
-	@Inject
-	private CityService cityService;
-
-	@Inject
-	private CountryService countryService;
+public class CitySrviceTest extends AbstractTest{
 
 	@Test
-	public void testAdd() {
-		City city = new City();
-		city.setName("MySity");
-		city.setTimezone(2.0);
-		city.setCountry(countryService.get((long) 13));
+	public void testAddCity() {
 
-		cityService.insert(city);
-		City addCity = cityService.get(city.getId());
-		
-		Assert.assertNotNull(addCity);
+		Assert.assertNotNull(cityAdd());
 
-		// cityService.delete(city.getId());
+	}
 
+	@Test
+	public void testUpdateCity() {
+		String updatedField = "updatedName";
+		City city = cityAdd();
+		city.setName(updatedField);
+		cityService.update(city);
+
+		Assert.assertEquals(updatedField, cityService.get(city.getId()).getName());
+	}
+
+	@Test
+	public void testDeletCity() {
+		City city = cityAdd();
+		cityService.delete(city.getId());
+
+		Assert.assertNull(cityService.get(city.getId()));
 	}
 
 }

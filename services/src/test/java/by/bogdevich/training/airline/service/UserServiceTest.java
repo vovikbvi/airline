@@ -1,18 +1,15 @@
 package by.bogdevich.training.airline.service;
 
-import java.sql.SQLException;
+
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import by.bogdevich.training.airline.dataaccess.UserProfileDao;
-import by.bogdevich.training.airline.dataaccess.filtres.AbstractFilter;
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserRole;
@@ -20,7 +17,7 @@ import by.bogdevich.training.airline.datamodel.UserProfile_;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
-public class UserServiceTest {
+public class UserServiceTest extends AbstractTest{
 
 	@Inject
 	private UserProfileService userProfileService;
@@ -28,39 +25,31 @@ public class UserServiceTest {
 	@Inject
 	UserProfileDao userProfileDao;
 
-	// add user
 	@Test
-	public void testUser() {
-		// clean all data from user
-		/*
-		 * List<UserProfile> all = userProfileService.getAll(); for (UserProfile
-		 * userProfile : all) { userProfileService.delete(userProfile.getId());
-		 * }
-		 */
-		int i = 28;
-		UserProfile userProfile = new UserProfile();
-		userProfile.setLogin("login" + i);
-		userProfile.setPassword("pas" + i);
-		userProfile.setFirstName("FirstName" + i);
-		userProfile.setLastName("LastName" + i);
-		userProfile.setEmail("vovik@mail.ru");
-		userProfile.setPassportNumber("abcdfe" + i);
-		userProfile.setPhoneNumber("+375297121212" + i);
-		userProfile.setCountOder(1);
-		userProfile.setVip(false);
-		userProfile.setRole(UserRole.ADMIN);
-		userProfile.setAceptRegistr(false);
+	public void testAddUserProfile() {
 
-		userProfileService.registration(userProfile);
+		Assert.assertNotNull(userProfileAdd());
 
-		UserProfile userProfileAdd = userProfileService.get(userProfile.getId());
+	}
 
-		Assert.assertNotNull(userProfileAdd);
+	@Test
+	public void testUpdateUserProfile() {
+		String updatedField = "new field";
+		UserProfile userProfile = userProfileAdd();
+		userProfile.setLastName(updatedField);
+		userProfileService.update(userProfile);
 
-		// test del
-		userProfileService.delete(userProfileAdd.getId());
+		Assert.assertEquals(updatedField, userProfileService.get(userProfile.getId()).getLastName());
+	}
+
+	@Test
+	public void testDeletUserProfile() {
+		UserProfile userProfile = userProfileAdd();
+		userProfileService.delete(userProfile.getId());
+
 		Assert.assertNull(userProfileService.get(userProfile.getId()));
 	}
+
 
 	@Test
 	public void testSearch() {
@@ -91,7 +80,7 @@ public class UserServiceTest {
 		// Assert.assertEquals(10, result.size());
 
 		// test paging
-		filter.setFetchCredentials(true);
+		filter.setSetFetchTickets(true);
 		int limit = 5;
 		filter.setLimit(limit);
 		filter.setOffset(0);
@@ -134,12 +123,12 @@ public class UserServiceTest {
 		 userProfileService.getRecordsSorted(filter); Assert.assertEquals(10,
 		 result.size());
 		 
-/*	 List<UserProfile> all = userProfileService.getAll();
+	 List<UserProfile> all = userProfileService.getAll();
 		 for (UserProfile userProfile : all){
 		 userProfileService.delete(userProfile.getId());
 		
 	}
-*/
+
 	}
 	@Test
 	public void userExsist() {
@@ -164,4 +153,8 @@ public class UserServiceTest {
 
 	}
 
+	@Before
+	public void dellAll(){
+		deletAllData();
+	}
 }

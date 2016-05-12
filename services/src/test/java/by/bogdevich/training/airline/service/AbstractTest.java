@@ -175,6 +175,15 @@ public class AbstractTest {
 		return userProfileService.get(userProfile.getId());
 	}
 
+	protected Price priceAdd() {
+		Price price = new Price();
+		price.setBasicPrice(0.2);
+		price.setDataChange(LocalDateTime.now());
+		priceService.insert(price);
+
+		return priceService.get(price.getId());
+	}
+	
 	protected Ticket ticketAdd() {
 		Ticket ticket = new Ticket();
 		ticket.setFlight(flightAdd());
@@ -182,13 +191,13 @@ public class AbstractTest {
 		ticket.setPaid(true);
 		ticket.setNumberSeats(2);
 		ticket.setDateBought(LocalDateTime.now());
-		ticket.setBaggage(false);
-		ticket.setWeightBaggage(15.0);
+		ticket.setBaggage(true);
+		ticket.setWeightBaggage(50.0);
 		ticket.setTicketTupe(TicketTupe.SINGLE_TICKET);
 		ticket.setTicketClass(TicketClass.ECONOMY);
 		ticket.setPriorityRegistration(true);
 		ticket.setPrioritySeats(true);
-		ticket.setCosts(35.2);
+		//ticket.setCosts(35.2);
 		ticket.setForBaby(false);
 
 		ticketService.insert(ticket);
@@ -197,16 +206,7 @@ public class AbstractTest {
 
 	}
 
-	protected Price priceAdd() {
-		Price price = new Price();
-		price.setBasicPrice(15.2);
-		price.setDataChange(LocalDateTime.now());
-		priceService.insert(price);
 
-		return priceService.get(price.getId());
-	}
-
-	
 	protected void deletAllData() {
 		List<Ticket> allTicket = ticketService.getAll();
 		for (Ticket ticket : allTicket) {
@@ -217,12 +217,12 @@ public class AbstractTest {
 		for (UserProfile userProfile : allUser) {
 			userProfileService.delete(userProfile.getId());
 		}
-		
+	/*	
 		List<Price> allPrice = priceService.getAll();
 		for (Price price : allPrice) {
 			priceService.delete(price.getId());
 		}
-
+*/
 		List<Flight> allFlight = flightService.getAll();
 		for (Flight flight : allFlight) {
 			flightService.delete(flight.getId());

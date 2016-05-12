@@ -21,4 +21,8 @@ public interface TicketService {
 
 	List<Ticket> getAll();
 
+	double baggageCost(Ticket ticket);
+
+	double ticketCost(Ticket ticket);
+
 }

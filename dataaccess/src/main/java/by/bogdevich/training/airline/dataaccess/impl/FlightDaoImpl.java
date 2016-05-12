@@ -56,13 +56,14 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 	  
 	  cq.select(from.get(ModelPlane_.colPassangersBuisnes)); 
 	   //(Flight_.plane).get(Plane_.modelPlane).get
-	 // Predicate qq = cb.equal((from.get(ModelPlane_.variantModel)).get(Plane_.id));
+	  
+	  Predicate qq = cb.isMember(from.get(ModelPlane_.variantModel), flight.getPlane());
 	  
 	  
 	  //Predicate qe = cb.equal(from.get(ModelPlane_.variantModel), from.get(Plane_.id));
 	 // Predicate re = cb.equal(from.get(Plane_.id), 1);
 	  
-	  cq.where(qq);
+	  //cq.where(qq);
 	  
 	  Integer result = em.createQuery(cq).getFirstResult(); 
 	  

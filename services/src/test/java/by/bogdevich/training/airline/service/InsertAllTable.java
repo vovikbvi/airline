@@ -314,7 +314,7 @@ public class InsertAllTable extends AbstractTest {
 
 	@Test
 	public void testUpdatePrice() {
-		Double updatedField = 32.2;
+		Double updatedField = 0.2;
 		Price price = priceAdd();
 		price.setBasicPrice(updatedField);
 		priceService.update(price);

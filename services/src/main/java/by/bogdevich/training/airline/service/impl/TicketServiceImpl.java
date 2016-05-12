@@ -59,9 +59,9 @@ public class TicketServiceImpl implements TicketService {
 
 		double result = 0;
 		if (busySeats != 0) {
-			 result = (busySeats/colSeats) * 100;
+			result = (busySeats / colSeats);
 		} else {
-			result = 100.0;
+			result = 0;
 		}
 		return result;
 	}
@@ -79,25 +79,60 @@ public class TicketServiceImpl implements TicketService {
 
 		double result = 0;
 		if (periodSale != 0) {
-			result = (periodToDeparture / periodSale) * 100;
+			result = (periodToDeparture / periodSale);
 		} else {
 			result = 0;
 		}
 		return result;
 	}
 
-	private double ticketCost() {
+	private double getPrice(Ticket ticket) {
+		double basicPrice = ticketDao.fiendBasicPrice(ticket.getDateBought());
+		double distance = flightDao.getFullFlieght(ticket.getFlight()).getFlightCatalog().getDistance();
+		return basicPrice * distance;
+	}
 
-		return 12.2;
+	@Override
+	public double baggageCost(Ticket ticket) {
+		double fullWeightBaggage = 0.0;
+		if (ticketDao.countAllBaggage(ticket.getFlight()) != null) {
+			fullWeightBaggage = ticketDao.countAllBaggage(ticket.getFlight()) + ticket.getWeightBaggage();
+		}
+		double weightBaggagePlane = flightDao.getFullFlieght(ticket.getFlight()).getPlane().getModelPlane()
+				.getWeightAllBaggage();
+
+		if (fullWeightBaggage <= weightBaggagePlane) {
+			double price = getPrice(ticket);
+			double result = price + (price * ticket.getWeightBaggage() / 100);
+			return result;
+		} else {
+			ticket.setBaggage(false);
+			LOGGER.info("luggage space is full {}", ticket.getFlight());
+			return 0.0;
+		}
+		
+	}
+
+	@Override
+	public double ticketCost(Ticket ticket) {
+		double price = getPrice(ticket);
+		double factorBusySeats = price * 0.2 * percentBusySeats(ticket);
+		double factorToDateDeparture = price * 0.2 * percentToDateDeparture(ticket);
+		double factorPrioritySeats = ticket.getPrioritySeats() ? 20 : 0;
+		double factorProrityRegistration = ticket.getPriorityRegistration() ? 15 : 0;
+		double factorForBaby = ticket.getForBaby() ? (price * 0.2) : 0;
+		double costBaggage = ticket.getBaggage() ? baggageCost(ticket) : 0;
+
+		double result = price + factorBusySeats + factorToDateDeparture + factorPrioritySeats
+				+ factorProrityRegistration - factorForBaby + costBaggage;
+		return result;
 	}
 
 	@Override
 	public void insert(Ticket ticket) {
-
-		percentBusySeats(ticket);
-		percentToDateDeparture(ticket);
-		int i = ticketDao.fiendDate(ticket.getDateBought());
-		
+      Double t = ticketDao.countAllBaggage(ticket.getFlight());
+		ticket.setDateBought(LocalDateTime.now());
+		ticket.setCosts(ticketCost(ticket));
 		ticketDao.insert(ticket);
 
 		LOGGER.info("Insert ticket {}", ticket);
@@ -105,6 +140,10 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public void update(Ticket ticket) {
+
+		ticket.setDateBought(LocalDateTime.now());
+		ticket.setCosts(ticketCost(ticket));
+
 		ticketDao.update(ticket);
 
 		LOGGER.info("Update ticket {}", ticket);

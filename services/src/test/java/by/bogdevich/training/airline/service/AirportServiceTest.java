@@ -13,30 +13,30 @@ import by.bogdevich.training.airline.datamodel.ClassWeight;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
-public class AirportServiceTest {
-
-	@Inject
-	AirportService airportService;
-
-	@Inject
-	CityService cityService;
+public class AirportServiceTest extends AbstractTest {
 
 	@Test
-	public void testAirport() {
-		Airport airport = new Airport();
+	public void testAddAirport() {
 
-		airport.setName("Minsk");
-		airport.setCodeIata("AAA");
-		airport.setCodeIcao("QWEE");
-		// airport.setCity(cityAdd());
-		airport.setClassWeight(ClassWeight.MEDIUM);
-		airport.setCoordinatesX(2.3333);
-		airport.setCoordinatesY(2.3434);
-
-		airportService.insert(airport);
-
-		Airport airportAdd = airportService.get(airport.getId());
-		Assert.assertNotNull(airportAdd);
-
+		Assert.assertNotNull(airportAdd());
 	}
+
+	@Test
+	public void testUpdateAirport() {
+		String updatedField = "updatedName";
+		Airport airport = airportAdd();
+		airport.setName(updatedField);
+		airportService.update(airport);
+
+		Assert.assertEquals(updatedField, airportService.get(airport.getId()).getName());
+	}
+
+	@Test
+	public void testDeletAirport() {
+		Airport airport = airportAdd();
+		airportService.delete(airport.getId());
+
+		Assert.assertNull(airportService.get(airport.getId()));
+	}
+
 }
