@@ -40,6 +40,9 @@ public class Flight extends AbstractModel {
 	private LocalDateTime startSaleTicket;
 	
 
+    @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY)
+    private List<Ticket> Tickets;
+
 
 	public FlightCatalog getFlightCatalog() {
 		return flightCatalog;

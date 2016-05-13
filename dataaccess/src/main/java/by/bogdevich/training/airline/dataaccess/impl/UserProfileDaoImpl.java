@@ -9,14 +9,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.persistence.criteria.Selection;
-import javax.persistence.metamodel.SingularAttribute;
-
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
-
 import by.bogdevich.training.airline.dataaccess.UserProfileDao;
-import by.bogdevich.training.airline.dataaccess.filtres.AbstractFilter;
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
@@ -59,9 +54,9 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 		}
 		
 		// set fetching
-	//	if (filter.isFetchCredentials()) {
-	//		from.fetch(UserProfile_., JoinType.LEFT);
-	//	}
+		if (filter.isSetFetchTickets()) {
+			from.fetch(UserProfile_.boughtTickets, JoinType.LEFT);
+		}
 
 		// set sort params
 		if (filter.getSortProperty() != null) {

@@ -80,7 +80,7 @@ public class UserServiceTest extends AbstractTest{
 		// Assert.assertEquals(10, result.size());
 
 		// test paging
-		filter.setSetFetchTickets(true);
+		//filter.setSetFetchTickets(true);
 		int limit = 5;
 		filter.setLimit(limit);
 		filter.setOffset(0);

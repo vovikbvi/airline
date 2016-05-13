@@ -1,11 +1,14 @@
 package by.bogdevich.training.airline.datamodel;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Airport extends AbstractModel {
@@ -31,6 +34,13 @@ public class Airport extends AbstractModel {
 
 	@Column(name="coordinates_y")
 	private Double coordinatesY;
+	
+    @OneToMany(mappedBy = "airportStart", fetch = FetchType.LAZY)
+    private List<FlightCatalog> departureFlieghts;
+
+    @OneToMany(mappedBy = "airportFinish", fetch = FetchType.LAZY)
+    private List<FlightCatalog> arrivalFlieghts;
+
 
 	public String getName() {
 		return name;

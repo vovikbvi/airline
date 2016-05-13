@@ -1,9 +1,12 @@
 package by.bogdevich.training.airline.datamodel;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class City extends AbstractModel {
@@ -13,9 +16,12 @@ public class City extends AbstractModel {
 
 	@ManyToOne(targetEntity = Country.class, fetch = FetchType.LAZY)
 	private Country country;
-
+	
 	@Column
 	private Double timezone;
+	
+    @OneToMany(mappedBy = "city", fetch = FetchType.LAZY)
+    private List<Airport> airports;
 
 	public String getName() {
 		return name;

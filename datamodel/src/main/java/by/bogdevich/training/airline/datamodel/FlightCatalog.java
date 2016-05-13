@@ -1,9 +1,12 @@
 package by.bogdevich.training.airline.datamodel;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class FlightCatalog extends AbstractModel {
@@ -21,6 +24,10 @@ public class FlightCatalog extends AbstractModel {
 
 	@Column
 	private Boolean international;
+	
+    @OneToMany(mappedBy = "flightCatalog", fetch = FetchType.LAZY)
+    private List<Flight> flights;
+
 
 	public Airport getAirportStart() {
 		return airportStart;

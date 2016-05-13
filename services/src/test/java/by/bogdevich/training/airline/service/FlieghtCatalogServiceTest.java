@@ -40,7 +40,7 @@ public class FlieghtCatalogServiceTest extends AbstractTest{
 
 		Assert.assertNull(flightCatalogService.get(flightCatalog.getId()));
 	}
-	@Before
+	//@Before
 	public void dell(){
 		deletAllData();
 	} 
@@ -77,7 +77,7 @@ public class FlieghtCatalogServiceTest extends AbstractTest{
 		City cityFinish= new City();
 		cityFinish.setName("Paris");
 		cityFinish.setTimezone(2.0);
-		cityFinish.setCountry(countryStart);
+		cityFinish.setCountry(countryFinish);
 		cityService.insert(cityFinish);
 
 		Airport airportFinish = new Airport();

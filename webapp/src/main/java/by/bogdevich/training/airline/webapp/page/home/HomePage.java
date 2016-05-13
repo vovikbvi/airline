@@ -3,6 +3,8 @@ package by.bogdevich.training.airline.webapp.page.home;
 import org.apache.wicket.markup.html.link.Link;
 
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
+import by.bogdevich.training.airline.webapp.page.registr.RegistrPage;
+import by.bogdevich.training.airline.webapp.page.search.SearchPage;
 
 
 
@@ -10,11 +12,18 @@ public class HomePage extends AbstractPage {
 
     public HomePage() {
         super();
-        add(new Link("linkproduct") {
+        add(new Link("linkregistr") {
             @Override
             public void onClick() {
-               // setResponsePage(new ProductPage());
+                setResponsePage(new RegistrPage());
             }
+        });
+
+        add(new Link("linksearch") {
+        	@Override
+        	public void onClick() {
+        		setResponsePage(new SearchPage());
+        	}
         });
     }
 

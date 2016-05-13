@@ -1,11 +1,16 @@
 package by.bogdevich.training.airline.datamodel;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
 import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConverter;
 
 @Entity
@@ -48,6 +53,10 @@ public class UserProfile extends AbstractModel {
 
 	@Column
 	private Boolean aceptRegistr;
+	
+    @OneToMany(mappedBy = "userProfile", fetch = FetchType.LAZY)
+    private List<Ticket> boughtTickets;
+
 
 
 	public String getLogin() {
