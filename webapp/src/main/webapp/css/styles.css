@@ -1,0 +1,185 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Main Layout*/
+body {
+	border:0px;
+	padding:0px;
+	margin:0px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	background-color: #6fadc9;
+	color:#666666;
+	background-image:url(../images/page_bg.jpg);
+	background-repeat:repeat-x;
+	background-position:top;
+}
+a:link {
+	color: #2d9fce;
+}
+a:visited {
+	color: #2d9fce;
+}
+a:hover {
+	color: #2d9fce;
+	text-decoration:none;
+}
+a:active {
+	color: #2d9fce;
+}
+#wrapper {
+	width:980px;
+	margin:0px auto;
+	background-image:url(../images/content_bg.gif);
+	background-repeat:repeat-y;
+	background-position:left;
+	min-height:770px; /*minimum height of the page, this keeps it consistent when creating shorter pages.*/
+}
+#header {
+	height:234px;
+	clear:both;
+	background-image:url(../images/header_bg.jpg);
+	background-repeat:no-repeat;
+	background-position:top;
+}
+#header_logo {
+	width:241px;
+	height:125px;
+	margin:0px 0px 0px 25px;
+	float:left;
+}
+#side_menu_container {
+	width:163px;
+	float:left;
+}
+
+/*Menu*/
+
+#side_menu {
+	width:163px;
+}
+ul#side_menu {
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+ul#side_menu li {
+	list-style:none;
+	margin:0px;
+	border-bottom:1px solid #d5e3e9;
+}
+ul#side_menu a {
+color:#00264e; /*this is the color of the menu text*/
+padding:6px 0px 6px 20px; /*spacing around the text, top right bottom left*/
+text-decoration:none; /*no underline*/
+font:12px Arial, Helvetica, sans-serif; /*font size and font*/
+font-weight:bold; 
+letter-spacing:1px; /*space between each letter in the word*/
+display:block; /*make the background go all the way to the edges*/
+}
+ul#side_menu a:hover {
+color:#2d9fce; /*when the mouse is placed on the button change to this colour*/
+background-color:#FFF; /*highlight the background behind the text*/
+}
+/*Box under menu*/
+.side_menu_box {
+	width:152px; /*164 minus padding*/
+	margin:20px 0 40px 0;
+	background-color:#dfecf2;
+	padding:10px 6px;
+}
+.side_menu_box .top {
+	color:#2d9fce;
+	font-family:"Liberation Sans", Arial, Helvetica, sans-serif;
+	text-align:center;
+	font-size:16px;
+	padding-bottom:5px;
+}
+.side_menu_box p {
+	margin:0px;
+	padding:0px;
+}
+.side_menu_box_field {
+	background-color:#fff !important;
+	border:1px solid #d5e3e9 !important;
+	margin:5px 0px 0px 0px;
+	color:#6fadc9;
+	width:140px;
+	padding:5px;
+	font-size:11px;
+}
+.side_menu_box_button {
+	margin:5px 0 0 0;
+	float:right;
+}
+/*footer*/
+#footer {
+	height:28px;
+	width:960px;
+	margin:0 auto;
+	color:#e0edfd;
+	font-size:10px;
+	padding:8px 10px 0 10px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	clear:both;
+	border-top:#3f91b7 5px solid;
+}
+#footer a, #footer a:link, #footer a:visited {
+	color:#e0edfd;
+	text-decoration:none;
+}
+#footer a:hover {
+	text-decoration:underline;
+}
+#footer .right {
+	width:280px; /*make this wider to fit more links in your footer*/
+	float:right;
+	text-align:right;
+}
+#footer .right ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#footer .right ul li {
+	float:left;
+	margin:0;
+	padding:0 3px 0 3px;
+}
+#footer .right ul li a, #footer .right ul li a:link, #footer .right ul li a:visited {
+	color:#e0edfd;
+	text-decoration:none;
+}
+#footer .right ul li a:hover {
+	text-decoration:underline;
+}
+#footer .left {
+	width:400px;
+	float:left;
+}
+
+
+/* General Content*/
+
+
+.clear {
+	clear:both;
+	visibility:hidden;
+	height:0px;
+	margin:0px;
+	padding:0px;
+}
+
+
+
+
+
+.chield{
+	float:left;
+	margin:10px 10px 10px 10px;
+}
+.registr-linc{
+	margin:5px 5px 5px 5px;
+	float:left;
+
+}

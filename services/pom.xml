@@ -43,6 +43,13 @@
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 		</dependency>
+
+		<!-- for pdf -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+		</dependency>
+
 	</dependencies>
 
 </project>

@@ -5,10 +5,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.RollbackException;
+
+import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionSystemException;
 
 import by.bogdevich.training.airline.dataaccess.FlightDao;
 import by.bogdevich.training.airline.dataaccess.TicketDao;
@@ -152,12 +156,10 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public void delete(Long id) {
 		Ticket ticket = ticketDao.get(id);
-		try {
+		
 			ticketDao.delete(id);
 			LOGGER.info("Delete ticket {}", ticket);
-		} catch (ConstraintViolationException e) {
-			LOGGER.info("Can't delete {}", ticket); // дописать логер
-		}
+		
 	}
 
 	@Override

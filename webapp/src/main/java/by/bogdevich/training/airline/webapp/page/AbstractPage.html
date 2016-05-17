@@ -1,22 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:wicket="http://wicket.apache.org">
-	<head>
-		<meta charset="utf-8" />
-		<title>Apache Wicket Quickstart</title>
-		<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
-		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="Stylesheet" />
-	</head>
-	<body>
-		<div id="hd">
-			<div id="logo">
-				<img src="imagesLogo2.jpg" width="50px" height="50px" alt="Wicket Logo" />
-				<h1>Low cost Airline</h1>
-			</div>
-		</div>
-		<div id="bd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Home Page</title>
+<link href="css/styles.css" rel="stylesheet" type="text/css" />
+<style type="text/css"> 
+.box_list li {
+	width:254px;
+	list-style:none;
+	float:left;
+	margin:0px;
+	padding:0 10px 5px 0;
+
+}</style>
+
+</head>
+<body>
+<div id="wrapper">
+
+ <!-- <div id="home_banner"> <a href="#"><img src="images/banner1.png" alt="Banner" width="784" height="233" border="0" /></a> </div>-->
+
+  <!--end home banner-->
+  <div id="header">
+    <div id="header_logo"> <a wicket:id="home-page"><img src="images/logo1.png" alt="Logo" width="241" height="125" border="0" /></a> </div>
+
+</div>
+	    <wicket:container wicket:id="menu-user"></wicket:container>
+
+		<div id="bd" class="chield">
 			<wicket:child/>
 		</div>
-		<div id="ft">
-		</div>
-	</body>
+
+  <hr class="clear" />
+</div>
+
+<!--end wrapper-->
+<div id="footer">
+  <div class="left">&copy; Curvy &amp; Clean</div>
+ </div>
+
+
+ </body>
 </html>
+
+
+
+

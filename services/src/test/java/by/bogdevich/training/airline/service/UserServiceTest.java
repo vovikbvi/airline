@@ -54,10 +54,16 @@ public class UserServiceTest extends AbstractTest{
 	@Test
 	public void testSearch() {
 		
-		  List<UserProfile> all = userProfileService.getAll(); for (UserProfile
-		userProfile : all) { userProfileService.delete(userProfile.getId());
+		  List<UserProfile> all = userProfileService.getAll(); 
+		  for (UserProfile userProfile : all) {
+			  try {
+				  userProfileService.delete(userProfile.getId());
+			} catch (Exception e) {
+				System.out.println("!!!!!!!!! user didn't delete");
+			}
+			
 		 }
-		 
+		
 		for (int i = 0; i < 10; i++) {
 			UserProfile userProfile = new UserProfile();
 			userProfile.setLogin("login" + ((int) Math.random() * 1000) + i);

@@ -162,7 +162,7 @@ public class AbstractTest {
 		userProfile.setPassword("pas");
 		userProfile.setFirstName("FirstName");
 		userProfile.setLastName("LastName");
-		userProfile.setEmail("vovik@mail.ru");
+		userProfile.setEmail("vovikbvi@tut.by");
 		userProfile.setPassportNumber("abcdfe");
 		userProfile.setPhoneNumber("+375297121212");
 		userProfile.setCountOder(1);
