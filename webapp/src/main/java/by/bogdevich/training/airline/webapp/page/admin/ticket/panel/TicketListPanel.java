@@ -6,6 +6,8 @@ import java.time.format.FormatStyle;
 import java.util.Iterator;
 import javax.inject.Inject;
 import javax.persistence.metamodel.SingularAttribute;
+
+import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.injection.Injector;
@@ -76,28 +78,21 @@ public class TicketListPanel extends Panel {
 
 		add(dataView);
 		add(new PagingNavigator("paging", dataView));
-		/*
-		 * add(new OrderByBorder("sort-id", UserProfile_.id,
-		 * ticketDataProvider)); add(new OrderByBorder("sort-login",
-		 * UserProfile_.login, ticketDataProvider)); add(new
-		 * OrderByBorder("sort-pssword", UserProfile_.password,
-		 * ticketDataProvider)); add(new OrderByBorder("sort-first-name",
-		 * UserProfile_.firstName, ticketDataProvider)); add(new
-		 * OrderByBorder("sort-last-name", UserProfile_.lastName,
-		 * ticketDataProvider)); add(new OrderByBorder("sort-email",
-		 * UserProfile_.email, ticketDataProvider)); add(new
-		 * OrderByBorder("sort-passport-number", UserProfile_.passportNumber,
-		 * ticketDataProvider)); add(new OrderByBorder("sort-phone-number",
-		 * UserProfile_.phoneNumber, ticketDataProvider)); add(new
-		 * OrderByBorder("sort-count-oder", UserProfile_.countOder,
-		 * ticketDataProvider)); add(new OrderByBorder("sort-vip",
-		 * UserProfile_.vip, ticketDataProvider)); add(new
-		 * OrderByBorder("sort-date-registr", UserProfile_.dateRegistr,
-		 * ticketDataProvider)); add(new OrderByBorder("sort-role",
-		 * UserProfile_.role, ticketDataProvider)); add(new
-		 * OrderByBorder("sort-accept-reristr", UserProfile_.aceptRegistr,
-		 * ticketDataProvider));
-		 */
+
+		add(new OrderByBorder("sort-id-ticket", Ticket_.id, ticketDataProvider));
+		add(new OrderByBorder("sort-flieght", Ticket_.flight, ticketDataProvider));
+		add(new OrderByBorder("sort-passanger", Ticket_.userProfile, ticketDataProvider));
+		add(new OrderByBorder("sort-paid", Ticket_.paid, ticketDataProvider));
+		add(new OrderByBorder("sort-number-seats", Ticket_.numberSeats, ticketDataProvider));
+		add(new OrderByBorder("sort-date-bought", Ticket_.dateBought, ticketDataProvider));
+		add(new OrderByBorder("sort-baggage", Ticket_.baggage, ticketDataProvider));
+		add(new OrderByBorder("sort-weight-baggage", Ticket_.weightBaggage, ticketDataProvider));
+		add(new OrderByBorder("sort-ticket-tupe", Ticket_.ticketTupe, ticketDataProvider));
+		add(new OrderByBorder("sort-ticket-class", Ticket_.ticketClass, ticketDataProvider));
+		add(new OrderByBorder("sort-priotity-rgistr", Ticket_.priorityRegistration, ticketDataProvider));
+		add(new OrderByBorder("sort-priotity-seats", Ticket_.prioritySeats, ticketDataProvider));
+		add(new OrderByBorder("sort-ticket-costs", Ticket_.costs, ticketDataProvider));
+		add(new OrderByBorder("sort-for-baby", Ticket_.forBaby, ticketDataProvider));
 	}
 
 	private class TicketDataProvider extends SortableDataProvider<Ticket, Serializable> {
@@ -110,8 +105,7 @@ public class TicketListPanel extends Panel {
 
 			ticketFilter = new TicketFilter();
 			setSort((Serializable) Ticket_.dateBought, SortOrder.ASCENDING);
-			
-			
+
 		}
 
 		@Override
@@ -124,10 +118,10 @@ public class TicketListPanel extends Panel {
 
 			ticketFilter.setLimit((int) count);
 			ticketFilter.setOffset((int) first);
-			
+
 			ticketFilter.setSetFetchUser(true);
 			ticketFilter.setSetFetchFlieght(true);
-			
+
 			return ticketService.getRecordsSorted(ticketFilter).iterator();
 		}
 

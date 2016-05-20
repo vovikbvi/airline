@@ -9,20 +9,51 @@
 	-float:right;
 }
 
+/*table style*/
 
-table{
-border-collapse: collapse;
-
+table {
+  border-collapse: collapse;
 }
 
-td{
-	border: 1px solid black;
-	border-collapse: collapse;
+th {
+  -color:#D5DDE5;;
+  -background:#2e96d2;
+  border: 1px solid #9ccfec;
+  -text: white;
+ }
+
+  
+tr {
+  border-top: 1px solid #C1C3D1;
+  color:#666B85;
+}
+ 
+tr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+}
+ 
+
+tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+ 
+tr:nth-child(odd):hover td {
+  background:#4E5066;
 }
 
-th{
-	border: 1px solid black;
-	
+ 
+td {
+  background:#FFFFFF;
+  text-align:center;
+  vertical-align:middle;
+  border: 1px solid #9ccfec;
 }
+/*end table style*/
 
+#paging{
+	position:right;
+	float:left;
+	margin:10px 10px 10px 10px;
 
+}

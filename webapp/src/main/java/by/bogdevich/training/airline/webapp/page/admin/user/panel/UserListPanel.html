@@ -1,40 +1,42 @@
 <wicket:panel>
 	<table class="table-user">
-		<tr>
-			<th><a wicket:id="sort-id">ID</a></th>
-			<th><a wicket:id="sort-login">Login</a></th>
-			<th><a wicket:id="sort-pssword">Password</a></th>
-			<th><a wicket:id="sort-first-name">First name</a></th>
-			<th><a wicket:id="sort-last-name">Last name</a></th>
-			<th><a wicket:id="sort-email">E-mail</a></th>
-			<th><a wicket:id="sort-passport-number">Passport number</a></th>
-			<th><a wicket:id="sort-phone-number">Phone number</a></th>
-			<th><a wicket:id="sort-count-oder">Count oder</a></th>
-			<th><a wicket:id="sort-vip">VIP</a></th>
-			<th><a wicket:id="sort-date-registr">Date registr</a></th>
-			<th><a wicket:id="sort-role">Role</a></th>
-			<th><a wicket:id="sort-accept-reristr">Accept registr</a></th>
-			<th>Edit</th>
-			
-		</tr>
-		<tr wicket:id="rows">
-			<td><span wicket:id="id" /></td>
-			<td><span wicket:id="login" /></td>
-			<td><span wicket:id="password" /></td>
-			<td><span wicket:id="first-name" /></td>
-			<td><span wicket:id="last-name" /></td>
-			<td><span wicket:id="e-mail" /></td>
-			<td><span wicket:id="passport-number" /></td>
-			<td><span wicket:id="phone-number" /></td>
-			<td><span wicket:id="cout-oder" /></td>
-			<td><input wicket:id="VIP" type="checkbox" /></td>
-			<td><span wicket:id="date-registr" /></td>
-			<td><span wicket:id="role" /></td>
-			<td><input wicket:id="active" type="checkbox" /></td>
-			<td><a>edit</a></td>
-			
-
-		</tr>
+		<thead>
+			<tr>
+				<th><a wicket:id="sort-id">ID</a></th>
+				<th><a wicket:id="sort-login">Login</a></th>
+				<th><a wicket:id="sort-pssword">Password</a></th>
+				<th><a wicket:id="sort-first-name">First name</a></th>
+				<th><a wicket:id="sort-last-name">Last name</a></th>
+				<th><a wicket:id="sort-email">E-mail</a></th>
+				<th><a wicket:id="sort-passport-number">Passport number</a></th>
+				<th><a wicket:id="sort-phone-number">Phone number</a></th>
+				<th><a wicket:id="sort-count-oder">Count oder</a></th>
+				<th><a wicket:id="sort-vip">VIP</a></th>
+				<th><a wicket:id="sort-date-registr">Date registr</a></th>
+				<th><a wicket:id="sort-role">Role</a></th>
+				<th><a wicket:id="sort-accept-reristr">Accept registr</a></th>
+				<th>Edit</th>
+			</tr>
+		</thead>
+		<tbody class="table-body">
+			<tr wicket:id="rows">
+				<td><span wicket:id="id" /></td>
+				<td><span wicket:id="login" /></td>
+				<td><span wicket:id="password" /></td>
+				<td><span wicket:id="first-name" /></td>
+				<td><span wicket:id="last-name" /></td>
+				<td><span wicket:id="e-mail" /></td>
+				<td><span wicket:id="passport-number" /></td>
+				<td><span wicket:id="phone-number" /></td>
+				<td><span wicket:id="cout-oder" /></td>
+				<td><input wicket:id="VIP" type="checkbox" /></td>
+				<td><span wicket:id="date-registr" /></td>
+				<td><span wicket:id="role" /></td>
+				<td><input wicket:id="active" type="checkbox" /></td>
+				<td><a>edit</a></td>
+			</tr>
+		</tbody>
 	</table>
+
 	<div wicket:id="paging"></div>
 </wicket:panel>
