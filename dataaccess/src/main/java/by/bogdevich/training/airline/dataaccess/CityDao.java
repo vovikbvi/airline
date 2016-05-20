@@ -9,4 +9,6 @@ public interface CityDao extends AbstractDao<City, Long>{
 
 	List<City> getRecordsSorted(CityFilter filter);
 
+	Long count(CityFilter filter);
+
 }

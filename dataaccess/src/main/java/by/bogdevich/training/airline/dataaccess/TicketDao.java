@@ -17,4 +17,6 @@ public interface TicketDao extends AbstractDao<Ticket, Long>{
 
 	Double countAllBaggage(Flight flight);
 
+	Long count(TicketFilter filter);
+
 }

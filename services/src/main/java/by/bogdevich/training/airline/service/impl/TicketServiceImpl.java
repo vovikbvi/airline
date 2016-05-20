@@ -5,17 +5,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.RollbackException;
-
-import org.hibernate.Transaction;
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionSystemException;
-
 import by.bogdevich.training.airline.dataaccess.FlightDao;
 import by.bogdevich.training.airline.dataaccess.TicketDao;
+import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.Ticket;
@@ -172,4 +167,13 @@ public class TicketServiceImpl implements TicketService {
 		return ticketDao.getAll();
 	}
 
+	@Override
+	public List<Ticket> getRecordsSorted(TicketFilter filter) {
+		return ticketDao.getRecordsSorted(filter);
+}
+	
+	@Override
+	public Long count(TicketFilter filter){
+		return ticketDao.count(filter);
+	}	
 }

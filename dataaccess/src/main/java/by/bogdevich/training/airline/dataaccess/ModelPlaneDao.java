@@ -9,4 +9,6 @@ public interface ModelPlaneDao extends AbstractDao<ModelPlane, Long>{
 
 	List<ModelPlane> getRecordsSorted(ModelPlaneFilter filter);
 
+	Long count(ModelPlaneFilter filter);
+
 }

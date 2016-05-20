@@ -8,5 +8,7 @@ import by.bogdevich.training.airline.datamodel.Country;
 public interface CountryDao extends AbstractDao<Country, Long>{
 
 	List<Country> getRecordsSorted(CountryFilter filter);
+
+	Long count(CountryFilter filter);
 	
 }

@@ -4,9 +4,14 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import by.bogdevich.training.airline.dataaccess.AbstractDao;
+import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
+import by.bogdevich.training.airline.datamodel.UserProfile;
 
 public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
 
@@ -51,7 +56,7 @@ public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
 			entityManager.createQuery(String.format("delete from %s e where e.id = :id", entityClass.getSimpleName()))
 			.setParameter("id", id).executeUpdate();
 	}
-
+	
 	public Class<T> getEntityClass() {
 		return entityClass;
 	}
@@ -60,4 +65,5 @@ public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
 		return entityManager;
 	}
 
+	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import by.bogdevich.training.airline.dataaccess.filtres.CountryFilter;
 import by.bogdevich.training.airline.datamodel.Country;
 
 public interface CountryService {
@@ -20,5 +21,7 @@ public interface CountryService {
 	Country get(Long id);
 
 	List<Country> getAll();
+
+	Long count(CountryFilter filter);
 
 }

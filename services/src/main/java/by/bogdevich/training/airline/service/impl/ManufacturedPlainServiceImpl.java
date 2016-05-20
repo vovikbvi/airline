@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import by.bogdevich.training.airline.dataaccess.ManufacturedPlaneDao;
+import by.bogdevich.training.airline.dataaccess.filtres.ManufacturedPlaneFilter;
 import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 import by.bogdevich.training.airline.service.ManufacturedPlainService;
 
@@ -52,5 +53,10 @@ public class ManufacturedPlainServiceImpl implements ManufacturedPlainService {
 	public List<ManufacturedPlane> getAll() {
 		return manufacturedPlaneDao.getAll();
 	}
+
+	@Override
+	public Long count(ManufacturedPlaneFilter filter){
+		return manufacturedPlaneDao.count(filter);
+	}	
 
 }

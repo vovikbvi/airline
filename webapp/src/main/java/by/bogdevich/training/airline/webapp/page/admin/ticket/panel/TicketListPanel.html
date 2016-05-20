@@ -1,0 +1,39 @@
+<wicket:panel>
+	<table class="table-ticket">
+		<tr>
+			<th>id</th>
+			<th>flieght</th>
+			<th>passanger</th>
+			<th>paid</th>
+			<th>number seats</th>
+			<th>date bought</th>
+			<th>baggage</th>
+			<th>weight baggage</th>
+			<th>ticket tupe</th>
+			<th>ticket class</th>
+			<th>priotity rgistr</th>
+			<th>priotity seats</th>
+			<th>ticket costs</th>
+			<th>for baby</th>
+			<th>edit</th>
+		</tr>
+		<tr wicket:id="rows">
+			<td><span wicket:id="id" /></td>
+			<td><span wicket:id="flieght" /></td>
+			<td><span wicket:id="passanger" /></td>
+			<td><input wicket:id="paid" type="checkbox" /></td>
+			<td><span wicket:id="number-seats" /></td>
+			<td><span wicket:id="date-bought" /></td>
+			<td><span wicket:id="baggage" /></td>
+			<td><span wicket:id="weight-baggage" /></td>
+			<td><span wicket:id="ticket-tupe" /></td>
+			<td><span wicket:id="ticket-class" /></td>
+			<td><input wicket:id="priotity-rgistr" type="checkbox" /></td>
+			<td><input wicket:id="priotity-seats" type="checkbox" /></td>
+			<td><span wicket:id="ticket-costs" /></td>
+			<td><input wicket:id="for-baby" type="checkbox" /></td>
+			<td><a>edit</a></td>
+		</tr>
+	</table>
+	<div wicket:id="paging"></div>
+</wicket:panel>

@@ -16,6 +16,7 @@ import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 
+
 @Repository
 public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> implements UserProfileDao {
 
@@ -52,7 +53,7 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 			Predicate lName = cb.equal(from.get(UserProfile_.lastName), filter.getFirstName());
 			cq.where(cb.or(fName, lName));
 		}
-		
+
 		// set fetching
 		if (filter.isSetFetchTickets()) {
 			from.fetch(UserProfile_.boughtTickets, JoinType.LEFT);
@@ -76,4 +77,15 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 		return allitems;
 	}
 
+	@Override
+	public Long count(UserProfileFilter filter) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<UserProfile> from = cq.from(UserProfile.class);
+		cq.select(cb.count(from));
+		TypedQuery<Long> q = em.createQuery(cq);
+		return q.getSingleResult();
+	}
+	
 }

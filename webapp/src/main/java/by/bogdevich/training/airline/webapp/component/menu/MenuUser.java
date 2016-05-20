@@ -10,6 +10,7 @@ import by.bogdevich.training.airline.webapp.page.profile.ProfilePage;
 import by.bogdevich.training.airline.webapp.page.registr.RegistrPage;
 import by.bogdevich.training.airline.webapp.page.schedule.SchedulePage;
 import by.bogdevich.training.airline.webapp.page.search.SearchPage;
+import by.bogdevich.training.airline.webapp.page.setting.SettingPage;
 
 
 public class MenuUser extends Panel {
@@ -58,19 +59,20 @@ public class MenuUser extends Panel {
             }
         });
 
-        add(new Link("Feedback") {
+        add(new Link("feedback") {
             @Override
             public void onClick() {
                 setResponsePage(new FeedbackPage());
             }
         });
-                      
-        add(new Link("registration") {
+        
+        add(new Link("setting") {
             @Override
             public void onClick() {
-                setResponsePage(new RegistrPage());
+                setResponsePage(new SettingPage());
             }
         });
-
+       
+                      
     }
 }

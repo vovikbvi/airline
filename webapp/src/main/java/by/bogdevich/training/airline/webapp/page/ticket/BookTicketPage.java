@@ -4,9 +4,9 @@ import org.apache.wicket.markup.html.link.Link;
 
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 
-public class TicketPage extends AbstractPage {
+public class BookTicketPage extends AbstractPage {
 
-    public TicketPage() {
+    public BookTicketPage() {
         super();
     }
 }

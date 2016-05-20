@@ -8,6 +8,8 @@ import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 public interface ManufacturedPlaneDao extends AbstractDao<ManufacturedPlane, Long>{
 
 	List<ManufacturedPlane> getRecordsSorted(ManufacturedPlaneFilter filter);
+
+	Long count(ManufacturedPlaneFilter filter);
 	
 
 }

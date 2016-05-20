@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import by.bogdevich.training.airline.dataaccess.FlightCatalogDao;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightCatalogFilter;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
+import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.Airport_;
 import by.bogdevich.training.airline.datamodel.City_;
@@ -28,6 +29,7 @@ import by.bogdevich.training.airline.datamodel.Flight_;
 
 import by.bogdevich.training.airline.datamodel.Price_;
 import by.bogdevich.training.airline.datamodel.Ticket;
+import by.bogdevich.training.airline.datamodel.UserProfile;
 
 @Repository
 public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> implements FlightCatalogDao {
@@ -45,12 +47,6 @@ public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> i
 
 		cq.select(from);
 
-		/*
-		 * if (filter.getFirstName() != null) { Predicate fName =
-		 * cb.equal(from.get(UserProfile_.firstName), filter.getFirstName());
-		 * Predicate lName = cb.equal(from.get(UserProfile_.lastName),
-		 * filter.getFirstName()); cq.where(cb.or(fName, lName)); }
-		 */
 		
 		// set fetching
 		if (filter.isFetchAirportStart()) {
@@ -110,5 +106,15 @@ public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> i
 		return result;
 	}
 
+	@Override
+	public Long count(FlightCatalogFilter filter) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<FlightCatalog> from = cq.from(FlightCatalog.class);
+		cq.select(cb.count(from));
+		TypedQuery<Long> q = em.createQuery(cq);
+		return q.getSingleResult();
+	}
 	
 }

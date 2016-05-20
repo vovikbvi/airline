@@ -73,5 +73,9 @@ public class FlightCatalogServiceImpl implements FlightCatalogService {
 		return flightCatalogDao.getAll();
 	}
 
-	
+	@Override
+	public Long count(FlightCatalogFilter filter){
+		return flightCatalogDao.count(filter);
+	}	
+
 }

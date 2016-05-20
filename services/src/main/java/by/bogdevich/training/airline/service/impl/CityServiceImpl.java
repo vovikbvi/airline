@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import by.bogdevich.training.airline.dataaccess.CityDao;
+import by.bogdevich.training.airline.dataaccess.filtres.CityFilter;
 import by.bogdevich.training.airline.datamodel.City;
 import by.bogdevich.training.airline.service.CityService;
 
@@ -30,9 +31,9 @@ public class CityServiceImpl implements CityService {
 	public void update(City city) {
 		cityDao.update(city);
 
-	LOGGER.info("Update city {}", city);
+		LOGGER.info("Update city {}", city);
 	}
-	
+
 	@Override
 	public void delete(Long id) {
 		City city = cityDao.get(id);
@@ -49,5 +50,10 @@ public class CityServiceImpl implements CityService {
 	public List<City> getAll() {
 		return cityDao.getAll();
 	}
+
+	@Override
+	public Long count(CityFilter filter){
+		return cityDao.count(filter);
+	}	
 
 }

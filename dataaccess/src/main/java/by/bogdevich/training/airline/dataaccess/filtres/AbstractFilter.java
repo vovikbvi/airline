@@ -1,8 +1,9 @@
 package by.bogdevich.training.airline.dataaccess.filtres;
 
+import java.io.Serializable;
 import javax.persistence.metamodel.SingularAttribute;
 
-public class AbstractFilter {
+public class AbstractFilter implements Serializable{
 
 	
 	private SingularAttribute sortProperty;

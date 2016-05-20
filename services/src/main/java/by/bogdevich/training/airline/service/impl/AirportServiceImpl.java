@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import by.bogdevich.training.airline.dataaccess.AirportDao;
+import by.bogdevich.training.airline.dataaccess.filtres.AirportFilter;
 import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.service.AirportService;
 
@@ -47,5 +48,10 @@ public class AirportServiceImpl implements AirportService {
 	public List<Airport> getAll() {
 		return airportDao.getAll();
 	}
+	
+	@Override
+	public Long count(AirportFilter filter){
+		return airportDao.count(filter);
+	}	
 
 }

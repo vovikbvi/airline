@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import by.bogdevich.training.airline.dataaccess.CountryDao;
-
+import by.bogdevich.training.airline.dataaccess.filtres.CountryFilter;
 import by.bogdevich.training.airline.datamodel.Country;
 import by.bogdevich.training.airline.service.CountryService;
 
@@ -48,5 +48,9 @@ public class CountryServiceImpl implements CountryService {
 	public List<Country> getAll() {
 		return countryDao.getAll();
 	}
+	@Override
+	public Long count(CountryFilter filter){
+		return countryDao.count(filter);
+	}	
 
 }

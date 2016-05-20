@@ -13,6 +13,8 @@ public interface FlightCatalogDao extends AbstractDao<FlightCatalog, Long>{
 
 	FlightCatalog getFullFlightCatalog(FlightCatalog flightCatalog);
 
+	Long count(FlightCatalogFilter filter);
+
 	//Country getCountry(Airport airport);
 
 	

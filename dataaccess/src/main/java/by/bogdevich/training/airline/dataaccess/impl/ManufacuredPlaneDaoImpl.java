@@ -9,16 +9,14 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
-
 import by.bogdevich.training.airline.dataaccess.ManufacturedPlaneDao;
 import by.bogdevich.training.airline.dataaccess.filtres.ManufacturedPlaneFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
+import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 import by.bogdevich.training.airline.datamodel.ManufacturedPlane_;
-import by.bogdevich.training.airline.datamodel.Ticket;
+import by.bogdevich.training.airline.datamodel.UserProfile;
 
 @Repository
 public class ManufacuredPlaneDaoImpl extends AbstractDaoImpl<ManufacturedPlane, Long> implements ManufacturedPlaneDao{
@@ -40,12 +38,7 @@ public class ManufacuredPlaneDaoImpl extends AbstractDaoImpl<ManufacturedPlane, 
 			Predicate name = cb.equal(from.get(ManufacturedPlane_.name), filter.getName());
 			cq.where(name);
 		}
-	/*	
-		// set fetching
-		if (filter.isFetchCredentials()) {
-			from.fetch(UserProfile_., JoinType.LEFT);
-		}
-*/
+
 		// set sort params
 		if (filter.getSortProperty() != null) {
 			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
@@ -62,6 +55,17 @@ public class ManufacuredPlaneDaoImpl extends AbstractDaoImpl<ManufacturedPlane, 
 		// set execute query
 		List<ManufacturedPlane> allitems = q.getResultList();
 		return allitems;
+	}
+	
+	@Override
+	public Long count(ManufacturedPlaneFilter filter) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<ManufacturedPlane> from = cq.from(ManufacturedPlane.class);
+		cq.select(cb.count(from));
+		TypedQuery<Long> q = em.createQuery(cq);
+		return q.getSingleResult();
 	}
 
 }

@@ -1,0 +1,62 @@
+	UserProfileDataProvider userProfileDataProvider = new UserProfileDataProvider();
+
+	DataView<UserProfile> dataView = new DataView<UserProfile>("rows", userProfileDataProvider, 5) {
+        @Override
+        protected void populateItem(Item<UserProfile> item) {
+            UserProfile userProfile = item.getModelObject();
+
+            item.add(new Label("id", userProfile.getId()));
+            item.add(new Label("login", userProfile.getLogin()));
+            item.add(new Label("password", userProfile.getPassword()));
+         //   item.add(DateLabel.forDatePattern("created", Model.of(product.getCreated()), "dd-MM-yyyy"));
+
+        //    CheckBox checkbox = new CheckBox("active", Model.of(product.getActive()));
+        //    checkbox.setEnabled(false);
+        //    item.add(checkbox);
+        }
+    };
+    
+    add(dataView);
+    add(new PagingNavigator("paging", dataView));
+
+    add(new OrderByBorder("sort-id", Product_.id, productsDataProvider));
+    add(new OrderByBorder("sort-name", Product_.name, productsDataProvider));
+    add(new OrderByBorder("sort-price", Product_.basePrice, productsDataProvider));
+
+}
+
+private class UserProfileDataProvider extends SortableDataProvider<UserProfile, Serializable> {
+
+	private UserProfileFilter userProfileFilter;
+
+	public UserProfileDataProvider() {
+		super();
+
+		userProfileFilter = new UserProfileFilter();
+		setSort((Serializable) UserProfile_.login, SortOrder.ASCENDING);
+	}
+
+	@Override
+	public Iterator<UserProfile> iterator(long first, long count) {
+		Serializable property = getSort().getProperty();
+		SortOrder propertySortOrder = getSortState().getPropertySortOrder(property);
+
+		userProfileFilter.setSortProperty((SingularAttribute) property);
+		userProfileFilter.setSortOrder(propertySortOrder.equals(SortOrder.ASCENDING) ? true : false);
+
+		userProfileFilter.setLimit((int) count);
+		userProfileFilter.setOffset((int) first);
+		return userProfileService.getRecordsSorted(userProfileFilter).iterator(); 
+	}
+
+	@Override
+	public long size() {
+		return userProfileService.count(userProfileFilter);
+	}
+
+	@Override
+	public IModel<UserProfile> model(UserProfile object) {
+		return new Model(object);
+	}
+
+}

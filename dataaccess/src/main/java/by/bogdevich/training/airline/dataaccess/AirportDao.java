@@ -11,5 +11,7 @@ public interface AirportDao extends AbstractDao<Airport, Long>{
 
 	Airport getFullAirport(Airport airport);
 
+	Long count(AirportFilter filter);
+
 
 }

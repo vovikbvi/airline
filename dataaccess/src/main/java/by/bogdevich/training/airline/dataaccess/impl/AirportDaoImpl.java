@@ -9,10 +9,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
-
 import by.bogdevich.training.airline.dataaccess.AirportDao;
 import by.bogdevich.training.airline.dataaccess.filtres.AirportFilter;
 import by.bogdevich.training.airline.datamodel.Airport;
@@ -40,12 +38,12 @@ public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements Ai
 			Predicate aName = cb.equal(from.get(Airport_.name), filter.getAirportName());
 			cq.where(aName);
 		}
-	/*	
+	
 		// set fetching
-		if (filter.isFetchCredentials()) {
-			from.fetch(UserProfile_., JoinType.LEFT);
+		if (filter.isSetFetchCity()) {
+			from.fetch(Airport_.city, JoinType.LEFT);
 		}
-*/
+
 		// set sort params
 		if (filter.getSortProperty() != null) {
 			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
@@ -77,6 +75,17 @@ public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements Ai
 
 		Airport result = em.createQuery(cq).getSingleResult();
 		return result;
+	}
+	
+	@Override
+	public Long count(AirportFilter filter) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<Airport> from = cq.from(Airport.class);
+		cq.select(cb.count(from));
+		TypedQuery<Long> q = em.createQuery(cq);
+		return q.getSingleResult();
 	}
 
 }

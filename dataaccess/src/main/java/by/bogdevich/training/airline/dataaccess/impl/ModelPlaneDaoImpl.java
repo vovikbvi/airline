@@ -6,18 +6,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
-
 import by.bogdevich.training.airline.dataaccess.ModelPlaneDao;
 import by.bogdevich.training.airline.dataaccess.filtres.ModelPlaneFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
-import by.bogdevich.training.airline.datamodel.Ticket;
 
 @Repository
 public class ModelPlaneDaoImpl extends AbstractDaoImpl<ModelPlane, Long> implements ModelPlaneDao {
@@ -39,12 +36,12 @@ public class ModelPlaneDaoImpl extends AbstractDaoImpl<ModelPlane, Long> impleme
 			Predicate model = cb.equal(from.get(ModelPlane_.model), filter.getModel());
 			cq.where(model);
 		}
-	/*	
+		
 		// set fetching
-		if (filter.isFetchCredentials()) {
-			from.fetch(UserProfile_., JoinType.LEFT);
+		if (filter.isSetFetchManufactured()) {
+			from.fetch(ModelPlane_.manufacturedPlane, JoinType.LEFT);
 		}
-*/
+
 		// set sort params
 		if (filter.getSortProperty() != null) {
 			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
@@ -63,5 +60,15 @@ public class ModelPlaneDaoImpl extends AbstractDaoImpl<ModelPlane, Long> impleme
 		return allitems;
 	}
 
+	@Override
+	public Long count(ModelPlaneFilter filter) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<ModelPlane> from = cq.from(ModelPlane.class);
+		cq.select(cb.count(from));
+		TypedQuery<Long> q = em.createQuery(cq);
+		return q.getSingleResult();
+	}
 	
 }

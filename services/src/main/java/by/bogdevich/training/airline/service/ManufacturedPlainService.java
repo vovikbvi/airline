@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import by.bogdevich.training.airline.dataaccess.filtres.ManufacturedPlaneFilter;
 import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 
 public interface ManufacturedPlainService {
@@ -20,5 +21,7 @@ public interface ManufacturedPlainService {
 	ManufacturedPlane get(Long id);
 
 	List<ManufacturedPlane> getAll();
+
+	Long count(ManufacturedPlaneFilter filter);
 
 }

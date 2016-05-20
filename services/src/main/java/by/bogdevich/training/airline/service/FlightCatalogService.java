@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import by.bogdevich.training.airline.dataaccess.filtres.FlightCatalogFilter;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
 
 public interface FlightCatalogService {
@@ -22,5 +23,7 @@ public interface FlightCatalogService {
 	List<FlightCatalog> getAll();
 
 	Boolean checkInternatoinal(FlightCatalog flightCatalog);
+
+	Long count(FlightCatalogFilter filter);
 
 }

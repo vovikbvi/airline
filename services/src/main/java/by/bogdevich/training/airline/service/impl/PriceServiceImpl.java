@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import by.bogdevich.training.airline.dataaccess.PriceDao;
+import by.bogdevich.training.airline.dataaccess.filtres.PriceFilter;
 import by.bogdevich.training.airline.datamodel.Price;
 import by.bogdevich.training.airline.service.PriceService;
 
@@ -50,5 +51,15 @@ public class PriceServiceImpl implements PriceService {
 	public List<Price> getAll() {
 		return priceDao.getAll();
 	}
+
+	@Override
+	public List<Price> getRecordsSorted(PriceFilter filter) {
+		return priceDao.getRecordsSorted(filter);
+}
+	
+	@Override
+	public Long count(PriceFilter filter){
+		return priceDao.count(filter);
+	}	
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
 
 public interface FlightService {
@@ -24,5 +25,7 @@ public interface FlightService {
 	Flight getFullFlieght(Flight flight);
 
 	Boolean checkClassWeight(Flight flight);
+
+	Long count(FlightFilter filter);
 
 }

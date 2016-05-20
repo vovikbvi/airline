@@ -15,12 +15,15 @@ import org.springframework.stereotype.Repository;
 
 import by.bogdevich.training.airline.dataaccess.PlaneDao;
 import by.bogdevich.training.airline.dataaccess.filtres.PlaneFilter;
+import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Airport_;
 import by.bogdevich.training.airline.datamodel.City_;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.datamodel.Plane;
 import by.bogdevich.training.airline.datamodel.Plane_;
+import by.bogdevich.training.airline.datamodel.Ticket;
+import by.bogdevich.training.airline.datamodel.Ticket_;
 
 
 @Repository
@@ -44,12 +47,12 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 			Predicate bortNumber = cb.equal(from.get(Plane_.bortNumber), filter.getBortNumber());
 			cq.where(bortNumber);
 		}
-	/*	
+		
 		// set fetching
-		if (filter.isFetchCredentials()) {
-			from.fetch(UserProfile_., JoinType.LEFT);
+		if (filter.isSetFetchModelPlane()) {
+			from.fetch(Plane_.modelPlane, JoinType.LEFT);
 		}
-*/
+
 		// set sort params
 		if (filter.getSortProperty() != null) {
 			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
@@ -81,6 +84,17 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 
 		Plane result = em.createQuery(cq).getSingleResult();
 		return result;
+	}
+	
+	@Override
+	public Long count(PlaneFilter filter) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<Plane> from = cq.from(Plane.class);
+		cq.select(cb.count(from));
+		TypedQuery<Long> q = em.createQuery(cq);
+		return q.getSingleResult();
 	}
 
 }

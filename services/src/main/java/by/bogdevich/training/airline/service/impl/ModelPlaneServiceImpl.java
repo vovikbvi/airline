@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import by.bogdevich.training.airline.dataaccess.ModelPlaneDao;
+import by.bogdevich.training.airline.dataaccess.filtres.ModelPlaneFilter;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.service.ModelPlaneService;
 
@@ -49,4 +50,10 @@ public class ModelPlaneServiceImpl implements ModelPlaneService {
 	public List<ModelPlane> getAll() {
 		return modelPlaneDao.getAll();
 	}
+	
+	@Override
+	public Long count(ModelPlaneFilter filter){
+		return modelPlaneDao.count(filter);
+	}	
+
 }

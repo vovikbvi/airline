@@ -13,5 +13,7 @@ public interface FlightDao extends AbstractDao<Flight, Long> {
 
 	Flight getFullFlieght(Flight flight);
 
+	Long count(FlightFilter filter);
+
 //	Integer getColPassangersBuisnes(Flight flight);
 }

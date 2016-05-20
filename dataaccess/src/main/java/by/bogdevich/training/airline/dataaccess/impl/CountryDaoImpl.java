@@ -8,10 +8,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
-
 import by.bogdevich.training.airline.dataaccess.CountryDao;
 import by.bogdevich.training.airline.dataaccess.filtres.CountryFilter;
 import by.bogdevich.training.airline.datamodel.Country;
@@ -61,6 +59,17 @@ public class CountryDaoImpl extends AbstractDaoImpl<Country, Long> implements Co
 		// set execute query
 		List<Country> allitems = q.getResultList();
 		return allitems;
+	}
+	
+	@Override
+	public Long count(CountryFilter filter) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<Country> from = cq.from(Country.class);
+		cq.select(cb.count(from));
+		TypedQuery<Long> q = em.createQuery(cq);
+		return q.getSingleResult();
 	}
 
 	

@@ -1,0 +1,28 @@
+.content{
+	-position:absolute;
+	float:left;
+	margin:10px 10px 10px 10px;
+	padding: 0 5px 0 0; /*padding on the right is because the column if floating to the right*/
+	line-height:1.5em;
+	width:790px; /*784px minus padding*/
+	-height:300px;
+	-float:right;
+}
+
+
+table{
+border-collapse: collapse;
+
+}
+
+td{
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th{
+	border: 1px solid black;
+	
+}
+
+

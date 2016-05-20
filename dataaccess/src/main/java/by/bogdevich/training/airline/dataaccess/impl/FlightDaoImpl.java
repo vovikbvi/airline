@@ -16,12 +16,15 @@ import org.springframework.stereotype.Repository;
 import by.bogdevich.training.airline.dataaccess.AbstractDao;
 import by.bogdevich.training.airline.dataaccess.FlightDao;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
+import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
 import by.bogdevich.training.airline.datamodel.Plane_;
+import by.bogdevich.training.airline.datamodel.Ticket_;
+import by.bogdevich.training.airline.datamodel.UserProfile;
 
 
 @Repository
@@ -84,10 +87,12 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 			Predicate timeInterval = cb.between(from.get(Flight_.arrivalTime), filter.getStartDepartureTime(), filter.getFinishDepartureTime());
 			cq.where(timeInterval);
 		}
-		/*
-		 * // set fetching if (filter.isFetchCredentials()) {
-		 * from.fetch(UserProfile_., JoinType.LEFT); }
-		 */
+	
+		 // set fetching if (filter.isFetchCredentials()) {
+		if (filter.isSetFetchFlieghtCatalog()) {
+			from.fetch(Flight_.flightCatalog, JoinType.LEFT);
+		}
+		
 		// set sort params
 		if (filter.getSortProperty() != null) {
 			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
@@ -121,6 +126,17 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 
 		Flight result = em.createQuery(cq).getSingleResult();
 		return result;
+	}
+	
+	@Override
+	public Long count(FlightFilter filter) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<Flight> from = cq.from(Flight.class);
+		cq.select(cb.count(from));
+		TypedQuery<Long> q = em.createQuery(cq);
+		return q.getSingleResult();
 	}
 
 }

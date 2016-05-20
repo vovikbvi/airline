@@ -11,4 +11,6 @@ public interface PlaneDao extends AbstractDao<Plane, Long>{
 
 	Plane getFullPlane(Plane plane);
 
+	Long count(PlaneFilter filter);
+
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import by.bogdevich.training.airline.dataaccess.filtres.PriceFilter;
 import by.bogdevich.training.airline.datamodel.Price;
 
 public interface PriceService {
@@ -20,5 +21,9 @@ public interface PriceService {
 	Price get(Long id);
 
 	List<Price> getAll();
+
+	List<Price> getRecordsSorted(PriceFilter filter);
+
+	Long count(PriceFilter filter);
 
 }

@@ -6,6 +6,7 @@ public class FlightFilter extends AbstractFilter {
 
 	private LocalDateTime startDepartureTime;
 	private LocalDateTime finishDepartureTime;
+	private boolean setFetchFlieghtCatalog;
 
 	public LocalDateTime getStartDepartureTime() {
 		return startDepartureTime;
@@ -21,6 +22,14 @@ public class FlightFilter extends AbstractFilter {
 
 	public void setFinishDepartureTime(LocalDateTime finishDepartureTime) {
 		this.finishDepartureTime = finishDepartureTime;
+	}
+
+	public boolean isSetFetchFlieghtCatalog() {
+		return setFetchFlieghtCatalog;
+	}
+
+	public void setSetFetchFlieghtCatalog(boolean setFetchFlieghtCatalog) {
+		this.setFetchFlieghtCatalog = setFetchFlieghtCatalog;
 	}
 
 }

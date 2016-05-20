@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import by.bogdevich.training.airline.dataaccess.filtres.AirportFilter;
 import by.bogdevich.training.airline.datamodel.Airport;
 
 public interface AirportService {
@@ -20,5 +21,7 @@ public interface AirportService {
 	Airport get(Long id);
 
 	List<Airport> getAll();
+
+	Long count(AirportFilter filter);
 
 }

@@ -4,14 +4,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import javax.inject.Inject;
 
-import org.hibernate.HibernateException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.ConstantException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import by.bogdevich.training.airline.dataaccess.UserProfileDao;
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
@@ -95,5 +91,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public List<UserProfile> getRecordsSorted(UserProfileFilter filter) {
 		return userProfileDao.getRecordsSorted(filter);
-	}
+}
+	
+	@Override
+	public Long count(UserProfileFilter filter){
+		return userProfileDao.count(filter);
+	}	
 }

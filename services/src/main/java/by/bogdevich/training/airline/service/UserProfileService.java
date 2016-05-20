@@ -26,4 +26,6 @@ public interface UserProfileService {
 	
 	public List<UserProfile> getRecordsSorted(UserProfileFilter filter);
 
+	Long count(UserProfileFilter filter);
+
 }
