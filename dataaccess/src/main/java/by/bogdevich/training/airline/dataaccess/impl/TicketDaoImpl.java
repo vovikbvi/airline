@@ -7,14 +7,13 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
-import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
 import by.bogdevich.training.airline.datamodel.Plane_;
@@ -24,6 +23,7 @@ import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.Ticket_;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
+
 
 @Repository
 public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements TicketDao {
@@ -65,10 +65,17 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 		}
 
 		// set sort params
-		if (filter.getSortProperty() != null) {
-			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
-		}
+        if (filter.getSortProperty() != null) {
+            Path<Object> expression;
+            if (UserProfile_.firstName.equals(filter.getSortProperty())) {
+                expression = from.get(Ticket_.userProfile).get(filter.getSortProperty());
+            } else {
+                expression = from.get(filter.getSortProperty());
+            }
+            cq.orderBy(new OrderImpl(expression, filter.isSortOrder()));
+        }
 
+		
 		TypedQuery<Ticket> q = em.createQuery(cq);
 
 		// set paging

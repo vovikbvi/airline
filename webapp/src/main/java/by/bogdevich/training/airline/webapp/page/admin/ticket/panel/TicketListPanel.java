@@ -22,6 +22,7 @@ import org.apache.wicket.model.Model;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.Ticket_;
+import by.bogdevich.training.airline.datamodel.UserProfile_;
 import by.bogdevich.training.airline.service.TicketService;
 
 public class TicketListPanel extends Panel {
@@ -81,7 +82,7 @@ public class TicketListPanel extends Panel {
 
 		add(new OrderByBorder("sort-id-ticket", Ticket_.id, ticketDataProvider));
 		add(new OrderByBorder("sort-flieght", Ticket_.flight, ticketDataProvider));
-		add(new OrderByBorder("sort-passanger", Ticket_.userProfile, ticketDataProvider));
+		add(new OrderByBorder("sort-passanger", UserProfile_.firstName, ticketDataProvider));
 		add(new OrderByBorder("sort-paid", Ticket_.paid, ticketDataProvider));
 		add(new OrderByBorder("sort-number-seats", Ticket_.numberSeats, ticketDataProvider));
 		add(new OrderByBorder("sort-date-bought", Ticket_.dateBought, ticketDataProvider));
