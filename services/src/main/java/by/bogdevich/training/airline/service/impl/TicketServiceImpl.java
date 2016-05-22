@@ -2,6 +2,7 @@ package by.bogdevich.training.airline.service.impl;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -67,9 +68,9 @@ public class TicketServiceImpl implements TicketService {
 
 	private double percentToDateDeparture(Ticket ticket) {
 		Flight flight = flightDao.getFullFlieght(ticket.getFlight());
-		LocalDateTime dateStart = flight.getStartSaleTicket();
-		LocalDateTime dateEnd = flight.getDepartureTime();
-
+		Date dateStart = flight.getStartSaleTicket();
+		Date dateEnd = flight.getDepartureTime();
+/*
 		Duration durationSale = Duration.between(dateStart, dateEnd);
 		double periodSale = durationSale.toDays();
 
@@ -83,6 +84,9 @@ public class TicketServiceImpl implements TicketService {
 			result = 0;
 		}
 		return result;
+		*/
+		return 0.0;
+		
 	}
 
 	private double getPrice(Ticket ticket) {
@@ -131,7 +135,7 @@ public class TicketServiceImpl implements TicketService {
 	public void insert(Ticket ticket) {
     //  Double t = ticketDao.countAllBaggage(ticket.getFlight());
     //  Integer b = ticketDao.getColPassBuisnes();
-		ticket.setDateBought(LocalDateTime.now());
+		ticket.setDateBought(new Date());
 		ticket.setCosts(ticketCost(ticket));
 		ticketDao.insert(ticket);
 
@@ -141,7 +145,7 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public void update(Ticket ticket) {
 
-		ticket.setDateBought(LocalDateTime.now());
+		ticket.setDateBought(new Date());
 		ticket.setCosts(ticketCost(ticket));
 
 		ticketDao.update(ticket);

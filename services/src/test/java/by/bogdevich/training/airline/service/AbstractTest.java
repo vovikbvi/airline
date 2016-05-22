@@ -1,6 +1,6 @@
 package by.bogdevich.training.airline.service;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -145,11 +145,11 @@ public class AbstractTest {
 	protected Flight flightAdd() {
 		Flight flight = new Flight();
 		flight.setFlightCatalog(flightCatalogAdd());
-		flight.setRegistrTime(LocalDateTime.now());
-		flight.setDepartureTime(LocalDateTime.now());
-		flight.setArrivalTime(LocalDateTime.now());
+		flight.setRegistrTime(new Date());
+		flight.setDepartureTime(new Date());
+		flight.setArrivalTime(new Date());
 		flight.setPlane(planeAdd());
-		flight.setStartSaleTicket(LocalDateTime.now());
+		flight.setStartSaleTicket(new Date());
 
 		flightService.insert(flight);
 		return flightService.get(flight.getId());
@@ -178,7 +178,7 @@ public class AbstractTest {
 	protected Price priceAdd() {
 		Price price = new Price();
 		price.setBasicPrice(0.2);
-		price.setDataChange(LocalDateTime.now());
+		price.setDataChange(new Date());
 		priceService.insert(price);
 
 		return priceService.get(price.getId());
@@ -190,7 +190,7 @@ public class AbstractTest {
 		ticket.setUserProfile(userProfileAdd());
 		ticket.setPaid(true);
 		ticket.setNumberSeats(2);
-		ticket.setDateBought(LocalDateTime.now());
+		ticket.setDateBought(new Date());
 		ticket.setBaggage(true);
 		ticket.setWeightBaggage(50.0);
 		ticket.setTicketTupe(TicketTupe.SINGLE_TICKET);

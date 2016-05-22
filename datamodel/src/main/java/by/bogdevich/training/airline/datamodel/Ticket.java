@@ -1,6 +1,8 @@
 package by.bogdevich.training.airline.datamodel;
 
-import java.time.LocalDateTime;
+
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -28,8 +30,8 @@ public class Ticket extends AbstractModel {
 	private Integer numberSeats;
 
 	@Column
-	@Convert(converter = LocalDateTimePersistenceConverter.class)
-	private LocalDateTime dateBought;
+	//@Convert(converter = LocalDateTimePersistenceConverter.class)
+	private Date dateBought;
 
 	@Column
 	private Boolean baggage;
@@ -89,11 +91,12 @@ public class Ticket extends AbstractModel {
 		this.numberSeats = numberSeats;
 	}
 
-	public LocalDateTime getDateBought() {
+
+	public Date getDateBought() {
 		return dateBought;
 	}
 
-	public void setDateBought(LocalDateTime dateBought) {
+	public void setDateBought(Date dateBought) {
 		this.dateBought = dateBought;
 	}
 

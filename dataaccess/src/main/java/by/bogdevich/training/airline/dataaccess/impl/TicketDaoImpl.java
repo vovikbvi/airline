@@ -1,6 +1,6 @@
 package by.bogdevich.training.airline.dataaccess.impl;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -112,10 +112,10 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 
 	}
 
-	private LocalDateTime fiendDate(LocalDateTime dateDeparture) {
+	private Date fiendDate(Date dateDeparture) {
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<LocalDateTime> cq = cb.createQuery(LocalDateTime.class);
+		CriteriaQuery<Date> cq = cb.createQuery(Date.class);
 		Root<Price> from = cq.from(Price.class);
 
 		cq.select(cb.greatest(from.get(Price_.dataChange)));
@@ -125,7 +125,7 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 	}
 
 	@Override
-	public Double fiendBasicPrice(LocalDateTime dateDeparture) {
+	public Double fiendBasicPrice(Date dateDeparture) {
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Double> cq = cb.createQuery(Double.class);

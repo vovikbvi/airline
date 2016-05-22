@@ -49,10 +49,10 @@ public class TicketListPanel extends Panel {
 				item.add(checkboxPaid);
 				item.add(new Label("number-seats", ticket.getNumberSeats()));
 
-				FormatStyle dateStyle = FormatStyle.SHORT;
-				DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(dateStyle);
-				String dateBought = ticket.getDateBought().format(formater);
-				item.add(new Label("date-bought", dateBought));
+			//	FormatStyle dateStyle = FormatStyle.SHORT;
+			//	DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(dateStyle);
+			//	String dateBought = ticket.getDateBought().format(formater);
+				item.add(new Label("date-bought", ticket.getDateBought()));
 				item.add(new Label("baggage", ticket.getBaggage()));
 				item.add(new Label("weight-baggage", ticket.getWeightBaggage()));
 				item.add(new Label("ticket-tupe", ticket.getTicketTupe()));

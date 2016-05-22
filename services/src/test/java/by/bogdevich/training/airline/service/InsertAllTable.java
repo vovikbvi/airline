@@ -1,6 +1,7 @@
 package by.bogdevich.training.airline.service;
 
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -232,8 +233,8 @@ public class InsertAllTable extends AbstractTest {
 
 	@Test
 	public void testUpdateFlieght() {
-		LocalDateTime updatedField = LocalDateTime.now();
-		updatedField.plusDays(1);
+		Date updatedField = new Date();
+		//updatedField.plusDays(1);
 		Flight flight = flightAdd();
 		flight.setDepartureTime(updatedField);
 		flightService.update(flight);

@@ -52,10 +52,10 @@ public class PriceListPanel extends Panel {
 
 				item.add(new Label("id", price.getId()));
 				
-				FormatStyle dateStyle = FormatStyle.SHORT;
-				DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(dateStyle);
-				String dateRegistr = price.getDataChange().format(formater);
-				item.add(new Label("date-chane", dateRegistr));
+			//	FormatStyle dateStyle = FormatStyle.SHORT;
+			//	DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(dateStyle);
+			//	String dateRegistr = price.getDataChange().format(formater);
+				item.add(new Label("date-chane", price.getDataChange()));
 				
 				item.add(new Label("price", price.getBasicPrice()));
 

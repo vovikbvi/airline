@@ -60,8 +60,8 @@ public class UserListPanel extends Panel {
 				
 				FormatStyle dateStyle = FormatStyle.SHORT;
 				DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(dateStyle);
-				String dateRegistr = userProfile.getDateRegistr().format(formater);
-				item.add(new Label("date-registr", dateRegistr));
+			//	String dateRegistr = userProfile.getDateRegistr().format(formater);
+				item.add(new Label("date-registr", userProfile.getDateRegistr()));
 				
 				item.add(new Label("role", userProfile.getRole()));
 				CheckBox checkboxRegistr = new CheckBox("active", Model.of(userProfile.getAceptRegistr()));

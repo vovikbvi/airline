@@ -1,6 +1,7 @@
 package by.bogdevich.training.airline.service;
 
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,8 +31,8 @@ public class FlieghtServiceTest extends AbstractTest{
 
 	@Test
 	public void testUpdateFlieght() {
-		LocalDateTime updatedField = LocalDateTime.now();
-		updatedField.plusDays(1);
+		Date updatedField = new Date();
+		//updatedField.getDay(1);
 		Flight flight = flightAdd();
 		flight.setDepartureTime(updatedField);
 		flightService.update(flight);

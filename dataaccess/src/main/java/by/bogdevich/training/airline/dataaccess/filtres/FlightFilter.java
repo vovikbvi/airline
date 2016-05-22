@@ -1,26 +1,26 @@
 package by.bogdevich.training.airline.dataaccess.filtres;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class FlightFilter extends AbstractFilter {
 
-	private LocalDateTime startDepartureTime;
-	private LocalDateTime finishDepartureTime;
+	private Date startDepartureTime;
+	private Date finishDepartureTime;
 	private boolean setFetchFlieghtCatalog;
 
-	public LocalDateTime getStartDepartureTime() {
+	public Date getStartDepartureTime() {
 		return startDepartureTime;
 	}
 
-	public void setStartDepartureTime(LocalDateTime startDepartureTime) {
+	public void setStartDepartureTime(Date startDepartureTime) {
 		this.startDepartureTime = startDepartureTime;
 	}
 
-	public LocalDateTime getFinishDepartureTime() {
+	public Date getFinishDepartureTime() {
 		return finishDepartureTime;
 	}
 
-	public void setFinishDepartureTime(LocalDateTime finishDepartureTime) {
+	public void setFinishDepartureTime(Date finishDepartureTime) {
 		this.finishDepartureTime = finishDepartureTime;
 	}
 

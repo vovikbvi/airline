@@ -1,7 +1,7 @@
 package by.bogdevich.training.airline.datamodel;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -13,19 +13,20 @@ import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConv
 public class Price extends AbstractModel {
 	
 	@Column
-	@Convert(converter = LocalDateTimePersistenceConverter.class)
-	private LocalDateTime dataChange;
+	//@Convert(converter = LocalDateTimePersistenceConverter.class)
+	private Date dataChange;
 	
 	@Column
 	private Double basicPrice;
 
 
-	public LocalDateTime getDataChange() {
+
+	public Date getDataChange() {
 		return dataChange;
 	}
 
 
-	public void setDataChange(LocalDateTime dataChange) {
+	public void setDataChange(Date dataChange) {
 		this.dataChange = dataChange;
 	}
 

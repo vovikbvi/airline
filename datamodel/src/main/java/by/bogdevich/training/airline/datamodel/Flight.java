@@ -1,6 +1,6 @@
 package by.bogdevich.training.airline.datamodel;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -21,23 +21,23 @@ public class Flight extends AbstractModel {
 	private FlightCatalog flightCatalog;
 
 	@Column
-	@Convert(converter = LocalDateTimePersistenceConverter.class)
-	private LocalDateTime registrTime;
+	//@Convert(converter = LocalDateTimePersistenceConverter.class)
+	private Date registrTime;
 
 	@Column
-	@Convert(converter = LocalDateTimePersistenceConverter.class)
-	private LocalDateTime departureTime;
+	//@Convert(converter = LocalDateTimePersistenceConverter.class)
+	private Date departureTime;
 
 	@Column
-	@Convert(converter = LocalDateTimePersistenceConverter.class)
-	private LocalDateTime arrivalTime;
+	//@Convert(converter = LocalDateTimePersistenceConverter.class)
+	private Date arrivalTime;
 
 	@ManyToOne(targetEntity = Plane.class, fetch = FetchType.LAZY)
 	private Plane plane;
 
 	@Column
-	@Convert(converter = LocalDateTimePersistenceConverter.class)
-	private LocalDateTime startSaleTicket;
+	//@Convert(converter = LocalDateTimePersistenceConverter.class)
+	private Date startSaleTicket;
 	
 
     @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY)
@@ -48,48 +48,68 @@ public class Flight extends AbstractModel {
 		return flightCatalog;
 	}
 
-	public void setFlightCatalog(FlightCatalog flightsCatalog) {
-		this.flightCatalog = flightsCatalog;
+
+	public void setFlightCatalog(FlightCatalog flightCatalog) {
+		this.flightCatalog = flightCatalog;
 	}
 
-	public LocalDateTime getRegistrTime() {
+
+	public Date getRegistrTime() {
 		return registrTime;
 	}
 
-	public void setRegistrTime(LocalDateTime registrTime) {
+
+	public void setRegistrTime(Date registrTime) {
 		this.registrTime = registrTime;
 	}
 
-	public LocalDateTime getDepartureTime() {
+
+	public Date getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(LocalDateTime departureTime) {
+
+	public void setDepartureTime(Date departureTime) {
 		this.departureTime = departureTime;
 	}
 
-	public LocalDateTime getArrivalTime() {
+
+	public Date getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(LocalDateTime arrivalTime) {
+
+	public void setArrivalTime(Date arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
+
 
 	public Plane getPlane() {
 		return plane;
 	}
 
-	public void setPlane(Plane plane_id) {
-		this.plane = plane_id;
+
+	public void setPlane(Plane plane) {
+		this.plane = plane;
 	}
 
-	public LocalDateTime getStartSaleTicket() {
+
+	public Date getStartSaleTicket() {
 		return startSaleTicket;
 	}
 
-	public void setStartSaleTicket(LocalDateTime startSaleTicket) {
+
+	public void setStartSaleTicket(Date startSaleTicket) {
 		this.startSaleTicket = startSaleTicket;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Flight [flightCatalog=" + flightCatalog + ", registrTime=" + registrTime + ", departureTime="
+				+ departureTime + ", arrivalTime=" + arrivalTime + ", plane=" + plane + ", startSaleTicket="
+				+ startSaleTicket + ", Tickets=" + Tickets + "]";
+	}
+
 
 }

@@ -16,6 +16,7 @@ import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.util.convert.IConverter;
 
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConverter;
@@ -75,11 +76,12 @@ public class UserEditPage extends AbstractPage {
 		CheckBox vipField = new CheckBox("vip");
 		form.add(vipField);
 		
-		DateTextField dateRegistrField = new DateTextField("dateRegistr");
+		TextField dateRegistrField = new TextField("dateRegistr");
 		dateRegistrField.add(new DatePicker());
-		dateRegistrField.setRequired(true);
+        dateRegistrField.setRequired(true);
 		form.add(dateRegistrField);
-	/*	
+
+		/*	
 		TextField<String> roleField = new TextField<>("role");
 		roleField.setRequired(true);
 		form.add(roleField);

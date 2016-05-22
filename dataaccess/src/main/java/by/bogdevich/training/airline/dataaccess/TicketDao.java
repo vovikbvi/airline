@@ -1,6 +1,7 @@
 package by.bogdevich.training.airline.dataaccess;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
@@ -13,7 +14,7 @@ public interface TicketDao extends AbstractDao<Ticket, Long>{
 
 	Long countBusySeats(Flight flight);
 
-	Double fiendBasicPrice (LocalDateTime dateDeparture);
+	Double fiendBasicPrice (Date dateDeparture);
 
 	Double countAllBaggage(Flight flight);
 
