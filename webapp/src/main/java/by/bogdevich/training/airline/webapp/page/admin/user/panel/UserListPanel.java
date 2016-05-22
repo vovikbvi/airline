@@ -15,17 +15,19 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvid
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 import by.bogdevich.training.airline.service.UserProfileService;
+import by.bogdevich.training.airline.webapp.page.admin.price.PricesPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
 
 public class UserListPanel extends Panel {
 
@@ -61,11 +63,20 @@ public class UserListPanel extends Panel {
 				String dateRegistr = userProfile.getDateRegistr().format(formater);
 				item.add(new Label("date-registr", dateRegistr));
 				
-				//item.add(DateLabel.forDatePattern("date-registr", Model.of(userProfile.getDateRegistr()), "dd-MM-yyyy"));
 				item.add(new Label("role", userProfile.getRole()));
 				CheckBox checkboxRegistr = new CheckBox("active", Model.of(userProfile.getAceptRegistr()));
 				checkboxRegistr.setEnabled(false);
 				item.add(checkboxRegistr);
+				
+				
+			     item.add(new Link<Void>("edit-user") {
+	                    @Override
+	                    public void onClick() {
+	                        setResponsePage(new UserEditPage(userProfile));
+	                    }
+	                });
+               
+				
 				}
 		};
 
@@ -84,7 +95,7 @@ public class UserListPanel extends Panel {
 		 add(new OrderByBorder("sort-vip", UserProfile_.vip, userProfileDataProvider));
 		 add(new OrderByBorder("sort-date-registr", UserProfile_.dateRegistr, userProfileDataProvider));
 		 add(new OrderByBorder("sort-role", UserProfile_.role, userProfileDataProvider));
-		 add(new OrderByBorder("sort-accept-reristr", UserProfile_.aceptRegistr, userProfileDataProvider));
+		 add(new OrderByBorder("sort-accept-registr", UserProfile_.aceptRegistr, userProfileDataProvider));
 
  	}
 

@@ -10,7 +10,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import by.bogdevich.training.airline.dataaccess.AbstractDao;
+import by.bogdevich.training.airline.dataaccess.filtres.AbstractFilter;
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
+import by.bogdevich.training.airline.datamodel.AbstractModel;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 
 public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
@@ -65,5 +67,11 @@ public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
 		return entityManager;
 	}
 
-	
+    protected void setPaging(AbstractFilter filter, TypedQuery<? extends AbstractModel> q) {
+        if (filter.getOffset() != null && filter.getLimit() != null) {
+            q.setFirstResult(filter.getOffset());
+            q.setMaxResults(filter.getLimit());
+        }
+    }
+
 }

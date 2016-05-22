@@ -129,7 +129,8 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public void insert(Ticket ticket) {
-      Double t = ticketDao.countAllBaggage(ticket.getFlight());
+    //  Double t = ticketDao.countAllBaggage(ticket.getFlight());
+    //  Integer b = ticketDao.getColPassBuisnes();
 		ticket.setDateBought(LocalDateTime.now());
 		ticket.setCosts(ticketCost(ticket));
 		ticketDao.insert(ticket);

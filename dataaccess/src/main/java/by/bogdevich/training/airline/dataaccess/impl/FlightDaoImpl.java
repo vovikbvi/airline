@@ -83,10 +83,7 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 
 		cq.select(from);
 
-		if (filter.getStartDepartureTime() != null && filter.getFinishDepartureTime() != null) {
-			Predicate timeInterval = cb.between(from.get(Flight_.arrivalTime), filter.getStartDepartureTime(), filter.getFinishDepartureTime());
-			cq.where(timeInterval);
-		}
+		handleFilterParameters(filter, cb, cq, from);
 	
 		 // set fetching if (filter.isFetchCredentials()) {
 		if (filter.isSetFetchFlieghtCatalog()) {
@@ -101,14 +98,19 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 		TypedQuery<Flight> q = em.createQuery(cq);
 
 		// set paging
-		if (filter.getOffset() != null && filter.getLimit() != null) {
-			q.setFirstResult(filter.getOffset());
-			q.setMaxResults(filter.getLimit());
-		}
-
+		setPaging(filter, q);
+		
 		// set execute query
 		List<Flight> allitems = q.getResultList();
 		return allitems;
+	}
+
+	private void handleFilterParameters(FlightFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+			Root<Flight> from) {
+		if (filter.getStartDepartureTime() != null && filter.getFinishDepartureTime() != null) {
+			Predicate timeInterval = cb.between(from.get(Flight_.arrivalTime), filter.getStartDepartureTime(), filter.getFinishDepartureTime());
+			cq.where(timeInterval);
+		}
 	}
 
 	@Override
@@ -134,6 +136,8 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		Root<Flight> from = cq.from(Flight.class);
+		
+		handleFilterParameters(filter, cb, cq, from);
 		cq.select(cb.count(from));
 		TypedQuery<Long> q = em.createQuery(cq);
 		return q.getSingleResult();

@@ -64,32 +64,14 @@ public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> i
 		TypedQuery<FlightCatalog> q = em.createQuery(cq);
 
 		// set paging
-		if (filter.getOffset() != null && filter.getLimit() != null) {
-			q.setFirstResult(filter.getOffset());
-			q.setMaxResults(filter.getLimit());
-		}
-
+		setPaging(filter, q);
+		
 		// set execute query
 		List<FlightCatalog> allitems = q.getResultList();
 		return allitems;
 	}
 
 	
-/*	
-	@Override
-	public Country getCountry(Airport airport) {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Country> cq = cb.createQuery(Country.class);
-		Root<Country> from = cq.from(Country.class);
-
-		cq.select(from);
-		//cq.where(cb.isMember(elem, collection)(from.get(FlightCatalog_.airportStart), airport));
-
-		return null; //em.createQuery(cq).getFirstResult();
-	}
-	*/
-
 	@Override
 	public FlightCatalog getFullFlightCatalog(FlightCatalog flightCatalog) {
 		EntityManager em = getEntityManager();

@@ -39,10 +39,7 @@ public class CityDaoImpl extends AbstractDaoImpl<City, Long> implements CityDao 
 
 		cq.select(from);
 
-		if (filter.getCityName() != null) {
-			Predicate cName = cb.equal(from.get(City_.name), filter.getCityName());
-			cq.where(cName);
-		}
+		handleFilterParameters(filter, cb, cq, from);
 		
 		// set fetching
 		if (filter.isSetFetchCountry()) {
@@ -57,14 +54,19 @@ public class CityDaoImpl extends AbstractDaoImpl<City, Long> implements CityDao 
 		TypedQuery<City> q = em.createQuery(cq);
 
 		// set paging
-		if (filter.getOffset() != null && filter.getLimit() != null) {
-			q.setFirstResult(filter.getOffset());
-			q.setMaxResults(filter.getLimit());
-		}
-
+		setPaging(filter, q);
+		
 		// set execute query
 		List<City> allitems = q.getResultList();
 		return allitems;
+	}
+
+	private void handleFilterParameters(CityFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+			Root<City> from) {
+		if (filter.getCityName() != null) {
+			Predicate cName = cb.equal(from.get(City_.name), filter.getCityName());
+			cq.where(cName);
+		}
 	}
 	
 	@Override
@@ -74,6 +76,8 @@ public class CityDaoImpl extends AbstractDaoImpl<City, Long> implements CityDao 
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		Root<City> from = cq.from(City.class);
 		cq.select(cb.count(from));
+		
+		handleFilterParameters(filter, cb, cq, from);
 		TypedQuery<Long> q = em.createQuery(cq);
 		return q.getSingleResult();
 	}

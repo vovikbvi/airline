@@ -16,7 +16,6 @@ import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 
-
 @Repository
 public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> implements UserProfileDao {
 
@@ -48,11 +47,7 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 
 		cq.select(from);
 
-		if (filter.getFirstName() != null) {
-			Predicate fName = cb.equal(from.get(UserProfile_.firstName), filter.getFirstName());
-			Predicate lName = cb.equal(from.get(UserProfile_.lastName), filter.getFirstName());
-			cq.where(cb.or(fName, lName));
-		}
+		handleFilterParameters(filter, cb, cq, from);
 
 		// set fetching
 		if (filter.isSetFetchTickets()) {
@@ -67,10 +62,7 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 		TypedQuery<UserProfile> q = em.createQuery(cq);
 
 		// set paging
-		if (filter.getOffset() != null && filter.getLimit() != null) {
-			q.setFirstResult(filter.getOffset());
-			q.setMaxResults(filter.getLimit());
-		}
+		setPaging(filter, q);
 
 		// set execute query
 		List<UserProfile> allitems = q.getResultList();
@@ -84,8 +76,19 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		Root<UserProfile> from = cq.from(UserProfile.class);
 		cq.select(cb.count(from));
+
+		handleFilterParameters(filter, cb, cq, from);
 		TypedQuery<Long> q = em.createQuery(cq);
 		return q.getSingleResult();
 	}
-	
+
+	private void handleFilterParameters(UserProfileFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+			Root<UserProfile> from) {
+		if (filter.getFirstName() != null) {
+			Predicate fName = cb.equal(from.get(UserProfile_.firstName), filter.getFirstName());
+			Predicate lName = cb.equal(from.get(UserProfile_.lastName), filter.getFirstName());
+			cq.where(cb.or(fName, lName));
+		}
+	}
+
 }

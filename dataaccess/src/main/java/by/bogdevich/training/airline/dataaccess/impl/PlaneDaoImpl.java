@@ -25,7 +25,6 @@ import by.bogdevich.training.airline.datamodel.Plane_;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.Ticket_;
 
-
 @Repository
 public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneDao {
 
@@ -33,7 +32,6 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 		super(Plane.class);
 	}
 
-	
 	@Override
 	public List<Plane> getRecordsSorted(PlaneFilter filter) {
 		EntityManager em = getEntityManager();
@@ -43,11 +41,8 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 
 		cq.select(from);
 
-		if (filter.getBortNumber() != null) {
-			Predicate bortNumber = cb.equal(from.get(Plane_.bortNumber), filter.getBortNumber());
-			cq.where(bortNumber);
-		}
-		
+		handleFilterParameters(filter, cb, cq, from);
+
 		// set fetching
 		if (filter.isSetFetchModelPlane()) {
 			from.fetch(Plane_.modelPlane, JoinType.LEFT);
@@ -61,14 +56,18 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 		TypedQuery<Plane> q = em.createQuery(cq);
 
 		// set paging
-		if (filter.getOffset() != null && filter.getLimit() != null) {
-			q.setFirstResult(filter.getOffset());
-			q.setMaxResults(filter.getLimit());
-		}
+		setPaging(filter, q);
 
 		// set execute query
 		List<Plane> allitems = q.getResultList();
 		return allitems;
+	}
+
+	private void handleFilterParameters(PlaneFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq, Root<Plane> from) {
+		if (filter.getBortNumber() != null) {
+			Predicate bortNumber = cb.equal(from.get(Plane_.bortNumber), filter.getBortNumber());
+			cq.where(bortNumber);
+		}
 	}
 
 	@Override
@@ -85,7 +84,7 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 		Plane result = em.createQuery(cq).getSingleResult();
 		return result;
 	}
-	
+
 	@Override
 	public Long count(PlaneFilter filter) {
 		EntityManager em = getEntityManager();
@@ -93,6 +92,8 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		Root<Plane> from = cq.from(Plane.class);
 		cq.select(cb.count(from));
+
+		handleFilterParameters(filter, cb, cq, from);
 		TypedQuery<Long> q = em.createQuery(cq);
 		return q.getSingleResult();
 	}

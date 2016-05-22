@@ -41,7 +41,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	}
 
 	private void AcceptRegistration(UserProfile userProfile) {
-		//sendMessage(userProfile);
+		// sendMessage(userProfile);
 		userProfile.setCountOder(0);
 		userProfile.setDateRegistr(LocalDateTime.now());
 		userProfileDao.insert(userProfile);
@@ -67,15 +67,8 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public void delete(Long id) {
 		UserProfile userProfile = userProfileDao.get(id);
-		try {
-			userProfileDao.delete(id);
-			LOGGER.info("Delete user profile {}", userProfile);
-		} catch (ConstraintViolationException e) {
-			e.printStackTrace();
-			LOGGER.info("Can't delete user profile {}", userProfile);
-		}
-		
-		//userProfileDao.delete(id);
+		userProfileDao.delete(id);
+		LOGGER.info("Delete user profile {}", userProfile);
 	}
 
 	@Override
@@ -91,10 +84,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public List<UserProfile> getRecordsSorted(UserProfileFilter filter) {
 		return userProfileDao.getRecordsSorted(filter);
-}
-	
+	}
+
 	@Override
-	public Long count(UserProfileFilter filter){
+	public Long count(UserProfileFilter filter) {
 		return userProfileDao.count(filter);
-	}	
+	}
 }

@@ -34,10 +34,7 @@ public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements Ai
 
 		cq.select(from);
 
-		if (filter.getAirportName() != null) {
-			Predicate aName = cb.equal(from.get(Airport_.name), filter.getAirportName());
-			cq.where(aName);
-		}
+		handleFilterParameters(filter, cb, cq, from);
 	
 		// set fetching
 		if (filter.isSetFetchCity()) {
@@ -52,14 +49,19 @@ public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements Ai
 		TypedQuery<Airport> q = em.createQuery(cq);
 
 		// set paging
-		if (filter.getOffset() != null && filter.getLimit() != null) {
-			q.setFirstResult(filter.getOffset());
-			q.setMaxResults(filter.getLimit());
-		}
-
+		setPaging(filter, q);
+		
 		// set execute query
 		List<Airport> allitems = q.getResultList();
 		return allitems;
+	}
+
+	private void handleFilterParameters(AirportFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+			Root<Airport> from) {
+		if (filter.getAirportName() != null) {
+			Predicate aName = cb.equal(from.get(Airport_.name), filter.getAirportName());
+			cq.where(aName);
+		}
 	}
 	
 	@Override
@@ -84,6 +86,8 @@ public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements Ai
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		Root<Airport> from = cq.from(Airport.class);
 		cq.select(cb.count(from));
+		
+		handleFilterParameters(filter, cb, cq, from);
 		TypedQuery<Long> q = em.createQuery(cq);
 		return q.getSingleResult();
 	}

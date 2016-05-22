@@ -1,4 +1,22 @@
-<wicket:extend>
+<wicket:extend xmlns:wicket="http://wicket.apache.org">
 	<h2>Edit user profile</h2>
+	
+	<form wicket:id="form">
+
+				<b>Login:</b>
+				<input type="text" wicket:id="firstName" />
+				<input type="text" wicket:id="lastName" />
+				<input type="text" wicket:id="email" />
+				<input type="text" wicket:id="passportNumber" />
+				<input type="text" wicket:id="phoneNumber" />
+				<input type="text" wicket:id="countOder" />
+				<input type="checkbox" wicket:id="vip" />
+				<input type="text" wicket:id="dateRegistr" />
+			<!-- 	<input type="text" wicket:id="role" />   -->
+				<input type="checkbox" wicket:id="aceptRegistr" />
+				<button type="submit" wicket:id="save">SAVE</button>
+
+	</form>
+<div wicket:id="feedback"></div>
 	
 </wicket:extend>

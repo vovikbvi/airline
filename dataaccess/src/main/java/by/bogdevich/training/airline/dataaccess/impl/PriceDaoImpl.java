@@ -37,11 +37,8 @@ public class PriceDaoImpl extends AbstractDaoImpl<Price, Long> implements PriceD
 		TypedQuery<Price> q = em.createQuery(cq);
 
 		// set paging
-		if (filter.getOffset() != null && filter.getLimit() != null) {
-			q.setFirstResult(filter.getOffset());
-			q.setMaxResults(filter.getLimit());
-		}
-
+		setPaging(filter, q);
+		
 		// set execute query
 		List<Price> allitems = q.getResultList();
 		return allitems;

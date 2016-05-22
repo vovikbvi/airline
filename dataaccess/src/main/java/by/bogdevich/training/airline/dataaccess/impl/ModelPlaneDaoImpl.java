@@ -32,11 +32,8 @@ public class ModelPlaneDaoImpl extends AbstractDaoImpl<ModelPlane, Long> impleme
 
 		cq.select(from);
 
-		if (filter.getModel() != null) {
-			Predicate model = cb.equal(from.get(ModelPlane_.model), filter.getModel());
-			cq.where(model);
-		}
-		
+		handleFilterParameters(filter, cb, cq, from);
+
 		// set fetching
 		if (filter.isSetFetchManufactured()) {
 			from.fetch(ModelPlane_.manufacturedPlane, JoinType.LEFT);
@@ -50,14 +47,19 @@ public class ModelPlaneDaoImpl extends AbstractDaoImpl<ModelPlane, Long> impleme
 		TypedQuery<ModelPlane> q = em.createQuery(cq);
 
 		// set paging
-		if (filter.getOffset() != null && filter.getLimit() != null) {
-			q.setFirstResult(filter.getOffset());
-			q.setMaxResults(filter.getLimit());
-		}
+		setPaging(filter, q);
 
 		// set execute query
 		List<ModelPlane> allitems = q.getResultList();
 		return allitems;
+	}
+
+	private void handleFilterParameters(ModelPlaneFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+			Root<ModelPlane> from) {
+		if (filter.getModel() != null) {
+			Predicate model = cb.equal(from.get(ModelPlane_.model), filter.getModel());
+			cq.where(model);
+		}
 	}
 
 	@Override
@@ -67,8 +69,10 @@ public class ModelPlaneDaoImpl extends AbstractDaoImpl<ModelPlane, Long> impleme
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		Root<ModelPlane> from = cq.from(ModelPlane.class);
 		cq.select(cb.count(from));
+
+		handleFilterParameters(filter, cb, cq, from);
 		TypedQuery<Long> q = em.createQuery(cq);
 		return q.getSingleResult();
 	}
-	
+
 }

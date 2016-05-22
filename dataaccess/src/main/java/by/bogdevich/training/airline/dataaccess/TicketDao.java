@@ -19,4 +19,6 @@ public interface TicketDao extends AbstractDao<Ticket, Long>{
 
 	Long count(TicketFilter filter);
 
+	Integer getColPassBuisnes();
+
 }

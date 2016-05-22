@@ -32,11 +32,7 @@ public class CountryDaoImpl extends AbstractDaoImpl<Country, Long> implements Co
 
 		cq.select(from);
 
-		if (filter.getCountryName() != null) {
-			Predicate name = cb.equal(from.get(Country_.name), filter.getCountryName());
-
-			cq.where(name);
-		}
+		handleFilterParameters(filter, cb, cq, from);
 	/*	
 		// set fetching
 		if (filter.isFetchCredentials()) {
@@ -51,14 +47,19 @@ public class CountryDaoImpl extends AbstractDaoImpl<Country, Long> implements Co
 		TypedQuery<Country> q = em.createQuery(cq);
 
 		// set paging
-		if (filter.getOffset() != null && filter.getLimit() != null) {
-			q.setFirstResult(filter.getOffset());
-			q.setMaxResults(filter.getLimit());
-		}
-
+		setPaging(filter, q);
+		
 		// set execute query
 		List<Country> allitems = q.getResultList();
 		return allitems;
+	}
+
+	private void handleFilterParameters(CountryFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+			Root<Country> from) {
+		if (filter.getCountryName() != null) {
+			Predicate name = cb.equal(from.get(Country_.name), filter.getCountryName());
+			cq.where(name);
+		}
 	}
 	
 	@Override
@@ -68,6 +69,8 @@ public class CountryDaoImpl extends AbstractDaoImpl<Country, Long> implements Co
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		Root<Country> from = cq.from(Country.class);
 		cq.select(cb.count(from));
+		
+		handleFilterParameters(filter, cb, cq, from);
 		TypedQuery<Long> q = em.createQuery(cq);
 		return q.getSingleResult();
 	}

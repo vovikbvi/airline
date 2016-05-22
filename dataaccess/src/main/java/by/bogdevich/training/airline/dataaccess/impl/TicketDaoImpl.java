@@ -15,6 +15,7 @@ import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Flight_;
+import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
 import by.bogdevich.training.airline.datamodel.Plane_;
 import by.bogdevich.training.airline.datamodel.Price;
@@ -31,17 +32,14 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 	protected TicketDaoImpl() {
 		super(Ticket.class);
 	}
-
+@Override
 	public Integer getColPassBuisnes() {
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Integer> cq = cb.createQuery(Integer.class);
-		Root<Ticket> from = cq.from(Ticket.class);
+		Root<ModelPlane> from = cq.from(ModelPlane.class);
 
-		cq.select(from.get(Ticket_.flight).get(Flight_.plane).get(Plane_.modelPlane)
-				.get(ModelPlane_.colPassangersBuisnes));
-		from.fetch(Ticket_.flight, JoinType.LEFT).fetch(Flight_.plane, JoinType.LEFT).fetch(Plane_.modelPlane,
-				JoinType.LEFT);
+		cq.select(from.get(ModelPlane_.colPassangersBuisnes));
 		cq.where(cb.equal(from.get(Ticket_.id), 1));
 		return em.createQuery(cq).getFirstResult();
 
@@ -79,11 +77,8 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 		TypedQuery<Ticket> q = em.createQuery(cq);
 
 		// set paging
-		if (filter.getOffset() != null && filter.getLimit() != null) {
-			q.setFirstResult(filter.getOffset());
-			q.setMaxResults(filter.getLimit());
-		}
-
+		setPaging(filter, q);
+		
 		// set execute query
 		List<Ticket> allitems = q.getResultList();
 		return allitems;
