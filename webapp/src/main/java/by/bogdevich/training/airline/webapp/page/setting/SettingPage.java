@@ -3,6 +3,8 @@ package by.bogdevich.training.airline.webapp.page.setting;
 import org.apache.wicket.markup.html.link.Link;
 
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
+import by.bogdevich.training.airline.webapp.page.admin.country.CountryPage;
+import by.bogdevich.training.airline.webapp.page.admin.flight.FlightPage;
 import by.bogdevich.training.airline.webapp.page.admin.flightcatalog.FlightCatalogPage;
 import by.bogdevich.training.airline.webapp.page.admin.manufactured.ManufacturedPage;
 import by.bogdevich.training.airline.webapp.page.admin.modelplane.ModelPlanePage;
@@ -70,7 +72,21 @@ public class SettingPage extends AbstractPage {
         		setResponsePage(new FlightCatalogPage());
         	}
         });
+        
+        add(new Link("flight-table") {
+        	@Override
+        	public void onClick() {
+        		setResponsePage(new FlightPage());
+        	}
+        });
 
+        add(new Link("country-table") {
+        	@Override
+        	public void onClick() {
+        		setResponsePage(new CountryPage());
+        	}
+        });
+        
  
 	}
 }

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import by.bogdevich.training.airline.dataaccess.CityDao;
 import by.bogdevich.training.airline.dataaccess.filtres.CityFilter;
+import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.City;
+import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.service.CityService;
 
 @Service
@@ -51,6 +53,12 @@ public class CityServiceImpl implements CityService {
 		return cityDao.getAll();
 	}
 
+	@Override
+	public List<City> getRecordsSorted(CityFilter filter) {
+		return cityDao.getRecordsSorted(filter);
+}
+
+	
 	@Override
 	public Long count(CityFilter filter){
 		return cityDao.count(filter);

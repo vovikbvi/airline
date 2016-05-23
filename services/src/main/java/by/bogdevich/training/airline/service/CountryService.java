@@ -24,4 +24,6 @@ public interface CountryService {
 
 	Long count(CountryFilter filter);
 
+	List<Country> getRecordsSorted(CountryFilter filter);
+
 }

@@ -48,6 +48,12 @@ public class CountryServiceImpl implements CountryService {
 	public List<Country> getAll() {
 		return countryDao.getAll();
 	}
+	
+	@Override
+	public List<Country> getRecordsSorted(CountryFilter filter) {
+		return countryDao.getRecordsSorted(filter);
+}
+	
 	@Override
 	public Long count(CountryFilter filter){
 		return countryDao.count(filter);

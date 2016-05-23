@@ -50,6 +50,12 @@ public class AirportServiceImpl implements AirportService {
 	}
 	
 	@Override
+	public List<Airport> getRecordsSorted(AirportFilter filter) {
+		return airportDao.getRecordsSorted(filter);
+}
+
+	
+	@Override
 	public Long count(AirportFilter filter){
 		return airportDao.count(filter);
 	}	

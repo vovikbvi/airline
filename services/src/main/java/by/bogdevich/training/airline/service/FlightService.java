@@ -28,4 +28,6 @@ public interface FlightService {
 
 	Long count(FlightFilter filter);
 
+	List<Flight> getRecordsSorted(FlightFilter filter);
+
 }

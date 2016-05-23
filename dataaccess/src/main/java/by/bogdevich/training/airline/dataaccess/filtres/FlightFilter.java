@@ -6,7 +6,8 @@ public class FlightFilter extends AbstractFilter {
 
 	private Date startDepartureTime;
 	private Date finishDepartureTime;
-	private boolean setFetchFlieghtCatalog;
+	private boolean fetchFlieghtCatalog;
+	private boolean fetchPlane;
 
 	public Date getStartDepartureTime() {
 		return startDepartureTime;
@@ -24,12 +25,20 @@ public class FlightFilter extends AbstractFilter {
 		this.finishDepartureTime = finishDepartureTime;
 	}
 
-	public boolean isSetFetchFlieghtCatalog() {
-		return setFetchFlieghtCatalog;
+	public boolean isFetchFlieghtCatalog() {
+		return fetchFlieghtCatalog;
 	}
 
-	public void setSetFetchFlieghtCatalog(boolean setFetchFlieghtCatalog) {
-		this.setFetchFlieghtCatalog = setFetchFlieghtCatalog;
+	public void setFetchFlieghtCatalog(boolean fetchFlieghtCatalog) {
+		this.fetchFlieghtCatalog = fetchFlieghtCatalog;
+	}
+
+	public boolean isFetchPlane() {
+		return fetchPlane;
+	}
+
+	public void setFetchPlane(boolean fetchPlane) {
+		this.fetchPlane = fetchPlane;
 	}
 
 }

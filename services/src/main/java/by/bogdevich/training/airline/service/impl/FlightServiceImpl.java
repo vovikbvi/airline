@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import by.bogdevich.training.airline.dataaccess.FlightCatalogDao;
 import by.bogdevich.training.airline.dataaccess.FlightDao;
 import by.bogdevich.training.airline.dataaccess.PlaneDao;
+import by.bogdevich.training.airline.dataaccess.filtres.FlightCatalogFilter;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
+import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.service.FlightService;
 
 @Service
@@ -85,6 +87,13 @@ public class FlightServiceImpl implements FlightService {
 	public Flight getFullFlieght(Flight flight) {
 		return flightDao.getFullFlieght(flight);
 	}
+	
+	@Override
+	public List<Flight> getRecordsSorted(FlightFilter filter) {
+		return flightDao.getRecordsSorted(filter);
+}
+
+	
 	@Override
 	public Long count(FlightFilter filter){
 		return flightDao.count(filter);

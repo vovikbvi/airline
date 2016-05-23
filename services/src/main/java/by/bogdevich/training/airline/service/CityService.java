@@ -24,4 +24,6 @@ public interface CityService {
 
 	Long count(CityFilter filter);
 
+	List<City> getRecordsSorted(CityFilter filter);
+
 }

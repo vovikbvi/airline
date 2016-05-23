@@ -24,4 +24,6 @@ public interface AirportService {
 
 	Long count(AirportFilter filter);
 
+	List<Airport> getRecordsSorted(AirportFilter filter);
+
 }

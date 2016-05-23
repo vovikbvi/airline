@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.jpa.criteria.OrderImpl;
@@ -16,6 +17,8 @@ import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.datamodel.Flight_;
+import by.bogdevich.training.airline.datamodel.ManufacturedPlane_;
+import by.bogdevich.training.airline.datamodel.ModelPlane_;
 import by.bogdevich.training.airline.datamodel.Plane_;
 
 
@@ -78,15 +81,28 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 		handleFilterParameters(filter, cb, cq, from);
 	
 		 // set fetching if (filter.isFetchCredentials()) {
-		if (filter.isSetFetchFlieghtCatalog()) {
+		if (filter.isFetchFlieghtCatalog()) {
 			from.fetch(Flight_.flightCatalog, JoinType.LEFT);
+		}
+
+		if (filter.isFetchPlane()) {
+			from.fetch(Flight_.plane, JoinType.LEFT);
 		}
 		
 		// set sort params
 		if (filter.getSortProperty() != null) {
-			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
+			Path<Object> expression;
+			if (FlightCatalog_.id.equals(filter.getSortProperty())) {
+				expression = from.get(Flight_.flightCatalog).get(filter.getSortProperty());
+			}else if (Plane_.bortNumber.equals(filter.getSortProperty())) {
+				expression = from.get(Flight_.plane).get(filter.getSortProperty()); 				
+			} else {
+				expression = from.get(filter.getSortProperty());
+			}
+			cq.orderBy(new OrderImpl(expression, filter.isSortOrder()));
 		}
 
+		
 		TypedQuery<Flight> q = em.createQuery(cq);
 
 		// set paging
