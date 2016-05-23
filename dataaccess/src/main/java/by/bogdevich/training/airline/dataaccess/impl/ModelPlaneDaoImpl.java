@@ -7,14 +7,17 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 import by.bogdevich.training.airline.dataaccess.ModelPlaneDao;
 import by.bogdevich.training.airline.dataaccess.filtres.ModelPlaneFilter;
+import by.bogdevich.training.airline.datamodel.ManufacturedPlane_;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
+import by.bogdevich.training.airline.datamodel.Plane_;
 
 @Repository
 public class ModelPlaneDaoImpl extends AbstractDaoImpl<ModelPlane, Long> implements ModelPlaneDao {
@@ -41,9 +44,16 @@ public class ModelPlaneDaoImpl extends AbstractDaoImpl<ModelPlane, Long> impleme
 
 		// set sort params
 		if (filter.getSortProperty() != null) {
-			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
+			Path<Object> expression;
+			if (ManufacturedPlane_.name.equals(filter.getSortProperty())) {
+				expression = from.get(ModelPlane_.manufacturedPlane).get(filter.getSortProperty());
+			} else {
+				expression = from.get(filter.getSortProperty());
+			}
+			cq.orderBy(new OrderImpl(expression, filter.isSortOrder()));
 		}
 
+		
 		TypedQuery<ModelPlane> q = em.createQuery(cq);
 
 		// set paging

@@ -4,7 +4,6 @@ package by.bogdevich.training.airline.datamodel;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 
 import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConverter;

@@ -31,8 +31,6 @@ public class UserEditPage extends AbstractPage {
 
 	private UserProfile userProfile;
 	
-	private LocalDateConverter localDateConverter;
-
 	public UserEditPage() {
 		super();
 	}
@@ -76,7 +74,7 @@ public class UserEditPage extends AbstractPage {
 		CheckBox vipField = new CheckBox("vip");
 		form.add(vipField);
 		
-		TextField dateRegistrField = new TextField("dateRegistr");
+		DateTextField dateRegistrField = new DateTextField("dateRegistr", "dd-MM-yyyy");
 		dateRegistrField.add(new DatePicker());
         dateRegistrField.setRequired(true);
 		form.add(dateRegistrField);

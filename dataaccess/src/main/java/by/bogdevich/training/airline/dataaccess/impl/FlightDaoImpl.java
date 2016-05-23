@@ -9,22 +9,14 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
-
-import by.bogdevich.training.airline.dataaccess.AbstractDao;
 import by.bogdevich.training.airline.dataaccess.FlightDao;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.datamodel.Flight_;
-import by.bogdevich.training.airline.datamodel.ModelPlane;
-import by.bogdevich.training.airline.datamodel.ModelPlane_;
 import by.bogdevich.training.airline.datamodel.Plane_;
-import by.bogdevich.training.airline.datamodel.Ticket_;
-import by.bogdevich.training.airline.datamodel.UserProfile;
 
 
 @Repository

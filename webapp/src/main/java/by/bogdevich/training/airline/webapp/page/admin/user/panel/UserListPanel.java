@@ -1,14 +1,12 @@
 package by.bogdevich.training.airline.webapp.page.admin.user.panel;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Iterator;
 
 import javax.inject.Inject;
 import javax.persistence.metamodel.SingularAttribute;
 
+import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
@@ -26,7 +24,6 @@ import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 import by.bogdevich.training.airline.service.UserProfileService;
-import by.bogdevich.training.airline.webapp.page.admin.price.PricesPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
 
 public class UserListPanel extends Panel {
@@ -58,11 +55,11 @@ public class UserListPanel extends Panel {
 				checkboxVip.setEnabled(false);
 				item.add(checkboxVip);
 				
-				FormatStyle dateStyle = FormatStyle.SHORT;
-				DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(dateStyle);
+			//	FormatStyle dateStyle = FormatStyle.SHORT;
+			//	DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(dateStyle);
 			//	String dateRegistr = userProfile.getDateRegistr().format(formater);
-				item.add(new Label("date-registr", userProfile.getDateRegistr()));
-				
+	
+				item.add(DateLabel.forDatePattern("date-registr", Model.of(userProfile.getDateRegistr()), "dd-MM-yyyy"));
 				item.add(new Label("role", userProfile.getRole()));
 				CheckBox checkboxRegistr = new CheckBox("active", Model.of(userProfile.getAceptRegistr()));
 				checkboxRegistr.setEnabled(false);

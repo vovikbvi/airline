@@ -14,15 +14,12 @@ import org.springframework.stereotype.Repository;
 import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
-import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
-import by.bogdevich.training.airline.datamodel.Plane_;
 import by.bogdevich.training.airline.datamodel.Price;
 import by.bogdevich.training.airline.datamodel.Price_;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.Ticket_;
-import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 
 
@@ -54,11 +51,11 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 
 		cq.select(from);
 
-		if (filter.isSetFetchFlieght()) {
+		if (filter.getFetchFlieght()) {
 			from.fetch(Ticket_.flight, JoinType.LEFT);
 		}
 
-		if (filter.isSetFetchUser()) {
+		if (filter.getFetchUser()) {
 			from.fetch(Ticket_.userProfile, JoinType.LEFT);
 		}
 

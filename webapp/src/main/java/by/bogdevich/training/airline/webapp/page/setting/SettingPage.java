@@ -3,6 +3,10 @@ package by.bogdevich.training.airline.webapp.page.setting;
 import org.apache.wicket.markup.html.link.Link;
 
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
+import by.bogdevich.training.airline.webapp.page.admin.flightcatalog.FlightCatalogPage;
+import by.bogdevich.training.airline.webapp.page.admin.manufactured.ManufacturedPage;
+import by.bogdevich.training.airline.webapp.page.admin.modelplane.ModelPlanePage;
+import by.bogdevich.training.airline.webapp.page.admin.plane.PlanePage;
 import by.bogdevich.training.airline.webapp.page.admin.price.PricesPage;
 import by.bogdevich.training.airline.webapp.page.admin.ticket.TicketsPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
@@ -38,6 +42,35 @@ public class SettingPage extends AbstractPage {
         		setResponsePage(new PricesPage());
         	}
         });
-	
+
+        add(new Link("plane-table") {
+        	@Override
+        	public void onClick() {
+        		setResponsePage(new PlanePage());
+        	}
+        });
+      
+        add(new Link("model-plane-table") {
+        	@Override
+        	public void onClick() {
+        		setResponsePage(new ModelPlanePage());
+        	}
+        });
+        
+        add(new Link("manufactured-plane-table") {
+        	@Override
+        	public void onClick() {
+        		setResponsePage(new ManufacturedPage());
+        	}
+        });
+        
+        add(new Link("flight-catalog-table") {
+        	@Override
+        	public void onClick() {
+        		setResponsePage(new FlightCatalogPage());
+        	}
+        });
+
+ 
 	}
 }

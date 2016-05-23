@@ -9,19 +9,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
-
 import by.bogdevich.training.airline.dataaccess.CityDao;
 import by.bogdevich.training.airline.dataaccess.filtres.CityFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.City;
 import by.bogdevich.training.airline.datamodel.City_;
-import by.bogdevich.training.airline.datamodel.Ticket;
-import by.bogdevich.training.airline.datamodel.Ticket_;
-import by.bogdevich.training.airline.datamodel.UserProfile;
 
 @Repository
 public class CityDaoImpl extends AbstractDaoImpl<City, Long> implements CityDao {

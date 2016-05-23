@@ -7,6 +7,7 @@ import java.util.Iterator;
 import javax.inject.Inject;
 import javax.persistence.metamodel.SingularAttribute;
 
+import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
@@ -52,7 +53,7 @@ public class TicketListPanel extends Panel {
 			//	FormatStyle dateStyle = FormatStyle.SHORT;
 			//	DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(dateStyle);
 			//	String dateBought = ticket.getDateBought().format(formater);
-				item.add(new Label("date-bought", ticket.getDateBought()));
+				item.add(DateLabel.forDatePattern("date-bought", Model.of(ticket.getDateBought()), "dd-MM-yyyy"));
 				item.add(new Label("baggage", ticket.getBaggage()));
 				item.add(new Label("weight-baggage", ticket.getWeightBaggage()));
 				item.add(new Label("ticket-tupe", ticket.getTicketTupe()));
@@ -81,7 +82,7 @@ public class TicketListPanel extends Panel {
 		add(new PagingNavigator("paging", dataView));
 
 		add(new OrderByBorder("sort-id-ticket", Ticket_.id, ticketDataProvider));
-		add(new OrderByBorder("sort-flieght", Ticket_.flight, ticketDataProvider));
+		add(new OrderByBorder("sort-flight", Ticket_.flight, ticketDataProvider));
 		add(new OrderByBorder("sort-passanger", UserProfile_.firstName, ticketDataProvider));
 		add(new OrderByBorder("sort-paid", Ticket_.paid, ticketDataProvider));
 		add(new OrderByBorder("sort-number-seats", Ticket_.numberSeats, ticketDataProvider));
@@ -120,8 +121,8 @@ public class TicketListPanel extends Panel {
 			ticketFilter.setLimit((int) count);
 			ticketFilter.setOffset((int) first);
 
-			ticketFilter.setSetFetchUser(true);
-			ticketFilter.setSetFetchFlieght(true);
+			ticketFilter.setFetchUser(true);
+			ticketFilter.setFetchFlieght(true);
 
 			return ticketService.getRecordsSorted(ticketFilter).iterator();
 		}

@@ -1,0 +1,30 @@
+<wicket:panel>
+	<table class="table-plane">
+		<tr>
+			<th><a wicket:id="sort-id">ID</a></th>
+			<th><a wicket:id="sort-manufactured">Model plane</a></th>
+			<th><a wicket:id="sort-model">Model</a></th>
+			<th><a wicket:id="sort-colPassangersBuisnes">Seats buisnes</a></th>
+			<th><a wicket:id="sort-colPassangersFirstclass">Seats firstclass</a></th>
+			<th><a wicket:id="sort-colPassangersEconomy">Seats economy</a></th>
+			<th><a wicket:id="sort-weightAllBaggage">Weight baggage</a></th>
+			<th><a wicket:id="sort-avgSpeed">avg speed</a></th>
+			<th><a wicket:id="sort-classWeight">Class weight</a></th>
+			<th>Edit</th>
+
+		</tr>
+		<tr wicket:id="rows">
+			<td><span wicket:id="id" /></td>
+			<td><span wicket:id="manufacturedPlane" /></td>
+			<td><span wicket:id="model" /></td>
+			<td><span wicket:id="colPassangersBuisnes" /></td>
+			<td><span wicket:id="colPassangersFirstclass" /></td>
+			<td><span wicket:id="colPassangersEconomy" /></td>
+			<td><span wicket:id="weightAllBaggage" /></td>
+			<td><span wicket:id="avgSpeed" /></td>
+			<td><span wicket:id="classWeight" /></td>
+			<td><a>edit</a></td>
+		</tr>
+	</table>
+	<div wicket:id="paging"></div>
+</wicket:panel>

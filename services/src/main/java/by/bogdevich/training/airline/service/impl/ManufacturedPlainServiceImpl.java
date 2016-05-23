@@ -55,6 +55,11 @@ public class ManufacturedPlainServiceImpl implements ManufacturedPlainService {
 	}
 
 	@Override
+	public List<ManufacturedPlane> getRecordsSorted(ManufacturedPlaneFilter filter) {
+		return manufacturedPlaneDao.getRecordsSorted(filter);
+}
+	
+	@Override
 	public Long count(ManufacturedPlaneFilter filter){
 		return manufacturedPlaneDao.count(filter);
 	}	

@@ -5,15 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
 import by.bogdevich.training.airline.dataaccess.AbstractDao;
 import by.bogdevich.training.airline.dataaccess.filtres.AbstractFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.AbstractModel;
-import by.bogdevich.training.airline.datamodel.UserProfile;
 
 public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
 

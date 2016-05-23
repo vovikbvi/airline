@@ -26,4 +26,6 @@ public interface FlightCatalogService {
 
 	Long count(FlightCatalogFilter filter);
 
+	List<FlightCatalog> getRecordsSorted(FlightCatalogFilter filter);
+
 }

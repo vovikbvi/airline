@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 
 import by.bogdevich.training.airline.dataaccess.FlightCatalogDao;
 import by.bogdevich.training.airline.dataaccess.FlightDao;
-import by.bogdevich.training.airline.dataaccess.ModelPlaneDao;
 import by.bogdevich.training.airline.dataaccess.PlaneDao;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
-import by.bogdevich.training.airline.datamodel.ClassWeight;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.service.FlightService;
 

@@ -9,13 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import by.bogdevich.training.airline.dataaccess.AirportDao;
-import by.bogdevich.training.airline.dataaccess.CityDao;
 import by.bogdevich.training.airline.dataaccess.FlightCatalogDao;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightCatalogFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
-import by.bogdevich.training.airline.datamodel.Airport;
+import by.bogdevich.training.airline.dataaccess.filtres.ManufacturedPlaneFilter;
 import by.bogdevich.training.airline.datamodel.Country;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
+import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 import by.bogdevich.training.airline.service.FlightCatalogService;
 
 @Service
@@ -73,6 +72,12 @@ public class FlightCatalogServiceImpl implements FlightCatalogService {
 		return flightCatalogDao.getAll();
 	}
 
+	@Override
+	public List<FlightCatalog> getRecordsSorted(FlightCatalogFilter filter) {
+		return flightCatalogDao.getRecordsSorted(filter);
+}
+
+	
 	@Override
 	public Long count(FlightCatalogFilter filter){
 		return flightCatalogDao.count(filter);

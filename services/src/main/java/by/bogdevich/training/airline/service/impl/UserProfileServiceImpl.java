@@ -1,11 +1,8 @@
 package by.bogdevich.training.airline.service.impl;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
-
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -44,7 +41,6 @@ public class UserProfileServiceImpl implements UserProfileService {
 	private void AcceptRegistration(UserProfile userProfile) {
 		// sendMessage(userProfile);
 		userProfile.setCountOder(0);
-//		userProfile.setDateRegistr(LocalDateTime.now());
 		userProfile.setDateRegistr(new Date());
 		userProfileDao.insert(userProfile);
 		LOGGER.info("Add user {}", userProfile);

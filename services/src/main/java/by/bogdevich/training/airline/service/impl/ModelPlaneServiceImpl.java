@@ -52,6 +52,11 @@ public class ModelPlaneServiceImpl implements ModelPlaneService {
 	}
 	
 	@Override
+	public List<ModelPlane> getRecordsSorted(ModelPlaneFilter filter) {
+		return modelPlaneDao.getRecordsSorted(filter);
+	}
+	
+	@Override
 	public Long count(ModelPlaneFilter filter){
 		return modelPlaneDao.count(filter);
 	}	

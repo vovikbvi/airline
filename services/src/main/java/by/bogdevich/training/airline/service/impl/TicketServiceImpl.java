@@ -1,7 +1,9 @@
 package by.bogdevich.training.airline.service.impl;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -68,13 +70,20 @@ public class TicketServiceImpl implements TicketService {
 
 	private double percentToDateDeparture(Ticket ticket) {
 		Flight flight = flightDao.getFullFlieght(ticket.getFlight());
+
 		Date dateStart = flight.getStartSaleTicket();
 		Date dateEnd = flight.getDepartureTime();
-/*
-		Duration durationSale = Duration.between(dateStart, dateEnd);
+		
+		Instant instantStart = Instant.ofEpochMilli(dateStart.getTime());
+		LocalDateTime dateStartConvert = LocalDateTime.ofInstant(instantStart, ZoneId.systemDefault());
+
+		Instant instantFinish = Instant.ofEpochMilli(dateEnd.getTime());
+		LocalDateTime dateFinishConvert = LocalDateTime.ofInstant(instantFinish, ZoneId.systemDefault());
+
+		Duration durationSale = Duration.between(dateStartConvert, dateFinishConvert);
 		double periodSale = durationSale.toDays();
 
-		Duration durationToStart = Duration.between(LocalDateTime.now(), dateEnd);
+		Duration durationToStart = Duration.between(LocalDateTime.now(), dateFinishConvert);
 		double periodToDeparture = durationToStart.toDays();
 
 		double result = 0;
@@ -84,8 +93,6 @@ public class TicketServiceImpl implements TicketService {
 			result = 0;
 		}
 		return result;
-		*/
-		return 0.0;
 		
 	}
 

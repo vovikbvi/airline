@@ -24,4 +24,6 @@ public interface ManufacturedPlainService {
 
 	Long count(ManufacturedPlaneFilter filter);
 
+	List<ManufacturedPlane> getRecordsSorted(ManufacturedPlaneFilter filter);
+
 }

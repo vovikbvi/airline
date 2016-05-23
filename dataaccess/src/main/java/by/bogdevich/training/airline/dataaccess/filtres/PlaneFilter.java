@@ -3,7 +3,7 @@ package by.bogdevich.training.airline.dataaccess.filtres;
 public class PlaneFilter extends AbstractFilter {
 
 	private String bortNumber;
-	private boolean setFetchModelPlane;
+	private boolean fetchModelPlane;
 
 	public String getBortNumber() {
 		return bortNumber;
@@ -13,12 +13,12 @@ public class PlaneFilter extends AbstractFilter {
 		this.bortNumber = bortNumber;
 	}
 
-	public boolean isSetFetchModelPlane() {
-		return setFetchModelPlane;
+	public boolean getFetchModelPlane() {
+		return fetchModelPlane;
 	}
 
-	public void setSetFetchModelPlane(boolean setFetchModelPlane) {
-		this.setFetchModelPlane = setFetchModelPlane;
+	public void setFetchModelPlane(boolean fetchModelPlane) {
+		this.fetchModelPlane = fetchModelPlane;
 	}
 
 }

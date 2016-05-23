@@ -2,28 +2,22 @@ package by.bogdevich.training.airline.dataaccess.impl;
 
 import java.util.List;
 import javax.persistence.criteria.Predicate;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
-
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
-
 import by.bogdevich.training.airline.dataaccess.PlaneDao;
 import by.bogdevich.training.airline.dataaccess.filtres.PlaneFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
-import by.bogdevich.training.airline.datamodel.Airport_;
-import by.bogdevich.training.airline.datamodel.City_;
-import by.bogdevich.training.airline.datamodel.FlightCatalog;
-import by.bogdevich.training.airline.datamodel.FlightCatalog_;
+import by.bogdevich.training.airline.datamodel.ModelPlane_;
 import by.bogdevich.training.airline.datamodel.Plane;
 import by.bogdevich.training.airline.datamodel.Plane_;
-import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.Ticket_;
+import by.bogdevich.training.airline.datamodel.UserProfile_;
 
 @Repository
 public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneDao {
@@ -44,13 +38,20 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 		handleFilterParameters(filter, cb, cq, from);
 
 		// set fetching
-		if (filter.isSetFetchModelPlane()) {
+		if (filter.getFetchModelPlane()) {
 			from.fetch(Plane_.modelPlane, JoinType.LEFT);
 		}
 
 		// set sort params
 		if (filter.getSortProperty() != null) {
-			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
+			Path<Object> expression;
+			if (ModelPlane_.model.equals(filter.getSortProperty())) {
+				expression = from.get(Plane_.modelPlane).get(filter.getSortProperty());
+			} else {
+				expression = from.get(filter.getSortProperty());
+			}
+
+			cq.orderBy(new OrderImpl(expression, filter.isSortOrder()));
 		}
 
 		TypedQuery<Plane> q = em.createQuery(cq);

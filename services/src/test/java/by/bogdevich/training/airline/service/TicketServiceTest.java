@@ -13,6 +13,8 @@ import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.TicketClass;
 import by.bogdevich.training.airline.datamodel.TicketTupe;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 import org.junit.Assert;;
@@ -43,17 +45,26 @@ public class TicketServiceTest extends AbstractTest {
 
 		Assert.assertNull(ticketService.get(ticket.getId()));
 	}
-/*
+
+	
 	@Test
 	public void calculationParamTicketTest() {
 
 		Flight flight = new Flight();
 		flight.setFlightCatalog(flightCatalogAdd());
 		flight.setRegistrTime(new Date());
-		flight.setDepartureTime(LocalDateTime.now().plusDays(20));
-		flight.setArrivalTime(LocalDateTime.now());
+		
+		LocalDateTime ltdPlusDay = LocalDateTime.now().plusDays(20);
+		Date depatrDtae = Date.from(ltdPlusDay.atZone(ZoneId.systemDefault()).toInstant());
+		
+		flight.setDepartureTime(depatrDtae);      //.plusDays(20)
+		flight.setArrivalTime(new Date());
 		flight.setPlane(planeAdd());
-		flight.setStartSaleTicket(LocalDateTime.now().minusDays(10));
+		
+		LocalDateTime ltdMinusDay = LocalDateTime.now().minusDays(10);
+		Date saleDtae = Date.from(ltdMinusDay.atZone(ZoneId.systemDefault()).toInstant());
+		
+		flight.setStartSaleTicket(saleDtae);    //.minusDays(10)
 		flightService.insert(flight);
 
 		for (int i = 0; i < 10; i++) {
@@ -62,7 +73,7 @@ public class TicketServiceTest extends AbstractTest {
 			ticket.setUserProfile(userProfileAdd());
 			ticket.setPaid(true);
 			ticket.setNumberSeats(2);
-			ticket.setDateBought(LocalDateTime.now());
+			ticket.setDateBought(new Date());
 			ticket.setBaggage(true);
 			ticket.setWeightBaggage(50.0);
 			ticket.setTicketTupe(TicketTupe.SINGLE_TICKET);
@@ -75,9 +86,9 @@ public class TicketServiceTest extends AbstractTest {
 
 		}
 	}
-*/
+
 	
-/*
+
 	@Test
 	public void calculationCostTest() {
 
@@ -108,11 +119,16 @@ public class TicketServiceTest extends AbstractTest {
 
 		Flight flight = new Flight();
 		flight.setFlightCatalog(flightCatalogAdd());
-		flight.setRegistrTime(LocalDateTime.now());
-		flight.setDepartureTime(LocalDateTime.now().plusDays(10));
-		flight.setArrivalTime(LocalDateTime.now());
+		flight.setRegistrTime(new Date());
+		
+		LocalDateTime ltdPlusDay = LocalDateTime.now().plusDays(10);
+		Date depatrDtae = Date.from(ltdPlusDay.atZone(ZoneId.systemDefault()).toInstant());	
+		flight.setDepartureTime(depatrDtae);      //.plusDays(10)
+		flight.setArrivalTime(new Date());
 		flight.setPlane(planeAdd());
-		flight.setStartSaleTicket(LocalDateTime.now().minusDays(10));
+		LocalDateTime ltdMinusDay = LocalDateTime.now().minusDays(10);
+		Date saleDtae = Date.from(ltdMinusDay.atZone(ZoneId.systemDefault()).toInstant());
+		flight.setStartSaleTicket(saleDtae);    //.minusDays(10)
 		flightService.insert(flight);
 
 		Ticket ticket = new Ticket();
@@ -120,7 +136,7 @@ public class TicketServiceTest extends AbstractTest {
 		ticket.setUserProfile(userProfileAdd());
 		ticket.setPaid(true);
 		ticket.setNumberSeats(2);
-		ticket.setDateBought(LocalDateTime.now());
+		ticket.setDateBought(new Date());
 		ticket.setBaggage(true);
 		ticket.setWeightBaggage(50.0);
 		ticket.setTicketTupe(TicketTupe.SINGLE_TICKET);
@@ -146,5 +162,5 @@ public class TicketServiceTest extends AbstractTest {
 
 		Assert.assertEquals(result, ticket.getCosts(), 3);
 	}
-*/
+
 }

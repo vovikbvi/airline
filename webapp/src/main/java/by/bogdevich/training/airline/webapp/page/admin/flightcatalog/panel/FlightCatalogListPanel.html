@@ -1,0 +1,21 @@
+<wicket:panel>
+	<table class="flight-catalog-table">
+		<tr>
+			<th><a wicket:id="sort-id">ID</a></th>
+			<th><a wicket:id="sort-airport-start">Airport start</a></th>
+			<th><a wicket:id="sort-airport-finish">Airport finish</a></th>
+			<th><a wicket:id="sort-distance">Distance</a></th>
+			<th><a wicket:id="sort-international">International</a></th>
+			<th>Edit</th>
+		</tr>
+		<tr wicket:id="rows">
+			<td><span wicket:id="id" /></td>
+			<td><span wicket:id="airport-start" /></td>
+			<td><span wicket:id="airport-finish" /></td>
+			<td><span wicket:id="distance" /></td>
+			<td><input wicket:id="international" type="checkbox" /></td>
+			<td><a>edit</a></td>
+		</tr>
+	</table>
+	<div wicket:id="paging"></div>
+</wicket:panel>

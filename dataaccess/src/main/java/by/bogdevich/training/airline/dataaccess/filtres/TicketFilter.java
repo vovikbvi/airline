@@ -4,23 +4,23 @@ import by.bogdevich.training.airline.datamodel.Flight;
 
 public class TicketFilter extends AbstractFilter {
 
-	private boolean setFetchUser;
-	private boolean setFetchFlieght;
+	private boolean fetchUser;
+	private boolean fetchFlieght;
 
-	public boolean isSetFetchUser() {
-		return setFetchUser;
+	public boolean getFetchUser() {
+		return fetchUser;
 	}
 
-	public void setSetFetchUser(boolean setFetchUser) {
-		this.setFetchUser = setFetchUser;
+	public void setFetchUser(boolean fetchUser) {
+		this.fetchUser = fetchUser;
 	}
 
-	public boolean isSetFetchFlieght() {
-		return setFetchFlieght;
+	public boolean getFetchFlieght() {
+		return fetchFlieght;
 	}
 
-	public void setSetFetchFlieght(boolean setFetchFlieght) {
-		this.setFetchFlieght = setFetchFlieght;
+	public void setFetchFlieght(boolean fetchFlieght) {
+		this.fetchFlieght = fetchFlieght;
 	}
 
 }

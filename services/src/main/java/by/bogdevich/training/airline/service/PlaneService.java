@@ -24,4 +24,6 @@ public interface PlaneService {
 
 	Long count(PlaneFilter filter);
 
+	List<Plane> getRecordsSorted(PlaneFilter filter);
+
 }
