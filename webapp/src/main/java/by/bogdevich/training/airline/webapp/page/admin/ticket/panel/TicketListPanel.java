@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Iterator;
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -14,6 +15,7 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvid
 import org.apache.wicket.injection.Injector;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
@@ -25,6 +27,10 @@ import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.Ticket_;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 import by.bogdevich.training.airline.service.TicketService;
+import by.bogdevich.training.airline.webapp.page.admin.ticket.TicketEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.ticket.TicketsPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
 
 public class TicketListPanel extends Panel {
 
@@ -75,6 +81,27 @@ public class TicketListPanel extends Panel {
 				checkboxForBaby.setEnabled(false);
 				item.add(checkboxForBaby);
 
+				item.add(new Link<Void>("delete-link") {
+					@Override
+					public void onClick() {
+						try {
+							ticketService.delete(ticket.getId());
+						} catch (PersistenceException e) {
+							System.out.println("Impossible delete this record");
+						}
+
+						setResponsePage(new TicketsPage());
+					}
+				});
+
+				item.add(new Link<Void>("edit-link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new TicketEditPage(ticket));
+					}
+				});
+
+				
 			}
 		};
 

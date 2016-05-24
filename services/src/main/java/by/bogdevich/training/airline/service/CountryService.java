@@ -16,7 +16,7 @@ public interface CountryService {
 	void insert(Country country);
 
 	@Transactional 
-	void delet(Long id);
+	void delete(Long id);
 
 	Country get(Long id);
 

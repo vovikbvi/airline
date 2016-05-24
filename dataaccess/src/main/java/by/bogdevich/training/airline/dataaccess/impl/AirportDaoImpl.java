@@ -7,6 +7,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.jpa.criteria.OrderImpl;
@@ -16,6 +17,7 @@ import by.bogdevich.training.airline.dataaccess.filtres.AirportFilter;
 import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.Airport_;
 import by.bogdevich.training.airline.datamodel.City_;
+import by.bogdevich.training.airline.datamodel.Country_;
 
 
 @Repository
@@ -37,13 +39,20 @@ public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements Ai
 		handleFilterParameters(filter, cb, cq, from);
 	
 		// set fetching
-		if (filter.isSetFetchCity()) {
+		if (filter.isFetchCity()) {
 			from.fetch(Airport_.city, JoinType.LEFT);
 		}
-
+			
 		// set sort params
 		if (filter.getSortProperty() != null) {
-			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));
+			Path<Object> expression;
+	          if (City_.name.equals(filter.getSortProperty())) {
+	                expression = from.get(Airport_.city).get(filter.getSortProperty());
+	            } else {
+	                expression = from.get(filter.getSortProperty());
+	            }
+	 
+			cq.orderBy(new OrderImpl(expression, filter.isSortOrder()));
 		}
 
 		TypedQuery<Airport> q = em.createQuery(cq);

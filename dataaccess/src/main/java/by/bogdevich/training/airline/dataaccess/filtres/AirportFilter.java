@@ -1,9 +1,9 @@
 package by.bogdevich.training.airline.dataaccess.filtres;
 
-public class AirportFilter extends AbstractFilter{
-	
+public class AirportFilter extends AbstractFilter {
+
 	private String airportName;
-	private boolean setFetchCity;
+	private boolean fetchCity;
 
 	public String getAirportName() {
 		return airportName;
@@ -13,13 +13,12 @@ public class AirportFilter extends AbstractFilter{
 		this.airportName = airportName;
 	}
 
-	public boolean isSetFetchCity() {
-		return setFetchCity;
+	public boolean isFetchCity() {
+		return fetchCity;
 	}
 
-	public void setSetFetchCity(boolean setFetchCity) {
-		this.setFetchCity = setFetchCity;
+	public void setFetchCity(boolean fetchCity) {
+		this.fetchCity = fetchCity;
 	}
 
-	
 }

@@ -260,7 +260,7 @@ public class AbstractTest {
 
 		List<Country> allCountry = countryService.getAll();
 		for (Country country : allCountry) {
-			countryService.delet(country.getId());
+			countryService.delete(country.getId());
 		}
 
 	}

@@ -3,11 +3,13 @@ package by.bogdevich.training.airline.webapp.page.admin.manufactured.panel;
 import java.io.Serializable;
 import java.util.Iterator;
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.persistence.metamodel.SingularAttribute;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
@@ -24,6 +26,10 @@ import by.bogdevich.training.airline.datamodel.Plane;
 import by.bogdevich.training.airline.datamodel.Plane_;
 import by.bogdevich.training.airline.service.ManufacturedPlainService;
 import by.bogdevich.training.airline.service.PlaneService;
+import by.bogdevich.training.airline.webapp.page.admin.manufactured.ManufacturedEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.manufactured.ManufacturedPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
 
 public class ManufacturedListPanel extends Panel {
 
@@ -42,6 +48,27 @@ public class ManufacturedListPanel extends Panel {
 
 				item.add(new Label("id", manufacturedPlane.getId()));
 				item.add(new Label("manufactured-name", manufacturedPlane.getName()));
+				
+				item.add(new Link<Void>("delete-link") {
+					@Override
+					public void onClick() {
+						try {
+							manufacturedPlainService.delete(manufacturedPlane.getId());
+						} catch (PersistenceException e) {
+							System.out.println("Impossible delete this record");
+						}
+
+						setResponsePage(new ManufacturedPage());
+					}
+				});
+
+				item.add(new Link<Void>("edit-link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new ManufacturedEditPage(manufacturedPlane));
+					}
+				});
+
 				}
 		};
 

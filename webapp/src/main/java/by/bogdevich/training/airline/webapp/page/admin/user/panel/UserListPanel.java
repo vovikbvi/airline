@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -25,6 +26,7 @@ import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 import by.bogdevich.training.airline.service.UserProfileService;
 import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
 
 public class UserListPanel extends Panel {
 
@@ -50,51 +52,65 @@ public class UserListPanel extends Panel {
 				item.add(new Label("passport-number", userProfile.getPassportNumber()));
 				item.add(new Label("phone-number", userProfile.getPhoneNumber()));
 				item.add(new Label("cout-oder", userProfile.getCountOder()));
-				
+
 				CheckBox checkboxVip = new CheckBox("VIP", Model.of(userProfile.getVip()));
 				checkboxVip.setEnabled(false);
 				item.add(checkboxVip);
-				
-			//	FormatStyle dateStyle = FormatStyle.SHORT;
-			//	DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(dateStyle);
-			//	String dateRegistr = userProfile.getDateRegistr().format(formater);
-	
-				item.add(DateLabel.forDatePattern("date-registr", Model.of(userProfile.getDateRegistr()), "dd-MM-yyyy"));
+
+				// FormatStyle dateStyle = FormatStyle.SHORT;
+				// DateTimeFormatter formater =
+				// DateTimeFormatter.ofLocalizedDate(dateStyle);
+				// String dateRegistr =
+				// userProfile.getDateRegistr().format(formater);
+
+				item.add(
+						DateLabel.forDatePattern("date-registr", Model.of(userProfile.getDateRegistr()), "dd-MM-yyyy"));
 				item.add(new Label("role", userProfile.getRole()));
 				CheckBox checkboxRegistr = new CheckBox("active", Model.of(userProfile.getAceptRegistr()));
 				checkboxRegistr.setEnabled(false);
 				item.add(checkboxRegistr);
-				
-				
-			     item.add(new Link<Void>("edit-user") {
-	                    @Override
-	                    public void onClick() {
-	                        setResponsePage(new UserEditPage(userProfile));
-	                    }
-	                });
-               
-				
-				}
+
+				item.add(new Link<Void>("delete-link") {
+					@Override
+					public void onClick() {
+						try {
+							userProfileService.delete(userProfile.getId());
+						} catch (PersistenceException e) {
+							System.out.println("Impossible delete this record");
+						}
+
+						setResponsePage(new UsersPage());
+					}
+				});
+
+				item.add(new Link<Void>("edit-link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new UserEditPage(userProfile));
+					}
+				});
+
+			}
 		};
 
 		add(dataView);
 		add(new PagingNavigator("paging", dataView));
 
-		 add(new OrderByBorder("sort-id", UserProfile_.id, userProfileDataProvider));
-		 add(new OrderByBorder("sort-login", UserProfile_.login, userProfileDataProvider));
-		 add(new OrderByBorder("sort-pssword", UserProfile_.password, userProfileDataProvider));
-		 add(new OrderByBorder("sort-first-name", UserProfile_.firstName, userProfileDataProvider));
-		 add(new OrderByBorder("sort-last-name", UserProfile_.lastName, userProfileDataProvider));
-		 add(new OrderByBorder("sort-email", UserProfile_.email, userProfileDataProvider));
-		 add(new OrderByBorder("sort-passport-number", UserProfile_.passportNumber, userProfileDataProvider));
-		 add(new OrderByBorder("sort-phone-number", UserProfile_.phoneNumber, userProfileDataProvider));
-		 add(new OrderByBorder("sort-count-oder", UserProfile_.countOder, userProfileDataProvider));
-		 add(new OrderByBorder("sort-vip", UserProfile_.vip, userProfileDataProvider));
-		 add(new OrderByBorder("sort-date-registr", UserProfile_.dateRegistr, userProfileDataProvider));
-		 add(new OrderByBorder("sort-role", UserProfile_.role, userProfileDataProvider));
-		 add(new OrderByBorder("sort-accept-registr", UserProfile_.aceptRegistr, userProfileDataProvider));
+		add(new OrderByBorder("sort-id", UserProfile_.id, userProfileDataProvider));
+		add(new OrderByBorder("sort-login", UserProfile_.login, userProfileDataProvider));
+		add(new OrderByBorder("sort-pssword", UserProfile_.password, userProfileDataProvider));
+		add(new OrderByBorder("sort-first-name", UserProfile_.firstName, userProfileDataProvider));
+		add(new OrderByBorder("sort-last-name", UserProfile_.lastName, userProfileDataProvider));
+		add(new OrderByBorder("sort-email", UserProfile_.email, userProfileDataProvider));
+		add(new OrderByBorder("sort-passport-number", UserProfile_.passportNumber, userProfileDataProvider));
+		add(new OrderByBorder("sort-phone-number", UserProfile_.phoneNumber, userProfileDataProvider));
+		add(new OrderByBorder("sort-count-oder", UserProfile_.countOder, userProfileDataProvider));
+		add(new OrderByBorder("sort-vip", UserProfile_.vip, userProfileDataProvider));
+		add(new OrderByBorder("sort-date-registr", UserProfile_.dateRegistr, userProfileDataProvider));
+		add(new OrderByBorder("sort-role", UserProfile_.role, userProfileDataProvider));
+		add(new OrderByBorder("sort-accept-registr", UserProfile_.aceptRegistr, userProfileDataProvider));
 
- 	}
+	}
 
 	private class UserProfileDataProvider extends SortableDataProvider<UserProfile, Serializable> {
 

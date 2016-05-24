@@ -3,6 +3,7 @@ package by.bogdevich.training.airline.webapp.page.admin.flight.panel;
 import java.io.Serializable;
 import java.util.Iterator;
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -11,6 +12,7 @@ import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
@@ -27,6 +29,10 @@ import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.service.FlightCatalogService;
 import by.bogdevich.training.airline.service.FlightService;
+import by.bogdevich.training.airline.webapp.page.admin.flight.FlightEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.flight.FlightPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
 
 public class FlightListPanel extends Panel {
 
@@ -51,7 +57,26 @@ public class FlightListPanel extends Panel {
 				item.add(new Label("plane", flight.getPlane().getBortNumber()));
 				item.add(DateLabel.forDatePattern("start-sale-ticket", Model.of(flight.getStartSaleTicket()), "dd-MM-yyyy"));
 	
-	
+				item.add(new Link<Void>("delete-link") {
+					@Override
+					public void onClick() {
+						try {
+							flightService.delete(flight.getId());
+						} catch (PersistenceException e) {
+							System.out.println("Impossible delete this record");
+						}
+
+						setResponsePage(new FlightPage());
+					}
+				});
+
+				item.add(new Link<Void>("edit-link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new FlightEditPage(flight));
+					}
+				});
+
 				}
 		};
 

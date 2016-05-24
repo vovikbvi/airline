@@ -16,7 +16,7 @@ table {
 }
 
 th {
-  -color:#D5DDE5;;
+  -color:#D5DDE5;
   -background:#2e96d2;
   border: 1px solid #9ccfec;
   -text: white;
@@ -50,4 +50,32 @@ td {
   border: 1px solid #9ccfec;
 }
 /*end table style*/
+
+/*style for settings*/
+/* ------------- Контейнер с адаптивными блоками------------- */
+
+/* Элементы в виде плиток с содержанием */
+  .item img {
+    border: 1px solid #2e96d2; /* Рамка вокруг фотографии */
+    padding: 1px; /* Расстояние от картинки до рамки */
+    background: #2e96d2; /* Цвет фона */
+    -margin-right: 5px; /* Отступ справа */
+    -margin-bottom: 5px; /* Отступ снизу */
+   }
+ 
+ .item {
+ float:left;
+ width:260px;
+ height:300px;
+ }
+ 
+ .item p {
+ font-size: 20px;
+ font-style: italic;
+ text-align: center;
+ }
+ 
+
+ 
+/*end style for settings*/
 

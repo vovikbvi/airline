@@ -29,7 +29,7 @@ public class CountryServiceTest extends AbstractTest{
 	@Test
 	public void testDeletCountry() {
 		Country country = countryAdd();
-		countryService.delet(country.getId());
+		countryService.delete(country.getId());
 
 		Assert.assertNull(countryService.get(country.getId()));
 	}

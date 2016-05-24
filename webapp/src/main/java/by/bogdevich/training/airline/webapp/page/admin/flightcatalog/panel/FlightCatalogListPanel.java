@@ -3,12 +3,14 @@ package by.bogdevich.training.airline.webapp.page.admin.flightcatalog.panel;
 import java.io.Serializable;
 import java.util.Iterator;
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.persistence.metamodel.SingularAttribute;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
@@ -21,6 +23,10 @@ import by.bogdevich.training.airline.datamodel.Airport_;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.service.FlightCatalogService;
+import by.bogdevich.training.airline.webapp.page.admin.flightcatalog.FlightCatalogEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.flightcatalog.FlightCatalogPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
 
 public class FlightCatalogListPanel extends Panel {
 
@@ -46,6 +52,27 @@ public class FlightCatalogListPanel extends Panel {
 				checkboxInternational.setEnabled(false);
 				item.add(checkboxInternational);
 
+				item.add(new Link<Void>("delete-link") {
+					@Override
+					public void onClick() {
+						try {
+							flightCatalogService.delete(flightCatalog.getId());
+						} catch (PersistenceException e) {
+							System.out.println("Impossible delete this record");
+						}
+
+						setResponsePage(new FlightCatalogPage());
+					}
+				});
+
+				item.add(new Link<Void>("edit-link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new FlightCatalogEditPage(flightCatalog));
+					}
+				});
+
+				
 				}
 		};
 

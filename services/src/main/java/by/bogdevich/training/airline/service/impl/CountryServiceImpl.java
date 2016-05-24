@@ -33,7 +33,7 @@ public class CountryServiceImpl implements CountryService {
 	}
 
 	@Override
-	public void delet(Long id) {
+	public void delete(Long id) {
 		Country country = countryDao.get(id);
 		countryDao.delete(id);
 		LOGGER.warn("Delet country {}", country);

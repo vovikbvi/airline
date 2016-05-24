@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -37,8 +38,11 @@ import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 import by.bogdevich.training.airline.service.PlaneService;
 import by.bogdevich.training.airline.service.PriceService;
+import by.bogdevich.training.airline.webapp.page.admin.plane.PlaneEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.plane.PlanePage;
 import by.bogdevich.training.airline.webapp.page.admin.ticket.TicketsPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
 
 public class PlaneListPanel extends Panel {
 
@@ -58,6 +62,28 @@ public class PlaneListPanel extends Panel {
 				item.add(new Label("id", plane.getId()));
 				item.add(new Label("modelPlane", plane.getModelPlane().getModel()));
 				item.add(new Label("bortNumber", plane.getBortNumber()));
+				
+				item.add(new Link<Void>("delete-link") {
+					@Override
+					public void onClick() {
+						try {
+							planeService.delete(plane.getId());
+						} catch (PersistenceException e) {
+							System.out.println("Impossible delete this record");
+						}
+
+						setResponsePage(new PlanePage());
+					}
+				});
+
+				item.add(new Link<Void>("edit-link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new PlaneEditPage(plane));
+					}
+					
+				});
+
 				}
 		};
 

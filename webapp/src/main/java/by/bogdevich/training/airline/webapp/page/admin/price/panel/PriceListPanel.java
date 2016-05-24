@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -32,8 +33,11 @@ import by.bogdevich.training.airline.datamodel.Price_;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 import by.bogdevich.training.airline.service.PriceService;
+import by.bogdevich.training.airline.webapp.page.admin.price.PriceEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.price.PricesPage;
 import by.bogdevich.training.airline.webapp.page.admin.ticket.TicketsPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
+import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
 
 public class PriceListPanel extends Panel {
 
@@ -56,9 +60,27 @@ public class PriceListPanel extends Panel {
 			//	DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(dateStyle);
 			//	String dateRegistr = price.getDataChange().format(formater);
 				item.add(DateLabel.forDatePattern("date-chane", Model.of(price.getDataChange()), "dd-MM-yyyy"));
-
-				
 				item.add(new Label("price", price.getBasicPrice()));
+
+				item.add(new Link<Void>("delete-link") {
+					@Override
+					public void onClick() {
+						try {
+							priceService.delete(price.getId());
+						} catch (PersistenceException e) {
+							System.out.println("Impossible delete this record");
+						}
+
+						setResponsePage(new PricesPage());
+					}
+				});
+
+				item.add(new Link<Void>("edit-link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new PriceEditPage(price));
+					}
+				});
 
 				}
 		};
