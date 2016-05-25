@@ -4,6 +4,8 @@ import javax.inject.Inject;
 
 import org.apache.wicket.ConverterLocator;
 import org.apache.wicket.IConverterLocator;
+import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
+import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
@@ -14,21 +16,12 @@ import by.bogdevich.training.airline.webapp.page.home.HomePage;
 import by.bogdevich.training.airline.webapp.util.LocalDateConverter;
 
 
-
-
 @Component("wicketWebApplicationBean")
-public class WicketApplication extends WebApplication {
+public class WicketApplication extends AuthenticatedWebApplication {
     @Inject
     private ApplicationContext applicationContext;
 
-    /**
-     * @see org.apache.wicket.Application#getHomePage()
-     */
-    @Override
-    public Class<? extends WebPage> getHomePage() {
-        return HomePage.class;
-    }
-
+ 
     /**
      * @see org.apache.wicket.Application#init()
      */
@@ -48,6 +41,25 @@ public class WicketApplication extends WebApplication {
     public ApplicationContext getApplicationContext() {
         return applicationContext;
     }
+    
+    @Override
+    protected Class<? extends AbstractAuthenticatedWebSession> getWebSessionClass() {
+        return AuthorizedSession.class;
+    }
+
+    @Override
+    protected Class<? extends WebPage> getSignInPageClass() {
+        return HomePage.class;
+    }
+
+    /**
+     * @see org.apache.wicket.Application#getHomePage()
+     */
+    @Override
+    public Class<? extends WebPage> getHomePage() {
+        return HomePage.class;
+    }
+
 /*
     @Override
     protected IConverterLocator newConverterLocator() {

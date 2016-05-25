@@ -1,13 +1,13 @@
 <wicket:panel>
 		<div class="side_menu_box" style="height: 110px;">
 			<div class="top">Login</div>
-			<form action="" method="post">
-				<input name="name" type="text" class="side_menu_box_field" id="name"
-					value="Name" size="11" /> <input name="password" type="password"
-					class="side_menu_box_field" id="pass" value="passs" size="11" /> <input
-					name="submit" type="image" class="side_menu_box_button" id="submit"
-					src="images/button_submit.gif" />
+			<form wicket:id="form" action="" method="post">
+				<input wicket:id="username" type="text" class="side_menu_box_field" id="name" value="Name" size="11" /> 
+				<input wicket:id="password" type="password" class="side_menu_box_field" id="pass" value="passs" size="11"/>
+				<input name="submit" type="image" class="side_menu_box_button" id="submit"src="images/button_submit.gif" />
+				<div><button type="submit" wicket:id="submit-btn">SAVE</button></div>
 			</form>
 			<a class="registr-linc" wicket:id="registration">Registration</a>
+			<div wicket:id="feedbackpanel"></div>
 		</div>
 </wicket:panel>

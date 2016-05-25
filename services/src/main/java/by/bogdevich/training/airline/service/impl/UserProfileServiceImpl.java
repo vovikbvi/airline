@@ -1,5 +1,7 @@
 package by.bogdevich.training.airline.service.impl;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -88,4 +90,16 @@ public class UserProfileServiceImpl implements UserProfileService {
 	public Long count(UserProfileFilter filter) {
 		return userProfileDao.count(filter);
 	}
+
+	@Override
+	public UserProfile getPermissions(String userName, String password) {
+		return userProfileDao.findUser(userName, password);
+	}
+
+	@Override
+	public Collection<? extends String> resolveRoles(Long id) {
+		UserProfile userProfile = userProfileDao.get(id);
+		return Collections.singletonList(userProfile.getRole().name());
+	}
+
 }

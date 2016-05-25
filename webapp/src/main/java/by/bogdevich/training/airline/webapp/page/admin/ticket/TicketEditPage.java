@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.yui.calendar.DatePicker;
 import org.apache.wicket.markup.html.form.CheckBox;
@@ -30,6 +31,7 @@ import by.bogdevich.training.airline.webapp.common.UserProfileChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
 
+@AuthorizeInstantiation(value = { "admin"})
 public class TicketEditPage extends AbstractPage {
 
 	@Inject

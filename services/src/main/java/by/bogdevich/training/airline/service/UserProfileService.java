@@ -1,6 +1,7 @@
 package by.bogdevich.training.airline.service;
 
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -27,5 +28,9 @@ public interface UserProfileService {
 	public List<UserProfile> getRecordsSorted(UserProfileFilter filter);
 
 	Long count(UserProfileFilter filter);
+
+	Collection<? extends String> resolveRoles(Long id);
+
+	UserProfile getPermissions(String userName, String password);
 
 }
