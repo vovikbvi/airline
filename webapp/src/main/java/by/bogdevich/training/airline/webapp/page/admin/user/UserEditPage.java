@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Arrays;
 
 import javax.inject.Inject;
 import javax.swing.text.DateFormatter;
@@ -11,6 +12,7 @@ import javax.swing.text.DateFormatter;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.yui.calendar.DatePicker;
 import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
@@ -19,8 +21,10 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.util.convert.IConverter;
 
 import by.bogdevich.training.airline.datamodel.UserProfile;
+import by.bogdevich.training.airline.datamodel.UserRole;
 import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConverter;
 import by.bogdevich.training.airline.service.UserProfileService;
+import by.bogdevich.training.airline.webapp.common.UserRoleChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 import by.bogdevich.training.airline.webapp.util.LocalDateConverter;
 
@@ -79,11 +83,9 @@ public class UserEditPage extends AbstractPage {
         dateRegistrField.setRequired(true);
 		form.add(dateRegistrField);
 
-		/*	
-		TextField<String> roleField = new TextField<>("role");
-		roleField.setRequired(true);
-		form.add(roleField);
-	*/
+        DropDownChoice<UserRole> roleField = new DropDownChoice<>("role", Arrays.asList(UserRole.values()), UserRoleChoiceRenderer.INSTANCE);
+        roleField.setRequired(true);
+        form.add(roleField);
 
 		CheckBox aceptRegistrField = new CheckBox("aceptRegistr");
 		form.add(aceptRegistrField);
