@@ -31,7 +31,7 @@ import by.bogdevich.training.airline.webapp.common.UserProfileChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
 
-@AuthorizeInstantiation(value = { "admin"})
+@AuthorizeInstantiation(value = {"admin"})
 public class TicketEditPage extends AbstractPage {
 
 	@Inject

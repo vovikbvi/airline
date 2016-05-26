@@ -167,7 +167,7 @@ public class AbstractTest {
 		userProfile.setPhoneNumber("+375297121212");
 		userProfile.setCountOder(1);
 		userProfile.setVip(false);
-		userProfile.setRole(UserRole.ADMIN);
+		userProfile.setRole(UserRole.admin);
 		userProfile.setAceptRegistr(false);
 
 		userProfileService.registration(userProfile);
