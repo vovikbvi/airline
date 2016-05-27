@@ -1,4 +1,23 @@
 <wicket:extend>
+	
+		<form wicket:id="form" class="edit-admin-form">
 	<h2>Edit plane</h2>
+	
+		<label>
+		<span>Bort number:</span>
+		<input type="text" wicket:id="bortNumber" />
+	    </label>
+	 
+		<label>
+		<span>Model plane</span>
+		<select wicket:id="modelPlane"></select>
+		</label>
+				
+		<div>
+			<button type="submit" wicket:id="save">SAVE</button>
+		</div>
+
+	</form>
+	<div wicket:id="feedback"></div>
 	
 </wicket:extend>

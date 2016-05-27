@@ -1,30 +1,49 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
+
+
+	<form wicket:id="form" class="edit-admin-form">
 	<h2>Edit user profile</h2>
-
-	<form wicket:id="form">
-
-		<p>firstName:</p>
+	
+		<label><span>firstName:</span>
 		<input type="text" wicket:id="firstName" />
-		<p>lastName:</p>
+		</label>
+		
+		<label><span>lastName:</span>
 		<input type="text" wicket:id="lastName" />
-		<p>e-mail:</p>
+		</label>
+		
+		<label><span>e-mail:</span>
 		<input type="text" wicket:id="email" />
-		<p>passport number:</p>
+		</label>
+		
+		<label><span>passport number:</span>
 		<input type="text" wicket:id="passportNumber" />
-		<p>phone number:</p>
+		</label>
+		
+		<label><span>phone number:</span>
 		<input type="text" wicket:id="phoneNumber" />
-		<p>count oder:</p>
+		</label>
+		
+		<label><span>count oder:</span>
 		<input type="text" wicket:id="countOder" />
-		<p>VIP:</p>
+		</label>
+		
+		<label><span>VIP:</span>
 		<input type="checkbox" wicket:id="vip" />
-		<p>User role</p>
+		</label>
+		
+		<label><span>User role</span>
 		<select wicket:id="role"></select>
-		<p>date registration:</p>
-		<input type="text" wicket:id="dateRegistr" />
-
-		<!-- 	<input type="text" wicket:id="role" />   -->
-		<p>accept registration:</p>
+		</label>
+		
+		<label><span>date registration:</span>
+		<div><input type="text" wicket:id="dateRegistr" /></div>
+		</label>
+		
+  		<label><span>accept registration:</span>
 		<input type="checkbox" wicket:id="aceptRegistr" />
+		</label>
+		
 		<div><button type="submit" wicket:id="save">SAVE</button></div>
 
 	</form>
