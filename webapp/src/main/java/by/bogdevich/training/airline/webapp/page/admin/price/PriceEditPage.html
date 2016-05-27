@@ -1,4 +1,26 @@
 <wicket:extend>
-	<h2>Edit price</h2>
+
+	<form wicket:id="form" class="edit-admin-form">
 	
+	
+		<h2>Edit price</h2>
+		
+		<label>
+			<span>Data change:</span>
+			<div><input type="text" wicket:id="dataChange" /></div>
+		</label>
+		
+		<label>
+			<span>Basic price:</span>
+			<input type="text" wicket:id="basicPrice" />
+        </label>		
+
+
+		<div>
+			<button type="submit" wicket:id="save">SAVE</button>
+		</div>
+
+	</form>
+	<div wicket:id="feedback"></div>
+
 </wicket:extend>

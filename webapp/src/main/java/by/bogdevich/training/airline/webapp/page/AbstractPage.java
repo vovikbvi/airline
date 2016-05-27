@@ -23,8 +23,6 @@ public abstract class AbstractPage extends WebPage {
 		
 		add(new MenuUser("menu-user"));
 		
-		//add(new Loger("loger"));
-		
         add(new Link("home-page") {
             @Override
             public void onClick() {

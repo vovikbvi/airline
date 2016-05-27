@@ -1,47 +1,74 @@
 <wicket:extend>
+	
+
+	<form wicket:id="form" class="edit-admin-form">
 	<h2>Edit ticket</h2>
-
-	<form wicket:id="form">
-
-		<p>Number flight</p>
+	
+        <label>
+		<span>Number flight</span>
 		<select wicket:id="flight"></select>
+		</label>
 
-		<p>Passenger</p>
+		<label>
+		<span>Passenger</span>
 		<select wicket:id="userProfile"></select>
+		</label>
 		
-		<p>Paid:</p>
+		<label>
+		<span>Paid:</span>
 		<input type="checkbox" wicket:id="paid" />
+		</label>
 		
-		<p>Number seats:</p>
+		<label>
+		<span>Number seats:</span>
 		<input type="text" wicket:id="numberSeats" />
-	
-		<p>Date bought:</p>
-		<input type="text" wicket:id="dateBought" />
-
-		<p>Baggage:</p>
+	    </label>
+	    
+	    <label>
+		<span>Date bought:</span>
+		<div><input type="text" wicket:id="dateBought" /></div>
+		</label>
+		
+		<label>
+		<span>Baggage:</span>
 		<input type="checkbox" wicket:id="baggage" />
-	
-		<p>Weight baggage:</p>
+		</label>
+		
+		<label>
+		<span>Weight baggage:</span>
 		<input type="text" wicket:id="weightBaggage" />
-	
-		<p>Ticket tupe</p>
+		</label>
+		
+		<label>
+		<span>Ticket tupe</span>
 		<select wicket:id="ticketTupe"></select>
-	
-		<p>Ticket class</p>
+		</label>
+		
+		<label>	
+		<span>Ticket class</span>
 		<select wicket:id="ticketClass"></select>
-	
-		<p>Priority registration:</p>
+		</label>
+		
+		<label>
+		<span>Priority registration:</span>
 		<input type="checkbox" wicket:id="priorityRegistration" />
-
-		<p>Priority seats:</p>
+		</label>
+		
+		<label>
+		<span>Priority seats:</span>
 		<input type="checkbox" wicket:id="prioritySeats" />
+		</label>
 		
-		<p>For baby:</p>
+		<label>
+		<span>For baby:</span>
 		<input type="checkbox" wicket:id="forBaby" />
+		</label>
 		
- 		<p>Costs:</p>
+		<label>
+ 		<span>Costs:</span>
 		<input type="text" wicket:id="costs" />
- 
+ 		</label>
+ 		
 		<div>
 			<button type="submit" wicket:id="save">SAVE</button>
 		</div>

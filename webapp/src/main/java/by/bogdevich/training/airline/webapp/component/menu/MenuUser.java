@@ -76,10 +76,21 @@ public class MenuUser extends Panel {
 		};
 		add(settingsLink);
 		
-		if ((AuthorizedSession.get().isSignedIn()) && AuthorizedSession.get().getLoggedUser().getRole().name() == "admin") {
+		boolean isLoginAdminOrOperator;
+		boolean isLogIn = AuthorizedSession.get().isSignedIn();
+		
+		if (isLogIn && AuthorizedSession.get().getLoggedUser().getRole().name() == "admin"){
+		isLoginAdminOrOperator = true;
+		}else if(isLogIn && AuthorizedSession.get().getLoggedUser().getRole().name() == "operator"){
+			isLoginAdminOrOperator = true;
+		}else{
+			isLoginAdminOrOperator = false;
+		}
+		
+		if (isLoginAdminOrOperator) {
 			settingsLink.setVisible(true);
 		}else{
-			settingsLink.setVisible(false);
+			settingsLink.setVisible(true);
 		}
 		
 

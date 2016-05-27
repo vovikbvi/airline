@@ -1,81 +1,175 @@
-.content{
-	-position:absolute;
-	float:left;
-	margin:10px 10px 10px 10px;
-	padding: 0 5px 0 0; /*padding on the right is because the column if floating to the right*/
-	line-height:1.5em;
-	width:790px; /*784px minus padding*/
-	-height:300px;
-	-float:right;
+.content {
+	-position: absolute;
+	float: left;
+	margin: 10px 10px 10px 10px;
+	padding: 0 5px 0 0;
+	/*padding on the right is because the column if floating to the right*/
+	line-height: 1.5em;
+	width: 790px; /*784px minus padding*/
+	-height: 300px;
+	-float: right;
 }
 
 /*table style*/
-
 table {
-  border-collapse: collapse;
+	border-collapse: collapse;
 }
 
 th {
-  -color:#D5DDE5;
-  -background:#2e96d2;
-  border: 1px solid #9ccfec;
-  -text: white;
- }
+	-color: #D5DDE5;
+	-background: #2e96d2;
+	border: 1px solid #9ccfec;
+	-text: white;
+}
 
-  
 tr {
-  border-top: 1px solid #C1C3D1;
-  color:#666B85;
+	border-top: 1px solid #C1C3D1;
+	color: #666B85;
 }
- 
-tr:hover td {
-  background:#4E5066;
-  color:#FFFFFF;
+
+tr:hover .table-admin td {
+	background: #4E5066;
+	color: #FFFFFF;
 }
- 
 
 tr:nth-child(odd) td {
-  background:#EBEBEB;
-}
- 
-tr:nth-child(odd):hover td {
-  background:#4E5066;
+	background: #EBEBEB;
 }
 
- 
+tr:nth-child(odd):hover td {
+	background: #4E5066;
+}
+
 td {
-  background:#FFFFFF;
-  text-align:center;
-  vertical-align:middle;
-  border: 1px solid #9ccfec;
+	background: #FFFFFF;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid #9ccfec;
 }
 /*end table style*/
 
 /*style for settings*/
-/* ------------- Контейнер с адаптивными блоками------------- */
+.item img {
+	border: 1px solid #2e96d2;
+	padding: 1px;
+	background: #2e96d2;
+	-margin-right: 5px;
+	-margin-bottom: 5px;
+}
 
-/* Элементы в виде плиток с содержанием */
-  .item img {
-    border: 1px solid #2e96d2; /* Рамка вокруг фотографии */
-    padding: 1px; /* Расстояние от картинки до рамки */
-    background: #2e96d2; /* Цвет фона */
-    -margin-right: 5px; /* Отступ справа */
-    -margin-bottom: 5px; /* Отступ снизу */
-   }
- 
- .item {
- float:left;
- width:260px;
- height:300px;
- }
- 
- .item p {
- font-size: 20px;
- font-style: italic;
- text-align: center;
- }
- 
+.item {
+	float: left;
+	width: 260px;
+	height: 300px;
+}
 
- 
+.item p {
+	font-size: 20px;
+	font-style: italic;
+	text-align: center;
+}
 /*end style for settings*/
 
+/*style for form */
+
+/* Elegant Aero */
+.edit-admin-form {
+    margin-left:auto;
+    margin-right:auto;
+
+    max-width: 500px;
+    background: #D2E9FF;
+    padding: 20px 20px 20px 20px;
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #666;
+}
+.edit-admin-form h2 {
+    font: 24px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    padding: 10px 10px 10px 20px;
+    display: block;
+    background: #C0E1FF;
+    border-bottom: 1px solid #B8DDFF;
+    margin: -20px -20px 15px;
+}
+.edit-admin-form h2>span {
+    display: block;
+    font-size: 11px;
+}
+
+.edit-admin-form label>span {
+    float: left;
+    margin-top: 10px;
+    color: #5E5E5E;
+}
+.edit-admin-form label {
+    display: block;
+    margin: 0px 0px 5px;
+}
+.edit-admin-form label>span {
+    float: left;
+    width: 20%;
+    text-align: right;
+    padding-right: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.edit-admin-form input[type="text"], .edit-admin-form input[type="email"], .edit-admin-form textarea, .edit-admin-form select {
+    color: #888;
+    width: 50%;
+    padding: 0px 0px 0px 5px;
+    border: 1px solid #C5E2FF;
+    background: #FBFBFB;
+    outline: 0;
+    -webkit-box-shadow:inset 0px 1px 6px #ECF3F5;
+    box-shadow: inset 0px 1px 6px #ECF3F5;
+    font: 200 12px/25px Arial, Helvetica, sans-serif;
+    height: 30px;
+    line-height:15px;
+    margin: 2px 6px 16px 0px;
+}
+.edit-admin-form input[type="checkbox"]{
+    color: #888;
+    --width: 50%;
+    padding: 0px 0px 0px 5px;
+    border: 1px solid #C5E2FF;
+    background: #FBFBFB;
+    outline: 0;
+    -webkit-box-shadow:inset 0px 1px 6px #ECF3F5;
+    -box-shadow: inset 0px 1px 6px #ECF3F5;
+    -font: 200 12px/25px Arial, Helvetica, sans-serif;
+    height: 30px;
+    line-height:15px;
+    -margin: 2px 6px 16px 0px;
+}
+
+.edit-admin-form textarea{
+    height:100px;
+    padding: 5px 0px 0px 5px;
+    width: 70%;
+}
+.edit-admin-form select {
+    background: #fbfbfb url('down-arrow.png') no-repeat right;
+    background: #fbfbfb url('down-arrow.png') no-repeat right;
+   appearance:none;
+    -webkit-appearance:none; 
+   -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width: 70%;
+}
+-.edit-admin-form .button{
+    padding: 10px 30px 10px 30px;
+    background: #66C1E4;
+    border: none;
+    color: #FFF;
+    box-shadow: 1px 1px 1px #4C6E91;
+    -webkit-box-shadow: 1px 1px 1px #4C6E91;
+    -moz-box-shadow: 1px 1px 1px #4C6E91;
+    text-shadow: 1px 1px 1px #5079A3;
+    
+}
+.edit-admin-form .button:hover{
+    background: #3EB1DD;
+
+
+/*end style for form */
