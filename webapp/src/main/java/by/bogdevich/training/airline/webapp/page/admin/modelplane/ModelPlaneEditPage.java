@@ -5,9 +5,7 @@ import java.util.Arrays;
 
 import javax.inject.Inject;
 
-import org.apache.wicket.extensions.markup.html.form.DateTextField;
-import org.apache.wicket.extensions.yui.calendar.DatePicker;
-import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
@@ -15,26 +13,17 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 
-import by.bogdevich.training.airline.datamodel.Flight;
+import by.bogdevich.training.airline.datamodel.ClassWeight;
+import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
-import by.bogdevich.training.airline.datamodel.Plane;
-import by.bogdevich.training.airline.datamodel.Ticket;
-import by.bogdevich.training.airline.datamodel.TicketClass;
-import by.bogdevich.training.airline.datamodel.TicketTupe;
-import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.service.ManufacturedPlainService;
 import by.bogdevich.training.airline.service.ModelPlaneService;
-import by.bogdevich.training.airline.service.PriceService;
-import by.bogdevich.training.airline.service.UserProfileService;
-import by.bogdevich.training.airline.webapp.common.FlightChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.TicketClassChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.TicketTupeChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.UserProfileChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.ClassWeightChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.ManufacturedPlaneChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
-import by.bogdevich.training.airline.webapp.page.admin.ticket.TicketsPage;
 
 
-
+@AuthorizeInstantiation(value = {"ADMIN", "OPERATOR"})
 public class ModelPlaneEditPage extends AbstractPage {
 	
 	@Inject
@@ -60,65 +49,52 @@ public class ModelPlaneEditPage extends AbstractPage {
 		Form form = new Form("form", new CompoundPropertyModel<ModelPlane>(modelPlane));
 		add(form);
   
-		ArrayList<Flight> listFlight= new ArrayList<Flight>(flightService.getAll());
-        DropDownChoice<Flight> flightField = new DropDownChoice<Flight>("flight", listFlight, FlightChoiceRenderer.INSTANCE);
-        flightField.setRequired(true);
-        form.add(flightField);
+		ArrayList<ManufacturedPlane> listManufactured= new ArrayList<ManufacturedPlane>(manufacturedPlainService.getAll());
+        DropDownChoice<ManufacturedPlane> ManufacturedField = new DropDownChoice<ManufacturedPlane>("manufacturedPlane", listManufactured, ManufacturedPlaneChoiceRenderer.INSTANCE);
+        ManufacturedField.setRequired(true);
+        form.add(ManufacturedField);
 		
-		CheckBox paidField = new CheckBox("paid");
-		form.add(paidField);
-		
-		TextField<Integer> numberSeatsField = new TextField<>("numberSeats");
-		numberSeatsField.setRequired(true);
-		form.add(numberSeatsField);
+		TextField<String> modelField = new TextField<>("model");
+		modelField.setRequired(true);
+		form.add(modelField);
 
-		DateTextField dateBoughtField = new DateTextField("dateBought", "dd-MM-yyyy");
-		dateBoughtField.add(new DatePicker());
-        dateBoughtField.setRequired(true);
-		form.add(dateBoughtField);
+	   	TextField<Integer> colPassangersBuisnesField = new TextField<>("colPassangersBuisnes");
+		colPassangersBuisnesField.setRequired(true);
+		form.add(colPassangersBuisnesField);
 		
-		CheckBox baggageField = new CheckBox("baggage");
-		form.add(baggageField);
+		TextField<Integer> colPassangersFirstclassField = new TextField<>("colPassangersFirstclass");
+		colPassangersFirstclassField.setRequired(true);
+		form.add(colPassangersFirstclassField);
 		
-    	TextField<Double> weightBaggageField = new TextField<>("weightBaggage");
-		weightBaggageField.setRequired(true);
-		form.add(weightBaggageField);
+		TextField<Integer> colPassangersEconomyField = new TextField<>("colPassangersEconomy");
+		colPassangersEconomyField.setRequired(true);
+		form.add(colPassangersEconomyField);
 		
-        DropDownChoice<TicketTupe> ticketTupeField = new DropDownChoice<>("ticketTupe", Arrays.asList(TicketTupe.values()), TicketTupeChoiceRenderer.INSTANCE);
-        ticketTupeField.setRequired(true);
-        form.add(ticketTupeField);
+		TextField<Integer> weightAllBaggageField = new TextField<>("weightAllBaggage");
+		weightAllBaggageField.setRequired(true);
+		form.add(weightAllBaggageField);
+		
+		TextField<Integer> avgSpeedField = new TextField<>("avgSpeed");
+		avgSpeedField.setRequired(true);
+		form.add(avgSpeedField);
+		
+        DropDownChoice<ClassWeight> classWeightField = new DropDownChoice<>("classWeight", Arrays.asList(ClassWeight.values()), ClassWeightChoiceRenderer.INSTANCE);
+        classWeightField.setRequired(true);
+        form.add(classWeightField);
 
-        DropDownChoice<TicketClass> ticketClassField = new DropDownChoice<>("ticketClass", Arrays.asList(TicketClass.values()), TicketClassChoiceRenderer.INSTANCE);
-        ticketClassField.setRequired(true);
-        form.add(ticketClassField);
-
-		CheckBox priorityRegistrationField = new CheckBox("priorityRegistration");
-		form.add(priorityRegistrationField);
-
-		CheckBox prioritySeatsField = new CheckBox("prioritySeats");
-		form.add(prioritySeatsField);
-        
-        
-        TextField<Double> costsField = new TextField<>("costs");
-		costsField.setRequired(true);
-		form.add(costsField);
-		
-		CheckBox forBabyField = new CheckBox("forBaby");
-		form.add(forBabyField);
- 	
 		
 		form.add(new SubmitLink("save") {
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
 				
-				if (ticket.getId() == null) {
-					ticketService.insert(ticket);
+				if (modelPlane.getId() == null) {
+					modelPlaneService.insert(modelPlane);
 				} else {
-					ticketService.update(ticket);
+					modelPlaneService.update(modelPlane);
 				}
 
-				setResponsePage(new TicketsPage());
+				setResponsePage(new ModelPlanePage());
 			}
 		});
 

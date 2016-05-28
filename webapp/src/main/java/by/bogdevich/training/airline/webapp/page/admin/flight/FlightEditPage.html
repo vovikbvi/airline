@@ -1,4 +1,44 @@
 <wicket:extend>
+	
+	<form wicket:id="form" class="edit-admin-form">
 	<h2>Edit flight </h2>
+	
+        <label>
+		<span>Flight catalog</span>
+		<select wicket:id="flightCatalog"></select>
+		</label>
+
+	    <label>
+		<span>Registration time:</span>
+		<div><input type="text" wicket:id="registrTime" /></div>
+		</label>
+
+	    <label>
+		<span>Departure time:</span>
+		<div><input type="text" wicket:id="departureTime" /></div>
+		</label>
+
+	    <label>
+		<span>Arrival time:</span>
+		<div><input type="text" wicket:id="arrivalTime" /></div>
+		</label>
+
+       <label>
+		<span>Plane</span>
+		<select wicket:id="plane"></select>
+		</label>
+
+	    <label>
+		<span>Start sale ticket:</span>
+		<div><input type="text" wicket:id="startSaleTicket" /></div>
+		</label>
+ 		
+		<div>
+			<button type="submit" wicket:id="save">SAVE</button>
+		</div>
+
+	</form>
+	<div wicket:id="feedback"></div>
+
 	
 </wicket:extend>

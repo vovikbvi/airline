@@ -1,4 +1,28 @@
 <wicket:extend>
-	<h2>City edit</h2>
+	
+	<form wicket:id="form" class="edit-admin-form">
+		<h2>City edit</h2>
+	
+		<label>
+		<span>City name:</span>
+		<input type="text" wicket:id="name" />
+	    </label>
+	 
+		<label>
+		<span>Country</span>
+		<select wicket:id="country"></select>
+		</label>
+
+		<label>
+		<span>Time zone:</span>
+		<input type="text" wicket:id="timezone" />
+	    </label>
+	 				
+		<div>
+			<button type="submit" wicket:id="save">SAVE</button>
+		</div>
+
+	</form>
+	<div wicket:id="feedback"></div>
 	
 </wicket:extend>

@@ -21,7 +21,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Inject
 	UserProfileDao userProfileDao;
 
-	private boolean checkUserExist(String login) {
+	public boolean checkUserExist(String login) {
 		if (userProfileDao.countLogin(login) == 0) {
 			return false;
 		}

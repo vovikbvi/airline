@@ -1,4 +1,49 @@
 <wicket:extend>
-	<h2>Airport edit</h2>
+
+	<form wicket:id="form" class="edit-admin-form">
+			<h2>Airport edit</h2>
+	
+		<label>
+		<span>Airport name:</span>
+		<input type="text" wicket:id="name" />
+	    </label>
+	 
+		<label>
+		<span>Code IATA:</span>
+		<input type="text" wicket:id="codeIata" />
+	    </label>
+	 
+		<label>
+		<span>Code IACO:</span>
+		<input type="text" wicket:id="codeIcao" />
+	    </label>
+	 
+		<label>
+		<span>City</span>
+		<select wicket:id="city"></select>
+		</label>
+
+		<label>
+		<span>Class weight</span>
+		<select wicket:id="classWeight"></select>
+		</label>
+
+		<label>
+		<span>Coordinates X:</span>
+		<input type="text" wicket:id="coordinatesX" />
+	    </label>
+	 				
+		<label>
+		<span>Coordinates Y:</span>
+		<input type="text" wicket:id="coordinatesY" />
+	    </label>
+	 				
+		<div>
+			<button type="submit" wicket:id="save">SAVE</button>
+		</div>
+
+	</form>
+	<div wicket:id="feedback"></div>
+	
 	
 </wicket:extend>

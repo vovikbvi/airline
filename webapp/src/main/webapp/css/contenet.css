@@ -172,6 +172,14 @@ td {
 }
 .edit-admin-form .button:hover{
     background: #3EB1DD;
-
+}
 
 /*end style for form */
+
+/*style create button*/
+.create-button{
+  margin: 20px 0px 20px 0px;
+}
+
+
+/*end style create button*/

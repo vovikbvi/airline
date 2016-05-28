@@ -1,4 +1,28 @@
 <wicket:extend>
-	<h2>Edit flieght catalog</h2>
+	
+		<form wicket:id="form" class="edit-admin-form">
+	     <h2>Edit flieght catalog</h2>
+	
+        <label>
+		<span>Airport start</span>
+		<select wicket:id="airportStart"></select>
+		</label>
+
+		<label>
+		<span>Airport finish</span>
+		<select wicket:id="airportFinish"></select>
+		</label>
+	
+		<label>
+		<span>Distance:</span>
+		<input type="text" wicket:id="distance" />
+	    </label>
+		
+		<div>
+			<button type="submit" wicket:id="save">SAVE</button>
+		</div>
+
+	</form>
+	<div wicket:id="feedback"></div>
 	
 </wicket:extend>

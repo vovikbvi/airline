@@ -1,13 +1,8 @@
 package by.bogdevich.training.airline.webapp.page.admin.user;
 
-import java.sql.Date;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Arrays;
 
 import javax.inject.Inject;
-import javax.swing.text.DateFormatter;
 
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
@@ -19,17 +14,14 @@ import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.util.convert.IConverter;
 
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserRole;
-import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConverter;
 import by.bogdevich.training.airline.service.UserProfileService;
 import by.bogdevich.training.airline.webapp.common.UserRoleChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
-import by.bogdevich.training.airline.webapp.util.LocalDateConverter;
 
-
+@AuthorizeInstantiation(value = {"ADMIN"})
 public class UserEditPage extends AbstractPage {
 
 	@Inject
@@ -53,6 +45,22 @@ public class UserEditPage extends AbstractPage {
 		Form form = new Form("form", new CompoundPropertyModel<UserProfile>(userProfile));
 		add(form);
 
+		TextField<String> loginField = new TextField<>("login");
+		loginField.setRequired(true);
+		form.add(loginField);
+		loginField.setVisible(true);
+		if (userProfile.getId() != null){
+		loginField.setVisible(false);
+		}
+		
+		TextField<String> passwordField = new TextField<>("password");
+		passwordField.setRequired(true);
+		form.add(passwordField);
+		passwordField.setVisible(true);
+		if (userProfile.getId() != null){
+			passwordField.setVisible(false);
+		}
+		
 		TextField<String> firstNameField = new TextField<>("firstName");
 		firstNameField.setRequired(true);
 		form.add(firstNameField);

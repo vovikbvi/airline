@@ -1,4 +1,54 @@
 <wicket:extend>
+
+	<form wicket:id="form" class="edit-admin-form">
 	<h2>Edit model plane</h2>
+	
+        <label>
+		<span>Manufactured plain</span>
+		<select wicket:id="manufacturedPlane"></select>
+		</label>
+	
+		<label>
+		<span>Model:</span>
+		<input type="text" wicket:id="model" />
+		</label>
+
+		<label>
+		<span>Col passengers buisnes:</span>
+		<input type="text" wicket:id="colPassangersBuisnes" />
+		</label>
+		
+		<label>
+		<span>Col passengers first class:</span>
+		<input type="text" wicket:id="colPassangersFirstclass" />
+		</label>
+		
+		<label>
+		<span>Col passengers economy:</span>
+		<input type="text" wicket:id="colPassangersEconomy" />
+		</label>
+		
+		<label>
+		<span>Weight all baggage:</span>
+		<input type="text" wicket:id="weightAllBaggage" />
+		</label>
+		
+		<label>
+		<span>AVG speed:</span>
+		<input type="text" wicket:id="avgSpeed" />
+		</label>
+		
+        <label>
+		<span>Class weight</span>
+		<select wicket:id="classWeight"></select>
+		</label>
+
+ 		
+		<div>
+			<button type="submit" wicket:id="save">SAVE</button>
+		</div>
+
+	</form>
+	<div wicket:id="feedback"></div>
 	
 </wicket:extend>

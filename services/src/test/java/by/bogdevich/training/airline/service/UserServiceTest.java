@@ -75,7 +75,7 @@ public class UserServiceTest extends AbstractTest{
 			userProfile.setPhoneNumber("+375297121212" + i);
 			userProfile.setCountOder(1);
 			userProfile.setVip(false);
-			userProfile.setRole(UserRole.admin);
+			userProfile.setRole(UserRole.ADMIN);
 			userProfile.setAceptRegistr(false);
 
 			userProfileService.registration(userProfile);
@@ -115,7 +115,7 @@ public class UserServiceTest extends AbstractTest{
 			userProfile.setPhoneNumber("+375297121212");
 			userProfile.setCountOder(0);
 			userProfile.setVip(false);
-			userProfile.setRole(UserRole.admin);
+			userProfile.setRole(UserRole.ADMIN);
 			userProfile.setAceptRegistr(false);
 
 			userProfileService.registration(userProfile);
@@ -148,7 +148,7 @@ public class UserServiceTest extends AbstractTest{
 		userProfile.setPassportNumber("abcdfe");
 		userProfile.setPhoneNumber("+375297121212");
 		userProfile.setVip(false);
-		userProfile.setRole(UserRole.admin);
+		userProfile.setRole(UserRole.ADMIN);
 		userProfile.setAceptRegistr(false);
 
 		userProfileService.registration(userProfile);

@@ -57,12 +57,6 @@ public class UserListPanel extends Panel {
 				checkboxVip.setEnabled(false);
 				item.add(checkboxVip);
 
-				// FormatStyle dateStyle = FormatStyle.SHORT;
-				// DateTimeFormatter formater =
-				// DateTimeFormatter.ofLocalizedDate(dateStyle);
-				// String dateRegistr =
-				// userProfile.getDateRegistr().format(formater);
-
 				item.add(
 						DateLabel.forDatePattern("date-registr", Model.of(userProfile.getDateRegistr()), "dd-MM-yyyy"));
 				item.add(new Label("role", userProfile.getRole()));

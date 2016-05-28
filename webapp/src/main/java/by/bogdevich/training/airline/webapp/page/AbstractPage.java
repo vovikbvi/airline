@@ -3,7 +3,6 @@ package by.bogdevich.training.airline.webapp.page;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 
-import by.bogdevich.training.airline.webapp.component.menu.Loger;
 import by.bogdevich.training.airline.webapp.component.menu.MenuUser;
 import by.bogdevich.training.airline.webapp.page.home.HomePage;
 
