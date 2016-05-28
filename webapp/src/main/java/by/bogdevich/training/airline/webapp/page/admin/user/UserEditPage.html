@@ -4,13 +4,17 @@
 	<form wicket:id="form" class="edit-admin-form">
 	<h2>Edit user profile</h2>
 	
+	<wicket:enclosure child="login">
 		<label><span>Login:</span>
 		<input type="text" wicket:id="login" />
 		</label>
-		
+	</wicket:enclosure>	
+	
+	<wicket:enclosure child="password">
 		<label><span>Password:</span>
 		<input type="text" wicket:id="password" />
 		</label>
+	</wicket:enclosure>
 		
 		<label><span>firstName:</span>
 		<input type="text" wicket:id="firstName" />

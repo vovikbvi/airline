@@ -46,20 +46,14 @@ public class UserEditPage extends AbstractPage {
 		add(form);
 
 		TextField<String> loginField = new TextField<>("login");
+		loginField.setVisible(userProfile.getId() == null);
 		loginField.setRequired(true);
 		form.add(loginField);
-		loginField.setVisible(true);
-		if (userProfile.getId() != null){
-		loginField.setVisible(false);
-		}
 		
 		TextField<String> passwordField = new TextField<>("password");
+		passwordField.setVisible(userProfile.getId() == null);
 		passwordField.setRequired(true);
 		form.add(passwordField);
-		passwordField.setVisible(true);
-		if (userProfile.getId() != null){
-			passwordField.setVisible(false);
-		}
 		
 		TextField<String> firstNameField = new TextField<>("firstName");
 		firstNameField.setRequired(true);
@@ -89,7 +83,8 @@ public class UserEditPage extends AbstractPage {
 		form.add(vipField);
 		
 		DateTextField dateRegistrField = new DateTextField("dateRegistr", "dd-MM-yyyy");
-		dateRegistrField.add(new DatePicker());
+		//dateRegistrField.add(new DatePicker());
+		dateRegistrField.setEnabled(false);
         dateRegistrField.setRequired(true);
 		form.add(dateRegistrField);
 
