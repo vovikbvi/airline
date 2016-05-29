@@ -1,8 +1,8 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
-
+<h2><label wicket:id="header"></label></h2>
 
 	<form wicket:id="form" class="edit-admin-form">
-	<h2>Edit user profile</h2>
+	
 	
 	<wicket:enclosure child="login">
 		<label><span>Login:</span>
@@ -41,31 +41,7 @@
 		<input type="text" wicket:id="countOder" />
 		</label>
 		</wicket:enclosure>
-		
-		<wicket:enclosure child="vip">
-		<label><span>VIP:</span>
-		<input type="checkbox" wicket:id="vip" />
-		</label>
-		</wicket:enclosure>
-		
-		<wicket:enclosure child="role">
-		<label><span>User role</span>
-		<select wicket:id="role"></select>
-		</label>
-		</wicket:enclosure>
-		
-		<wicket:enclosure child="dateRegistr">
-		<label><span>date registration:</span>
-		<div><input type="text" wicket:id="dateRegistr" /></div>
-		</label>
-		</wicket:enclosure>
-		
-		<wicket:enclosure child="aceptRegistr">
-  		<label><span>accept registration:</span>
-		<input type="checkbox" wicket:id="aceptRegistr" />
-		</label>
-		</wicket:enclosure>
-		
+				
 		<div><button type="submit" wicket:id="save">SAVE</button></div>
 
 	</form>

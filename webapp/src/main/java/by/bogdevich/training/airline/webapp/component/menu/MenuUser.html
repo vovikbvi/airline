@@ -9,7 +9,14 @@
 			<li><a wicket:id="my-profile">MY PROFILE</a></li>
 			<li><a wicket:id="feedback">FEEDBACK</a></li>
 			<li><a wicket:id="setting">SETTINGS</a></li>
+			
+			<wicket:enclosure child="login">
 			<li><a wicket:id="login">LOGIN</a></li>
+				<ul>
+					<li><a wicket:id="registration">registration</a></li>
+				</ul>
+			</wicket:enclosure>	
+			
 			<li><a wicket:id="logout">LOGOUT</a></li>
 			
 		</ul>

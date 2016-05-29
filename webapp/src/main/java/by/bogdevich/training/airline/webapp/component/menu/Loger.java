@@ -12,7 +12,8 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.util.string.Strings;
 
-import by.bogdevich.training.airline.webapp.page.registr.RegistrPage;
+import by.bogdevich.training.airline.webapp.page.registr.RegistrationPage;
+
 
 public class Loger extends Panel {
 
@@ -33,7 +34,7 @@ public class Loger extends Panel {
 		add(new Link("registration") {
 			@Override
 			public void onClick() {
-				setResponsePage(new RegistrPage());
+				setResponsePage(new RegistrationPage());
 			}
 		});
 

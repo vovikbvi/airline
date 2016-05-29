@@ -1,4 +1,4 @@
-package by.bogdevich.training.airline.webapp.page.admin.user;
+package by.bogdevich.training.airline.webapp.page.registr;
 
 import java.util.Arrays;
 
@@ -10,11 +10,13 @@ import org.apache.wicket.authroles.authorization.strategies.role.annotations.Aut
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.yui.calendar.DatePicker;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -25,22 +27,23 @@ import by.bogdevich.training.airline.service.UserProfileService;
 import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
 import by.bogdevich.training.airline.webapp.common.UserRoleChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
+import by.bogdevich.training.airline.webapp.page.home.HomePage;
 
-@AuthorizeInstantiation(value = {"ADMIN"})
+//@AuthorizeInstantiation(value = {"ADMIN"})
 //@AuthorizeAction(roles = {"ADMIN"}, action = Action.RENDER)
-public class UserEditPage extends AbstractPage {
+public class RegistrationPage extends AbstractPage {
 
 	@Inject
 	private UserProfileService userProfileService;
 
 	private UserProfile userProfile;
 	
-	public UserEditPage() {
+	public RegistrationPage() {
 		super();
 	}
 	
 	
-	public UserEditPage(UserProfile userProfile) {
+	public RegistrationPage(UserProfile userProfile) {
 		super();
 		this.userProfile = userProfile;
 	}
@@ -49,11 +52,19 @@ public class UserEditPage extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 		
+	
+			String stringRegistration = "Registration new user";
+			String stringEditProfile = String.format("Edit my proifile(%s)", userProfile.getLogin());
+			
+			String stringHeader = (userProfile.getId() == null) ? stringRegistration : stringEditProfile;
+			add(new Label("header", stringHeader));
+
+		
 		Form form = new Form("form", new CompoundPropertyModel<UserProfile>(userProfile));
 		add(form);
-
+		
 		TextField<String> loginField = new TextField<>("login");
-		loginField.setVisible(userProfile.getId() == null);
+		loginField.setEnabled(userProfile.getId() == null);
 		loginField.setRequired(true);
 		form.add(loginField);
 		
@@ -83,29 +94,9 @@ public class UserEditPage extends AbstractPage {
 		form.add(phoneNumberField);
 		
 		TextField<Integer> countOderField = new TextField<>("countOder");
-		countOderField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
-		//countOderField.setVisible(userProfile.getId() == null);
+		countOderField.setVisible(userProfile.getId() != null);
+		countOderField.setVisible(false);
 		form.add(countOderField);
-		
-		CheckBox vipField = new CheckBox("vip");
-		vipField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
-		//vipField.setVisible(userProfile.getId() == null);
-		form.add(vipField);
-		
-		DateTextField dateRegistrField = new DateTextField("dateRegistr", "dd-MM-yyyy");
-		dateRegistrField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
-		dateRegistrField.setEnabled(false);
-		form.add(dateRegistrField);
-
-		
-        DropDownChoice<UserRole> roleField = new DropDownChoice<>("role", Arrays.asList(UserRole.values()), UserRoleChoiceRenderer.INSTANCE);        
-        roleField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
-        roleField.setRequired(true);
-        form.add(roleField);
-        
-		CheckBox aceptRegistrField = new CheckBox("aceptRegistr");
-		aceptRegistrField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
-		form.add(aceptRegistrField);
 
 	
 		form.add(new SubmitLink("save") {
@@ -118,7 +109,7 @@ public class UserEditPage extends AbstractPage {
 				} else {
 					userProfileService.update(userProfile);
 				}
-				setResponsePage(new UsersPage());
+				setResponsePage(new HomePage());
 			}
 		});
 

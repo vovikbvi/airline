@@ -14,7 +14,6 @@ import by.bogdevich.training.airline.webapp.page.admin.plane.PlanePage;
 import by.bogdevich.training.airline.webapp.page.admin.price.PricesPage;
 import by.bogdevich.training.airline.webapp.page.admin.ticket.TicketsPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
-import by.bogdevich.training.airline.webapp.page.registr.RegistrPage;
 
 public class SettingPage extends AbstractPage {
 

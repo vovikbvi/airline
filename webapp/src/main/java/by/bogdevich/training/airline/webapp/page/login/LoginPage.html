@@ -2,8 +2,8 @@
 <head>
 <meta charset="utf-8" />
 <title>Apache Wicket Quickstart</title>
+<link href="css/login.css" rel="stylesheet" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold' rel='stylesheet' type='text/css' />
-
 
 
 
@@ -11,22 +11,17 @@
 <body>
 
 <div class="login">
-		<h1>
-			Login
-		</h1>
-		<form wicket:id="form">
-			<p class="input">
-				<input type="text" wicket:id="username"  autocomplete="off" />
-			</p>
-			<p class="input">
-				<input type="password" wicket:id="password" />
-			</p>
-			<button type="submit" class="btn waves-effect" wicket:id="submit-btn">
-				<b>login</b>
-			</button>
-		</form>
-		<div wicket:id="feedbackpanel"></div>
-	</div>
+  <div class="login-triangle"></div>
+  
+  <h2 class="login-header">Log in</h2>
+
+  <form wicket:id="form" class="login-container">
+    <p><input type="text" wicket:id="username" placeholder="Login"></p>
+    <p><input type="password" wicket:id="password" placeholder="Password"></p>
+    <p><input type="submit" wicket:id="submit-btn" value="Log in"></p>
+  </form>
+  <div wicket:id="feedbackpanel"></div>
+</div>
 
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import by.bogdevich.training.airline.dataaccess.UserProfileDao;
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
+import by.bogdevich.training.airline.datamodel.UserRole;
 import by.bogdevich.training.airline.service.UserProfileService;
 import by.bogdevich.training.airline.service.util.SendMail;
 
@@ -41,9 +42,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 	}
 
 	private void AcceptRegistration(UserProfile userProfile) {
-		// sendMessage(userProfile);
+		sendMessage(userProfile);
 		userProfile.setCountOder(0);
+		userProfile.setVip(false);
 		userProfile.setDateRegistr(new Date());
+		userProfile.setRole(UserRole.PASSANGER);
+		userProfile.setAceptRegistr(false);
 		userProfileDao.insert(userProfile);
 		LOGGER.info("Add user {}", userProfile);
 	}

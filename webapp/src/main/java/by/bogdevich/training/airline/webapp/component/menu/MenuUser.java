@@ -1,16 +1,19 @@
 package by.bogdevich.training.airline.webapp.component.menu;
 
+import org.apache.wicket.authorization.Action;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserRole;
 import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
+import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
 import by.bogdevich.training.airline.webapp.page.feedback.FeedbackPage;
 import by.bogdevich.training.airline.webapp.page.home.HomePage;
 import by.bogdevich.training.airline.webapp.page.login.LoginPage;
 import by.bogdevich.training.airline.webapp.page.myoders.MyOdersPage;
 import by.bogdevich.training.airline.webapp.page.profile.ProfilePage;
-import by.bogdevich.training.airline.webapp.page.registr.RegistrPage;
+import by.bogdevich.training.airline.webapp.page.registr.RegistrationPage;
 import by.bogdevich.training.airline.webapp.page.schedule.SchedulePage;
 import by.bogdevich.training.airline.webapp.page.search.SearchPage;
 import by.bogdevich.training.airline.webapp.page.setting.SettingPage;
@@ -53,11 +56,11 @@ public class MenuUser extends Panel {
 				setResponsePage(new MyOdersPage());
 			}
 		});
-
+		
 		add(new Link("my-profile") {
 			@Override
 			public void onClick() {
-				setResponsePage(new ProfilePage());
+				setResponsePage(new RegistrationPage(AuthorizedSession.get().getLoggedUser()));
 			}
 		});
 
@@ -74,14 +77,15 @@ public class MenuUser extends Panel {
 				setResponsePage(new SettingPage());
 			}
 		};
+		
 		add(settingsLink);
 		
 		boolean isLoginAdminOrOperator;
 		boolean isLogIn = AuthorizedSession.get().isSignedIn();
 		
-		if (isLogIn && AuthorizedSession.get().getLoggedUser().getRole().name() == "admin"){
+		if (isLogIn && AuthorizedSession.get().getLoggedUser().getRole() == UserRole.ADMIN){
 		isLoginAdminOrOperator = true;
-		}else if(isLogIn && AuthorizedSession.get().getLoggedUser().getRole().name() == "operator"){
+		}else if(isLogIn && AuthorizedSession.get().getLoggedUser().getRole() == UserRole.OPERATOR){
 			isLoginAdminOrOperator = true;
 		}else{
 			isLoginAdminOrOperator = false;
@@ -101,6 +105,16 @@ public class MenuUser extends Panel {
 			}
 		};
 		add(logIn);
+		
+		Link registration = new Link("registration") {
+			@Override
+			public void onClick() {
+				setResponsePage(new RegistrationPage(new UserProfile()));
+			}
+		};
+		add(registration);
+		
+		
 
 		Link logOut = new Link("logout") {
 			@Override
