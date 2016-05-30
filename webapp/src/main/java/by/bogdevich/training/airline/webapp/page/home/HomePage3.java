@@ -18,18 +18,10 @@ import org.apache.wicket.model.PropertyModel;
 
 import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.City;
-import by.bogdevich.training.airline.datamodel.ClassWeight;
-import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.service.AirportService;
 import by.bogdevich.training.airline.service.CityService;
-import by.bogdevich.training.airline.webapp.common.AirportChoiceRenderer;
 import by.bogdevich.training.airline.webapp.common.CityChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.ClassWeightChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
-import by.bogdevich.training.airline.webapp.page.admin.airport.AirportEditPage;
-import by.bogdevich.training.airline.webapp.page.admin.airport.AirportPage;
-import by.bogdevich.training.airline.webapp.page.login.LoginPage;
-import by.bogdevich.training.airline.webapp.page.search.SearchPage;
 
 public class HomePage3 extends AbstractPage {
 
@@ -51,8 +43,9 @@ public class HomePage3 extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 		
-//		Form form = new Form("form", new CompoundPropertyModel<City>(city));
-		Form form = new Form("form", new PropertyModel<City>(city, "name"));
+		Form form = new Form("form", new CompoundPropertyModel<City>(city));
+		
+		//Form form = new Form("form", new PropertyModel<City>(city, "name"));
 		add(form);
  
 		List<City> listAirport= new ArrayList<City>(cityService.getAll());
@@ -64,8 +57,10 @@ public class HomePage3 extends AbstractPage {
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-				//System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! res");
+				System.out.println("!!!!!!!!!!!!!"+ airportField.getModelObject().getName());
+			
 				//setResponsePage(new AirportEditPage(airport));
+				
 			}
 		});
 

@@ -2,6 +2,7 @@ package by.bogdevich.training.airline.webapp.page.home;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,8 +16,10 @@ import org.apache.wicket.model.PropertyModel;
 
 
 import by.bogdevich.training.airline.datamodel.Airport;
+import by.bogdevich.training.airline.datamodel.City;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.service.AirportService;
+import by.bogdevich.training.airline.service.CityService;
 import by.bogdevich.training.airline.webapp.common.AirportChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
@@ -27,6 +30,9 @@ public class HomePage extends AbstractPage {
 
 	@Inject
 	private AirportService airportService;
+	
+	@Inject 
+	private CityService cityService;
 
 	private FlightCatalog flightCatalog;
 	
@@ -49,16 +55,19 @@ public class HomePage extends AbstractPage {
 	        });
 
 		
-		List<String> SEARCH_ENGINES = Arrays.asList(new String[] {
-				"Google", "Bing", "Baidu" });
-
+		List<String> cityList = new ArrayList<String>();
+		
+		//List<City> listAirport= ;
+		for (City city : new ArrayList<City>(cityService.getAll())) {
+		cityList.add(city.getName());
+	}
 		//make Google selected by default
 		
 		
 			add(new FeedbackPanel("feedback"));
 
 			DropDownChoice<String> listSites = new DropDownChoice<String>(
-					"sites", new PropertyModel<String>(this, "selected"), SEARCH_ENGINES);
+					"sites", new PropertyModel<String>(this, "selected"), cityList);
 
 			Form<?> form = new Form<Void>("form") {
 				@Override
