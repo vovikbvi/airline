@@ -91,7 +91,7 @@ public class AirportEditPage extends AbstractPage {
 				} else {
 					airportService.update(airport);
 				}
-
+				
 				setResponsePage(new AirportPage());
 			}
 		});
