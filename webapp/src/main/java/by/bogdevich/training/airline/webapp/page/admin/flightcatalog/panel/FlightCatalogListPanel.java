@@ -38,7 +38,7 @@ public class FlightCatalogListPanel extends Panel {
 
 		flightCatalogDataProvider flightCatalogDataProvider = new flightCatalogDataProvider();
 
-		DataView<FlightCatalog> dataView = new DataView<FlightCatalog>("rows", flightCatalogDataProvider, 5) {
+		DataView<FlightCatalog> dataView = new DataView<FlightCatalog>("rows", flightCatalogDataProvider, 20) {
 			@Override
 			protected void populateItem(Item<FlightCatalog> item) {
 				FlightCatalog flightCatalog = item.getModelObject();
@@ -114,6 +114,8 @@ public class FlightCatalogListPanel extends Panel {
 			
 			flightCatalogFilter.setFetchAirportStart(true);
 			flightCatalogFilter.setFetchAirportFinish(true);
+			
+			//flightCatalogFilter.setCityStart("updatedName");
 
 			return flightCatalogService.getRecordsSorted(flightCatalogFilter).iterator();
 		}

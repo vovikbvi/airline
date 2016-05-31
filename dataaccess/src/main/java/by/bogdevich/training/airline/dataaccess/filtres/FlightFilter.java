@@ -6,6 +6,8 @@ public class FlightFilter extends AbstractFilter {
 
 	private Date startDepartureTime;
 	private Date finishDepartureTime;
+	private String cityStart;
+	private String cityFinish;
 	private boolean fetchFlieghtCatalog;
 	private boolean fetchPlane;
 
@@ -39,6 +41,22 @@ public class FlightFilter extends AbstractFilter {
 
 	public void setFetchPlane(boolean fetchPlane) {
 		this.fetchPlane = fetchPlane;
+	}
+
+	public String getCityStart() {
+		return cityStart;
+	}
+
+	public void setCityStart(String cityStart) {
+		this.cityStart = cityStart;
+	}
+
+	public String getCityFinish() {
+		return cityFinish;
+	}
+
+	public void setCityFinish(String cityFinish) {
+		this.cityFinish = cityFinish;
 	}
 
 }

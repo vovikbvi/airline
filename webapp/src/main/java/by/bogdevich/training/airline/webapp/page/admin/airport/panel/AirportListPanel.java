@@ -55,7 +55,7 @@ public class AirportListPanel extends Panel {
 
 		airportDataProvider airportDataProvider = new airportDataProvider();
 
-		DataView<Airport> dataView = new DataView<Airport>("rows", airportDataProvider, 5) {
+		DataView<Airport> dataView = new DataView<Airport>("rows", airportDataProvider, 20) {
 			@Override
 			protected void populateItem(Item<Airport> item) {
 				Airport airport = item.getModelObject();

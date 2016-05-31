@@ -7,6 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
@@ -16,10 +17,6 @@ import by.bogdevich.training.airline.datamodel.Airport_;
 import by.bogdevich.training.airline.datamodel.City_;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.datamodel.FlightCatalog_;
-import by.bogdevich.training.airline.datamodel.Ticket_;
-import by.bogdevich.training.airline.datamodel.UserProfile_;
-
-
 
 @Repository
 public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> implements FlightCatalogDao {
@@ -37,7 +34,8 @@ public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> i
 
 		cq.select(from);
 
-		
+		handleFilterParameters(filter, cb, cq, from);
+
 		// set fetching
 		if (filter.isFetchAirportStart()) {
 			from.fetch(FlightCatalog_.airportStart, JoinType.LEFT);
@@ -49,26 +47,25 @@ public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> i
 		// set sort params
 		if (filter.getSortProperty() != null) {
 			Path<Object> expression;
-	          if (Airport_.name.equals(filter.getSortProperty())) {
-	                expression = from.get(FlightCatalog_.airportStart).get(filter.getSortProperty());
-	            } else {
-	                expression = from.get(filter.getSortProperty());
-	            }
-	 
+			if (Airport_.name.equals(filter.getSortProperty())) {
+				expression = from.get(FlightCatalog_.airportStart).get(filter.getSortProperty());
+			} else {
+				expression = from.get(filter.getSortProperty());
+			}
+
 			cq.orderBy(new OrderImpl(expression, filter.isSortOrder()));
 		}
-		
+
 		TypedQuery<FlightCatalog> q = em.createQuery(cq);
 
 		// set paging
 		setPaging(filter, q);
-		
+
 		// set execute query
 		List<FlightCatalog> allitems = q.getResultList();
 		return allitems;
 	}
 
-	
 	@Override
 	public FlightCatalog getFullFlightCatalog(FlightCatalog flightCatalog) {
 		EntityManager em = getEntityManager();
@@ -92,8 +89,24 @@ public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> i
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		Root<FlightCatalog> from = cq.from(FlightCatalog.class);
 		cq.select(cb.count(from));
+
+		handleFilterParameters(filter, cb, cq, from);
 		TypedQuery<Long> q = em.createQuery(cq);
 		return q.getSingleResult();
 	}
-	
+
+	private void handleFilterParameters(FlightCatalogFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+			Root<FlightCatalog> from) {
+		if (filter.getCityStart() != null && filter.getCityStart() != null) {
+			Predicate fName = cb.equal(from.get(FlightCatalog_.airportStart).get(Airport_.city).get(City_.name),
+					filter.getCityStart());
+			// Predicate fName =
+			// cb.equal(from.get(FlightCatalog_.airportStart).get(Airport_.city).get(City_.name),
+			// filter.getCityStart());
+			// Predicate lName = cb.equal(from.get(UserProfile_.lastName),
+			// filter.getFirstName());
+			cq.where(cb.and(fName));
+		}
+	}
+
 }

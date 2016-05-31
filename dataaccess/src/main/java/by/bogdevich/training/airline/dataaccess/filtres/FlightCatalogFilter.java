@@ -4,6 +4,9 @@ public class FlightCatalogFilter extends AbstractFilter {
 
 	private boolean isFetchAirportStart;
 	private boolean isFetchAirportFinish;
+	private String cityStart;
+	private String cityFinish;
+	
 
 	public boolean isFetchAirportStart() {
 		return isFetchAirportStart;
@@ -21,4 +24,21 @@ public class FlightCatalogFilter extends AbstractFilter {
 		this.isFetchAirportFinish = isFetchAirportFinish;
 	}
 
+	public String getCityStart() {
+		return cityStart;
+	}
+
+	public void setCityStart(String cityStart) {
+		this.cityStart = cityStart;
+	}
+
+	public String getCityFinish() {
+		return cityFinish;
+	}
+
+	public void setCityFinish(String cityFinish) {
+		this.cityFinish = cityFinish;
+	}
+
+	
 }

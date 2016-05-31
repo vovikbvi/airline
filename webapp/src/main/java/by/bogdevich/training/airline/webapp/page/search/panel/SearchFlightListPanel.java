@@ -1,4 +1,4 @@
-package by.bogdevich.training.airline.webapp.page.admin.flight.panel;
+package by.bogdevich.training.airline.webapp.page.search.panel;
 
 import java.io.Serializable;
 import java.util.Iterator;
@@ -27,23 +27,38 @@ import by.bogdevich.training.airline.service.FlightService;
 import by.bogdevich.training.airline.webapp.page.admin.flight.FlightEditPage;
 import by.bogdevich.training.airline.webapp.page.admin.flight.FlightPage;
 
-public class FlightListPanel extends Panel {
+public class SearchFlightListPanel extends Panel {
 
 	@Inject
 	private FlightService flightService;
+	
+	private String cityStart;
+	private String cityFinish;
 
-	public FlightListPanel(String id) {
+	public SearchFlightListPanel(String id) {
 		super(id);
+	}
 
-		flightDataProvider flightDataProvider = new flightDataProvider();
+	public SearchFlightListPanel(String id, String cityStart, String cityFinish) {
+		super(id);
+		this.cityStart = cityStart;
+		this.cityFinish = cityFinish;
+	}
 
-		DataView<Flight> dataView = new DataView<Flight>("rows", flightDataProvider, 20) {
+	@Override
+	protected void onInitialize() {
+		super.onInitialize();
+		searchFlightDataProvider searchFlightDataProvider = new searchFlightDataProvider();
+
+		DataView<Flight> dataView = new DataView<Flight>("rows", searchFlightDataProvider, 20) {
 			@Override
 			protected void populateItem(Item<Flight> item) {
 				Flight flight = item.getModelObject();
 
 				item.add(new Label("id", flight.getId()));
 				item.add(new Label("flight-catalog", flight.getFlightCatalog().getId()));
+				item.add(new Label("airport-start", flight.getFlightCatalog().getAirportStart().getName()));
+				item.add(new Label("airport-finish", flight.getFlightCatalog().getAirportFinish().getName()));
 				item.add(DateLabel.forDatePattern("registr-time", Model.of(flight.getRegistrTime()), "dd-MM-yyyy hh:mm"));
 				item.add(DateLabel.forDatePattern("departure-time", Model.of(flight.getDepartureTime()), "dd-MM-yyyy hh:mm"));
 				item.add(DateLabel.forDatePattern("arrival-time", Model.of(flight.getArrivalTime()), "dd-MM-yyyy hh:mm"));
@@ -79,21 +94,21 @@ public class FlightListPanel extends Panel {
 
 		//проверить сортировку по plane
 		
-		 add(new OrderByBorder("sort-id", Flight_.id, flightDataProvider));
-		 add(new OrderByBorder("sort-flight-catalog", FlightCatalog_.id, flightDataProvider));
-		 add(new OrderByBorder("sort-registr-time", Flight_.registrTime, flightDataProvider));
-		 add(new OrderByBorder("sort-departure-time", Flight_.departureTime, flightDataProvider));
-		 add(new OrderByBorder("sort-arrival-time", Flight_.arrivalTime, flightDataProvider));
-		 add(new OrderByBorder("sort-plane", Flight_.plane, flightDataProvider));
-		 add(new OrderByBorder("sort-start-sale-ticket", Flight_.startSaleTicket, flightDataProvider));
+		 add(new OrderByBorder("sort-id", Flight_.id, searchFlightDataProvider));
+		 add(new OrderByBorder("sort-flight-catalog", FlightCatalog_.id, searchFlightDataProvider));
+		 add(new OrderByBorder("sort-registr-time", Flight_.registrTime, searchFlightDataProvider));
+		 add(new OrderByBorder("sort-departure-time", Flight_.departureTime, searchFlightDataProvider));
+		 add(new OrderByBorder("sort-arrival-time", Flight_.arrivalTime, searchFlightDataProvider));
+		 add(new OrderByBorder("sort-plane", Flight_.plane, searchFlightDataProvider));
+		 add(new OrderByBorder("sort-start-sale-ticket", Flight_.startSaleTicket, searchFlightDataProvider));
 	
  	}
 
-	private class flightDataProvider extends SortableDataProvider<Flight, Serializable> {
+	private class searchFlightDataProvider extends SortableDataProvider<Flight, Serializable> {
 
 		private FlightFilter flightFilter;
 
-		public flightDataProvider() {
+		public searchFlightDataProvider() {
 			super();
 			
 			flightFilter = new FlightFilter();
@@ -113,6 +128,9 @@ public class FlightListPanel extends Panel {
 			
 			flightFilter.setFetchFlieghtCatalog(true);
 			flightFilter.setFetchPlane(true);
+			
+			flightFilter.setCityStart(cityStart);
+			flightFilter.setCityFinish(cityFinish);
 
 			return flightService.getRecordsSorted(flightFilter).iterator();
 		}
@@ -128,5 +146,4 @@ public class FlightListPanel extends Panel {
 		}
 
 	}
-
 }
