@@ -121,8 +121,8 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 		}
 		if (filter.getCityStart() != null && filter.getCityFinish() != null) {
 			Predicate cityStart = cb.equal(from.get(Flight_.flightCatalog).get(FlightCatalog_.airportStart).get(Airport_.city).get(City_.name), filter.getCityStart());
-			//Predicate cityFinish = cb.equal(from.get(Flight_.flightCatalog).get(FlightCatalog_.airportFinish).get(Airport_.city).get(City_.name), filter.getCityFinish());
-			cq.where(cb.and(cityStart));
+			Predicate cityFinish = cb.equal(from.get(Flight_.flightCatalog).get(FlightCatalog_.airportFinish).get(Airport_.city).get(City_.name), filter.getCityFinish());
+			cq.where(cb.and(cityStart, cityFinish));
 			}
 	}
 

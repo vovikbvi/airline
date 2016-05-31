@@ -1,3 +1,54 @@
 <wicket:extend>
-	<h2>Registration</h2>
+	<h2>Book ticket</h2>
+	
+		<form wicket:id="form" class="edit-admin-form">
+ 		
+		<label>
+		<span>Number seats:</span>
+		<input type="text" wicket:id="numberSeats" />
+	    </label>
+	    
+		<label>
+		<span>Baggage:</span>
+		<input type="checkbox" wicket:id="baggage" />
+		</label>
+		
+		<label>
+		<span>Weight baggage:</span>
+		<input type="text" wicket:id="weightBaggage" />
+		</label>
+		
+		<label>
+		<span>Ticket tupe</span>
+		<select wicket:id="ticketTupe"></select>
+		</label>
+		
+		<label>	
+		<span>Ticket class</span>
+		<select wicket:id="ticketClass"></select>
+		</label>
+		
+		<label>
+		<span>Priority registration:</span>
+		<input type="checkbox" wicket:id="priorityRegistration" />
+		</label>
+		
+		<label>
+		<span>Priority seats:</span>
+		<input type="checkbox" wicket:id="prioritySeats" />
+		</label>
+		
+		<label>
+		<span>For baby:</span>
+		<input type="checkbox" wicket:id="forBaby" />
+		</label>
+		
+		
+		<div>
+			<button type="submit" wicket:id="save">SAVE</button>
+		</div>
+
+	</form>
+	<div wicket:id="feedback"></div>
+	
 </wicket:extend>

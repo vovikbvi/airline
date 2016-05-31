@@ -13,6 +13,7 @@ import by.bogdevich.training.airline.dataaccess.FlightCatalogDao;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightCatalogFilter;
 import by.bogdevich.training.airline.dataaccess.filtres.ManufacturedPlaneFilter;
 import by.bogdevich.training.airline.datamodel.Country;
+import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 import by.bogdevich.training.airline.service.FlightCatalogService;
@@ -76,6 +77,11 @@ public class FlightCatalogServiceImpl implements FlightCatalogService {
 	public List<FlightCatalog> getRecordsSorted(FlightCatalogFilter filter) {
 		return flightCatalogDao.getRecordsSorted(filter);
 }
+
+	@Override
+	public FlightCatalog getFullFlieghtCatalog(FlightCatalog flightCatalog) {
+		return flightCatalogDao.getFullFlightCatalog(flightCatalog);
+	}
 
 	
 	@Override

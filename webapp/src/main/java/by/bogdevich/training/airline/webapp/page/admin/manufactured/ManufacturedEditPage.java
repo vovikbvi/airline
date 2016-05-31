@@ -53,7 +53,7 @@ public class ManufacturedEditPage extends AbstractPage {
 					manufacturedPlainService.update(manufacturedPlane);
 				}
 
-				setResponsePage(new ManufacturedEditPage());
+				setResponsePage(new ManufacturedPage());
 			}
 		});
 
