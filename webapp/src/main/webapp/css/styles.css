@@ -179,3 +179,9 @@ background-color:#FFF; /*highlight the background behind the text*/
 	float:left;
 
 }
+
+.language-comp select {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}

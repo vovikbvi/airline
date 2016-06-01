@@ -23,7 +23,7 @@ import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserRole;
 import by.bogdevich.training.airline.service.UserProfileService;
 import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
-import by.bogdevich.training.airline.webapp.common.UserRoleChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.UserRoleChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 
 @AuthorizeInstantiation(value = {"ADMIN"})

@@ -19,8 +19,8 @@ import by.bogdevich.training.airline.datamodel.Plane;
 import by.bogdevich.training.airline.service.FlightCatalogService;
 import by.bogdevich.training.airline.service.FlightService;
 import by.bogdevich.training.airline.service.PlaneService;
-import by.bogdevich.training.airline.webapp.common.FlightCatalogChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.PlaneChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.FlightCatalogChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.PlaneChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 
 @AuthorizeInstantiation(value = {"ADMIN", "OPERATOR"})

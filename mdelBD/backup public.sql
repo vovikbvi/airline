@@ -362,7 +362,7 @@ CREATE TABLE ticket (
     number_seats integer,
     date_bought timestamp without time zone,
     baggage boolean DEFAULT false,
-    weight_baggage numeric DEFAULT 0.0 NOT NULL,
+    weight_baggage numeric DEFAULT 0.0,
     ticket_tupe integer,
     ticket_class integer,
     priority_registration boolean DEFAULT false,

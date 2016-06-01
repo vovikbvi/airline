@@ -18,8 +18,8 @@ import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.service.ManufacturedPlainService;
 import by.bogdevich.training.airline.service.ModelPlaneService;
-import by.bogdevich.training.airline.webapp.common.ClassWeightChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.ManufacturedPlaneChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.ClassWeightChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.ManufacturedPlaneChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 
 

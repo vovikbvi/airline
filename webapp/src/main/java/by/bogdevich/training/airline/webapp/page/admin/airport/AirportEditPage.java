@@ -19,9 +19,9 @@ import by.bogdevich.training.airline.datamodel.ClassWeight;
 import by.bogdevich.training.airline.datamodel.Country;
 import by.bogdevich.training.airline.service.AirportService;
 import by.bogdevich.training.airline.service.CityService;
-import by.bogdevich.training.airline.webapp.common.CityChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.ClassWeightChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.CountryChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.CityChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.ClassWeightChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.CountryChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 import by.bogdevich.training.airline.webapp.page.admin.city.CityPage;
 

@@ -1,5 +1,7 @@
 package by.bogdevich.training.airline.webapp.app;
 
+import java.util.Locale;
+
 import javax.inject.Inject;
 
 import org.apache.wicket.Session;
@@ -10,6 +12,7 @@ import org.apache.wicket.request.Request;
 
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.service.UserProfileService;
+import by.bogdevich.training.airline.webapp.component.licalization.LanguageSelectionComponent;
 
 public class AuthorizedSession extends AuthenticatedWebSession {
     @Inject
@@ -29,6 +32,16 @@ public class AuthorizedSession extends AuthenticatedWebSession {
         return (AuthorizedSession) Session.get();
     }
 
+    @Override
+    public Locale getLocale() {
+        Locale locale = super.getLocale();
+        if (locale == null || !LanguageSelectionComponent.SUPPORTED_LOCALES.contains(locale)) {
+            setLocale(LanguageSelectionComponent.SUPPORTED_LOCALES.get(0));
+        }
+        return super.getLocale();
+    }
+
+    
     @Override
     public boolean authenticate(final String userName, final String password) {
         loggedUser = userProfileService.getPermissions(userName, password);

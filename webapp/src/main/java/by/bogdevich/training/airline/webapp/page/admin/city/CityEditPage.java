@@ -16,7 +16,7 @@ import by.bogdevich.training.airline.datamodel.City;
 import by.bogdevich.training.airline.datamodel.Country;
 import by.bogdevich.training.airline.service.CityService;
 import by.bogdevich.training.airline.service.CountryService;
-import by.bogdevich.training.airline.webapp.common.CountryChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.CountryChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 
 @AuthorizeInstantiation(value = {"ADMIN", "OPERATOR"})

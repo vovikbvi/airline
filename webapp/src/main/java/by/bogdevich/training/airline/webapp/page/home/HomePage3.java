@@ -20,7 +20,7 @@ import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.City;
 import by.bogdevich.training.airline.service.AirportService;
 import by.bogdevich.training.airline.service.CityService;
-import by.bogdevich.training.airline.webapp.common.CityChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.CityChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 
 public class HomePage3 extends AbstractPage {

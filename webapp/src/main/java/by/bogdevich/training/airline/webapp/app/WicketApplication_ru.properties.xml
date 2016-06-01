@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- select language -->
+	<entry key="US">Английский</entry>
+	<entry key="RU">Русский</entry>
+
+	<!-- main menu -->
+	<entry key="menu.home">ДОМОЙ</entry>
+	<entry key="menu.schedule">РАСПИСАНИЕ</entry>
+	<entry key="menu.search">ПОИСК</entry>
+	<entry key="menu.oders">МОИ ЗАКАЗЫ</entry>
+	<entry key="menu.profile">МОЙ ПРОФИЛЬ</entry>
+	<entry key="menu.feedback">ОБРАТНАЯ СВЯЗЬ</entry>
+	<entry key="menu.setting">НАСТРОЙКИ</entry>
+	<entry key="menu.login">ВОЙТИ</entry>
+	<entry key="menu.registr">регистрация</entry>
+	<entry key="menu.logoul">ВЫЙТИ</entry>
+
+
+
+</properties>

@@ -3,6 +3,7 @@ package by.bogdevich.training.airline.webapp.page;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
 
+import by.bogdevich.training.airline.webapp.component.licalization.LanguageSelectionComponent;
 import by.bogdevich.training.airline.webapp.component.menu.MenuUser;
 import by.bogdevich.training.airline.webapp.page.home.HomePage;
 
@@ -20,6 +21,7 @@ public abstract class AbstractPage extends WebPage {
 	protected void onInitialize() {
 		super.onInitialize();
 		
+		add(new LanguageSelectionComponent("language-select"));
 		add(new MenuUser("menu-user"));
 		
         add(new Link("home-page") {

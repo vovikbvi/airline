@@ -191,9 +191,6 @@
 				<version>${wicket.version}</version>
 			</dependency>
 
-
-
-
 			<dependency>
 				<groupId>org.apache.wicket</groupId>
 				<artifactId>wicket-spring</artifactId>
@@ -205,6 +202,23 @@
 				<version>${wicket.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>com.googlecode.wicket-jquery-ui</groupId>
+				<artifactId>wicket-jquery-ui</artifactId>
+				<version>${wicket.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.googlecode.wicket-jquery-ui</groupId>
+				<artifactId>wicket-jquery-ui-theme-uilightness</artifactId>
+				<version>${wicket.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.googlecode.wicket-jquery-ui</groupId>
+				<artifactId>wicket-kendo-ui-theme-default</artifactId>
+				<version>${wicket.version}</version>
+			</dependency>
 
 
 
@@ -248,10 +262,19 @@
 				<version>5.0.6</version>
 			</dependency>
 
-
-
 		</dependencies>
 	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>sonatype-snapshots</id>
+			<name>Sonatype Snapshots Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<build>
 

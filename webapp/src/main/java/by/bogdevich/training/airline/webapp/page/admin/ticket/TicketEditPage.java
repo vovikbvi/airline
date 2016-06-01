@@ -24,10 +24,10 @@ import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.service.FlightService;
 import by.bogdevich.training.airline.service.TicketService;
 import by.bogdevich.training.airline.service.UserProfileService;
-import by.bogdevich.training.airline.webapp.common.FlightChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.TicketClassChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.TicketTupeChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.UserProfileChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.FlightChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.TicketClassChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.TicketTupeChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.renderer.UserProfileChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 
 @AuthorizeInstantiation(value = {"ADMIN"})

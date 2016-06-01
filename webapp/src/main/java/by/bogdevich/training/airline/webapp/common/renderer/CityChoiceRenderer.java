@@ -1,4 +1,4 @@
-package by.bogdevich.training.airline.webapp.common;
+package by.bogdevich.training.airline.webapp.common.renderer;
 
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 
