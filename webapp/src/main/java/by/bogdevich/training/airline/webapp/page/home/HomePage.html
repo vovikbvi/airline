@@ -1,28 +1,32 @@
 <wicket:extend>
+<div>
 
+</div>
 
-	<form wicket:id="form" class="edit-admin-form">
-
-
-		<p>
-			<label>Select city</label> 
-			<br /> 
+<div class="search-flight">
+	<form wicket:id="form" >
+		<label>
+			<span>From</span>
 			<select wicket:id="sitesStart"></select>
-			<select wicket:id="sitesFinish"></select>
-		</p>
+		</label>
 		
 		<label>
-		<span>Departure time:</span>
+			<span>To:</span>	
+			<select wicket:id="sitesFinish"></select>
+		</label>
+		
+		<label>
+		<span>Date:</span>
 		<div><input type="text" wicket:id="dateStartField" /></div>
 		</label>
 			
 		<label>
-		<span>Departure time:</span>
+		<span>Date:</span>
 		<div><input type="text" wicket:id="dateFinishField" /></div>
 		</label>
 			
 		
 		<input type="submit" value="Search" />
 	</form>
-	
+</div>
 	</wicket:extend>
