@@ -11,10 +11,8 @@ import org.springframework.stereotype.Service;
 import by.bogdevich.training.airline.dataaccess.FlightCatalogDao;
 import by.bogdevich.training.airline.dataaccess.FlightDao;
 import by.bogdevich.training.airline.dataaccess.PlaneDao;
-import by.bogdevich.training.airline.dataaccess.filtres.FlightCatalogFilter;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
-import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.service.FlightService;
 
 @Service
@@ -32,15 +30,15 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public Boolean checkClassWeight(Flight flight) {// перенести в логику web
-		// Flight fullFlieght = flightDao.getFullFlieght(flight);
+		
 
-		int classWeightAirportStart = flightCatalogDao.getFullFlightCatalog(flight.getFlightCatalog()).getAirportStart()
+		int classWeightAirportStart = flightCatalogDao.getFlightCatalogWithFetch(flight.getFlightCatalog()).getAirportStart()
 				.getClassWeight().ordinal();
 
-		int classWeightAirportFinish = flightCatalogDao.getFullFlightCatalog(flight.getFlightCatalog()).getAirportFinish()
+		int classWeightAirportFinish = flightCatalogDao.getFlightCatalogWithFetch(flight.getFlightCatalog()).getAirportFinish()
 				.getClassWeight().ordinal();
 
-		int classWeightPlane = planeDao.getFullPlane(flight.getPlane()).getModelPlane().getClassWeight().ordinal();
+		int classWeightPlane = planeDao.getPlaneWithFetch(flight.getPlane()).getModelPlane().getClassWeight().ordinal();
 
 		boolean checkClassWeightStart = classWeightAirportStart <= classWeightPlane;
 		boolean checkClassWeightStartFinish = classWeightAirportFinish <= classWeightPlane;
@@ -84,8 +82,8 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public Flight getFullFlieght(Flight flight) {
-		return flightDao.getFullFlieght(flight);
+	public Flight getFlieghtWithFetch(Flight flight) {
+		return flightDao.getFlieghtWithFetch(flight);
 	}
 	
 	@Override

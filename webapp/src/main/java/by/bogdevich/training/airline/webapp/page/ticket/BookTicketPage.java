@@ -14,6 +14,7 @@ import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.Model;
 
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Ticket;
@@ -68,7 +69,7 @@ public class BookTicketPage extends AbstractPage {
 		form.add(baggageField);
 		
     	TextField<Double> weightBaggageField = new TextField<>("weightBaggage");
-		//weightBaggageField.setRequired(true);
+		//weightBaggageField.isEnabled(?????????????);
 		form.add(weightBaggageField);
 		
         DropDownChoice<TicketTupe> ticketTupeField = new DropDownChoice<>("ticketTupe", Arrays.asList(TicketTupe.values()), TicketTupeChoiceRenderer.INSTANCE);
@@ -91,7 +92,13 @@ public class BookTicketPage extends AbstractPage {
 		ticket.setFlight(flight);
 		ticket.setUserProfile(AuthorizedSession.get().getLoggedUser());
 		ticket.setDateBought(new Date());
-		
+	/*	
+		if ((ticket.getWeightBaggage() != null) && (ticket.getWeightBaggage() != 0.0)){
+			ticket.setBaggage(true);
+		}else{
+			ticket.setBaggage(false);
+		}
+	*/	
 		form.add(new SubmitLink("save") {
 			@Override
 			public void onSubmit() {

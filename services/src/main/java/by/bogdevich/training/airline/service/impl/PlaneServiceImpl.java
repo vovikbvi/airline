@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import by.bogdevich.training.airline.dataaccess.PlaneDao;
 import by.bogdevich.training.airline.dataaccess.filtres.PlaneFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Plane;
 import by.bogdevich.training.airline.service.PlaneService;
 

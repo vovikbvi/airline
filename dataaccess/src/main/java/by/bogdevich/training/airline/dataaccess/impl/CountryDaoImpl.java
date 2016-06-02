@@ -33,12 +33,7 @@ public class CountryDaoImpl extends AbstractDaoImpl<Country, Long> implements Co
 		cq.select(from);
 
 		handleFilterParameters(filter, cb, cq, from);
-	/*	
-		// set fetching
-		if (filter.isFetchCredentials()) {
-			from.fetch(UserProfile_., JoinType.LEFT);
-		}
-*/
+
 		// set sort params
 		if (filter.getSortProperty() != null) {
 			cq.orderBy(new OrderImpl(from.get(filter.getSortProperty()), filter.isSortOrder()));

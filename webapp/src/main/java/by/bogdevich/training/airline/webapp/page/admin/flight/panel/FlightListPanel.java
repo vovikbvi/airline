@@ -43,7 +43,7 @@ public class FlightListPanel extends Panel {
 				Flight flight = item.getModelObject();
 
 				item.add(new Label("id", flight.getId()));
-				item.add(new Label("flight-catalog", flight.getFlightCatalog().getId()));
+				item.add(new Label("flight-catalog", flight.getFlightCatalog().getAirportStart()+"-"+flight.getFlightCatalog().getAirportStart()));
 				item.add(DateLabel.forDatePattern("registr-time", Model.of(flight.getRegistrTime()), "dd-MM-yyyy hh:mm"));
 				item.add(DateLabel.forDatePattern("departure-time", Model.of(flight.getDepartureTime()), "dd-MM-yyyy hh:mm"));
 				item.add(DateLabel.forDatePattern("arrival-time", Model.of(flight.getArrivalTime()), "dd-MM-yyyy hh:mm"));

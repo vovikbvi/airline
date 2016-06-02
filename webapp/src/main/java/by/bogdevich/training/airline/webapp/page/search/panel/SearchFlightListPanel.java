@@ -1,6 +1,7 @@
 package by.bogdevich.training.airline.webapp.page.search.panel;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Iterator;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
@@ -33,18 +34,22 @@ public class SearchFlightListPanel extends Panel {
 
 	@Inject
 	private FlightService flightService;
-	
+
 	private String cityStart;
 	private String cityFinish;
+	private Date dateStart;
+	private Date dateFinish;
 
 	public SearchFlightListPanel(String id) {
 		super(id);
 	}
 
-	public SearchFlightListPanel(String id, String cityStart, String cityFinish) {
+	public SearchFlightListPanel(String id, String cityStart, String cityFinish, Date dateStart, Date dateFinish) {
 		super(id);
 		this.cityStart = cityStart;
 		this.cityFinish = cityFinish;
+		this.dateStart = dateStart;
+		this.dateFinish = dateFinish;
 	}
 
 	@Override
@@ -61,13 +66,14 @@ public class SearchFlightListPanel extends Panel {
 				item.add(new Label("flight-catalog", flight.getFlightCatalog().getId()));
 				item.add(new Label("airport-start", flight.getFlightCatalog().getAirportStart().getName()));
 				item.add(new Label("airport-finish", flight.getFlightCatalog().getAirportFinish().getName()));
-				item.add(DateLabel.forDatePattern("registr-time", Model.of(flight.getRegistrTime()), "dd-MM-yyyy hh:mm"));
-				item.add(DateLabel.forDatePattern("departure-time", Model.of(flight.getDepartureTime()), "dd-MM-yyyy hh:mm"));
-				item.add(DateLabel.forDatePattern("arrival-time", Model.of(flight.getArrivalTime()), "dd-MM-yyyy hh:mm"));
+				item.add(DateLabel.forDatePattern("departure-time", Model.of(flight.getDepartureTime()),
+						"dd-MM-yyyy hh:mm"));
+				item.add(DateLabel.forDatePattern("arrival-time", Model.of(flight.getArrivalTime()),
+						"dd-MM-yyyy hh:mm"));
 				item.add(new Label("plane", flight.getPlane().getBortNumber()));
-				item.add(DateLabel.forDatePattern("start-sale-ticket", Model.of(flight.getStartSaleTicket()), "dd-MM-yyyy"));
-	
-	
+				item.add(DateLabel.forDatePattern("start-sale-ticket", Model.of(flight.getStartSaleTicket()),
+						"dd-MM-yyyy"));
+
 				item.add(new Link<Void>("booking-link") {
 					@Override
 					public void onClick() {
@@ -75,24 +81,22 @@ public class SearchFlightListPanel extends Panel {
 					}
 				});
 
-				}
+			}
 		};
 
-	
 		add(dataView);
 		add(new PagingNavigator("paging", dataView));
 
-		//проверить сортировку по plane
-		
-		 add(new OrderByBorder("sort-id", Flight_.id, searchFlightDataProvider));
-		 add(new OrderByBorder("sort-flight-catalog", FlightCatalog_.id, searchFlightDataProvider));
-		 add(new OrderByBorder("sort-registr-time", Flight_.registrTime, searchFlightDataProvider));
-		 add(new OrderByBorder("sort-departure-time", Flight_.departureTime, searchFlightDataProvider));
-		 add(new OrderByBorder("sort-arrival-time", Flight_.arrivalTime, searchFlightDataProvider));
-		 add(new OrderByBorder("sort-plane", Flight_.plane, searchFlightDataProvider));
-		 add(new OrderByBorder("sort-start-sale-ticket", Flight_.startSaleTicket, searchFlightDataProvider));
-	
- 	}
+		// проверить сортировку по plane
+
+		add(new OrderByBorder("sort-id", Flight_.id, searchFlightDataProvider));
+		add(new OrderByBorder("sort-flight-catalog", FlightCatalog_.id, searchFlightDataProvider));
+		add(new OrderByBorder("sort-departure-time", Flight_.departureTime, searchFlightDataProvider));
+		add(new OrderByBorder("sort-arrival-time", Flight_.arrivalTime, searchFlightDataProvider));
+		add(new OrderByBorder("sort-plane", Flight_.plane, searchFlightDataProvider));
+		add(new OrderByBorder("sort-start-sale-ticket", Flight_.startSaleTicket, searchFlightDataProvider));
+
+	}
 
 	private class searchFlightDataProvider extends SortableDataProvider<Flight, Serializable> {
 
@@ -100,7 +104,7 @@ public class SearchFlightListPanel extends Panel {
 
 		public searchFlightDataProvider() {
 			super();
-			
+
 			flightFilter = new FlightFilter();
 			setSort((Serializable) Flight_.id, SortOrder.ASCENDING);
 		}
@@ -115,12 +119,25 @@ public class SearchFlightListPanel extends Panel {
 
 			flightFilter.setLimit((int) count);
 			flightFilter.setOffset((int) first);
-			
+
 			flightFilter.setFetchFlieghtCatalog(true);
 			flightFilter.setFetchPlane(true);
+
+			if (dateStart != null) {
+				flightFilter.setStartDepartureTime(dateStart);
+			}else{
+				flightFilter.setStartDepartureTime(new Date());
+			}
 			
-			flightFilter.setCityStart(cityStart);
-			flightFilter.setCityFinish(cityFinish);
+			if (dateFinish != null) {
+				flightFilter.setFinishDepartureTime(dateFinish);
+			}
+			if (cityStart != null) {
+				flightFilter.setCityStart(cityStart);
+			}
+			if (cityFinish != null) {
+				flightFilter.setCityFinish(cityFinish);
+			}
 
 			return flightService.getRecordsSorted(flightFilter).iterator();
 		}

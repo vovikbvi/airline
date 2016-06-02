@@ -2,11 +2,14 @@ package by.bogdevich.training.airline.webapp.page.home;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.extensions.markup.html.form.DateTextField;
+import org.apache.wicket.extensions.yui.calendar.DatePicker;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.Link;
@@ -25,6 +28,8 @@ public class HomePage extends AbstractPage {
 
 	private String selectedCityStart;
 	private String selectedCityFinish;
+	private Date selectedDateStart;
+	private Date selectedDateFinish;
 
 	public HomePage() {
 		super();
@@ -33,12 +38,6 @@ public class HomePage extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
-		add(new Link("test") {
-			@Override
-			public void onClick() {
-				setResponsePage(new HomePage3());
-			}
-		});
 
 		List<String> cityList = new ArrayList<String>();
 
@@ -46,30 +45,35 @@ public class HomePage extends AbstractPage {
 			cityList.add(city.getName());
 		}
 
-		add(new FeedbackPanel("feedback"));
-
 		DropDownChoice<String> listSitesStart = new DropDownChoice<String>("sitesStart",
 				new PropertyModel<String>(this, "selectedCityStart"), cityList);
-		listSitesStart.setRequired(true);
+		//listSitesStart.setRequired(true);
 
 		DropDownChoice<String> listSitesFinish = new DropDownChoice<String>("sitesFinish",
 				new PropertyModel<String>(this, "selectedCityFinish"), cityList);
-		listSitesFinish.setRequired(true);
+		//listSitesFinish.setRequired(true);
+		
+		 DateTextField dateStartField = new DateTextField("dateStartField", new PropertyModel<Date>(
+		            this, "selectedDateStart"), "dd-MM-yyyy");
+		 dateStartField.add(new DatePicker());
+
+		 DateTextField dateFinishField = new DateTextField("dateFinishField", new PropertyModel<Date>(
+				 this, "selectedDateFinish"), "dd-MM-yyyy");
+		 dateFinishField.add(new DatePicker());
 
 		Form<?> form = new Form<Void>("form") {
 			@Override
 			protected void onSubmit() {
 
-			//	info("Selected search engine : " + selectedCityStart);
-			//	info("Selected search engine : " + selectedCityFinish);
-
-				setResponsePage(new SearchPage(selectedCityStart, selectedCityFinish));
+				setResponsePage(new SearchPage(selectedCityStart, selectedCityFinish, selectedDateStart, selectedDateFinish));
 			}
 		};
 
 		add(form);
 		form.add(listSitesStart);
 		form.add(listSitesFinish);
+		form.add(dateStartField);
+		form.add(dateFinishField);
 
 	}
 

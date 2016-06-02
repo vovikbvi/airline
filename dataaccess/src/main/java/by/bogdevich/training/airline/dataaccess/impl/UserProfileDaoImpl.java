@@ -25,7 +25,7 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 
 	// rename method
 	@Override
-	public Long countLogin(String login) {
+	public Long countUserLogin(String login) {
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);

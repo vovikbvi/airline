@@ -11,11 +11,8 @@ import org.springframework.stereotype.Service;
 import by.bogdevich.training.airline.dataaccess.AirportDao;
 import by.bogdevich.training.airline.dataaccess.FlightCatalogDao;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightCatalogFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.ManufacturedPlaneFilter;
 import by.bogdevich.training.airline.datamodel.Country;
-import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
-import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 import by.bogdevich.training.airline.service.FlightCatalogService;
 
 @Service
@@ -79,8 +76,8 @@ public class FlightCatalogServiceImpl implements FlightCatalogService {
 }
 
 	@Override
-	public FlightCatalog getFullFlieghtCatalog(FlightCatalog flightCatalog) {
-		return flightCatalogDao.getFullFlightCatalog(flightCatalog);
+	public FlightCatalog getFlieghtCatalogWithFetch(FlightCatalog flightCatalog) {
+		return flightCatalogDao.getFlightCatalogWithFetch(flightCatalog);
 	}
 
 	

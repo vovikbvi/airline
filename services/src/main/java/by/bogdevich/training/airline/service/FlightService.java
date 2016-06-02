@@ -22,7 +22,7 @@ public interface FlightService {
 
 	List<Flight> getAll();
 	
-	Flight getFullFlieght(Flight flight);
+	Flight getFlieghtWithFetch(Flight flight);
 
 	Boolean checkClassWeight(Flight flight);
 

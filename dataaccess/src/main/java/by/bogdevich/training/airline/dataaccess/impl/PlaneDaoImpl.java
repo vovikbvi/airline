@@ -16,8 +16,6 @@ import by.bogdevich.training.airline.dataaccess.filtres.PlaneFilter;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
 import by.bogdevich.training.airline.datamodel.Plane;
 import by.bogdevich.training.airline.datamodel.Plane_;
-import by.bogdevich.training.airline.datamodel.Ticket_;
-import by.bogdevich.training.airline.datamodel.UserProfile_;
 
 @Repository
 public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneDao {
@@ -72,7 +70,7 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 	}
 
 	@Override
-	public Plane getFullPlane(Plane plane) {
+	public Plane getPlaneWithFetch(Plane plane) {
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Plane> cq = cb.createQuery(Plane.class);

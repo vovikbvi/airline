@@ -14,7 +14,6 @@ import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 import by.bogdevich.training.airline.dataaccess.CityDao;
 import by.bogdevich.training.airline.dataaccess.filtres.CityFilter;
-import by.bogdevich.training.airline.datamodel.Airport_;
 import by.bogdevich.training.airline.datamodel.City;
 import by.bogdevich.training.airline.datamodel.City_;
 import by.bogdevich.training.airline.datamodel.Country_;

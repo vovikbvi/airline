@@ -109,7 +109,7 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 
 	}
 
-	private Date fiendDate(Date dateDeparture) {
+	private Date fiendDatePrice(Date dateDeparture) {
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Date> cq = cb.createQuery(Date.class);
@@ -118,7 +118,6 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 		cq.select(cb.greatest(from.get(Price_.dataChange)));
 		cq.where(cb.lessThan(from.get(Price_.dataChange), dateDeparture));
 		return em.createQuery(cq).getSingleResult();
-
 	}
 
 	@Override
@@ -129,7 +128,7 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 		Root<Price> from = cq.from(Price.class);
 
 		cq.select(from.get(Price_.basicPrice));
-		cq.where(cb.equal(from.get(Price_.dataChange), fiendDate(dateDeparture)));
+		cq.where(cb.equal(from.get(Price_.dataChange), fiendDatePrice(dateDeparture)));
 
 		return em.createQuery(cq).getSingleResult();
 	}

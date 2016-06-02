@@ -23,7 +23,7 @@ public class FlightCatalogChoiceRenderer extends ChoiceRenderer<FlightCatalog>{
 
 	@Override
 	    public Object getDisplayValue(FlightCatalog object) {
-		   FlightCatalog fullFlightCatalog = catalogService.getFullFlieghtCatalog(object);
+		   FlightCatalog fullFlightCatalog = catalogService.getFlieghtCatalogWithFetch(object);
 	        return (fullFlightCatalog.getAirportStart().getName()+" - "+fullFlightCatalog.getAirportFinish().getName());
 	    }
 

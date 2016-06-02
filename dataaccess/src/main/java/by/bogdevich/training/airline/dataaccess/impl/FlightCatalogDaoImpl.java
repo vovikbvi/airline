@@ -67,7 +67,7 @@ public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> i
 	}
 
 	@Override
-	public FlightCatalog getFullFlightCatalog(FlightCatalog flightCatalog) {
+	public FlightCatalog getFlightCatalogWithFetch(FlightCatalog flightCatalog) {
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<FlightCatalog> cq = cb.createQuery(FlightCatalog.class);

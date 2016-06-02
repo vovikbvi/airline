@@ -153,7 +153,7 @@ public class UserServiceTest extends AbstractTest{
 
 		userProfileService.registration(userProfile);
 
-		boolean userNotExist = (userProfileDao.countLogin(userProfile.getLogin()) == 0);
+		boolean userNotExist = (userProfileDao.countUserLogin(userProfile.getLogin()) == 0);
 
 		Assert.assertFalse(userNotExist);
 

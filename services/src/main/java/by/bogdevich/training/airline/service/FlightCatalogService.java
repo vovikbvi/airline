@@ -28,6 +28,6 @@ public interface FlightCatalogService {
 
 	List<FlightCatalog> getRecordsSorted(FlightCatalogFilter filter);
 
-	FlightCatalog getFullFlieghtCatalog(FlightCatalog flightCatalog);
+	FlightCatalog getFlieghtCatalogWithFetch(FlightCatalog flightCatalog);
 
 }

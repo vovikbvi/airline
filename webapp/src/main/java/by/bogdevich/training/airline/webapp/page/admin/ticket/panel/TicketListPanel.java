@@ -49,16 +49,13 @@ public class TicketListPanel extends Panel {
 
 				item.add(new Label("id", ticket.getId()));
 				item.add(new Label("flieght", ticket.getFlight().getId()));
-				item.add(new Label("passanger", ticket.getUserProfile().getFirstName()));
+				item.add(new Label("passanger", ticket.getUserProfile().getLogin()));
 
 				CheckBox checkboxPaid = new CheckBox("paid", Model.of(ticket.getPaid()));
 				checkboxPaid.setEnabled(false);
 				item.add(checkboxPaid);
 				item.add(new Label("number-seats", ticket.getNumberSeats()));
 
-			//	FormatStyle dateStyle = FormatStyle.SHORT;
-			//	DateTimeFormatter formater = DateTimeFormatter.ofLocalizedDate(dateStyle);
-			//	String dateBought = ticket.getDateBought().format(formater);
 				item.add(DateLabel.forDatePattern("date-bought", Model.of(ticket.getDateBought()), "dd-MM-yyyy"));
 				item.add(new Label("baggage", ticket.getBaggage()));
 				item.add(new Label("weight-baggage", ticket.getWeightBaggage()));

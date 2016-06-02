@@ -17,7 +17,6 @@ import by.bogdevich.training.airline.dataaccess.filtres.ModelPlaneFilter;
 import by.bogdevich.training.airline.datamodel.ManufacturedPlane_;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
-import by.bogdevich.training.airline.datamodel.Plane_;
 
 @Repository
 public class ModelPlaneDaoImpl extends AbstractDaoImpl<ModelPlane, Long> implements ModelPlaneDao {

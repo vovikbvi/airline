@@ -22,7 +22,7 @@ public class FlieghtServiceTest extends AbstractTest{
 	public void testAddFlight() {
 		Flight flight = flightAdd();
 
-		Flight flightTest = flightService.getFullFlieght(flight);
+		Flight flightTest = flightService.getFlieghtWithFetch(flight);
 
 		ModelPlane model = flightTest.getPlane().getModelPlane();
 

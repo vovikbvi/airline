@@ -11,7 +11,7 @@ public interface FlightCatalogDao extends AbstractDao<FlightCatalog, Long>{
 
 	List<FlightCatalog> getRecordsSorted(FlightCatalogFilter filter);
 
-	FlightCatalog getFullFlightCatalog(FlightCatalog flightCatalog);
+	FlightCatalog getFlightCatalogWithFetch(FlightCatalog flightCatalog);
 
 	Long count(FlightCatalogFilter filter);
 

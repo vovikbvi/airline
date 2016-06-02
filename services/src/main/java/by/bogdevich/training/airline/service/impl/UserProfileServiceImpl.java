@@ -23,7 +23,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	UserProfileDao userProfileDao;
 
 	public boolean checkUserExist(String login) {
-		if (userProfileDao.countLogin(login) == 0) {
+		if (userProfileDao.countUserLogin(login) == 0) {
 			return false;
 		}
 		return true;

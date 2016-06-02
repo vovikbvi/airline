@@ -94,7 +94,7 @@ public class MenuUser extends Panel {
 		if (isLoginAdminOrOperator) {
 			settingsLink.setVisible(true);
 		}else{
-			settingsLink.setVisible(true);
+			settingsLink.setVisible(false);
 		}
 		
 

@@ -31,7 +31,7 @@ public class TicketServiceImpl implements TicketService {
 
 	public ModelPlane getModelplane(Ticket ticket) {
 		if (ticket.getFlight() != null) {
-			Flight flight = flightDao.getFullFlieght(ticket.getFlight());
+			Flight flight = flightDao.getFlieghtWithFetch(ticket.getFlight());
 			return flight.getPlane().getModelPlane();
 		}
 
@@ -69,7 +69,7 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	private double percentToDateDeparture(Ticket ticket) {
-		Flight flight = flightDao.getFullFlieght(ticket.getFlight());
+		Flight flight = flightDao.getFlieghtWithFetch(ticket.getFlight());
 
 		Date dateStart = flight.getStartSaleTicket();
 		Date dateEnd = flight.getDepartureTime();
@@ -98,7 +98,7 @@ public class TicketServiceImpl implements TicketService {
 
 	private double getPrice(Ticket ticket) {
 		double basicPrice = ticketDao.fiendBasicPrice(ticket.getDateBought());
-		double distance = flightDao.getFullFlieght(ticket.getFlight()).getFlightCatalog().getDistance();
+		double distance = flightDao.getFlieghtWithFetch(ticket.getFlight()).getFlightCatalog().getDistance();
 		return basicPrice * distance;
 	}
 
@@ -108,7 +108,7 @@ public class TicketServiceImpl implements TicketService {
 		if (ticketDao.countAllBaggage(ticket.getFlight()) != null) {
 			fullWeightBaggage = ticketDao.countAllBaggage(ticket.getFlight()) + ticket.getWeightBaggage();
 		}
-		double weightBaggagePlane = flightDao.getFullFlieght(ticket.getFlight()).getPlane().getModelPlane()
+		double weightBaggagePlane = flightDao.getFlieghtWithFetch(ticket.getFlight()).getPlane().getModelPlane()
 				.getWeightAllBaggage();
 
 		if (fullWeightBaggage <= weightBaggagePlane) {
