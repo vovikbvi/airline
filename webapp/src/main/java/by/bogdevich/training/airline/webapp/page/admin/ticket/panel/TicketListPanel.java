@@ -57,7 +57,10 @@ public class TicketListPanel extends Panel {
 				item.add(new Label("number-seats", ticket.getNumberSeats()));
 
 				item.add(DateLabel.forDatePattern("date-bought", Model.of(ticket.getDateBought()), "dd-MM-yyyy"));
-				item.add(new Label("baggage", ticket.getBaggage()));
+				
+				CheckBox checkboxBaggage = new CheckBox("baggage", Model.of(ticket.getBaggage()));
+				item.add(checkboxBaggage);
+				
 				item.add(new Label("weight-baggage", ticket.getWeightBaggage()));
 				item.add(new Label("ticket-tupe", ticket.getTicketTupe()));
 				item.add(new Label("ticket-class", ticket.getTicketClass()));

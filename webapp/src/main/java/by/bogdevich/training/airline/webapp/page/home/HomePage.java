@@ -19,7 +19,7 @@ import org.apache.wicket.model.PropertyModel;
 import by.bogdevich.training.airline.datamodel.City;
 import by.bogdevich.training.airline.service.CityService;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
-import by.bogdevich.training.airline.webapp.page.search.SearchPage;
+import by.bogdevich.training.airline.webapp.page.schedule.SchedulePage;
 
 public class HomePage extends AbstractPage {
 
@@ -65,7 +65,7 @@ public class HomePage extends AbstractPage {
 			@Override
 			protected void onSubmit() {
 
-				setResponsePage(new SearchPage(selectedCityStart, selectedCityFinish, selectedDateStart, selectedDateFinish));
+				setResponsePage(new SchedulePage(selectedCityStart, selectedCityFinish, selectedDateStart, selectedDateFinish));
 			}
 		};
 

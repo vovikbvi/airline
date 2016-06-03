@@ -73,7 +73,7 @@ public class TicketServiceImpl implements TicketService {
 
 		Date dateStart = flight.getStartSaleTicket();
 		Date dateEnd = flight.getDepartureTime();
-		
+
 		Instant instantStart = Instant.ofEpochMilli(dateStart.getTime());
 		LocalDateTime dateStartConvert = LocalDateTime.ofInstant(instantStart, ZoneId.systemDefault());
 
@@ -93,17 +93,48 @@ public class TicketServiceImpl implements TicketService {
 			result = 0;
 		}
 		return result;
-		
+
 	}
 
 	private double getPrice(Ticket ticket) {
 		double basicPrice = ticketDao.fiendBasicPrice(ticket.getDateBought());
 		double distance = flightDao.getFlieghtWithFetch(ticket.getFlight()).getFlightCatalog().getDistance();
-		return basicPrice * distance;
+
+		double factorTicketClass = 1;
+		if (ticket.getTicketClass() != null) {
+			switch (ticket.getTicketClass()) {
+			case BUSINES_CLASS:
+				factorTicketClass = 1.3;
+				break;
+			case FIRST_CLASS:
+				factorTicketClass = 1.2;
+				break;
+			case ECONOMY:
+				factorTicketClass = 1;
+				break;
+			}
+		}
+
+		double result = basicPrice * distance * factorTicketClass;
+		return result;
 	}
 
 	@Override
 	public double baggageCost(Ticket ticket) {
+		
+			double result =0.0;
+		if (checkLuggageSpace(ticket)) {
+			double price = getPrice(ticket);
+			result = price + (price * ticket.getWeightBaggage() / 100);
+			
+		} else {
+			ticket.setBaggage(false);
+			LOGGER.info("luggage space is full {}", ticket.getFlight());	
+		}
+		return result;
+	}
+
+	private boolean checkLuggageSpace(Ticket ticket) {
 		double fullWeightBaggage = 0.0;
 		if (ticketDao.countAllBaggage(ticket.getFlight()) != null) {
 			fullWeightBaggage = ticketDao.countAllBaggage(ticket.getFlight()) + ticket.getWeightBaggage();
@@ -111,16 +142,8 @@ public class TicketServiceImpl implements TicketService {
 		double weightBaggagePlane = flightDao.getFlieghtWithFetch(ticket.getFlight()).getPlane().getModelPlane()
 				.getWeightAllBaggage();
 
-		if (fullWeightBaggage <= weightBaggagePlane) {
-			double price = getPrice(ticket);
-			double result = price + (price * ticket.getWeightBaggage() / 100);
-			return result;
-		} else {
-			ticket.setBaggage(false);
-			LOGGER.info("luggage space is full {}", ticket.getFlight());
-			return 0.0;
-		}
-		
+		boolean result = fullWeightBaggage <= weightBaggagePlane;
+		return result;
 	}
 
 	@Override
@@ -140,11 +163,14 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public void insert(Ticket ticket) {
-    //  Double t = ticketDao.countAllBaggage(ticket.getFlight());
-    //  Integer b = ticketDao.getColPassBuisnes();
+		// Double t = ticketDao.countAllBaggage(ticket.getFlight());
+		// Integer b = ticketDao.getColPassBuisnes();
 		ticket.setDateBought(new Date());
 		ticket.setCosts(ticketCost(ticket));
+		
+		if (checkLuggageSpace(ticket)){
 		ticketDao.insert(ticket);
+		}else{throw new IllegalArgumentException("luggage space is full");}
 
 		LOGGER.info("Insert ticket {}", ticket);
 	}
@@ -163,10 +189,10 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public void delete(Long id) {
 		Ticket ticket = ticketDao.get(id);
-		
-			ticketDao.delete(id);
-			LOGGER.info("Delete ticket {}", ticket);
-		
+
+		ticketDao.delete(id);
+		LOGGER.info("Delete ticket {}", ticket);
+
 	}
 
 	@Override
@@ -182,10 +208,10 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public List<Ticket> getRecordsSorted(TicketFilter filter) {
 		return ticketDao.getRecordsSorted(filter);
-}
-	
+	}
+
 	@Override
-	public Long count(TicketFilter filter){
+	public Long count(TicketFilter filter) {
 		return ticketDao.count(filter);
-	}	
+	}
 }

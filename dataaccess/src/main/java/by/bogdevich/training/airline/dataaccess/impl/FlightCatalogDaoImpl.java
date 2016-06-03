@@ -100,11 +100,6 @@ public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> i
 		if (filter.getCityStart() != null && filter.getCityStart() != null) {
 			Predicate fName = cb.equal(from.get(FlightCatalog_.airportStart).get(Airport_.city).get(City_.name),
 					filter.getCityStart());
-			// Predicate fName =
-			// cb.equal(from.get(FlightCatalog_.airportStart).get(Airport_.city).get(City_.name),
-			// filter.getCityStart());
-			// Predicate lName = cb.equal(from.get(UserProfile_.lastName),
-			// filter.getFirstName());
 			cq.where(cb.and(fName));
 		}
 	}

@@ -1,7 +1,8 @@
 <wicket:panel>
-	<table class="flight-table">
+<div class="flight-table">
+	<table >
 		<tr>
-			<th><a wicket:id="sort-id">ID</a></th>
+			
 			<th><a wicket:id="sort-flight-catalog">Number flight</a></th>
 			<th>Start</th>
 			<th>Finish</th>
@@ -13,7 +14,7 @@
 		</tr>
 		
 		<tr wicket:id="rows">
-			<td><span wicket:id="id" /></td>
+			
 			<td><span wicket:id="flight-catalog" /></td>
             <td><span wicket:id="airport-start" /></td>
             <td><span wicket:id="airport-finish" /></td>
@@ -24,5 +25,6 @@
 			<td><a	wicket:id="booking-link">Book</a></td>
 		</tr>
 	</table>
+</div>	
 	<div wicket:id="paging"></div>
 </wicket:panel>
