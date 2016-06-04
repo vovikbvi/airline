@@ -11,7 +11,7 @@ import by.bogdevich.training.airline.service.util.SendMail;
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
 public class MailTest {
 
-	@Test
+	//@Test
 	public void mailTest(){
 		
 		SendMail sender = new SendMail("vovikbvi@gmail.com", "sobaka123");

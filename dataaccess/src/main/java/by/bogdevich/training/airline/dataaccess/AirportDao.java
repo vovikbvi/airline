@@ -9,7 +9,7 @@ public interface AirportDao extends AbstractDao<Airport, Long>{
 
 	List<Airport> getRecordsSorted(AirportFilter filter);
 
-	Airport getFullAirport(Airport airport);
+	Airport getAirportWithFetch(Airport airport);
 
 	Long count(AirportFilter filter);
 

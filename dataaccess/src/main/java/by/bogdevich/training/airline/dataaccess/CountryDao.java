@@ -9,6 +9,5 @@ public interface CountryDao extends AbstractDao<Country, Long>{
 
 	List<Country> getRecordsSorted(CountryFilter filter);
 
-	Long count(CountryFilter filter);
-	
+	Long count(CountryFilter filter);	
 }

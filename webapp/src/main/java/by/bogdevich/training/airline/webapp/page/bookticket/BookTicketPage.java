@@ -1,6 +1,5 @@
 package by.bogdevich.training.airline.webapp.page.bookticket;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -24,7 +23,6 @@ import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
 import by.bogdevich.training.airline.webapp.common.renderer.TicketClassChoiceRenderer;
 import by.bogdevich.training.airline.webapp.common.renderer.TicketTupeChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
-import by.bogdevich.training.airline.webapp.page.home.HomePage;
 import by.bogdevich.training.airline.webapp.page.payment.PaymentPage;
 
 @AuthorizeInstantiation(value = { "ADMIN", "OPERATOR", "USER" })

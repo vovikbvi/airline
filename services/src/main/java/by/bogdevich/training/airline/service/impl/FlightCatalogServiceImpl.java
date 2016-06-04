@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import by.bogdevich.training.airline.dataaccess.AirportDao;
 import by.bogdevich.training.airline.dataaccess.FlightCatalogDao;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightCatalogFilter;
+import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.Country;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.service.FlightCatalogService;
@@ -28,8 +29,9 @@ public class FlightCatalogServiceImpl implements FlightCatalogService {
 
 	@Override
 	public Boolean checkInternatoinal(FlightCatalog flightCatalog) {
-			Country countryStart =  airportDao.getFullAirport(flightCatalog.getAirportStart()).getCity().getCountry();  
-			Country countryFinish = airportDao.getFullAirport(flightCatalog.getAirportFinish()).getCity().getCountry();
+		
+			Country countryStart =  airportDao.getAirportWithFetch(flightCatalog.getAirportStart()).getCity().getCountry();  
+			Country countryFinish = airportDao.getAirportWithFetch(flightCatalog.getAirportFinish()).getCity().getCountry();
 			return countryStart.equals(countryFinish);
 
 	}

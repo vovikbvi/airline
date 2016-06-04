@@ -17,7 +17,6 @@ import by.bogdevich.training.airline.dataaccess.filtres.AirportFilter;
 import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.Airport_;
 import by.bogdevich.training.airline.datamodel.City_;
-import by.bogdevich.training.airline.datamodel.Country_;
 
 
 @Repository
@@ -74,7 +73,7 @@ public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements Ai
 	}
 	
 	@Override
-	public Airport getFullAirport(Airport airport) {
+	public Airport getAirportWithFetch(Airport airport) {
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Airport> cq = cb.createQuery(Airport.class);

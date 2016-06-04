@@ -31,6 +31,7 @@ public class FlightServiceImpl implements FlightService {
 	@Override
 	public Boolean checkClassWeight(Flight flight) {// перенести в логику web
 		
+		
 
 		int classWeightAirportStart = flightCatalogDao.getFlightCatalogWithFetch(flight.getFlightCatalog()).getAirportStart()
 				.getClassWeight().ordinal();

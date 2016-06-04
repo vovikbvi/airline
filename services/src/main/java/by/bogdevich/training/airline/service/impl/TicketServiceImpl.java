@@ -15,7 +15,6 @@ import by.bogdevich.training.airline.dataaccess.FlightDao;
 import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
-import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.service.TicketService;
 
@@ -24,18 +23,21 @@ public class TicketServiceImpl implements TicketService {
 	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
 
 	@Inject
-	TicketDao ticketDao;
+	private TicketDao ticketDao;
 
 	@Inject
-	FlightDao flightDao;
+	private FlightDao flightDao;
 
-	public ModelPlane getModelplane(Ticket ticket) {
+	private Flight flight;
+
+	private void getFlight(Ticket ticket) {
+
 		if (ticket.getFlight() != null) {
-			Flight flight = flightDao.getFlieghtWithFetch(ticket.getFlight());
-			return flight.getPlane().getModelPlane();
+			flight = flightDao.getFlieghtWithFetch(ticket.getFlight());
+		} else {
+			flight = null;
 		}
-
-		return null;
+		
 	}
 
 	private double percentBusySeats(Ticket ticket) {
@@ -46,13 +48,13 @@ public class TicketServiceImpl implements TicketService {
 		if (ticket.getTicketClass() != null) {
 			switch (ticket.getTicketClass()) {
 			case BUSINES_CLASS:
-				colSeats = getModelplane(ticket).getColPassangersBuisnes();
+				colSeats = flight.getPlane().getModelPlane().getColPassangersBuisnes();
 				break;
 			case ECONOMY:
-				colSeats = getModelplane(ticket).getColPassangersEconomy();
+				colSeats = flight.getPlane().getModelPlane().getColPassangersEconomy();
 				break;
 			case FIRST_CLASS:
-				colSeats = getModelplane(ticket).getColPassangersFirstclass();
+				colSeats = flight.getPlane().getModelPlane().getColPassangersFirstclass();
 				break;
 			}
 		} else {
@@ -69,7 +71,7 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	private double percentToDateDeparture(Ticket ticket) {
-		Flight flight = flightDao.getFlieghtWithFetch(ticket.getFlight());
+		//Flight flight = flightDao.getFlieghtWithFetch(ticket.getFlight());
 
 		Date dateStart = flight.getStartSaleTicket();
 		Date dateEnd = flight.getDepartureTime();
@@ -98,7 +100,7 @@ public class TicketServiceImpl implements TicketService {
 
 	private double getPrice(Ticket ticket) {
 		double basicPrice = ticketDao.fiendBasicPrice(ticket.getDateBought());
-		double distance = flightDao.getFlieghtWithFetch(ticket.getFlight()).getFlightCatalog().getDistance();
+		double distance = flight.getFlightCatalog().getDistance();
 
 		double factorTicketClass = 1;
 		if (ticket.getTicketClass() != null) {
@@ -121,15 +123,15 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public double baggageCost(Ticket ticket) {
-		
-			double result =0.0;
+
+		double result = 0.0;
 		if (checkLuggageSpace(ticket)) {
 			double price = getPrice(ticket);
 			result = price + (price * ticket.getWeightBaggage() / 100);
-			
+
 		} else {
 			ticket.setBaggage(false);
-			LOGGER.info("luggage space is full {}", ticket.getFlight());	
+			LOGGER.info("luggage space is full {}", ticket.getFlight());
 		}
 		return result;
 	}
@@ -139,8 +141,7 @@ public class TicketServiceImpl implements TicketService {
 		if (ticketDao.countAllBaggage(ticket.getFlight()) != null) {
 			fullWeightBaggage = ticketDao.countAllBaggage(ticket.getFlight()) + ticket.getWeightBaggage();
 		}
-		double weightBaggagePlane = flightDao.getFlieghtWithFetch(ticket.getFlight()).getPlane().getModelPlane()
-				.getWeightAllBaggage();
+		double weightBaggagePlane = flight.getPlane().getModelPlane().getWeightAllBaggage();
 
 		boolean result = fullWeightBaggage <= weightBaggagePlane;
 		return result;
@@ -165,12 +166,18 @@ public class TicketServiceImpl implements TicketService {
 	public void insert(Ticket ticket) {
 		// Double t = ticketDao.countAllBaggage(ticket.getFlight());
 		// Integer b = ticketDao.getColPassBuisnes();
+
+		getFlight(ticket);
 		ticket.setDateBought(new Date());
 		ticket.setCosts(ticketCost(ticket));
+
+		System.out.println("dgffdfd");
 		
-		if (checkLuggageSpace(ticket)){
-		ticketDao.insert(ticket);
-		}else{throw new IllegalArgumentException("luggage space is full");}
+		if (checkLuggageSpace(ticket)) {
+			ticketDao.insert(ticket);
+		} else {
+			throw new IllegalArgumentException("luggage space is full");
+		}
 
 		LOGGER.info("Insert ticket {}", ticket);
 	}

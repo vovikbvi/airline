@@ -74,8 +74,8 @@ public class TicketServiceTest extends AbstractTest {
 			ticket.setPaid(true);
 			ticket.setNumberSeats(2);
 			ticket.setDateBought(new Date());
-			ticket.setBaggage(true);
-			ticket.setWeightBaggage(50.0);
+			ticket.setBaggage(false);
+			ticket.setWeightBaggage(0.0);
 			ticket.setTicketTupe(TicketTupe.SINGLE_TICKET);
 			ticket.setTicketClass(TicketClass.FIRST_CLASS);
 			ticket.setPriorityRegistration(true);
@@ -149,7 +149,7 @@ public class TicketServiceTest extends AbstractTest {
 
 		// ручной расчет
 
-		double price = 1000 * 0.2;
+		double price = 1000 * 0.2 * 1.2;
 		double factorBusySeats = price * 0.2 * 0;
 		double factorToDateDeparture = price * 0.2 * 0.48;
 		double factorPrioritySeats = 20;
