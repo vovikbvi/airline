@@ -37,5 +37,26 @@
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
 		p:entityManagerFactory-ref="entityManagerFactory" />
+		
+		<!-- Production implementation of the JavaMailSender interface, supporting 
+		both JavaMail MimeMessages and Spring SimpleMailMessages -->
+		
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="LowCostAirlineTrening@gmail.com" />
+		<property name="password" value="lowcostairline" />
+ 
+		<!-- The name of the property, following JavaBean naming conventions -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+		
 
 </beans>

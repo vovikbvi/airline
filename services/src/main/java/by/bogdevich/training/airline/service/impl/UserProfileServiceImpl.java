@@ -7,11 +7,15 @@ import java.util.List;
 import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import by.bogdevich.training.airline.dataaccess.UserProfileDao;
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserRole;
+import by.bogdevich.training.airline.service.CrunchifyEmailAPI;
 import by.bogdevich.training.airline.service.UserProfileService;
 import by.bogdevich.training.airline.service.util.SendMail;
 
@@ -20,7 +24,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
 
 	@Inject
-	UserProfileDao userProfileDao;
+	private UserProfileDao userProfileDao;
+
+	@Inject
+	private CrunchifyEmailAPI crunchifyEmailAPI;
 
 	public boolean checkUserExist(String login) {
 		if (userProfileDao.countUserLogin(login) == 0) {
@@ -29,15 +36,19 @@ public class UserProfileServiceImpl implements UserProfileService {
 		return true;
 	}
 
+	@Async
 	private void sendMessage(UserProfile userProfile) {
-		String subject = "Registr LowCostAirline";
-		String textMail = "You registr in LowCostAirline";
-		String fromEmail = "LowCostAirlineTrening@gmail.com";
-		String password = "lowcostairline";
-		String toEmail = userProfile.getEmail();
 
-		SendMail sender = new SendMail(fromEmail, password);
-		sender.send(subject, textMail, fromEmail, toEmail);
+		// Spring Bean file you specified in /src/main/resources folder
+		// String crunchifyConfFile = "service-context.xml";
+		// ConfigurableApplicationContext context = new
+		// ClassPathXmlApplicationContext(crunchifyConfFile);
+
+		String toAddr = "vovikbvi@mail.ru";
+		String fromAddr = "LowCostAirlineTrening@gmail.com";
+		String subject = "Registr LowCostAirline";
+		String body = "You registr in LowCostAirline";
+		crunchifyEmailAPI.crunchifyReadyToSendEmail(toAddr, fromAddr, subject, body);
 
 	}
 
