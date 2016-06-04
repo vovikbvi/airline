@@ -138,7 +138,7 @@ public class TicketServiceImpl implements TicketService {
 
 	private boolean checkLuggageSpace(Ticket ticket) {
 		double fullWeightBaggage = 0.0;
-		if (ticketDao.countAllBaggage(ticket.getFlight()) != null) {
+		if (ticket.getBaggage()) {
 			fullWeightBaggage = ticketDao.countAllBaggage(ticket.getFlight()) + ticket.getWeightBaggage();
 		}
 		double weightBaggagePlane = flight.getPlane().getModelPlane().getWeightAllBaggage();
@@ -184,7 +184,7 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public void update(Ticket ticket) {
-
+		getFlight(ticket);
 		ticket.setDateBought(new Date());
 		ticket.setCosts(ticketCost(ticket));
 
