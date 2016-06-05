@@ -20,7 +20,7 @@ import by.bogdevich.training.airline.datamodel.Country_;
 import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 
 @Repository
-public class CityDaoImpl extends AbstractDaoImpl<City, Long> implements CityDao {
+public class CityDaoImpl extends AbstractDaoImpl<City, Long, CityFilter> implements CityDao {
 
 	protected CityDaoImpl() {
 		super(City.class);
@@ -64,7 +64,8 @@ public class CityDaoImpl extends AbstractDaoImpl<City, Long> implements CityDao 
 		return allitems;
 	}
 
-	private void handleFilterParameters(CityFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+	@Override
+	public void handleFilterParameters(CityFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
 			Root<City> from) {
 		if (filter.getCityName() != null) {
 			Predicate cName = cb.equal(from.get(City_.name), filter.getCityName());
@@ -72,18 +73,6 @@ public class CityDaoImpl extends AbstractDaoImpl<City, Long> implements CityDao 
 		}
 	}
 	
-	@Override
-	public Long count(CityFilter filter) {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		Root<City> from = cq.from(City.class);
-		cq.select(cb.count(from));
-		
-		handleFilterParameters(filter, cb, cq, from);
-		TypedQuery<Long> q = em.createQuery(cq);
-		return q.getSingleResult();
-	}
 	
 	
 }

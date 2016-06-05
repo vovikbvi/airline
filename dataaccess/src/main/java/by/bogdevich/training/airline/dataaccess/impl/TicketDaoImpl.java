@@ -26,7 +26,7 @@ import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 
 @Repository
-public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements TicketDao {
+public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long, TicketFilter> implements TicketDao {
 
 	protected TicketDaoImpl() {
 		super(Ticket.class);
@@ -85,7 +85,8 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 		return allitems;
 	}
 
-	private void handleFilterParameters(TicketFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+	@Override
+	public void handleFilterParameters(TicketFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
 			Root<Ticket> from) {
 		if (filter.getUser() != null) {
 			Predicate user = cb.equal(from.get(Ticket_.userProfile), filter.getUser());
@@ -143,18 +144,6 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long> implements Tick
 		cq.where(cb.equal(from.get(Price_.dataChange), fiendDatePrice(dateDeparture)));
 
 		return em.createQuery(cq).getSingleResult();
-	}
-
-	@Override
-	public Long count(TicketFilter filter) {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		Root<Ticket> from = cq.from(Ticket.class);
-		cq.select(cb.count(from));
-		handleFilterParameters(filter, cb, cq, from);
-		TypedQuery<Long> q = em.createQuery(cq);
-		return q.getSingleResult();
 	}
 
 }

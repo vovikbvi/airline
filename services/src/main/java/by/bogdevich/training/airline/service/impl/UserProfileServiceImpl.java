@@ -15,7 +15,7 @@ import by.bogdevich.training.airline.dataaccess.UserProfileDao;
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserRole;
-import by.bogdevich.training.airline.service.CrunchifyEmailAPI;
+import by.bogdevich.training.airline.service.SemdMail;
 import by.bogdevich.training.airline.service.UserProfileService;
 import by.bogdevich.training.airline.service.util.SendMail;
 
@@ -27,7 +27,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	private UserProfileDao userProfileDao;
 
 	@Inject
-	private CrunchifyEmailAPI crunchifyEmailAPI;
+	private SemdMail crunchifyEmailAPI;
 
 	public boolean checkUserExist(String login) {
 		if (userProfileDao.countUserLogin(login) == 0) {

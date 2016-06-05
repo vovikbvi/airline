@@ -95,7 +95,8 @@ public class FlightServiceImpl implements FlightService {
 	
 	@Override
 	public Long count(FlightFilter filter){
-		return flightDao.count(filter);
+		Long result = flightDao.count(filter);
+		return result;
 	}	
 
 }

@@ -6,7 +6,7 @@ import by.bogdevich.training.airline.dataaccess.filtres.AbstractFilter;
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 
-public interface UserProfileDao extends AbstractDao<UserProfile, Long> {
+public interface UserProfileDao extends AbstractDao<UserProfile, Long, UserProfileFilter> {
 
 	public Long countUserLogin(String login);
 

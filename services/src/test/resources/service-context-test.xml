@@ -24,4 +24,6 @@
 		p:username="postgres" 
 		p:password="postgres"
 		p:schema="test" />
+
 </beans>
+

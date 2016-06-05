@@ -17,7 +17,7 @@ import by.bogdevich.training.airline.datamodel.Country_;
 
 
 @Repository
-public class CountryDaoImpl extends AbstractDaoImpl<Country, Long> implements CountryDao {
+public class CountryDaoImpl extends AbstractDaoImpl<Country, Long, CountryFilter> implements CountryDao {
 
 	protected CountryDaoImpl() {
 		super(Country.class);
@@ -49,7 +49,8 @@ public class CountryDaoImpl extends AbstractDaoImpl<Country, Long> implements Co
 		return allitems;
 	}
 
-	private void handleFilterParameters(CountryFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+	@Override
+	public void handleFilterParameters(CountryFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
 			Root<Country> from) {
 		if (filter.getCountryName() != null) {
 			Predicate name = cb.equal(from.get(Country_.name), filter.getCountryName());
@@ -57,18 +58,6 @@ public class CountryDaoImpl extends AbstractDaoImpl<Country, Long> implements Co
 		}
 	}
 	
-	@Override
-	public Long count(CountryFilter filter) {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		Root<Country> from = cq.from(Country.class);
-		cq.select(cb.count(from));
-		
-		handleFilterParameters(filter, cb, cq, from);
-		TypedQuery<Long> q = em.createQuery(cq);
-		return q.getSingleResult();
-	}
 
 	
 }

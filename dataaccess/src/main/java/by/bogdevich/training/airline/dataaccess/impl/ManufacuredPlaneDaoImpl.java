@@ -16,7 +16,7 @@ import by.bogdevich.training.airline.datamodel.ManufacturedPlane;
 import by.bogdevich.training.airline.datamodel.ManufacturedPlane_;
 
 @Repository
-public class ManufacuredPlaneDaoImpl extends AbstractDaoImpl<ManufacturedPlane, Long> implements ManufacturedPlaneDao {
+public class ManufacuredPlaneDaoImpl extends AbstractDaoImpl<ManufacturedPlane, Long, ManufacturedPlaneFilter> implements ManufacturedPlaneDao {
 
 	protected ManufacuredPlaneDaoImpl() {
 		super(ManufacturedPlane.class);
@@ -48,25 +48,13 @@ public class ManufacuredPlaneDaoImpl extends AbstractDaoImpl<ManufacturedPlane, 
 		return allitems;
 	}
 
-	private void handleFilterParameters(ManufacturedPlaneFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+	@Override
+	public void handleFilterParameters(ManufacturedPlaneFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
 			Root<ManufacturedPlane> from) {
 		if (filter.getName() != null) {
 			Predicate name = cb.equal(from.get(ManufacturedPlane_.name), filter.getName());
 			cq.where(name);
 		}
-	}
-
-	@Override
-	public Long count(ManufacturedPlaneFilter filter) {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		Root<ManufacturedPlane> from = cq.from(ManufacturedPlane.class);
-		cq.select(cb.count(from));
-		
-		handleFilterParameters(filter, cb, cq, from);
-		TypedQuery<Long> q = em.createQuery(cq);
-		return q.getSingleResult();
 	}
 
 }

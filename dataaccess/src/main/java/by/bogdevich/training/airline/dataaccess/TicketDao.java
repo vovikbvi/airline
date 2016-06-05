@@ -8,7 +8,7 @@ import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Ticket;
 
 
-public interface TicketDao extends AbstractDao<Ticket, Long>{
+public interface TicketDao extends AbstractDao<Ticket, Long, TicketFilter>{
 	
 	List<Ticket> getRecordsSorted(TicketFilter filter);
 
@@ -17,8 +17,6 @@ public interface TicketDao extends AbstractDao<Ticket, Long>{
 	Double fiendBasicPrice (Date dateDeparture);
 
 	Double countAllBaggage(Flight flight);
-
-	Long count(TicketFilter filter);
 
 	Integer getColPassBuisnes();
 

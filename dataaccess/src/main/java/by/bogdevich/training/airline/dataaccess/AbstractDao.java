@@ -2,9 +2,13 @@ package by.bogdevich.training.airline.dataaccess;
 
 import java.util.List;
 
-import by.bogdevich.training.airline.datamodel.Flight;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
-public interface AbstractDao<T, ID> {
+import by.bogdevich.training.airline.dataaccess.filtres.AbstractFilter;
+
+public interface AbstractDao<T, ID, F> {
 
 	List<T> getAll();
 
@@ -16,6 +20,7 @@ public interface AbstractDao<T, ID> {
 
 	void delete(ID id);
 
+	Long count(F filter);
 	
 
 

@@ -5,7 +5,7 @@ import java.util.List;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
 
-public interface FlightDao extends AbstractDao<Flight, Long> {
+public interface FlightDao extends AbstractDao<Flight, Long, FlightFilter> {
 
 
 
@@ -13,7 +13,4 @@ public interface FlightDao extends AbstractDao<Flight, Long> {
 
 	Flight getFlieghtWithFetch(Flight flight);
 
-	Long count(FlightFilter filter);
-
-//	Integer getColPassangersBuisnes(Flight flight);
 }

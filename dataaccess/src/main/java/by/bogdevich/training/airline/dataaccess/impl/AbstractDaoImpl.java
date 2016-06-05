@@ -5,12 +5,17 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import by.bogdevich.training.airline.dataaccess.AbstractDao;
 import by.bogdevich.training.airline.dataaccess.filtres.AbstractFilter;
+import by.bogdevich.training.airline.dataaccess.filtres.AirportFilter;
 import by.bogdevich.training.airline.datamodel.AbstractModel;
+import by.bogdevich.training.airline.datamodel.Airport;
 
-public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
+public abstract class AbstractDaoImpl<T, ID, F> implements AbstractDao<T, ID, F> {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -69,4 +74,20 @@ public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
         }
     }
 
+    abstract void handleFilterParameters(F filter, CriteriaBuilder cb, CriteriaQuery<?> cq, Root<T> from);
+    
+	@Override
+	public Long count(F filter) {
+		
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<T> from = cq.from(entityClass);
+		cq.select(cb.count(from));
+		
+		handleFilterParameters(filter, cb, cq, from);
+		TypedQuery<Long> q = entityManager.createQuery(cq);
+		Long result = q.getSingleResult();
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!"+ result +"!!!!!!!!!!!!!!!!!!!!!");
+		return result;
+	}
 }

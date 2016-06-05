@@ -6,15 +6,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 import by.bogdevich.training.airline.dataaccess.PriceDao;
 import by.bogdevich.training.airline.dataaccess.filtres.PriceFilter;
+import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.Price;
+import by.bogdevich.training.airline.datamodel.UserProfile;
+import by.bogdevich.training.airline.datamodel.UserProfile_;
 
 @Repository
-public class PriceDaoImpl extends AbstractDaoImpl<Price, Long> implements PriceDao {
+public class PriceDaoImpl extends AbstractDaoImpl<Price, Long, PriceFilter> implements PriceDao {
 
 	protected PriceDaoImpl() {
 		super(Price.class);
@@ -43,15 +47,11 @@ public class PriceDaoImpl extends AbstractDaoImpl<Price, Long> implements PriceD
 		List<Price> allitems = q.getResultList();
 		return allitems;
 	}
-
+	
 	@Override
-	public Long count(PriceFilter filter) {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		Root<Price> from = cq.from(Price.class);
-		cq.select(cb.count(from));
-		TypedQuery<Long> q = em.createQuery(cq);
-		return q.getSingleResult();
-	}
+	public void handleFilterParameters(PriceFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+			Root<Price> from) {
+		}
+	
+
 }

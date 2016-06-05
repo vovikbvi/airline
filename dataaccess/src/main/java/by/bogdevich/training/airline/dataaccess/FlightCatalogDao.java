@@ -7,17 +7,12 @@ import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.Country;
 import by.bogdevich.training.airline.datamodel.FlightCatalog;
 
-public interface FlightCatalogDao extends AbstractDao<FlightCatalog, Long>{
+public interface FlightCatalogDao extends AbstractDao<FlightCatalog, Long, FlightCatalogFilter>{
 
 	List<FlightCatalog> getRecordsSorted(FlightCatalogFilter filter);
 
 	FlightCatalog getFlightCatalogWithFetch(FlightCatalog flightCatalog);
 
-	Long count(FlightCatalogFilter filter);
-
-	//Country getCountry(Airport airport);
-
-	
 
 
 }

@@ -5,10 +5,10 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
-import by.bogdevich.training.airline.service.CrunchifyEmailAPI;
+import by.bogdevich.training.airline.service.SemdMail;
 
 @Service("crunchifyEmail")
-public class CrunchifyEmailAPIImpl implements CrunchifyEmailAPI {
+public class SendMailImpl implements SemdMail {
 	
 	@Autowired
 	private MailSender crunchifymail; // MailSender interface defines a strategy

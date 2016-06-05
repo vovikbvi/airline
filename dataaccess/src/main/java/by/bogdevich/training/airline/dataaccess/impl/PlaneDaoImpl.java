@@ -18,7 +18,7 @@ import by.bogdevich.training.airline.datamodel.Plane;
 import by.bogdevich.training.airline.datamodel.Plane_;
 
 @Repository
-public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneDao {
+public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long, PlaneFilter> implements PlaneDao {
 
 	protected PlaneDaoImpl() {
 		super(Plane.class);
@@ -62,7 +62,8 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 		return allitems;
 	}
 
-	private void handleFilterParameters(PlaneFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq, Root<Plane> from) {
+	@Override
+	public void handleFilterParameters(PlaneFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq, Root<Plane> from) {
 		if (filter.getBortNumber() != null) {
 			Predicate bortNumber = cb.equal(from.get(Plane_.bortNumber), filter.getBortNumber());
 			cq.where(bortNumber);
@@ -82,19 +83,6 @@ public class PlaneDaoImpl extends AbstractDaoImpl<Plane, Long> implements PlaneD
 
 		Plane result = em.createQuery(cq).getSingleResult();
 		return result;
-	}
-
-	@Override
-	public Long count(PlaneFilter filter) {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		Root<Plane> from = cq.from(Plane.class);
-		cq.select(cb.count(from));
-
-		handleFilterParameters(filter, cb, cq, from);
-		TypedQuery<Long> q = em.createQuery(cq);
-		return q.getSingleResult();
 	}
 
 }

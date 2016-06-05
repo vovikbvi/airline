@@ -5,7 +5,14 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxEventBehavior;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
+import org.apache.wicket.behavior.Behavior;
+import org.apache.wicket.event.Broadcast;
+import org.apache.wicket.event.IEventSink;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -13,6 +20,8 @@ import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.request.component.IRequestablePage;
 
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Ticket;
@@ -60,9 +69,19 @@ public class BookTicketPage extends AbstractPage {
 		form.add(baggageField);
 
 		TextField<Double> weightBaggageField = new TextField<>("weightBaggage");
-		// weightBaggageField.isEnabled(?????????????);
 		form.add(weightBaggageField);
+		weightBaggageField.setEnabled(false);
 
+		baggageField.add(new AjaxEventBehavior("change") {
+			@Override
+			protected void onEvent(AjaxRequestTarget target) {
+				if (baggageField.getOutputMarkupId()){
+					System.out.println("!!!!!!!!!!!!! ypa !!!!!!!!!!!!!!!!!!!!!!");
+				}
+			}
+		});
+		
+		
 		DropDownChoice<TicketTupe> ticketTupeField = new DropDownChoice<>("ticketTupe",
 				Arrays.asList(TicketTupe.values()), TicketTupeChoiceRenderer.INSTANCE);
 		ticketTupeField.setRequired(true);

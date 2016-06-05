@@ -5,13 +5,13 @@ import java.util.List;
 import by.bogdevich.training.airline.dataaccess.filtres.AirportFilter;
 import by.bogdevich.training.airline.datamodel.Airport;
 
-public interface AirportDao extends AbstractDao<Airport, Long>{
+public interface AirportDao extends AbstractDao<Airport, Long, AirportFilter>{
 
 	List<Airport> getRecordsSorted(AirportFilter filter);
 
 	Airport getAirportWithFetch(Airport airport);
 
-	Long count(AirportFilter filter);
+	//Long count(AirportFilter filter);
 
 
 }

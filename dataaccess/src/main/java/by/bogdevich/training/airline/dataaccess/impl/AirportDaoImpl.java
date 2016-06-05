@@ -13,6 +13,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 import by.bogdevich.training.airline.dataaccess.AirportDao;
+import by.bogdevich.training.airline.dataaccess.filtres.AbstractFilter;
 import by.bogdevich.training.airline.dataaccess.filtres.AirportFilter;
 import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.Airport_;
@@ -20,7 +21,7 @@ import by.bogdevich.training.airline.datamodel.City_;
 
 
 @Repository
-public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements AirportDao{
+public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long, AirportFilter> implements AirportDao{
 
 	protected AirportDaoImpl() {
 		super(Airport.class);
@@ -64,7 +65,8 @@ public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements Ai
 		return allitems;
 	}
 
-	private void handleFilterParameters(AirportFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+	@Override 
+		public void handleFilterParameters(AirportFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
 			Root<Airport> from) {
 		if (filter.getAirportName() != null) {
 			Predicate aName = cb.equal(from.get(Airport_.name), filter.getAirportName());
@@ -86,18 +88,7 @@ public class AirportDaoImpl extends AbstractDaoImpl<Airport, Long> implements Ai
 		Airport result = em.createQuery(cq).getSingleResult();
 		return result;
 	}
+
 	
-	@Override
-	public Long count(AirportFilter filter) {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		Root<Airport> from = cq.from(Airport.class);
-		cq.select(cb.count(from));
-		
-		handleFilterParameters(filter, cb, cq, from);
-		TypedQuery<Long> q = em.createQuery(cq);
-		return q.getSingleResult();
-	}
 
 }

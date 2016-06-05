@@ -17,7 +17,7 @@ import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 
 @Repository
-public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> implements UserProfileDao {
+public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long, UserProfileFilter> implements UserProfileDao {
 
 	protected UserProfileDaoImpl() {
 		super(UserProfile.class);
@@ -69,20 +69,9 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long> imple
 		return allitems;
 	}
 
+
 	@Override
-	public Long count(UserProfileFilter filter) {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		Root<UserProfile> from = cq.from(UserProfile.class);
-		cq.select(cb.count(from));
-
-		handleFilterParameters(filter, cb, cq, from);
-		TypedQuery<Long> q = em.createQuery(cq);
-		return q.getSingleResult();
-	}
-
-	private void handleFilterParameters(UserProfileFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+	public void handleFilterParameters(UserProfileFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
 			Root<UserProfile> from) {
 		if (filter.getFirstName() != null) {
 			Predicate fName = cb.equal(from.get(UserProfile_.firstName), filter.getFirstName());

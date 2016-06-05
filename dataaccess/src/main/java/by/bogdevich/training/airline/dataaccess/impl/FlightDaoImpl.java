@@ -23,7 +23,7 @@ import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.datamodel.Plane_;
 
 @Repository
-public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements FlightDao {
+public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long, FlightFilter> implements FlightDao {
 
 	protected FlightDaoImpl() {
 		super(Flight.class);
@@ -38,7 +38,7 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 
 		cq.select(from);
 
-		handleFilterParameters(filter, cb, cq, from);
+		
 
 		if (filter.isFetchFlieghtCatalog()) {
 			from.fetch(Flight_.flightCatalog, JoinType.LEFT).fetch(FlightCatalog_.airportStart, JoinType.LEFT);
@@ -49,6 +49,8 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 			from.fetch(Flight_.plane, JoinType.LEFT);
 		}
 
+		handleFilterParameters(filter, cb, cq, from);
+		
 		// set sort params
 		if (filter.getSortProperty() != null) {
 			Path<Object> expression;
@@ -72,7 +74,8 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 		return allitems;
 	}
 
-	private void handleFilterParameters(FlightFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+	@Override
+	public void handleFilterParameters(FlightFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
 			Root<Flight> from) {
 
 		List<Predicate> predicates = new ArrayList<Predicate>();
@@ -118,18 +121,6 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long> implements Flig
 		return result;
 	}
 
-	@Override
-	public Long count(FlightFilter filter) {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		Root<Flight> from = cq.from(Flight.class);
-
-		handleFilterParameters(filter, cb, cq, from);
-		cq.select(cb.count(from));
-		TypedQuery<Long> q = em.createQuery(cq);
-		return q.getSingleResult();
-	}
 
 	/*
 	 * @Override public Integer getColPassangersBuisnes(Flight flight) {

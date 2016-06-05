@@ -19,7 +19,7 @@ import by.bogdevich.training.airline.datamodel.FlightCatalog;
 import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 
 @Repository
-public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> implements FlightCatalogDao {
+public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long, FlightCatalogFilter> implements FlightCatalogDao {
 
 	protected FlightCatalogDaoImpl() {
 		super(FlightCatalog.class);
@@ -95,7 +95,8 @@ public class FlightCatalogDaoImpl extends AbstractDaoImpl<FlightCatalog, Long> i
 		return q.getSingleResult();
 	}
 
-	private void handleFilterParameters(FlightCatalogFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
+	@Override
+	public void handleFilterParameters(FlightCatalogFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq,
 			Root<FlightCatalog> from) {
 		if (filter.getCityStart() != null && filter.getCityStart() != null) {
 			Predicate fName = cb.equal(from.get(FlightCatalog_.airportStart).get(Airport_.city).get(City_.name),
