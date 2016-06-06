@@ -73,9 +73,7 @@ public class TicketServiceImpl implements TicketService {
 				colSeats = flight.getPlane().getModelPlane().getColPassangersFirstclass();
 				break;
 			}
-		} else {
-			colSeats = 0;
-		}
+		} 
 		return colSeats;
 	}
 
@@ -237,11 +235,13 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 
 	public List<Integer> getListEmtySeats(Ticket ticket) {
+		
+		getFlight(ticket);
 		List<Integer> allSeats = new ArrayList<Integer>();
-		List<Integer> basySeats = ticketDao.getBasySeats(ticket.getFlight(), TicketClass.FIRST_CLASS);
+		List<Integer> basySeats = ticketDao.getBasySeats(ticket.getFlight(), ticket.getTicketClass());
 		List<Integer> result = new ArrayList<Integer>();
 		
-		Integer colSeats = (int) getColSeats(ticket);
+		Double colSeats =  getColSeats(ticket);
 		if (colSeats != null) {
 
 			for (int i = 0; i < colSeats; i++) {

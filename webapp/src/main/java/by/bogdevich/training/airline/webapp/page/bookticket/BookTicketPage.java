@@ -6,9 +6,11 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormChoiceComponentUpdatingBehavior;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
+import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -55,15 +57,19 @@ public class BookTicketPage extends AbstractPage {
 	protected void onInitialize() {
 		super.onInitialize();
 
+		ticket.setFlight(flight);
+		ticket.setUserProfile(AuthorizedSession.get().getLoggedUser());
+		ticket.setDateBought(new Date());
+		ticket.setTicketClass(TicketClass.FIRST_CLASS);
+
+		
 		Form form = new Form("form", new CompoundPropertyModel<Ticket>(ticket));
 		add(form);
-
 
 		ArrayList<Integer> listSeats= new ArrayList<Integer>(ticketService.getListEmtySeats(ticket));
         DropDownChoice<Integer> numberSeatsField = new DropDownChoice<Integer>("numberSeats", listSeats);
         numberSeatsField.setRequired(true);
         form.add(numberSeatsField);
- 
 		
 		CheckBox baggageField = new CheckBox("baggage");
 		form.add(baggageField);
@@ -97,6 +103,15 @@ public class BookTicketPage extends AbstractPage {
 		ticketClassField.setRequired(true);
 		form.add(ticketClassField);
 		
+		ticketClassField.add(new AjaxEventBehavior("changearray") {
+			
+			@Override
+			protected void onEvent(AjaxRequestTarget target) {
+			
+				
+			}
+		});
+		
 
 		CheckBox priorityRegistrationField = new CheckBox("priorityRegistration");
 		form.add(priorityRegistrationField);
@@ -107,9 +122,6 @@ public class BookTicketPage extends AbstractPage {
 		CheckBox forBabyField = new CheckBox("forBaby");
 		form.add(forBabyField);
 
-		ticket.setFlight(flight);
-		ticket.setUserProfile(AuthorizedSession.get().getLoggedUser());
-		ticket.setDateBought(new Date());
 
 		form.add(new SubmitLink("save") {
 			@Override
