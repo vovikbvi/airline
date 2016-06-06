@@ -43,7 +43,7 @@ public class FlightListPanel extends Panel {
 				Flight flight = item.getModelObject();
 
 				item.add(new Label("id", flight.getId()));
-				item.add(new Label("flight-catalog", flight.getFlightCatalog().getAirportStart().getName()+"-"+flight.getFlightCatalog().getAirportStart().getName()));
+				item.add(new Label("flight-catalog", flight.getFlightCatalog().getAirportStart().getName()+"-"+flight.getFlightCatalog().getAirportFinish().getName()));
 				item.add(DateLabel.forDatePattern("registr-time", Model.of(flight.getRegistrTime()), "dd-MM-yyyy hh:mm"));
 				item.add(DateLabel.forDatePattern("departure-time", Model.of(flight.getDepartureTime()), "dd-MM-yyyy hh:mm"));
 				item.add(DateLabel.forDatePattern("arrival-time", Model.of(flight.getArrivalTime()), "dd-MM-yyyy hh:mm"));
@@ -80,7 +80,7 @@ public class FlightListPanel extends Panel {
 		//проверить сортировку по plane
 		
 		 add(new OrderByBorder("sort-id", Flight_.id, flightDataProvider));
-		 add(new OrderByBorder("sort-flight-catalog", FlightCatalog_.id, flightDataProvider));
+		 add(new OrderByBorder("sort-flight-catalog", Flight_.flightCatalog, flightDataProvider));
 		 add(new OrderByBorder("sort-registr-time", Flight_.registrTime, flightDataProvider));
 		 add(new OrderByBorder("sort-departure-time", Flight_.departureTime, flightDataProvider));
 		 add(new OrderByBorder("sort-arrival-time", Flight_.arrivalTime, flightDataProvider));

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Iterator;
 import javax.inject.Inject;
-import javax.persistence.PersistenceException;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
@@ -22,12 +21,9 @@ import org.apache.wicket.model.Model;
 
 import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
-import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.service.FlightService;
-import by.bogdevich.training.airline.webapp.page.admin.flight.FlightEditPage;
-import by.bogdevich.training.airline.webapp.page.admin.flight.FlightPage;
 import by.bogdevich.training.airline.webapp.page.bookticket.BookTicketPage;
 
 public class ScheduleFlightListPanel extends Panel {
@@ -62,8 +58,7 @@ public class ScheduleFlightListPanel extends Panel {
 			protected void populateItem(Item<Flight> item) {
 				Flight flight = item.getModelObject();
 
-			//	item.add(new Label("id", flight.getId()));
-				item.add(new Label("flight-catalog", flight.getFlightCatalog().getId()));
+				item.add(new Label("flight-catalog", flight.getId()));
 				item.add(new Label("airport-start", flight.getFlightCatalog().getAirportStart().getName()));
 				item.add(new Label("airport-finish", flight.getFlightCatalog().getAirportFinish().getName()));
 				item.add(DateLabel.forDatePattern("departure-time", Model.of(flight.getDepartureTime()),
@@ -89,8 +84,8 @@ public class ScheduleFlightListPanel extends Panel {
 
 		// проверить сортировку по plane
 
-		//add(new OrderByBorder("sort-id", Flight_.id, searchFlightDataProvider));
-		add(new OrderByBorder("sort-flight-catalog", FlightCatalog_.id, searchFlightDataProvider));
+		add(new OrderByBorder("sort-id", Flight_.id, searchFlightDataProvider));
+		//add(new OrderByBorder("sort-flight-catalog", FlightCatalog_.id, searchFlightDataProvider));
 		add(new OrderByBorder("sort-departure-time", Flight_.departureTime, searchFlightDataProvider));
 		add(new OrderByBorder("sort-arrival-time", Flight_.arrivalTime, searchFlightDataProvider));
 		add(new OrderByBorder("sort-plane", Flight_.plane, searchFlightDataProvider));

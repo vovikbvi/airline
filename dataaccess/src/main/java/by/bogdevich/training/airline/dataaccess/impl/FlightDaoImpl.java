@@ -54,8 +54,8 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long, FlightFilter> i
 		// set sort params
 		if (filter.getSortProperty() != null) {
 			Path<Object> expression;
-			if (FlightCatalog_.id.equals(filter.getSortProperty())) {
-				expression = from.get(Flight_.flightCatalog).get(filter.getSortProperty());
+			if (FlightCatalog_.airportStart.equals(filter.getSortProperty())) {
+				expression = from.get(Flight_.flightCatalog).get(FlightCatalog_.airportStart).get(filter.getSortProperty());
 			} else if (Plane_.bortNumber.equals(filter.getSortProperty())) {
 				expression = from.get(Flight_.plane).get(filter.getSortProperty());
 			} else {

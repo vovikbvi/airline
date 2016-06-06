@@ -47,11 +47,11 @@ public class HomePage extends AbstractPage {
 
 		DropDownChoice<String> listSitesStart = new DropDownChoice<String>("sitesStart",
 				new PropertyModel<String>(this, "selectedCityStart"), cityList);
-		//listSitesStart.setRequired(true);
+
 
 		DropDownChoice<String> listSitesFinish = new DropDownChoice<String>("sitesFinish",
 				new PropertyModel<String>(this, "selectedCityFinish"), cityList);
-		//listSitesFinish.setRequired(true);
+
 		
 		 DateTextField dateStartField = new DateTextField("dateStartField", new PropertyModel<Date>(
 		            this, "selectedDateStart"), "dd-MM-yyyy");

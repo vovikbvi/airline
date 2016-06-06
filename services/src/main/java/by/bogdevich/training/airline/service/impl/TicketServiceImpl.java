@@ -4,18 +4,22 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 import by.bogdevich.training.airline.dataaccess.FlightDao;
 import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Ticket;
+import by.bogdevich.training.airline.datamodel.TicketClass;
 import by.bogdevich.training.airline.service.TicketService;
 
 @Service
@@ -37,13 +41,25 @@ public class TicketServiceImpl implements TicketService {
 		} else {
 			flight = null;
 		}
-		
+
 	}
 
 	private double percentBusySeats(Ticket ticket) {
 
 		// занятое кол во мест
 		double busySeats = ticketDao.countBusySeats(ticket.getFlight());
+		double colSeats = getColSeats(ticket);
+
+		double result = 0;
+		if (colSeats != 0) {
+			result = (busySeats / colSeats);
+		} else {
+			result = 0;
+		}
+		return result;
+	}
+
+	private double getColSeats(Ticket ticket) {
 		double colSeats = 0;
 		if (ticket.getTicketClass() != null) {
 			switch (ticket.getTicketClass()) {
@@ -58,20 +74,13 @@ public class TicketServiceImpl implements TicketService {
 				break;
 			}
 		} else {
-			return 0.0;
+			colSeats = 0;
 		}
-
-		double result = 0;
-		if (busySeats != 0) {
-			result = (busySeats / colSeats);
-		} else {
-			result = 0;
-		}
-		return result;
+		return colSeats;
 	}
 
 	private double percentToDateDeparture(Ticket ticket) {
-		//Flight flight = flightDao.getFlieghtWithFetch(ticket.getFlight());
+		// Flight flight = flightDao.getFlieghtWithFetch(ticket.getFlight());
 
 		Date dateStart = flight.getStartSaleTicket();
 		Date dateEnd = flight.getDepartureTime();
@@ -168,11 +177,14 @@ public class TicketServiceImpl implements TicketService {
 		// Integer b = ticketDao.getColPassBuisnes();
 
 		getFlight(ticket);
+
+		List<Integer> t = getListEmtySeats(ticket);
+
 		ticket.setDateBought(new Date());
 		ticket.setCosts(ticketCost(ticket));
 
 		System.out.println("dgffdfd");
-		
+
 		if (checkLuggageSpace(ticket)) {
 			ticketDao.insert(ticket);
 		} else {
@@ -221,4 +233,30 @@ public class TicketServiceImpl implements TicketService {
 	public Long count(TicketFilter filter) {
 		return ticketDao.count(filter);
 	}
+
+	@Override
+
+	public List<Integer> getListEmtySeats(Ticket ticket) {
+		List<Integer> allSeats = new ArrayList<Integer>();
+		List<Integer> basySeats = ticketDao.getBasySeats(ticket.getFlight(), TicketClass.FIRST_CLASS);
+		List<Integer> result = new ArrayList<Integer>();
+		
+		Integer colSeats = (int) getColSeats(ticket);
+		if (colSeats != null) {
+
+			for (int i = 0; i < colSeats; i++) {
+				allSeats.add(i + 1);
+			}
+		}
+		
+		System.out.println("ds");
+		for (Integer i : allSeats) {
+			if (!basySeats.contains(i)) {
+				result.add(i);
+			}
+		}
+
+		return result;
+	}
+
 }

@@ -44,7 +44,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		// ConfigurableApplicationContext context = new
 		// ClassPathXmlApplicationContext(crunchifyConfFile);
 
-		String toAddr = "vovikbvi@mail.ru";
+		String toAddr = userProfile.getEmail();
 		String fromAddr = "LowCostAirlineTrening@gmail.com";
 		String subject = "Registr LowCostAirline";
 		String body = "You registr in LowCostAirline";
@@ -53,7 +53,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	}
 
 	private void AcceptRegistration(UserProfile userProfile) {
-		sendMessage(userProfile);
+	//	sendMessage(userProfile);
 		userProfile.setCountOder(0);
 		userProfile.setVip(false);
 		userProfile.setDateRegistr(new Date());

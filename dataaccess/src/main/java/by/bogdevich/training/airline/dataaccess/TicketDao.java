@@ -6,6 +6,7 @@ import java.util.List;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Ticket;
+import by.bogdevich.training.airline.datamodel.TicketClass;
 
 
 public interface TicketDao extends AbstractDao<Ticket, Long, TicketFilter>{
@@ -20,4 +21,5 @@ public interface TicketDao extends AbstractDao<Ticket, Long, TicketFilter>{
 
 	Integer getColPassBuisnes();
 
+	List<Integer> getBasySeats(Flight flight, TicketClass ticketClass);
 }

@@ -1,18 +1,15 @@
 package by.bogdevich.training.airline.webapp.page.bookticket;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
 import javax.inject.Inject;
 
-import org.apache.wicket.Component;
-import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-
+import org.apache.wicket.ajax.form.AjaxFormChoiceComponentUpdatingBehavior;
+import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
-import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.event.Broadcast;
-import org.apache.wicket.event.IEventSink;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -20,15 +17,15 @@ import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.request.component.IRequestablePage;
 
+import by.bogdevich.training.airline.datamodel.Country;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.TicketClass;
 import by.bogdevich.training.airline.datamodel.TicketTupe;
 import by.bogdevich.training.airline.service.TicketService;
 import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
+import by.bogdevich.training.airline.webapp.common.renderer.CountryChoiceRenderer;
 import by.bogdevich.training.airline.webapp.common.renderer.TicketClassChoiceRenderer;
 import by.bogdevich.training.airline.webapp.common.renderer.TicketTupeChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
@@ -52,7 +49,7 @@ public class BookTicketPage extends AbstractPage {
 		super();
 		this.ticket = ticket;
 		this.flight = flight;
-	}
+		}
 
 	@Override
 	protected void onInitialize() {
@@ -61,10 +58,13 @@ public class BookTicketPage extends AbstractPage {
 		Form form = new Form("form", new CompoundPropertyModel<Ticket>(ticket));
 		add(form);
 
-		TextField<Integer> numberSeatsField = new TextField<>("numberSeats");
-		numberSeatsField.setRequired(true);
-		form.add(numberSeatsField);
 
+		ArrayList<Integer> listSeats= new ArrayList<Integer>(ticketService.getListEmtySeats(ticket));
+        DropDownChoice<Integer> numberSeatsField = new DropDownChoice<Integer>("numberSeats", listSeats);
+        numberSeatsField.setRequired(true);
+        form.add(numberSeatsField);
+ 
+		
 		CheckBox baggageField = new CheckBox("baggage");
 		form.add(baggageField);
 
@@ -72,16 +72,21 @@ public class BookTicketPage extends AbstractPage {
 		form.add(weightBaggageField);
 		weightBaggageField.setEnabled(false);
 
-		baggageField.add(new AjaxEventBehavior("change") {
+		baggageField.add(new AjaxFormComponentUpdatingBehavior("change") {
+
 			@Override
-			protected void onEvent(AjaxRequestTarget target) {
-				if (baggageField.getOutputMarkupId()){
-					System.out.println("!!!!!!!!!!!!! ypa !!!!!!!!!!!!!!!!!!!!!!");
+			protected void onUpdate(AjaxRequestTarget target) {
+				if (baggageField.getModelObject()) {
+					weightBaggageField.setEnabled(true);
+					target.add(weightBaggageField);
+				} else {
+					weightBaggageField.setEnabled(false);
+					target.add(weightBaggageField);
 				}
 			}
 		});
-		
-		
+		weightBaggageField.setOutputMarkupPlaceholderTag(true);
+
 		DropDownChoice<TicketTupe> ticketTupeField = new DropDownChoice<>("ticketTupe",
 				Arrays.asList(TicketTupe.values()), TicketTupeChoiceRenderer.INSTANCE);
 		ticketTupeField.setRequired(true);
@@ -91,6 +96,7 @@ public class BookTicketPage extends AbstractPage {
 				Arrays.asList(TicketClass.values()), TicketClassChoiceRenderer.INSTANCE);
 		ticketClassField.setRequired(true);
 		form.add(ticketClassField);
+		
 
 		CheckBox priorityRegistrationField = new CheckBox("priorityRegistration");
 		form.add(priorityRegistrationField);
@@ -104,10 +110,7 @@ public class BookTicketPage extends AbstractPage {
 		ticket.setFlight(flight);
 		ticket.setUserProfile(AuthorizedSession.get().getLoggedUser());
 		ticket.setDateBought(new Date());
-		/*
-		 * if ((ticket.getWeightBaggage() != null) && (ticket.getWeightBaggage()
-		 * != 0.0)){ ticket.setBaggage(true); }else{ ticket.setBaggage(false); }
-		 */
+
 		form.add(new SubmitLink("save") {
 			@Override
 			public void onSubmit() {
