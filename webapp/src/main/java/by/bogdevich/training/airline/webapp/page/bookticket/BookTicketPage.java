@@ -8,10 +8,10 @@ import javax.inject.Inject;
 
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.form.AjaxFormChoiceComponentUpdatingBehavior;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
-import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
+import org.apache.wicket.event.Broadcast;
+import org.apache.wicket.event.IEvent;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -20,14 +20,13 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 
-import by.bogdevich.training.airline.datamodel.Country;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.TicketClass;
 import by.bogdevich.training.airline.datamodel.TicketTupe;
 import by.bogdevich.training.airline.service.TicketService;
 import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
-import by.bogdevich.training.airline.webapp.common.renderer.CountryChoiceRenderer;
+import by.bogdevich.training.airline.webapp.common.events.BookTicketChangeEvent;
 import by.bogdevich.training.airline.webapp.common.renderer.TicketClassChoiceRenderer;
 import by.bogdevich.training.airline.webapp.common.renderer.TicketTupeChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
@@ -60,17 +59,38 @@ public class BookTicketPage extends AbstractPage {
 		ticket.setFlight(flight);
 		ticket.setUserProfile(AuthorizedSession.get().getLoggedUser());
 		ticket.setDateBought(new Date());
-		ticket.setTicketClass(TicketClass.FIRST_CLASS);
+		
 
 		
 		Form form = new Form("form", new CompoundPropertyModel<Ticket>(ticket));
 		add(form);
 
-		ArrayList<Integer> listSeats= new ArrayList<Integer>(ticketService.getListEmtySeats(ticket));
-        DropDownChoice<Integer> numberSeatsField = new DropDownChoice<Integer>("numberSeats", listSeats);
+	
+		
+        DropDownChoice<Integer> numberSeatsField = new DropDownChoice<Integer>("numberSeats", getListSeats());
+        numberSeatsField.setOutputMarkupId(true);
+        numberSeatsField.setOutputMarkupPlaceholderTag(true);
+        //numberSeatsField.setLabel("you nead select ticket type");
         numberSeatsField.setRequired(true);
         form.add(numberSeatsField);
 		
+        
+		DropDownChoice<TicketClass> ticketClassField = new DropDownChoice<>("ticketClass",
+				Arrays.asList(TicketClass.values()), TicketClassChoiceRenderer.INSTANCE);
+		ticketClassField.setRequired(true);
+		form.add(ticketClassField);
+	
+		ticketClassField.add(new AjaxFormComponentUpdatingBehavior("onchange")
+        {
+            @Override
+            protected void onUpdate(AjaxRequestTarget target)
+            {
+            	numberSeatsField.setChoices(getListSeats());
+                target.add(numberSeatsField);
+            }
+        });
+           
+        
 		CheckBox baggageField = new CheckBox("baggage");
 		form.add(baggageField);
 
@@ -98,20 +118,6 @@ public class BookTicketPage extends AbstractPage {
 		ticketTupeField.setRequired(true);
 		form.add(ticketTupeField);
 
-		DropDownChoice<TicketClass> ticketClassField = new DropDownChoice<>("ticketClass",
-				Arrays.asList(TicketClass.values()), TicketClassChoiceRenderer.INSTANCE);
-		ticketClassField.setRequired(true);
-		form.add(ticketClassField);
-		
-		ticketClassField.add(new AjaxEventBehavior("changearray") {
-			
-			@Override
-			protected void onEvent(AjaxRequestTarget target) {
-			
-				
-			}
-		});
-		
 
 		CheckBox priorityRegistrationField = new CheckBox("priorityRegistration");
 		form.add(priorityRegistrationField);
@@ -139,6 +145,11 @@ public class BookTicketPage extends AbstractPage {
 
 		add(new FeedbackPanel("feedback"));
 
+	}
+
+	private ArrayList<Integer> getListSeats() {
+		ArrayList<Integer> listSeats= new ArrayList<Integer>(ticketService.getListEmtySeats(ticket));
+		return listSeats;
 	}
 
 }

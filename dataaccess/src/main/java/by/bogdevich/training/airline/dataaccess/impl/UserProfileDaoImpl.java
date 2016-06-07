@@ -78,6 +78,9 @@ public class UserProfileDaoImpl extends AbstractDaoImpl<UserProfile, Long, UserP
 			Predicate lName = cb.equal(from.get(UserProfile_.lastName), filter.getFirstName());
 			cq.where(cb.or(fName, lName));
 		}
+		if (filter.getLogin() !=null){
+			cq.where(cb.equal(from.get(UserProfile_.login),filter.getLogin()));
+		}
 	}
 
 	@Override

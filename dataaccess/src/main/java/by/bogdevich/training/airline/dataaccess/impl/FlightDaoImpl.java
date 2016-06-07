@@ -115,7 +115,7 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long, FlightFilter> i
 		from.fetch(Flight_.flightCatalog, JoinType.LEFT).fetch(FlightCatalog_.airportStart);
 		from.fetch(Flight_.flightCatalog, JoinType.LEFT).fetch(FlightCatalog_.airportFinish);
 
-		cq.where(cb.equal(from, flight));
+		cq.where(cb.equal(from.get(Flight_.id), flight.getId()));
 
 		Flight result = em.createQuery(cq).getSingleResult();
 		return result;

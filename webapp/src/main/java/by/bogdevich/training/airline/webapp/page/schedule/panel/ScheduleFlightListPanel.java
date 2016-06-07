@@ -53,7 +53,7 @@ public class ScheduleFlightListPanel extends Panel {
 		super.onInitialize();
 		searchFlightDataProvider searchFlightDataProvider = new searchFlightDataProvider();
 
-		DataView<Flight> dataView = new DataView<Flight>("rows", searchFlightDataProvider, 2) {
+		DataView<Flight> dataView = new DataView<Flight>("rows", searchFlightDataProvider, 10) {
 			@Override
 			protected void populateItem(Item<Flight> item) {
 				Flight flight = item.getModelObject();

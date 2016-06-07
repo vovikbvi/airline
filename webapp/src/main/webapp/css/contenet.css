@@ -409,3 +409,23 @@ td {
 	margin-left:95px;
 }
 /*end Contact Page*/
+
+/*payment page*/
+.payment h3{
+	font-size: 15 px;
+}
+.payment button {
+	margin: 25px;
+}
+.payment span {
+	font-size: 20px;
+	font-style: italic;
+}
+.payment li {
+	display: inline;
+}
+
+.payment li input {
+	width: 60px;
+}
+/*end payment page*/

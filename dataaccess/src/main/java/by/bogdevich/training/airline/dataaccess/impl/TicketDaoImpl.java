@@ -120,6 +120,7 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long, TicketFilter> i
 		cq.select(cb.sum(from.get(Ticket_.weightBaggage)));
 		cq.where(cb.equal(from.get(Ticket_.flight), flight));
 		Double result = em.createQuery(cq).getSingleResult();
+		 result = (result!=null) ? result : 0;
 		return result;
 
 	}

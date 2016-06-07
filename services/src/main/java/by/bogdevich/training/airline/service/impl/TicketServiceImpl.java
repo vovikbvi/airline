@@ -132,13 +132,9 @@ public class TicketServiceImpl implements TicketService {
 	public double baggageCost(Ticket ticket) {
 
 		double result = 0.0;
-		if (checkLuggageSpace(ticket)) {
+		if (ticket.getBaggage() && ticket.getWeightBaggage()==0) {
 			double price = getPrice(ticket);
 			result = price + (price * ticket.getWeightBaggage() / 100);
-
-		} else {
-			ticket.setBaggage(false);
-			LOGGER.info("luggage space is full {}", ticket.getFlight());
 		}
 		return result;
 	}
@@ -146,10 +142,11 @@ public class TicketServiceImpl implements TicketService {
 	private boolean checkLuggageSpace(Ticket ticket) {
 		double fullWeightBaggage = 0.0;
 		if (ticket.getBaggage()) {
-			fullWeightBaggage = ticketDao.countAllBaggage(ticket.getFlight()) + ticket.getWeightBaggage();
+			fullWeightBaggage = ticketDao.countAllBaggage(ticket.getFlight())+ticket.getWeightBaggage();
 		}
 		double weightBaggagePlane = flight.getPlane().getModelPlane().getWeightAllBaggage();
 
+		
 		boolean result = fullWeightBaggage <= weightBaggagePlane;
 		return result;
 	}
@@ -175,8 +172,6 @@ public class TicketServiceImpl implements TicketService {
 		// Integer b = ticketDao.getColPassBuisnes();
 
 		getFlight(ticket);
-
-		List<Integer> t = getListEmtySeats(ticket);
 
 		ticket.setDateBought(new Date());
 		ticket.setCosts(ticketCost(ticket));
@@ -249,7 +244,6 @@ public class TicketServiceImpl implements TicketService {
 			}
 		}
 		
-		System.out.println("ds");
 		for (Integer i : allSeats) {
 			if (!basySeats.contains(i)) {
 				result.add(i);

@@ -1,0 +1,28 @@
+<wicket:panel>
+	<table class="table-ticket">
+		<tr>
+			<th><a wicket:id="sort-id-ticket">ID</a></th>
+			<th>Airport start</th>
+			<th>Airport finish</th>
+			<th><a wicket:id="sort-date-bought">Date bought</a></th>
+			<th>Ticket class</th>
+			<th>Ticket costs</th>
+			<th>Paid</th>
+			<th>action</th>
+			
+			
+		</tr>
+		<tr wicket:id="rows">
+			<td><span wicket:id="id" /></td>
+			<td><span wicket:id="airport-start" /></td>
+			<td><span wicket:id="airport-finish" /></td>
+			<td><span wicket:id="date-bought" /></td>
+			<td><span wicket:id="ticket-class" /></td>
+			<td><span wicket:id="ticket-costs" /></td>
+			<td><input wicket:id="paid" type="checkbox" /></td>
+			<td><a wicket:id="paid-link">paid</a></td>
+
+		</tr>
+	</table>
+	<div wicket:id="paging" class="pading"></div>
+</wicket:panel>
