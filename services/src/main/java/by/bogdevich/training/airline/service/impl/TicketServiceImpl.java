@@ -33,14 +33,14 @@ public class TicketServiceImpl implements TicketService {
 	private FlightDao flightDao;
 
 	private Flight flight;
+	
+	
 
+	
 	private void getFlight(Ticket ticket) {
-
-		if (ticket.getFlight() != null) {
+		if (ticket.getFlight() != null && flight == null) {
 			flight = flightDao.getFlieghtWithFetch(ticket.getFlight());
-		} else {
-			flight = null;
-		}
+		} 
 
 	}
 
@@ -153,6 +153,7 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public double ticketCost(Ticket ticket) {
+		getFlight(ticket);
 		double price = getPrice(ticket);
 		double factorBusySeats = price * 0.2 * percentBusySeats(ticket);
 		double factorToDateDeparture = price * 0.2 * percentToDateDeparture(ticket);

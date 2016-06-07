@@ -48,19 +48,23 @@ public class MenuUser extends Panel {
 			}
 		});
 
-		add(new Link("my-oders") {
+		Link myOders = new Link("my-oders") {
 			@Override
 			public void onClick() {
 				setResponsePage(new MyOdersPage());
 			}
-		});
+		};
+		add(myOders);
+		myOders.setEnabled(AuthorizedSession.get().isSignedIn());
 		
-		add(new Link("my-profile") {
+		Link myProfile = new Link("my-profile") {
 			@Override
 			public void onClick() {
 				setResponsePage(new RegistrationPage(AuthorizedSession.get().getLoggedUser()));
 			}
-		});
+		};
+		add(myProfile);
+		myProfile.setEnabled(AuthorizedSession.get().isSignedIn());
 
 		add(new Link("feedback") {
 			@Override

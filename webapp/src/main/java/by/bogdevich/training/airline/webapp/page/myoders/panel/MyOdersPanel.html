@@ -1,5 +1,6 @@
 <wicket:panel>
-	<table class="table-ticket">
+<div class="flight-table">
+	<table>
 		<tr>
 			<th><a wicket:id="sort-id-ticket">ID</a></th>
 			<th>Airport start</th>
@@ -20,9 +21,10 @@
 			<td><span wicket:id="ticket-class" /></td>
 			<td><span wicket:id="ticket-costs" /></td>
 			<td><input wicket:id="paid" type="checkbox" /></td>
-			<td><a wicket:id="paid-link">paid</a></td>
+			<td><a wicket:id="paid-link">paid</a> <a wicket:id="detail-link">detail</a></td>
 
 		</tr>
 	</table>
+</div>	
 	<div wicket:id="paging" class="pading"></div>
 </wicket:panel>

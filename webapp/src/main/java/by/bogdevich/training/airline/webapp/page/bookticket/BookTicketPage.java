@@ -19,6 +19,7 @@ import org.apache.wicket.markup.html.form.SubmitLink;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.validation.validator.RangeValidator;
 
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Ticket;
@@ -32,7 +33,7 @@ import by.bogdevich.training.airline.webapp.common.renderer.TicketTupeChoiceRend
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 import by.bogdevich.training.airline.webapp.page.payment.PaymentPage;
 
-@AuthorizeInstantiation(value = { "ADMIN", "OPERATOR", "USER" })
+@AuthorizeInstantiation(value = { "ADMIN", "OPERATOR", "PASSANGER" })
 public class BookTicketPage extends AbstractPage {
 
 	@Inject
@@ -59,9 +60,8 @@ public class BookTicketPage extends AbstractPage {
 		ticket.setFlight(flight);
 		ticket.setUserProfile(AuthorizedSession.get().getLoggedUser());
 		ticket.setDateBought(new Date());
-		
+		ticket.setPaid(false);
 
-		
 		Form form = new Form("form", new CompoundPropertyModel<Ticket>(ticket));
 		add(form);
 
@@ -96,6 +96,8 @@ public class BookTicketPage extends AbstractPage {
 
 		TextField<Double> weightBaggageField = new TextField<>("weightBaggage");
 		form.add(weightBaggageField);
+		weightBaggageField.setDefaultModelObject(0);
+		weightBaggageField.add(RangeValidator.<Double> range(0d, 1_000_000d));
 		weightBaggageField.setEnabled(false);
 
 		baggageField.add(new AjaxFormComponentUpdatingBehavior("change") {
@@ -134,7 +136,7 @@ public class BookTicketPage extends AbstractPage {
 			public void onSubmit() {
 				super.onSubmit();
 
-				try {
+			try {
 					ticketService.insert(ticket);
 					setResponsePage(new PaymentPage(ticket));
 				} catch (IllegalArgumentException e) {
@@ -144,8 +146,7 @@ public class BookTicketPage extends AbstractPage {
 		});
 
 		add(new FeedbackPanel("feedback"));
-
-	}
+		}
 
 	private ArrayList<Integer> getListSeats() {
 		ArrayList<Integer> listSeats= new ArrayList<Integer>(ticketService.getListEmtySeats(ticket));

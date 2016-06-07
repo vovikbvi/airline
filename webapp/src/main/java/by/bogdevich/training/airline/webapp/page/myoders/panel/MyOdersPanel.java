@@ -26,6 +26,7 @@ import by.bogdevich.training.airline.datamodel.Ticket_;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 import by.bogdevich.training.airline.service.TicketService;
 import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
+import by.bogdevich.training.airline.webapp.page.bookticket.BookTicketPage;
 import by.bogdevich.training.airline.webapp.page.payment.PaymentPage;
 
 public class MyOdersPanel extends Panel {
@@ -58,13 +59,23 @@ public class MyOdersPanel extends Panel {
 				checkboxPaid.setEnabled(false);
 				item.add(checkboxPaid);
 				
-				item.add(new Link<Void>("paid-link") {
+				Link paidLink = new Link<Void>("paid-link") {
 					@Override
 					public void onClick() {
 						setResponsePage(new PaymentPage(ticket));
 					}
+				};
+				item.add(paidLink);
+				paidLink.setVisible(!ticket.getPaid());
+				
+				
+				item.add(new Link<Void>("detail-link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new BookTicketPage(ticket, ticket.getFlight()));
+					}
 				});
-
+				
 				
 			}
 		};
