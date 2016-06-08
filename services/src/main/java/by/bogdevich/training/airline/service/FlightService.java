@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
+import by.bogdevich.training.airline.datamodel.TicketClass;
 
 public interface FlightService {
 
@@ -29,5 +30,7 @@ public interface FlightService {
 	Long count(FlightFilter filter);
 
 	List<Flight> getRecordsSorted(FlightFilter filter);
+
+	Long countBesySeats(Flight flight, TicketClass ticketClass);
 
 }

@@ -25,6 +25,7 @@ import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.service.FlightService;
 import by.bogdevich.training.airline.webapp.page.bookticket.BookTicketPage;
+import by.bogdevich.training.airline.webapp.page.flightinfo.FlightInfoPage;
 
 public class ScheduleFlightListPanel extends Panel {
 
@@ -76,6 +77,14 @@ public class ScheduleFlightListPanel extends Panel {
 					}
 				});
 
+				item.add(new Link<Void>("info-link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new FlightInfoPage(flight));
+					}
+				});
+	
+				
 			}
 		};
 

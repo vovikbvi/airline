@@ -13,8 +13,6 @@ public interface TicketDao extends AbstractDao<Ticket, Long, TicketFilter>{
 	
 	List<Ticket> getRecordsSorted(TicketFilter filter);
 
-	Long countBusySeats(Flight flight);
-
 	Double fiendBasicPrice (Date dateDeparture);
 
 	Double countAllBaggage(Flight flight);
@@ -22,4 +20,6 @@ public interface TicketDao extends AbstractDao<Ticket, Long, TicketFilter>{
 	Integer getColPassBuisnes();
 
 	List<Integer> getBasySeats(Flight flight, TicketClass ticketClass);
+
+	Long countBusySeats(Flight flight, TicketClass ticketClass);
 }

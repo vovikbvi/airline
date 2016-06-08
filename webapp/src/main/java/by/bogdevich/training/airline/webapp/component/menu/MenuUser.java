@@ -8,12 +8,12 @@ import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserRole;
 import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
 import by.bogdevich.training.airline.webapp.page.feedback.FeedbackPage;
+import by.bogdevich.training.airline.webapp.page.flightinfo.FlightInfoPage;
 import by.bogdevich.training.airline.webapp.page.home.HomePage;
 import by.bogdevich.training.airline.webapp.page.login.LoginPage;
 import by.bogdevich.training.airline.webapp.page.myoders.MyOdersPage;
 import by.bogdevich.training.airline.webapp.page.registr.RegistrationPage;
 import by.bogdevich.training.airline.webapp.page.schedule.SchedulePage;
-import by.bogdevich.training.airline.webapp.page.search.SearchPage;
 import by.bogdevich.training.airline.webapp.page.setting.SettingPage;
 
 public class MenuUser extends Panel {
@@ -40,14 +40,14 @@ public class MenuUser extends Panel {
 				setResponsePage(new SchedulePage());
 			}
 		});
-
+/*
 		add(new Link("search") {
 			@Override
 			public void onClick() {
 				setResponsePage(new SearchPage());
 			}
 		});
-
+*/
 		Link myOders = new Link("my-oders") {
 			@Override
 			public void onClick() {

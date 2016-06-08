@@ -14,17 +14,16 @@ import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.dataaccess.filtres.TicketFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
+import by.bogdevich.training.airline.datamodel.FlightCatalog_;
+import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
 import by.bogdevich.training.airline.datamodel.Price;
 import by.bogdevich.training.airline.datamodel.Price_;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.TicketClass;
-import by.bogdevich.training.airline.datamodel.TicketTupe;
 import by.bogdevich.training.airline.datamodel.Ticket_;
-import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 
 @Repository
@@ -66,6 +65,10 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long, TicketFilter> i
 			from.fetch(Ticket_.userProfile, JoinType.LEFT);
 		}
 
+		if (filter.getFetchAirport()){
+			from.fetch(Ticket_.flight, JoinType.LEFT).fetch(Flight_.flightCatalog, JoinType.LEFT).fetch(FlightCatalog_.airportStart, JoinType.LEFT);
+			from.fetch(Ticket_.flight, JoinType.LEFT).fetch(Flight_.flightCatalog, JoinType.LEFT).fetch(FlightCatalog_.airportFinish, JoinType.LEFT);
+		}
 		// set sort params
 		if (filter.getSortProperty() != null) {
 			Path<Object> expression;
@@ -97,14 +100,16 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long, TicketFilter> i
 	}
 
 	@Override
-	public Long countBusySeats(Flight flight) {
+	public Long countBusySeats(Flight flight, TicketClass ticketClass) {
 		EntityManager em = getEntityManager();
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
 		Root<Ticket> from = cq.from(Ticket.class);
 
 		cq.select(cb.count(from.get(Ticket_.id)));
-		cq.where(cb.equal(from.get(Ticket_.flight), flight));
+		Predicate flightF = cb.equal(from.get(Ticket_.flight), flight);
+		Predicate ticketClassF = cb.equal(from.get(Ticket_.ticketClass), ticketClass);
+		cq.where(cb.and(flightF, ticketClassF));
 
 		return em.createQuery(cq).getSingleResult();
 

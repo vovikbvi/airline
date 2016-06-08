@@ -1,3 +1,9 @@
+.background-home img {
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+}
+
 .content {
 	-position: absolute;
 	float: left;
@@ -131,10 +137,7 @@ table {
 }
 
 th {
-	-color: #D5DDE5;
-	-background: #2e96d2;
 	border: 1px solid #9ccfec;
-	-text: white;
 }
 
 tr {
@@ -429,3 +432,19 @@ td {
 	width: 60px;
 }
 /*end payment page*/
+
+/**/
+.flight-info-table table {
+  color: #333;
+  font-family: sans-serif;
+  font-size: .9em;
+  font-weight: 300;
+  text-align: left;
+  line-height: 40px;
+  border-spacing: 0;
+  width: 500px;
+  margin: 50px auto;
+  background: #975997;
+  border: 0px;
+  
+}

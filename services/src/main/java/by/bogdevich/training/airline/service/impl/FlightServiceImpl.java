@@ -11,8 +11,11 @@ import org.springframework.stereotype.Service;
 import by.bogdevich.training.airline.dataaccess.FlightCatalogDao;
 import by.bogdevich.training.airline.dataaccess.FlightDao;
 import by.bogdevich.training.airline.dataaccess.PlaneDao;
+import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
 import by.bogdevich.training.airline.datamodel.Flight;
+import by.bogdevich.training.airline.datamodel.Ticket;
+import by.bogdevich.training.airline.datamodel.TicketClass;
 import by.bogdevich.training.airline.service.FlightService;
 
 @Service
@@ -20,13 +23,16 @@ public class FlightServiceImpl implements FlightService {
 	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
 
 	@Inject
-	FlightDao flightDao;
+	private FlightDao flightDao;
 
 	@Inject
-	FlightCatalogDao flightCatalogDao;
+	private FlightCatalogDao flightCatalogDao;
 	
 	@Inject
-	PlaneDao planeDao;
+	private PlaneDao planeDao;
+	
+	@Inject
+	private TicketDao ticketDao; 
 
 	@Override
 	public Boolean checkClassWeight(Flight flight) {// перенести в логику web
@@ -98,5 +104,11 @@ public class FlightServiceImpl implements FlightService {
 		Long result = flightDao.count(filter);
 		return result;
 	}	
+
+	@Override
+	public Long countBesySeats(Flight flight, TicketClass ticketClass){
+	Long result = ticketDao.countBusySeats(flight, ticketClass);
+	return result;
+	}
 
 }

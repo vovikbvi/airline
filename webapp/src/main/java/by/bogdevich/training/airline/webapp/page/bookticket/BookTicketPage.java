@@ -96,7 +96,7 @@ public class BookTicketPage extends AbstractPage {
 
 		TextField<Double> weightBaggageField = new TextField<>("weightBaggage");
 		form.add(weightBaggageField);
-		weightBaggageField.setDefaultModelObject(0);
+		//weightBaggageField.setDefaultModelObject(0);
 		weightBaggageField.add(RangeValidator.<Double> range(0d, 1_000_000d));
 		weightBaggageField.setEnabled(false);
 
@@ -106,6 +106,7 @@ public class BookTicketPage extends AbstractPage {
 			protected void onUpdate(AjaxRequestTarget target) {
 				if (baggageField.getModelObject()) {
 					weightBaggageField.setEnabled(true);
+					weightBaggageField.setRequired(true);
 					target.add(weightBaggageField);
 				} else {
 					weightBaggageField.setEnabled(false);

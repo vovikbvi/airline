@@ -45,10 +45,8 @@ public class MyOdersPanel extends Panel {
 				Ticket ticket = item.getModelObject();
 
 				item.add(new Label("id", ticket.getId()));
-				item.add(new Label("airport-start", ticket.getFlight().getId()));
-				item.add(new Label("airport-finish", ticket.getFlight().getId()));
-//				item.add(new Label("airport-start", ticket.getFlight().getFlightCatalog().getAirportStart().getName()));
-//				item.add(new Label("airport-finish", ticket.getFlight().getFlightCatalog().getAirportFinish().getName()));
+				item.add(new Label("airport-start", ticket.getFlight().getFlightCatalog().getAirportStart().getName()));
+				item.add(new Label("airport-finish", ticket.getFlight().getFlightCatalog().getAirportFinish().getName()));
 
 				item.add(DateLabel.forDatePattern("date-bought", Model.of(ticket.getDateBought()), "dd-MM-yyyy"));
 				
@@ -96,7 +94,7 @@ public class MyOdersPanel extends Panel {
 			Injector.get().inject(this);
 
 			ticketFilter = new TicketFilter();
-			setSort((Serializable) Ticket_.dateBought, SortOrder.ASCENDING);
+			setSort((Serializable) Ticket_.dateBought, SortOrder.DESCENDING);
 
 		}
 
@@ -112,7 +110,7 @@ public class MyOdersPanel extends Panel {
 			ticketFilter.setOffset((int) first);
 
 			ticketFilter.setFetchUser(true);
-			ticketFilter.setFetchFlieght(true);
+			ticketFilter.setFetchAirport(true);
 			
 			ticketFilter.setUser(AuthorizedSession.get().getLoggedUser());
 

@@ -1,12 +1,12 @@
 package by.bogdevich.training.airline.dataaccess.filtres;
 
-import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 
 public class TicketFilter extends AbstractFilter {
 
 	private boolean fetchUser;
 	private boolean fetchFlieght;
+	private boolean fetchAirport;
 	private UserProfile user;
 
 	public boolean getFetchUser() {
@@ -31,6 +31,14 @@ public class TicketFilter extends AbstractFilter {
 
 	public void setUser(UserProfile user) {
 		this.user = user;
+	}
+
+	public boolean getFetchAirport() {
+		return fetchAirport;
+	}
+
+	public void setFetchAirport(boolean fetchAirport) {
+		this.fetchAirport = fetchAirport;
 	}
 
 
