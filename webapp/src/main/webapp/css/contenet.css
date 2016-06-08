@@ -215,7 +215,7 @@ td {
 	font-size: 11px;
 }
 
-.edit-admin-form label>span {
+.edit-admin-form label>h4 {
 	float: left;
 	margin-top: 10px;
 	color: #5E5E5E;
@@ -226,7 +226,7 @@ td {
 	margin: 0px 0px 5px;
 }
 
-.edit-admin-form label>span {
+.edit-admin-form label>h4 {
 	float: left;
 	width: 20%;
 	text-align: right;
@@ -253,23 +253,23 @@ td {
 
 .edit-admin-form input[type="checkbox"] {
 	color: #888; -
-	-width: 50%;
-	-padding: 0px 0px 0px 5px;
+	width: 50%;
+	padding: 0px 0px 0px 5px;
 	border: 1px solid #C5E2FF;
 	background: #FBFBFB;
 	outline: 0;
-	-webkit-box-shadow: inset 0px 1px 6px #ECF3F5;
-	-box-shadow: inset 0px 1px 6px #ECF3F5;
-	-font: 200 12px/25px Arial, Helvetica, sans-serif;
-	-height: 30px;
-	-line-height: 15px;
-	-margin: 2px 6px 16px 0px;
+	webkit-box-shadow: inset 0px 1px 6px #ECF3F5;
+	box-shadow: inset 0px 1px 6px #ECF3F5;
+	font: 200 12px/25px Arial, Helvetica, sans-serif;
+	height: 30px;
+	line-height: 15px;
+	margin: 2px 6px 16px 0px;
 }
 
 .edit-admin-form textarea {
 	height: 100px;
 	padding: 5px 0px 0px 5px;
-	width: 70%;
+	width: 40px;
 }
 
 .edit-admin-form select {
@@ -280,10 +280,10 @@ td {
 	-moz-appearance: none;
 	text-indent: 0.01px;
 	text-overflow: '';
-	width: 70%;
+	width: 50%;
 }
 
--
+
 .edit-admin-form .button {
 	padding: 10px 30px 10px 30px;
 	background: #66C1E4;
@@ -295,9 +295,20 @@ td {
 	text-shadow: 1px 1px 1px #5079A3;
 }
 
+
+
 .edit-admin-form .button:hover {
 	background: #3EB1DD;
+}	
+
+.edit-admin-form .date-time	input{
+	width: 80px;
 }
+
+.edit-admin-form .date-time	select{
+	width: 30px;
+}
+
 
 /*end style for form */
 
@@ -317,39 +328,42 @@ td {
 	text-align: center;
 	line-height: 40px;
 	border-spacing: 0;
-	-border: 2px solid #2082c8;
+	border: 0px;
 	width: 750px;
 	margin: 50px auto;
 }
 
-.flight-table th .flight-table tr:first-child {
+.flight-table th tr:first-child {
 	background: #2082c8;
 	color: #fff;
-	border: none;
+	border: 0px;
 }
 
 .flight-table th {
 	font-weight: bold;
+	border: 0px;
 }
 
 .flight-table th:first-child, .flight-table td:first-child {
 	padding: 0 15px 0 20px;
 }
 
-.flight-table th .flight-table tr:last-child th {
+.flight-table th tr:last-child th {
 	border-bottom: 3px solid #ddd;
+	border: 0px;
 }
 
 .flight-table tbody .flight-table tr:hover {
 	background-color: #ffeeff;
 }
 
-.flight-table tbody .flight-table tr:last-child .flight-table td {
-	border: none;
+.flight-table tbody tr:last-child td {
+	border: 0px;
 }
 
-.flight-table tbody .flight-table td {
-	border-bottom: 1px solid #ddd;
+.flight-table tbody td {
+	border-bottom: 0px ;
+	border: 0px;
 }
 
 .flight-table td:last-child {
@@ -437,7 +451,7 @@ td {
 .flight-info-table table {
   color: #333;
   font-family: sans-serif;
-  font-size: .9em;
+  font-size: 14px;
   font-weight: 300;
   text-align: left;
   line-height: 40px;
@@ -446,5 +460,11 @@ td {
   margin: 50px auto;
   background: #975997;
   border: 0px;
+} 
+ 
+.flight-info-table td{
+border: 0px;
+text-align: left;
+} 
   
-}
+

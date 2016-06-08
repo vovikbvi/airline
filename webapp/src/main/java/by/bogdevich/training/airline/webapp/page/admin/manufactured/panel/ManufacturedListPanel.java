@@ -55,7 +55,7 @@ public class ManufacturedListPanel extends Panel {
 						try {
 							manufacturedPlainService.delete(manufacturedPlane.getId());
 						} catch (PersistenceException e) {
-							System.out.println("Impossible delete this record");
+							warn("Impossible delete this record");
 						}
 
 						setResponsePage(new ManufacturedPage());

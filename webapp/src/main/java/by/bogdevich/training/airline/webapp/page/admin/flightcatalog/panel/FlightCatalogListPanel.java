@@ -58,7 +58,7 @@ public class FlightCatalogListPanel extends Panel {
 						try {
 							flightCatalogService.delete(flightCatalog.getId());
 						} catch (PersistenceException e) {
-							System.out.println("Impossible delete this record");
+							warn("Impossible delete this record");
 						}
 
 						setResponsePage(new FlightCatalogPage());

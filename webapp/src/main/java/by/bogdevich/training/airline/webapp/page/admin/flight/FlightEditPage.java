@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.yui.calendar.DatePicker;
+import org.apache.wicket.extensions.yui.calendar.DateTimeField;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.SubmitLink;
@@ -58,18 +59,15 @@ public class FlightEditPage extends AbstractPage {
         flightField.setRequired(true);
         form.add(flightField);
 		
-		DateTextField registrTimeField = new DateTextField("registrTime", "dd-MM-yyyy hh:mm");
-		registrTimeField.add(new DatePicker());
+        DateTimeField registrTimeField = new DateTimeField("registrTime");
         registrTimeField.setRequired(true);
 		form.add(registrTimeField);
 
-		DateTextField departureTimeField = new DateTextField("departureTime", "dd-MM-yyyy hh:mm");
-		departureTimeField.add(new DatePicker());
+		DateTimeField departureTimeField = new DateTimeField("departureTime");
 		departureTimeField.setRequired(true);
 		form.add(departureTimeField);
 		
-		DateTextField arrivalTimeField = new DateTextField("arrivalTime", "dd-MM-yyyy hh:mm");
-		arrivalTimeField.add(new DatePicker());
+		DateTimeField arrivalTimeField = new DateTimeField("arrivalTime");
 		arrivalTimeField.setRequired(true);
 		form.add(arrivalTimeField);
 		

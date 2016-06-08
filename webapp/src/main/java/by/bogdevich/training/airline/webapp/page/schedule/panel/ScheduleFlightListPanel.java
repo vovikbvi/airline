@@ -25,7 +25,7 @@ import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.service.FlightService;
 import by.bogdevich.training.airline.webapp.page.bookticket.BookTicketPage;
-import by.bogdevich.training.airline.webapp.page.flightinfo.FlightInfoPage;
+import by.bogdevich.training.airline.webapp.page.info.FlightInfoPage;
 
 public class ScheduleFlightListPanel extends Panel {
 

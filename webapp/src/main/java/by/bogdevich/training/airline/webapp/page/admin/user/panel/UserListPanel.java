@@ -70,7 +70,7 @@ public class UserListPanel extends Panel {
 						try {
 							userProfileService.delete(userProfile.getId());
 						} catch (PersistenceException e) {
-							System.out.println("Impossible delete this record");
+							warn("Impossible delete this record");
 						}
 
 						setResponsePage(new UsersPage());

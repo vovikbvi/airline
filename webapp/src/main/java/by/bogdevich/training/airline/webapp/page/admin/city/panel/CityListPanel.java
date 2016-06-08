@@ -51,7 +51,7 @@ public class CityListPanel extends Panel {
 						try {
 							cityService.delete(city.getId());
 						} catch (PersistenceException e) {
-							System.out.println("Impossible delete this record");
+							warn("Impossible delete this record");
 						}
 
 						setResponsePage(new CityPage());

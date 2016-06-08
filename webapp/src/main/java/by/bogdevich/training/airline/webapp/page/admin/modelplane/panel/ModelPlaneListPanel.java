@@ -64,7 +64,7 @@ public class ModelPlaneListPanel extends Panel {
 						try {
 							modelPlaneService.delete(modelPlane.getId());
 						} catch (PersistenceException e) {
-							System.out.println("Impossible delete this record");
+							warn("Impossible delete this record");
 						}
 
 						setResponsePage(new ModelPlanePage());

@@ -75,7 +75,7 @@ public class AirportListPanel extends Panel {
 						try {
 							airportService.delete(airport.getId());
 						} catch (PersistenceException e) {
-							System.out.println("Impossible delete this record");
+							warn("Impossible delete this record");
 						}
 
 						setResponsePage(new AirportPage());
