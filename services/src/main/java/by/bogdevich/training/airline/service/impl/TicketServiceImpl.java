@@ -148,7 +148,7 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public double ticketCost(Ticket ticket) {
-		getFlight(ticket);
+		// getFlight(ticket);
 		double price = getPrice(ticket);
 		double factorBusySeats = price * 0.2 * percentBusySeats(ticket);
 		double factorToDateDeparture = price * 0.2 * percentToDateDeparture(ticket);
@@ -164,11 +164,7 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public void insert(Ticket ticket) {
-		// Double t = ticketDao.countAllBaggage(ticket.getFlight());
-		// Integer b = ticketDao.getColPassBuisnes();
-
 		getFlight(ticket);
-
 		ticket.setDateBought(new Date());
 		ticket.setCosts(ticketCost(ticket));
 
@@ -226,10 +222,9 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-
 	public List<Integer> getListEmtySeats(Ticket ticket) {
-
 		getFlight(ticket);
+		
 		List<Integer> allSeats = new ArrayList<Integer>();
 		List<Integer> basySeats = ticketDao.getBasySeats(ticket.getFlight(), ticket.getTicketClass());
 		List<Integer> result = new ArrayList<Integer>();
@@ -251,9 +246,8 @@ public class TicketServiceImpl implements TicketService {
 		return result;
 	}
 
-	
 	@Override
-	public Ticket getTicketWithFetch(Ticket ticket){
+	public Ticket getTicketWithFetch(Ticket ticket) {
 		return ticketDao.getTicketWithFetch(ticket);
 	}
 }

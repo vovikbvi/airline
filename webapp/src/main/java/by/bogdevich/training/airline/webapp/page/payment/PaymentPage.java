@@ -56,7 +56,7 @@ public class PaymentPage extends AbstractPage {
 				super.onSubmit();
 				
 					ticketService.update(ticket);
-
+					CreatePdfTicket(ticket);
 				setResponsePage(new HomePage());
 			}
 		});

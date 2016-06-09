@@ -20,7 +20,6 @@ import by.bogdevich.training.airline.datamodel.Plane;
 import by.bogdevich.training.airline.datamodel.Price;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.TicketClass;
-import by.bogdevich.training.airline.datamodel.TicketTupe;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserRole;
 
@@ -158,7 +157,7 @@ public class AbstractTest {
 
 	protected UserProfile userProfileAdd() {
 		UserProfile userProfile = new UserProfile();
-		userProfile.setLogin("login" + (int) (Math.random() * 10000));
+		userProfile.setLogin("login" + (int) (Math.random() * 1000));
 		userProfile.setPassword("pas");
 		userProfile.setFirstName("FirstName");
 		userProfile.setLastName("LastName");
@@ -193,7 +192,6 @@ public class AbstractTest {
 		ticket.setDateBought(new Date());
 		ticket.setBaggage(true);
 		ticket.setWeightBaggage(50.0);
-		ticket.setTicketTupe(TicketTupe.SINGLE_TICKET);
 		ticket.setTicketClass(TicketClass.ECONOMY);
 		ticket.setPriorityRegistration(true);
 		ticket.setPrioritySeats(true);

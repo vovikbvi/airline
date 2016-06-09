@@ -24,12 +24,10 @@ import org.apache.wicket.validation.validator.RangeValidator;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.TicketClass;
-import by.bogdevich.training.airline.datamodel.TicketTupe;
 import by.bogdevich.training.airline.service.TicketService;
 import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
 import by.bogdevich.training.airline.webapp.common.events.BookTicketChangeEvent;
 import by.bogdevich.training.airline.webapp.common.renderer.TicketClassChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.renderer.TicketTupeChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 import by.bogdevich.training.airline.webapp.page.payment.PaymentPage;
 
@@ -115,12 +113,6 @@ public class BookTicketPage extends AbstractPage {
 			}
 		});
 		weightBaggageField.setOutputMarkupPlaceholderTag(true);
-
-		DropDownChoice<TicketTupe> ticketTupeField = new DropDownChoice<>("ticketTupe",
-				Arrays.asList(TicketTupe.values()), TicketTupeChoiceRenderer.INSTANCE);
-		ticketTupeField.setRequired(true);
-		form.add(ticketTupeField);
-
 
 		CheckBox priorityRegistrationField = new CheckBox("priorityRegistration");
 		form.add(priorityRegistrationField);

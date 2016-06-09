@@ -115,35 +115,10 @@ public class FlightDaoImpl extends AbstractDaoImpl<Flight, Long, FlightFilter> i
 		from.fetch(Flight_.flightCatalog, JoinType.LEFT).fetch(FlightCatalog_.airportStart);
 		from.fetch(Flight_.flightCatalog, JoinType.LEFT).fetch(FlightCatalog_.airportFinish);
 
-		cq.where(cb.equal(from.get(Flight_.id), flight.getId()));
+		cq.where(cb.equal(from, flight));
 
 		Flight result = em.createQuery(cq).getSingleResult();
 		return result;
 	}
-
-
-	/*
-	 * @Override public Integer getColPassangersBuisnes(Flight flight) {
-	 * EntityManager em = getEntityManager(); CriteriaBuilder cb =
-	 * em.getCriteriaBuilder(); CriteriaQuery<Integer> cq =
-	 * cb.createQuery(Integer.class); Root<ModelPlane> from =
-	 * cq.from(ModelPlane.class);
-	 * 
-	 * cq.select(from.get(ModelPlane_.colPassangersBuisnes));
-	 * //(Flight_.plane).get(Plane_.modelPlane).get
-	 * 
-	 * Predicate qq = cb.isMember(from.get(ModelPlane_.variantModel),
-	 * flight.getPlane());
-	 * 
-	 * 
-	 * //Predicate qe = cb.equal(from.get(ModelPlane_.variantModel),
-	 * from.get(Plane_.id)); // Predicate re = cb.equal(from.get(Plane_.id), 1);
-	 * 
-	 * //cq.where(qq);
-	 * 
-	 * Integer result = em.createQuery(cq).getFirstResult();
-	 * 
-	 * return result; }
-	 */
 
 }

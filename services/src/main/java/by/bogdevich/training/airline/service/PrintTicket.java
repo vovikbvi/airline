@@ -9,6 +9,6 @@ import by.bogdevich.training.airline.datamodel.Ticket;
 
 public interface PrintTicket {
 
-	void CreatePdf(Ticket ticket, Flight flight) throws FileNotFoundException, DocumentException;
+	void CreatePdf(Ticket ticket) throws FileNotFoundException, DocumentException;
 
 }

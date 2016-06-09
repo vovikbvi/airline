@@ -19,14 +19,12 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.TicketClass;
-import by.bogdevich.training.airline.datamodel.TicketTupe;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.service.FlightService;
 import by.bogdevich.training.airline.service.TicketService;
 import by.bogdevich.training.airline.service.UserProfileService;
 import by.bogdevich.training.airline.webapp.common.renderer.FlightChoiceRenderer;
 import by.bogdevich.training.airline.webapp.common.renderer.TicketClassChoiceRenderer;
-import by.bogdevich.training.airline.webapp.common.renderer.TicketTupeChoiceRenderer;
 import by.bogdevich.training.airline.webapp.common.renderer.UserProfileChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 
@@ -89,10 +87,6 @@ public class TicketEditPage extends AbstractPage {
 		weightBaggageField.setRequired(true);
 		form.add(weightBaggageField);
 		
-        DropDownChoice<TicketTupe> ticketTupeField = new DropDownChoice<>("ticketTupe", Arrays.asList(TicketTupe.values()), TicketTupeChoiceRenderer.INSTANCE);
-        ticketTupeField.setRequired(true);
-        form.add(ticketTupeField);
-
         DropDownChoice<TicketClass> ticketClassField = new DropDownChoice<>("ticketClass", Arrays.asList(TicketClass.values()), TicketClassChoiceRenderer.INSTANCE);
         ticketClassField.setRequired(true);
         form.add(ticketClassField);

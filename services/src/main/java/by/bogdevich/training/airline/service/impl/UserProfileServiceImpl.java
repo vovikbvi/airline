@@ -5,10 +5,13 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
+
+import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.mail.MailException;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import by.bogdevich.training.airline.dataaccess.UserProfileDao;
@@ -36,7 +39,6 @@ public class UserProfileServiceImpl implements UserProfileService {
 		return true;
 	}
 
-	@Async
 	private void sendMessage(UserProfile userProfile) {
 
 		// Spring Bean file you specified in /src/main/resources folder
@@ -53,7 +55,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 	}
 
 	private void AcceptRegistration(UserProfile userProfile) {
-	//	sendMessage(userProfile);
+		try {
+			sendMessage(userProfile);
+		} catch (MailException e) {
+			LOGGER.error("Send mail error");
+		}
 		userProfile.setCountOder(0);
 		userProfile.setVip(false);
 		userProfile.setDateRegistr(new Date());

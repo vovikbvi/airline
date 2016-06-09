@@ -32,9 +32,6 @@ public class TicketInfoPage extends AbstractPage {
 	@Inject
 	private TicketService ticketService;
 	
-	@Inject
-	private PrintTicket printTicket;
-	
 	private Ticket ticket;
 	
     public TicketInfoPage(Ticket ticket) {
@@ -55,16 +52,11 @@ public class TicketInfoPage extends AbstractPage {
             @Override
             public void onClick() {
        
-                try {
-                	printTicket.CreatePdf(ticket, flight);	
-            	} catch (FileNotFoundException e) {
-            		warn("Error PDF");
-            	} catch (DocumentException e) {
-            		warn("Error PDF");
-            	}	
+                CreatePdfTicket(ticket);	
             }
         });
 
     	
     }
+
 }

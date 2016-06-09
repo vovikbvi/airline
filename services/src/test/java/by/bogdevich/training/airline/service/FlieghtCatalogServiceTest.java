@@ -98,7 +98,7 @@ public class FlieghtCatalogServiceTest extends AbstractTest{
 
 		flightCatalogService.insert(flightCatalog);
 
-		Assert.assertFalse(flightCatalogService.checkInternatoinal(flightCatalog));
+		Assert.assertTrue(flightCatalogService.checkInternatoinal(flightCatalog));
 	}
 	
 }

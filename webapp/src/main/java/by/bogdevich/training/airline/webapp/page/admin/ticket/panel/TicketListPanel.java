@@ -63,7 +63,6 @@ public class TicketListPanel extends Panel {
 				item.add(checkboxBaggage);
 				
 				item.add(new Label("weight-baggage", ticket.getWeightBaggage()));
-				item.add(new Label("ticket-tupe", ticket.getTicketTupe()));
 				item.add(new Label("ticket-class", ticket.getTicketClass()));
 
 				CheckBox checkboxPriotityRgistr = new CheckBox("priotity-rgistr",
@@ -117,7 +116,6 @@ public class TicketListPanel extends Panel {
 		add(new OrderByBorder("sort-date-bought", Ticket_.dateBought, ticketDataProvider));
 		add(new OrderByBorder("sort-baggage", Ticket_.baggage, ticketDataProvider));
 		add(new OrderByBorder("sort-weight-baggage", Ticket_.weightBaggage, ticketDataProvider));
-		add(new OrderByBorder("sort-ticket-tupe", Ticket_.ticketTupe, ticketDataProvider));
 		add(new OrderByBorder("sort-ticket-class", Ticket_.ticketClass, ticketDataProvider));
 		add(new OrderByBorder("sort-priotity-rgistr", Ticket_.priorityRegistration, ticketDataProvider));
 		add(new OrderByBorder("sort-priotity-seats", Ticket_.prioritySeats, ticketDataProvider));

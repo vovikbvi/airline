@@ -40,10 +40,6 @@ public class Ticket extends AbstractModel {
 
 	@Column
 	@Enumerated(value = EnumType.ORDINAL)
-	private TicketTupe ticketTupe;
-
-	@Column
-	@Enumerated(value = EnumType.ORDINAL)
 	private TicketClass ticketClass;
 
 	@Column
@@ -115,14 +111,6 @@ public class Ticket extends AbstractModel {
 		this.weightBaggage = weightBaggage;
 	}
 
-	public TicketTupe getTicketTupe() {
-		return ticketTupe;
-	}
-
-	public void setTicketTupe(TicketTupe ticketTupe) {
-		this.ticketTupe = ticketTupe;
-	}
-
 	public TicketClass getTicketClass() {
 		return ticketClass;
 	}
@@ -165,11 +153,11 @@ public class Ticket extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return "Ticket [flight=" + flight + ", userProfile=" + userProfile + ", paid=" + paid + ", numberSeats="
-				+ numberSeats + ", dateBought=" + dateBought + ", baggage=" + baggage + ", weightBaggage="
-				+ weightBaggage + ", ticketTupe=" + ticketTupe + ", ticketClass=" + ticketClass
+		return "Ticket [paid=" + paid + ", numberSeats=" + numberSeats + ", dateBought=" + dateBought + ", baggage="
+				+ baggage + ", weightBaggage=" + weightBaggage + ", ticketClass=" + ticketClass
 				+ ", priorityRegistration=" + priorityRegistration + ", prioritySeats=" + prioritySeats + ", costs="
 				+ costs + ", forBaby=" + forBaby + "]";
 	}
+
 
 }

@@ -6,6 +6,7 @@ import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,7 +22,7 @@ import by.bogdevich.training.airline.datamodel.Plane;
 import by.bogdevich.training.airline.datamodel.Price;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.UserProfile;
-
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
 public class InsertAllTable extends AbstractTest {

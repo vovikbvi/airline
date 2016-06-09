@@ -32,7 +32,7 @@ public class FlightCatalogServiceImpl implements FlightCatalogService {
 		
 			Country countryStart =  airportDao.getAirportWithFetch(flightCatalog.getAirportStart()).getCity().getCountry();  
 			Country countryFinish = airportDao.getAirportWithFetch(flightCatalog.getAirportFinish()).getCity().getCountry();
-			return countryStart.equals(countryFinish);
+			return !countryStart.equals(countryFinish);
 
 	}
 
