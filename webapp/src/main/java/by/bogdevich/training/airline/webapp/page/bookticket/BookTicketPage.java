@@ -149,6 +149,7 @@ public class BookTicketPage extends AbstractPage {
 		add(new FeedbackPanel("feedback"));
 		}
 
+	
 	private ArrayList<Integer> getListSeats() {
 		ArrayList<Integer> listSeats= new ArrayList<Integer>(ticketService.getListEmtySeats(ticket));
 		return listSeats;

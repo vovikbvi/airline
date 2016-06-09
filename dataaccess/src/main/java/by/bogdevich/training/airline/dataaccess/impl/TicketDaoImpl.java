@@ -19,6 +19,7 @@ import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.datamodel.ModelPlane;
 import by.bogdevich.training.airline.datamodel.ModelPlane_;
+import by.bogdevich.training.airline.datamodel.Plane_;
 import by.bogdevich.training.airline.datamodel.Price;
 import by.bogdevich.training.airline.datamodel.Price_;
 import by.bogdevich.training.airline.datamodel.Ticket;
@@ -169,5 +170,19 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long, TicketFilter> i
 		return em.createQuery(cq).getResultList();
 	}
 
-	
+	@Override
+	public Ticket getTicketWithFetch(Ticket ticket) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Ticket> cq = cb.createQuery(Ticket.class);
+		Root<Ticket> from = cq.from(Ticket.class);
+
+		cq.select(from);
+		from.fetch(Ticket_.userProfile, JoinType.LEFT);
+		cq.where(cb.equal(from, ticket));
+
+		Ticket result = em.createQuery(cq).getSingleResult();
+		return result;
+	}
+
 }

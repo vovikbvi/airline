@@ -27,6 +27,7 @@ import by.bogdevich.training.airline.datamodel.UserProfile_;
 import by.bogdevich.training.airline.service.TicketService;
 import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
 import by.bogdevich.training.airline.webapp.page.bookticket.BookTicketPage;
+import by.bogdevich.training.airline.webapp.page.info.TicketInfoPage;
 import by.bogdevich.training.airline.webapp.page.payment.PaymentPage;
 
 public class MyOdersPanel extends Panel {
@@ -70,11 +71,9 @@ public class MyOdersPanel extends Panel {
 				item.add(new Link<Void>("detail-link") {
 					@Override
 					public void onClick() {
-						setResponsePage(new BookTicketPage(ticket, ticket.getFlight()));
+						setResponsePage(new TicketInfoPage(ticket));
 					}
 				});
-				
-				
 			}
 		};
 

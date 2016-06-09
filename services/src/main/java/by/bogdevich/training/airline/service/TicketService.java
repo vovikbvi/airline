@@ -34,5 +34,7 @@ public interface TicketService {
 
 	List<Integer> getListEmtySeats(Ticket ticket);
 
+	Ticket getTicketWithFetch(Ticket ticket);
+
 	
 }

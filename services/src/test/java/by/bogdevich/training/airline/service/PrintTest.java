@@ -10,8 +10,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.itextpdf.text.DocumentException;
 
+import by.bogdevich.training.airline.service.impl.PrintTicketImpl;
 import by.bogdevich.training.airline.service.util.PdfGeneration;
-import by.bogdevich.training.airline.service.util.PrintTicket;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:service-context-test.xml" })
@@ -20,14 +20,16 @@ public class PrintTest {
 
 	@Test
 	public void testPdf(){
+		/*
      PrintTicket qq = new PrintTicket();
      try {
-		qq.test();
+		qq.CreatePdf();
 	} catch (FileNotFoundException e) {
 		e.printStackTrace();
 	} catch (DocumentException e) {
 		e.printStackTrace();
 	}
+	*/
 	}
 	
 //	@Test

@@ -22,4 +22,6 @@ public interface TicketDao extends AbstractDao<Ticket, Long, TicketFilter>{
 	List<Integer> getBasySeats(Flight flight, TicketClass ticketClass);
 
 	Long countBusySeats(Flight flight, TicketClass ticketClass);
+
+	Ticket getTicketWithFetch(Ticket ticket);
 }

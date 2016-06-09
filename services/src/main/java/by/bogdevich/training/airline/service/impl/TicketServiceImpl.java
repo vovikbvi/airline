@@ -251,4 +251,9 @@ public class TicketServiceImpl implements TicketService {
 		return result;
 	}
 
+	
+	@Override
+	public Ticket getTicketWithFetch(Ticket ticket){
+		return ticketDao.getTicketWithFetch(ticket);
+	}
 }

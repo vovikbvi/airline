@@ -59,6 +59,7 @@ public class TicketListPanel extends Panel {
 				item.add(DateLabel.forDatePattern("date-bought", Model.of(ticket.getDateBought()), "dd-MM-yyyy"));
 				
 				CheckBox checkboxBaggage = new CheckBox("baggage", Model.of(ticket.getBaggage()));
+				checkboxBaggage.setEnabled(false);
 				item.add(checkboxBaggage);
 				
 				item.add(new Label("weight-baggage", ticket.getWeightBaggage()));
