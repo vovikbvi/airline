@@ -61,11 +61,7 @@ public class FlightCatalog extends AbstractModel {
 		this.international = international;
 	}
 
-	@Override
-	public String toString() {
-		return "FlightCatalog [airportStart=" + airportStart + ", airportFinish=" + airportFinish + ", distance="
-				+ distance + ", international=" + international + "]";
-	}
+
 
 	
 }

@@ -15,7 +15,7 @@ import by.bogdevich.training.airline.service.PriceService;
 
 @Service
 public class PriceServiceImpl implements PriceService {
-	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(PriceServiceImpl.class);
 
 	@Inject
 	PriceDao priceDao;

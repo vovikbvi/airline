@@ -25,8 +25,7 @@
 		p:password="postgres"
 		p:schema="test" />
 
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-	</bean>
+	<bean id="customMailSender" class="by.bogdevich.training.airline.service.impl.SendEmptyMailImpl"/>
 
 </beans>
 

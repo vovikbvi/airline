@@ -49,8 +49,9 @@ public class City extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return String.format("id = %s, City name= %s, country= %s, timezone= %s",super.getId() ,name, country, timezone);
+		return "City [name=" + name + ", timezone=" + timezone + "]";
 	}
+
 
 	
 	

@@ -15,7 +15,7 @@ import by.bogdevich.training.airline.service.CountryService;
 
 @Service
 public class CountryServiceImpl implements CountryService {
-	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(CountryServiceImpl.class);
 
 	@Inject
 	CountryDao countryDao;

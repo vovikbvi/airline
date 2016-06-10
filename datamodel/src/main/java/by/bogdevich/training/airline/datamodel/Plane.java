@@ -41,7 +41,8 @@ public class Plane extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return "Plane [bortNumber=" + bortNumber + ", modelPlane=" + modelPlane + "]";
+		return "Plane [bortNumber=" + bortNumber + "]";
 	}
+
 
 }

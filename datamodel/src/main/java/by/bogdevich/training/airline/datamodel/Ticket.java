@@ -29,7 +29,6 @@ public class Ticket extends AbstractModel {
 	private Integer numberSeats;
 
 	@Column
-	//@Convert(converter = LocalDateTimePersistenceConverter.class)
 	private Date dateBought;
 
 	@Column
@@ -158,6 +157,7 @@ public class Ticket extends AbstractModel {
 				+ ", priorityRegistration=" + priorityRegistration + ", prioritySeats=" + prioritySeats + ", costs="
 				+ costs + ", forBaby=" + forBaby + "]";
 	}
+
 
 
 }

@@ -18,7 +18,7 @@ import by.bogdevich.training.airline.service.FlightCatalogService;
 
 @Service
 public class FlightCatalogServiceImpl implements FlightCatalogService {
-	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(FlightCatalogServiceImpl.class);
 
 	@Inject
 	FlightCatalogDao flightCatalogDao;

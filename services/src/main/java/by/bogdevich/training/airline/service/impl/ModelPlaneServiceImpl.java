@@ -15,7 +15,7 @@ import by.bogdevich.training.airline.service.ModelPlaneService;
 
 @Service
 public class ModelPlaneServiceImpl implements ModelPlaneService {
-	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(ModelPlaneServiceImpl.class);
 
 	@Inject
 	ModelPlaneDao modelPlaneDao;

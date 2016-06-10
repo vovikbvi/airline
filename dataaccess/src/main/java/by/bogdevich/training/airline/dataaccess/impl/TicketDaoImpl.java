@@ -1,15 +1,20 @@
 package by.bogdevich.training.airline.dataaccess.impl;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
+
 import org.hibernate.jpa.criteria.OrderImpl;
 import org.springframework.stereotype.Repository;
 import by.bogdevich.training.airline.dataaccess.TicketDao;
@@ -185,4 +190,14 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long, TicketFilter> i
 		return result;
 	}
 
+	@Override
+	public void deleteDontPaidTicket() {	
+		LocalDateTime ltdMinusDay = LocalDateTime.now().minusDays(3);
+		Date deletDtae = Date.from(ltdMinusDay.atZone(ZoneId.systemDefault()).toInstant());
+
+		getEntityManager().createQuery(String.format("delete from %s e where e.dateBought < :delDate", Ticket.class.getSimpleName()))
+		.setParameter("delDate", deletDtae).executeUpdate();
+
+	}
+	
 }

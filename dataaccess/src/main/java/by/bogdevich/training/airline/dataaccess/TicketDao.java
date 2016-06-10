@@ -24,4 +24,6 @@ public interface TicketDao extends AbstractDao<Ticket, Long, TicketFilter>{
 	Long countBusySeats(Flight flight, TicketClass ticketClass);
 
 	Ticket getTicketWithFetch(Ticket ticket);
+
+	void deleteDontPaidTicket();
 }

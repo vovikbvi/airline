@@ -11,6 +11,7 @@ import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvid
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
@@ -70,6 +71,7 @@ public class CityListPanel extends Panel {
 	
 		add(dataView);
 		add(new PagingNavigator("paging", dataView));
+		add(new FeedbackPanel("feedback"));
 		
 		 add(new OrderByBorder("sort-id", City_.id, cityDataProvider));
 		 add(new OrderByBorder("sort-city", City_.name, cityDataProvider));

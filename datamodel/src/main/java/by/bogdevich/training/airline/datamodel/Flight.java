@@ -21,22 +21,18 @@ public class Flight extends AbstractModel {
 	private FlightCatalog flightCatalog;
 
 	@Column
-	//@Convert(converter = LocalDateTimePersistenceConverter.class)
 	private Date registrTime;
 
 	@Column
-	//@Convert(converter = LocalDateTimePersistenceConverter.class)
 	private Date departureTime;
 
 	@Column
-	//@Convert(converter = LocalDateTimePersistenceConverter.class)
 	private Date arrivalTime;
 
 	@ManyToOne(targetEntity = Plane.class, fetch = FetchType.LAZY)
 	private Plane plane;
 
 	@Column
-	//@Convert(converter = LocalDateTimePersistenceConverter.class)
 	private Date startSaleTicket;
 	
 
@@ -106,10 +102,13 @@ public class Flight extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return "Flight [flightCatalog=" + flightCatalog + ", registrTime=" + registrTime + ", departureTime="
-				+ departureTime + ", arrivalTime=" + arrivalTime + ", plane=" + plane + ", startSaleTicket="
-				+ startSaleTicket + ", Tickets=" + Tickets + "]";
+		return "Flight [registrTime=" + registrTime + ", departureTime=" + departureTime + ", arrivalTime="
+				+ arrivalTime + ", plane=" + plane + ", startSaleTicket=" + startSaleTicket + "]";
 	}
+
+
+
+
 
 
 }

@@ -24,7 +24,7 @@ import by.bogdevich.training.airline.service.TicketService;
 
 @Service
 public class TicketServiceImpl implements TicketService {
-	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(TicketServiceImpl.class);
 
 	@Inject
 	private TicketDao ticketDao;
@@ -249,5 +249,10 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public Ticket getTicketWithFetch(Ticket ticket) {
 		return ticketDao.getTicketWithFetch(ticket);
+	}
+	
+	@Override
+	public void deleteDontPaidTicket(){
+		ticketDao.deleteDontPaidTicket();
 	}
 }

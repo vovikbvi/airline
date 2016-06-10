@@ -87,7 +87,6 @@ public abstract class AbstractDaoImpl<T, ID, F> implements AbstractDao<T, ID, F>
 		handleFilterParameters(filter, cb, cq, from);
 		TypedQuery<Long> q = entityManager.createQuery(cq);
 		Long result = q.getSingleResult();
-		//System.out.println("!!!!!!!!!!!!!!!!!!!!!!"+ result +"!!!!!!!!!!!!!!!!!!!!!");
 		return result;
 	}
 }

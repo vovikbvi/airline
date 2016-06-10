@@ -15,7 +15,7 @@ import by.bogdevich.training.airline.service.AirportService;
 
 @Service
 public class AirportServiceImpl implements AirportService {
-	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(AirportServiceImpl.class);
 
 	@Inject
 	AirportDao airportDao;

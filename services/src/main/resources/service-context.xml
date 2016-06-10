@@ -57,6 +57,7 @@
 			</props>
 		</property>
 	</bean>
-		
+	
+	<bean id="customMailSender" class="by.bogdevich.training.airline.service.impl.SendMailImpl"/>	
 
 </beans>

@@ -12,7 +12,7 @@ import by.bogdevich.training.airline.service.PlaneService;
 
 @Service
 public class PlaneServiceImpl implements PlaneService {
-	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(PlaneServiceImpl.class);
 
 	@Inject
 	PlaneDao planeDao;

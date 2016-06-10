@@ -100,10 +100,10 @@ public class Airport extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return "Airport [name=" + name + ", codeIata=" + codeIata + ", codeIcao=" + codeIcao + ", city=" + city
-				+ ", classWeight=" + classWeight + ", coordinatesX=" + coordinatesX + ", coordinatesY=" + coordinatesY
-				+ "]";
+		return "Airport [name=" + name + ", codeIata=" + codeIata + ", codeIcao=" + codeIcao + "]";
 	}
+
+
 
 	
 	

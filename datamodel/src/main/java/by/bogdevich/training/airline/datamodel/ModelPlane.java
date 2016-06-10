@@ -109,11 +109,12 @@ public class ModelPlane extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return "ModelPlane [manufacturedPlane=" + manufacturedPlane + ", model=" + model + ", colPassangersBuisnes="
-				+ colPassangersBuisnes + ", colPassangersFirstclass=" + colPassangersFirstclass
-				+ ", colPassangersEconomy=" + colPassangersEconomy + ", weightAllBaggage=" + weightAllBaggage
-				+ ", avgSpeed=" + avgSpeed + ", classWeight=" + classWeight + "]";
+		return "ModelPlane [model=" + model + ", colPassangersBuisnes=" + colPassangersBuisnes
+				+ ", colPassangersFirstclass=" + colPassangersFirstclass + ", colPassangersEconomy="
+				+ colPassangersEconomy + ", weightAllBaggage=" + weightAllBaggage + ", avgSpeed=" + avgSpeed
+				+ ", classWeight=" + classWeight + "]";
 	}
+
 
 	
 	

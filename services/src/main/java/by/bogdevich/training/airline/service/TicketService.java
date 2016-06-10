@@ -36,5 +36,7 @@ public interface TicketService {
 
 	Ticket getTicketWithFetch(Ticket ticket);
 
+	@Transactional
+	void deleteDontPaidTicket();
 	
 }

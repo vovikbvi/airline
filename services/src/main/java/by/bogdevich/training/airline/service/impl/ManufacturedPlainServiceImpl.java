@@ -15,7 +15,7 @@ import by.bogdevich.training.airline.service.ManufacturedPlainService;
 
 @Service
 public class ManufacturedPlainServiceImpl implements ManufacturedPlainService {
-	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(ManufacturedPlainServiceImpl.class);
 
 	@Inject
 	ManufacturedPlaneDao manufacturedPlaneDao;

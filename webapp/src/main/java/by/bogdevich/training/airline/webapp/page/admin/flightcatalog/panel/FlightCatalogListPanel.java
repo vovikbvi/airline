@@ -12,6 +12,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
@@ -79,6 +80,7 @@ public class FlightCatalogListPanel extends Panel {
 	
 		add(dataView);
 		add(new PagingNavigator("paging", dataView));
+		add(new FeedbackPanel("feedback"));
 
 		//проверить сортировку по аэропорт финиш
 		

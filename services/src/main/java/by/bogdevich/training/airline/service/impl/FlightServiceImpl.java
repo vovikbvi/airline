@@ -20,7 +20,7 @@ import by.bogdevich.training.airline.service.FlightService;
 
 @Service
 public class FlightServiceImpl implements FlightService {
-	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(FlightServiceImpl.class);
 
 	@Inject
 	private FlightDao flightDao;
