@@ -6,13 +6,9 @@ import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
 
-import org.junit.Ignore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.mail.MailException;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import by.bogdevich.training.airline.dataaccess.UserProfileDao;
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
@@ -20,17 +16,17 @@ import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserRole;
 import by.bogdevich.training.airline.service.SemdMail;
 import by.bogdevich.training.airline.service.UserProfileService;
-import by.bogdevich.training.airline.service.util.SendMail;
 
 @Service
 public class UserProfileServiceImpl implements UserProfileService {
-	private static Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(UserProfileServiceImpl.class);
 
 	@Inject
 	private UserProfileDao userProfileDao;
+	
 
 	@Inject
-	private SemdMail crunchifyEmailAPI;
+	private SemdMail semdMail;
 
 	public boolean checkUserExist(String login) {
 		if (userProfileDao.countUserLogin(login) == 0) {
@@ -38,7 +34,8 @@ public class UserProfileServiceImpl implements UserProfileService {
 		}
 		return true;
 	}
-
+	
+	
 	private void sendMessage(UserProfile userProfile) {
 
 		// Spring Bean file you specified in /src/main/resources folder
@@ -50,16 +47,18 @@ public class UserProfileServiceImpl implements UserProfileService {
 		String fromAddr = "LowCostAirlineTrening@gmail.com";
 		String subject = "Registr LowCostAirline";
 		String body = "You registr in LowCostAirline";
-		crunchifyEmailAPI.crunchifyReadyToSendEmail(toAddr, fromAddr, subject, body);
+		semdMail.crunchifyReadyToSendEmail(toAddr, fromAddr, subject, body);
 
 	}
 
 	private void AcceptRegistration(UserProfile userProfile) {
+		
 		try {
 			sendMessage(userProfile);
 		} catch (MailException e) {
-			LOGGER.error("Send mail error");
+			// TODO: handle exception
 		}
+		
 		userProfile.setCountOder(0);
 		userProfile.setVip(false);
 		userProfile.setDateRegistr(new Date());

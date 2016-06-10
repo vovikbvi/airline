@@ -144,6 +144,7 @@
 				<version>4.11</version>
 				<scope>test</scope>
 			</dependency>
+			
 			<dependency>
 
 				<!-- for mail -->
@@ -264,17 +265,6 @@
 
 		</dependencies>
 	</dependencyManagement>
-
-	<repositories>
-		<repository>
-			<id>sonatype-snapshots</id>
-			<name>Sonatype Snapshots Repository</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 
 	<build>
 
