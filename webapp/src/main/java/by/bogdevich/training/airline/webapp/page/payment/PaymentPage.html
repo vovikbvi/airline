@@ -1,15 +1,15 @@
 <wicket:extend>
-	<h2>Payment</h2>
+	<h2><wicket:message key="payment"/></h2>
 	<div class="payment">
 	<form wicket:id="form">
 	
-			<h3>Ticket cost</h3>
+			<h3><wicket:message key="payment.cost"/></h3>
 		<span wicket:id="costs">$</span>
 	
 		<div class="tab-for">
-			<h5>NAME ON CARD</h5>
+			<h5><wicket:message key="payment.name_card"/></h5>
 			<input type="text" value="">
-			<h5>CARD NUMBER</h5>
+			<h5><wicket:message key="payment.card_number"/></h5>
 			<input class="pay-logo" type="text" value="0000-0000-0000-0000"
 				onfocus="this.value = '';"
 				onblur="if (this.value == '') {this.value = '0000-0000-0000-0000';}"
@@ -17,7 +17,7 @@
 		</div>
 		<div class="transaction">
 			<div class="tab-form-left user-form">
-				<h5>EXPIRATION</h5>
+				<h5><wicket:message key="payment.expiration"/></h5>
 				<ul>
 					<li><input type="number" class="text_box" value="6" min="1">
 					</li>
@@ -27,7 +27,7 @@
 				</ul>
 			</div>
 			<div class="tab-form-right user-form-rt">
-				<h5>CVV NUMBER</h5>
+				<h5><wicket:message key="payment.cvv"/></h5>
 				<input type="text" value="xxxx" onfocus="this.value = '';"
 					onblur="if (this.value == '') {this.value = 'xxxx';}" required="">
 			</div>

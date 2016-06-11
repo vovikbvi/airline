@@ -11,7 +11,9 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 
 import by.bogdevich.training.airline.datamodel.Ticket;
+import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.service.TicketService;
+import by.bogdevich.training.airline.service.UserProfileService;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 import by.bogdevich.training.airline.webapp.page.home.HomePage;
 
@@ -21,6 +23,9 @@ public class PaymentPage extends AbstractPage {
 
 	@Inject
 	private TicketService ticketService;
+	
+	@Inject
+	private UserProfileService userProfileService;
 	
 	private Ticket ticket;
 
@@ -50,11 +55,14 @@ public class PaymentPage extends AbstractPage {
 
     	ticket.setPaid(true);
     	
+    	
 		form.add(new SubmitLink("save") {
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-				
+					int countOder = ticket.getUserProfile().getCountOder();
+					ticket.getUserProfile().setCountOder(countOder+1);
+					userProfileService.update(ticket.getUserProfile());
 					ticketService.update(ticket);
 					CreatePdfTicket(ticket);
 				setResponsePage(new HomePage());

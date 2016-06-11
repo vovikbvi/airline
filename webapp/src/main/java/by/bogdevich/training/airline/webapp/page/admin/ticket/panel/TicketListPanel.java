@@ -66,15 +66,15 @@ public class TicketListPanel extends Panel {
 				item.add(new Label("weight-baggage", ticket.getWeightBaggage()));
 				item.add(new Label("ticket-class", ticket.getTicketClass()));
 
-				CheckBox checkboxPriotityRgistr = new CheckBox("priotity-rgistr",
+				CheckBox checkboxPriorityRegistr = new CheckBox("priority-registr",
 						Model.of(ticket.getPriorityRegistration()));
-				checkboxPriotityRgistr.setEnabled(false);
-				item.add(checkboxPriotityRgistr);
+				checkboxPriorityRegistr.setEnabled(false);
+				item.add(checkboxPriorityRegistr);
 
-				CheckBox checkboxPriotitySeats = new CheckBox("priotity-seats",
+				CheckBox checkboxPrioritySeats = new CheckBox("priority-seats",
 						Model.of(ticket.getPriorityRegistration()));
-				checkboxPriotitySeats.setEnabled(false);
-				item.add(checkboxPriotitySeats);
+				checkboxPrioritySeats.setEnabled(false);
+				item.add(checkboxPrioritySeats);
 
 				item.add(new Label("ticket-costs", ticket.getCosts()));
 
@@ -119,8 +119,8 @@ public class TicketListPanel extends Panel {
 		add(new OrderByBorder("sort-baggage", Ticket_.baggage, ticketDataProvider));
 		add(new OrderByBorder("sort-weight-baggage", Ticket_.weightBaggage, ticketDataProvider));
 		add(new OrderByBorder("sort-ticket-class", Ticket_.ticketClass, ticketDataProvider));
-		add(new OrderByBorder("sort-priotity-rgistr", Ticket_.priorityRegistration, ticketDataProvider));
-		add(new OrderByBorder("sort-priotity-seats", Ticket_.prioritySeats, ticketDataProvider));
+		add(new OrderByBorder("sort-priority-rgistr", Ticket_.priorityRegistration, ticketDataProvider));
+		add(new OrderByBorder("sort-priority-seats", Ticket_.prioritySeats, ticketDataProvider));
 		add(new OrderByBorder("sort-ticket-costs", Ticket_.costs, ticketDataProvider));
 		add(new OrderByBorder("sort-for-baby", Ticket_.forBaby, ticketDataProvider));
 	}

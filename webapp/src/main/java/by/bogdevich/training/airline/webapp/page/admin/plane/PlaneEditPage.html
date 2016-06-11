@@ -1,20 +1,20 @@
 <wicket:extend>
 	
 		<form wicket:id="form" class="edit-admin-form">
-	<h2>Edit plane</h2>
+	<h2><wicket:message key="plane.edit"/></h2>
 	
 		<label>
-		<h4>Bort number:</h4>
+		<h4><wicket:message key="plane.bort_number"/>:</h4>
 		<input type="text" wicket:id="bortNumber" />
 	    </label>
 	 
 		<label>
-		<h4>Model plane</h4>
+		<h4><wicket:message key="plane.model"/>:</h4>
 		<select wicket:id="modelPlane"></select>
 		</label>
 				
 		<div>
-			<button type="submit" wicket:id="save">SAVE</button>
+			<button type="submit" wicket:id="save"><wicket:message key="save"/></button>
 		</div>
 
 	</form>

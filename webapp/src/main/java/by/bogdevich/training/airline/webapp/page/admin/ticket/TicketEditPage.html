@@ -2,70 +2,70 @@
 	
 
 	<form wicket:id="form" class="edit-admin-form">
-	<h2>Edit ticket</h2>
+	<h2><wicket:message key="ticket.edit"/></h2>
 	
         <label>
-		<h4>Number flight</h4>
+		<h4><wicket:message key="ticket.number_flight"/>:</h4>
 		<select wicket:id="flight"></select>
 		</label>
 
 		<label>
-		<h4>Passenger</h4>
+		<h4><wicket:message key="ticket.passenger"/>:</h4>
 		<select wicket:id="userProfile"></select>
 		</label>
 		
 		<label>
-		<h4>Paid:</h4>
+		<h4><wicket:message key="ticket.paid"/>:</h4>
 		<input type="checkbox" wicket:id="paid" />
 		</label>
 		
 		<label>
-		<h4>Number seats:</h4>
+		<h4><wicket:message key="ticket.number_seats"/>:</h4>
 		<input type="text" wicket:id="numberSeats" />
 	    </label>
 	    
 	    <label>
-		<h4>Date bought:</h4>
+		<h4><wicket:message key="ticket.date_bought"/>:</h4>
 		<div><input type="text" wicket:id="dateBought" /></div>
 		</label>
 		
 		<label>
-		<h4>Baggage:</h4>
+		<h4><wicket:message key="ticket.baggage"/>:</h4>
 		<input type="checkbox" wicket:id="baggage" />
 		</label>
 		
 		<label>
-		<h4>Weight baggage:</h4>
+		<h4><wicket:message key="ticket.weight_baggage"/>:</h4>
 		<input type="text" wicket:id="weightBaggage" />
 		</label>
 		
 		<label>	
-		<h4>Ticket class</h4>
+		<h4><wicket:message key="ticket.ticket_class"/>:</h4>
 		<select wicket:id="ticketClass"></select>
 		</label>
 		
 		<label>
-		<h4>Priority registration:</h4>
+		<h4><wicket:message key="ticket.priority_registration"/>:</h4>
 		<input type="checkbox" wicket:id="priorityRegistration" />
 		</label>
 		
 		<label>
-		<h4>Priority seats:</h4>
+		<h4><wicket:message key="ticket.priority_seats"/>:</h4>
 		<input type="checkbox" wicket:id="prioritySeats" />
 		</label>
 		
 		<label>
-		<h4>For baby:</h4>
+		<h4><wicket:message key="ticket.for_baby"/>:</h4>
 		<input type="checkbox" wicket:id="forBaby" />
 		</label>
 		
 		<label>
- 		<h4>Costs:</h4>
+ 		<h4><wicket:message key="ticket.ticket_costs"/>:</h4>
 		<input type="text" wicket:id="costs" />
  		</label>
  		
 		<div>
-			<button type="submit" wicket:id="save">SAVE</button>
+			<button type="submit" wicket:id="save"><wicket:message key="save"/></button>
 		</div>
 
 	</form>

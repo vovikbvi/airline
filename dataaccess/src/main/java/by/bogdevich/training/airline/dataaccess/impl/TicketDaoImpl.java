@@ -195,7 +195,7 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long, TicketFilter> i
 		LocalDateTime ltdMinusDay = LocalDateTime.now().minusDays(3);
 		Date deletDtae = Date.from(ltdMinusDay.atZone(ZoneId.systemDefault()).toInstant());
 
-		getEntityManager().createQuery(String.format("delete from %s e where e.dateBought < :delDate", Ticket.class.getSimpleName()))
+		getEntityManager().createQuery(String.format("delete from %s e where (e.dateBought < :delDate) and (paid = false)", Ticket.class.getSimpleName()))
 		.setParameter("delDate", deletDtae).executeUpdate();
 
 	}

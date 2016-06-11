@@ -1,16 +1,17 @@
 <wicket:panel>
 	<table class="manufactured-plane-table">
 		<tr>
-			<th><a wicket:id="sort-id">ID</a></th>
-			<th><a wicket:id="sort-name">Name manufactured</a></th>
-			<th>Action</th>
+			<th><a wicket:id="sort-id"><wicket:message key="ID"/></a></th>
+			<th><a wicket:id="sort-name"><wicket:message key="manufactured.name"/></a></th>
+			<th><wicket:message key="action"/></th>
 
 
 		</tr>
 		<tr wicket:id="rows">
 			<td><span wicket:id="id" /></td>
 			<td><span wicket:id="manufactured-name" /></td>
-			<td><a wicket:id="delete-link">delet</a>/<a	wicket:id="edit-link">edit</a></td>
+			<td><a wicket:id="delete-link"><wicket:message key="delet"/></a>/<a
+			 wicket:id="edit-link"><wicket:message key="edit"/></a></td>
 		</tr>
 	</table>
 	<div wicket:id="paging"></div>

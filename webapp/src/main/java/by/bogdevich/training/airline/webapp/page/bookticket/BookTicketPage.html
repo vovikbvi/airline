@@ -1,41 +1,41 @@
 <wicket:extend>
-	<h2>Book ticket</h2>
+	<h2><wicket:message key="ticket.book"/>t</h2>
 	
 		<form wicket:id="form" class="edit-admin-form">
  		
  		<label>	
-		<h4>Ticket class</h4>
+		<h4><wicket:message key="ticket.ticket_class"/>:</h4>
 		<select wicket:id="ticketClass"></select>
 		</label>
  		
  		
 		<label>
-		<h4>Number seats:</h4>
+		<h4><wicket:message key="ticket.number_seats"/>:</h4>
 		<select wicket:id="numberSeats"></select>
 	    </label>
 	    
 		<label>
-		<h4>Baggage:</h4>
+		<h4><wicket:message key="ticket.baggage"/>:</h4>
 		<input type="checkbox" wicket:id="baggage" />
 		</label>
 		
 		<label>
-		<h4>Weight baggage:</h4>
+		<h4><wicket:message key="ticket.weight_baggage"/>:</h4>
 		<input type="text" wicket:id="weightBaggage" value="6"/>
 		</label>
 		
 		<label>
-		<h4>Priority registration:</h4>
+		<h4><wicket:message key="ticket.priority_registration"/>:</h4>
 		<input type="checkbox" wicket:id="priorityRegistration" />
 		</label>
 		
 		<label>
-		<h4>Priority seats:</h4>
+		<h4><wicket:message key="ticket.priority_seats"/>:</h4>
 		<input type="checkbox" wicket:id="prioritySeats" />
 		</label>
 		
 		<label>
-		<h4>For baby:</h4>
+		<h4><wicket:message key="ticket.for_baby"/>:</h4>
 		<input type="checkbox" wicket:id="forBaby" />
 		</label>
 		

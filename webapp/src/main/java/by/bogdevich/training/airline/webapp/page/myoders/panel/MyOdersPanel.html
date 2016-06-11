@@ -2,14 +2,14 @@
 <div class="flight-table">
 	<table>
 		<tr>
-			<th><a wicket:id="sort-id-ticket">ID</a></th>
-			<th>Airport start</th>
-			<th>Airport finish</th>
-			<th><a wicket:id="sort-date-bought">Date bought</a></th>
-			<th>Ticket class</th>
-			<th>Ticket costs</th>
-			<th>Paid</th>
-			<th>action</th>
+			<th><a wicket:id="sort-id-ticket"><wicket:message key="ID"/></a></th>
+			<th><wicket:message key="flightcatalog.start"/></th>
+			<th><wicket:message key="flightcatalog.finish"/></th>
+			<th><a wicket:id="sort-date-bought"><wicket:message key="ticket.date_bought"/></a></th>
+			<th><wicket:message key="ticket.ticket_class"/></th>
+			<th><wicket:message key="ticket.ticket_costs"/></th>
+			<th><wicket:message key="ticket.paid"/></th>
+			<th><wicket:message key="action"/></th>
 			
 			
 		</tr>
@@ -21,7 +21,8 @@
 			<td><span wicket:id="ticket-class" /></td>
 			<td><span wicket:id="ticket-costs" /></td>
 			<td><input wicket:id="paid" type="checkbox" /></td>
-			<td><a wicket:id="paid-link">paid</a> <a wicket:id="detail-link">detail</a></td>
+			<td><a wicket:id="paid-link"><wicket:message key="ui.paid"/></a> <a
+			 wicket:id="detail-link"><wicket:message key="ui.detail"/></a></td>
 
 		</tr>
 	</table>

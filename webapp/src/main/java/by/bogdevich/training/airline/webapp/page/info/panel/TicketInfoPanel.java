@@ -28,6 +28,7 @@ public class TicketInfoPanel extends Panel {
 		super.onInitialize();
 		add(new Label("user-firstname", ticket.getUserProfile().getFirstName()));
 		add(new Label("user-lastname", ticket.getUserProfile().getLastName()));
+		add(new Label("number_seats", ticket.getNumberSeats()));
 		add(new Label("user-pasport-number", ticket.getUserProfile().getPassportNumber()));
 		add(new Label("user-ticket-class", ticket.getTicketClass()));
 		add(new Label("user-weight-baggage", ticket.getWeightBaggage()));

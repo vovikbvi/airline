@@ -2,15 +2,15 @@
 <div class="settings-table">
 	<table class="city-table">
 		<tr>
-			<th><a wicket:id="sort-id">ID</a></th>
-			<th><a wicket:id="sort-name">Name</a></th>
-			<th><a wicket:id="sort-codeIata">Code IATA</a></th>
-			<th><a wicket:id="sort-codeIcao">Code ICAO</a></th>
-			<th><a wicket:id="sort-city">City</a></th>
-			<th><a wicket:id="sort-class-weight">Class weight</a></th>
-			<th><a wicket:id="sort-coordinatesX">Coordinates X</a></th>
-			<th><a wicket:id="sort-coordinatesY">Coordinates Y</a></th>
-			<th>Action</th>
+			<th><a wicket:id="sort-id"><wicket:message key="ID"/></a></th>
+			<th><a wicket:id="sort-name"><wicket:message key="airport.name"/></a></th>
+			<th><a wicket:id="sort-codeIata"><wicket:message key="airport.IATA"/></a></th>
+			<th><a wicket:id="sort-codeIcao"><wicket:message key="airport.ICAO"/></a></th>
+			<th><a wicket:id="sort-city"><wicket:message key="airport.city"/></a></th>
+			<th><a wicket:id="sort-class-weight"><wicket:message key="airport.class"/></a></th>
+			<th><a wicket:id="sort-coordinatesX"><wicket:message key="airport.coordinatesX"/></a></th>
+			<th><a wicket:id="sort-coordinatesY"><wicket:message key="airport.coordinatesY"/></a></th>
+			<th><wicket:message key="action"/></th>
 		</tr>
 		<tr wicket:id="rows">
 			<td><span wicket:id="id" /></td>
@@ -21,7 +21,7 @@
 			<td><span wicket:id="class-weight" /></td>
 			<td><span wicket:id="coordinatesX" /></td>
 			<td><span wicket:id="coordinatesY" /></td>
-			<td><a wicket:id="delete-link">delet</a>/<a	wicket:id="edit-link">edit</a></td>
+			<td><a wicket:id="delete-link"><wicket:message key="delet"/></a>/<a wicket:id="edit-link"><wicket:message key="edit"/></a></td>
 		</tr>
 	</table>
 </div>	

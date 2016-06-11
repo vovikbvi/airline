@@ -4,31 +4,31 @@
 		<tr>
 			<td><span wicket:id="user-firstname" /></td>
 			<td><span wicket:id="user-lastname" /></td>
-			<td></td>
-			<td></td> 
+			<td><wicket:message key="ticket.number_seats"/></td>
+			<td><span wicket:id="number_seats" /></td> 
 		</tr>
 		<tr>
 			<td>Passport</td>
 			<td><span wicket:id="user-pasport-number" /></td>
-			<td>Ticket class</td>
+			<td><wicket:message key="ticket.ticket_class"/></td>
 			<td><span wicket:id="user-ticket-class" /></td>
 		</tr>
 		<tr>
-			<td>Weight baggage</td>
+			<td><wicket:message key="ticket.weight_baggage"/></td>
 			<td><span wicket:id="user-weight-baggage" /></td>
 			<td></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>Priority seats: <input wicket:id="user-priority-seats" type="checkbox" /></td>
-			<td>Priority registr: <input wicket:id="user-priority-registr" type="checkbox"/></td>
-			<td>For baby: <input wicket:id="user-for-baby"  type="checkbox"/></td>
+			<td><wicket:message key="ticket.priority_seats"/>: <input wicket:id="user-priority-seats" type="checkbox" /></td>
+			<td><wicket:message key="ticket.priority_registration"/>: <input wicket:id="user-priority-registr" type="checkbox"/></td>
+			<td><wicket:message key="ticket.for_baby"/>: <input wicket:id="user-for-baby"  type="checkbox"/></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>Date bought</td>
+			<td><wicket:message key="ticket.date_bought"/></td>
 			<td><span wicket:id="user-date-bought" /></td>
-			<td>Cost</td>
+			<td><wicket:message key="ticket.ticket_costs"/></td>
 			<td><span wicket:id="user-cost" /></td>	
 		</tr>
 	</table>

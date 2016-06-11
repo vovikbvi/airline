@@ -1,12 +1,12 @@
 <wicket:panel>
 	<table class="flight-catalog-table">
 		<tr>
-			<th><a wicket:id="sort-id">ID</a></th>
-			<th><a wicket:id="sort-airport-start">Airport start</a></th>
-			<th><a wicket:id="sort-airport-finish">Airport finish</a></th>
-			<th><a wicket:id="sort-distance">Distance</a></th>
-			<th><a wicket:id="sort-international">International</a></th>
-			<th>Action</th>
+			<th><a wicket:id="sort-id"><wicket:message key="ID"/></a></th>
+			<th><a wicket:id="sort-airport-start"><wicket:message key="flightcatalog.start"/></a></th>
+			<th><a wicket:id="sort-airport-finish"><wicket:message key="flightcatalog.finish"/></a></th>
+			<th><a wicket:id="sort-distance"><wicket:message key="flightcatalog.distance"/></a></th>
+			<th><a wicket:id="sort-international"><wicket:message key="flightcatalog.international"/></a></th>
+			<th><wicket:message key="action"/></th>
 		</tr>
 		<tr wicket:id="rows">
 			<td><span wicket:id="id" /></td>
@@ -14,7 +14,7 @@
 			<td><span wicket:id="airport-finish" /></td>
 			<td><span wicket:id="distance" /></td>
 			<td><input wicket:id="international" type="checkbox" /></td>
-			<td><a wicket:id="delete-link">delet</a>/<a	wicket:id="edit-link">edit</a></td>
+			<td><a wicket:id="delete-link"><wicket:message key="delet"/></a>/<a	wicket:id="edit-link"><wicket:message key="edit"/></a></td>
 		</tr>
 	</table>
 	<div wicket:id="paging"></div>

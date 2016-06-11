@@ -2,20 +2,20 @@
 <div class="settings-table">
 	<table class="table-ticket">
 		<tr>
-			<th><a wicket:id="sort-id-ticket">ID</a></th>
-			<th><a wicket:id="sort-flight">Flight</a></th>
-			<th><a wicket:id="sort-passanger">Passanger</a></th>
-			<th><a wicket:id="sort-paid">Paid</a></th>
-			<th><a wicket:id="sort-number-seats">Number seats</a></th>
-			<th><a wicket:id="sort-date-bought">Date bought</a></th>
-			<th><a wicket:id="sort-baggage">Baggage</a></th>
-			<th><a wicket:id="sort-weight-baggage">Weight baggage</a></th>
-			<th><a wicket:id="sort-ticket-class">Ticket class</a></th>
-			<th><a wicket:id="sort-priotity-rgistr">Priotity rgistr</a></th>
-			<th><a wicket:id="sort-priotity-seats">Priotity seats</a></th>
-			<th><a wicket:id="sort-ticket-costs">Ticket costs</a></th>
-			<th><a wicket:id="sort-for-baby">For baby</a></th>
-			<th>action</th>
+			<th><a wicket:id="sort-id-ticket"><wicket:message key="ID"/></a></th>
+			<th><a wicket:id="sort-flight"><wicket:message key="ticket.flight"/></a></th>
+			<th><a wicket:id="sort-passanger"><wicket:message key="ticket.passenger"/></a></th>
+			<th><a wicket:id="sort-paid"><wicket:message key="ticket.paid"/></a></th>
+			<th><a wicket:id="sort-number-seats"><wicket:message key="ticket.number_seats"/></a></th>
+			<th><a wicket:id="sort-date-bought"><wicket:message key="ticket.date_bought"/></a></th>
+			<th><a wicket:id="sort-baggage"><wicket:message key="ticket.baggage"/></a></th>
+			<th><a wicket:id="sort-weight-baggage"><wicket:message key="ticket.weight_baggage"/></a></th>
+			<th><a wicket:id="sort-ticket-class"><wicket:message key="ticket.ticket_class"/></a></th>
+			<th><a wicket:id="sort-priority-rgistr"><wicket:message key="ticket.priority_registration"/></a></th>
+			<th><a wicket:id="sort-priority-seats"><wicket:message key="ticket.priority_seats"/></a></th>
+			<th><a wicket:id="sort-ticket-costs"><wicket:message key="ticket.ticket_costs"/></a></th>
+			<th><a wicket:id="sort-for-baby"><wicket:message key="ticket.for_baby"/></a></th>
+				<th><wicket:message key="action"/></th>
 		</tr>
 		<tr wicket:id="rows">
 			<td><span wicket:id="id" /></td>
@@ -27,11 +27,12 @@
 			<td><input wicket:id="baggage" type="checkbox" /></td>
 			<td><span wicket:id="weight-baggage" /></td>
 			<td><span wicket:id="ticket-class" /></td>
-			<td><input wicket:id="priotity-rgistr" type="checkbox" /></td>
-			<td><input wicket:id="priotity-seats" type="checkbox" /></td>
+			<td><input wicket:id="priority-registr" type="checkbox" /></td>
+			<td><input wicket:id="priority-seats" type="checkbox" /></td>
 			<td><span wicket:id="ticket-costs" /></td>
 			<td><input wicket:id="for-baby" type="checkbox" /></td>
-			<td><a wicket:id="delete-link">delet</a>/<a	wicket:id="edit-link">edit</a></td>
+			<td><a wicket:id="delete-link"><wicket:message key="delet"/></a>/<a
+				wicket:id="edit-link"><wicket:message key="edit"/></a></td>
 
 		</tr>
 	</table>

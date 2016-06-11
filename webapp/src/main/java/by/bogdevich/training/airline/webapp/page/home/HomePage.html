@@ -6,27 +6,27 @@
 <div class="search-flight">
 	<form wicket:id="form" >
 		<label>
-			<span>From</span>
+			<span><wicket:message key="from"/>:</span>
 			<select wicket:id="sitesStart"></select>
 		</label>
 		
 		<label>
-			<span>To:</span>	
+			<span><wicket:message key="to"/>:</span>	
 			<select wicket:id="sitesFinish"></select>
 		</label>
 		
 		<label>
-		<span>From date:</span>
+		<span><wicket:message key="from_date"/>:</span>
 		<div><input type="text" wicket:id="dateStartField" /></div>
 		</label>
 			
 		<label>
-		<span>To date:</span>
+		<span><wicket:message key="to_date"/>:</span>
 		<div><input type="text" wicket:id="dateFinishField" /></div>
 		</label>
-			
 		
-		<input type="submit" value="Search" />
+		<button type="submit" wicket:id="search"><wicket:message key="search"/></button>
+		
 	</form>
 </div>
 <!-- <div class="background-home"><img src="images/background-images.jpg"></div> -->

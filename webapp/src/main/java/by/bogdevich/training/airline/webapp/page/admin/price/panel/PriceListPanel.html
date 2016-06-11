@@ -1,17 +1,18 @@
 <wicket:panel>
 	<table class="table-admin">
 		<tr>
-			<th><a wicket:id="sort-id">ID</a></th>
-			<th><a wicket:id="sort-date-chane">Date change</a></th>
-			<th><a wicket:id="sort-price">Basic price</a></th>
-			<th>Action</th>
+			<th><a wicket:id="sort-id"><wicket:message key="ID"/></a></th>
+			<th><a wicket:id="sort-date-chane"><wicket:message key="price.date_change"/></a></th>
+			<th><a wicket:id="sort-price"><wicket:message key="price.basic_price"/></a></th>
+			<th><wicket:message key="action"/></th>
 
 		</tr>
 		<tr wicket:id="rows">
 			<td><span wicket:id="id" /></td>
 			<td><span wicket:id="date-chane" /></td>
 			<td><span wicket:id="price" /></td>
-			<td><a wicket:id="delete-link">delet</a>/<a	wicket:id="edit-link">edit</a></td>
+			<td><a wicket:id="delete-link"><wicket:message key="delet"/></a>/<a
+			wicket:id="edit-link"><wicket:message key="edit"/></a></td>
 		</tr>
 	</table>
 	<div wicket:id="paging"></div>

@@ -3,14 +3,14 @@
 	<table >
 		<tr>
 			
-			<th><a wicket:id="sort-id">Number flight</a></th>
-			<th>Start</th>
-			<th>Finish</th>
-			<th><a wicket:id="sort-departure-time">Departure time</a></th>
-			<th><a wicket:id="sort-arrival-time">Arrival time</a></th>
-			<th><a wicket:id="sort-plane">Plane</a></th>
-			<th><a wicket:id="sort-start-sale-ticket">Start sale ticket</a></th>
-			<th>Book</th>
+			<th><a wicket:id="sort-id"><wicket:message key="payment"/><wicket:message key="shedule.number_flight"/></a></th>
+			<th><wicket:message key="from"/></th>
+			<th><wicket:message key="to"/></th>
+			<th><a wicket:id="sort-departure-time"><wicket:message key="flight.departure.time"/></a></th>
+			<th><a wicket:id="sort-arrival-time"><wicket:message key="flight.arrival.time"/></a></th>
+			<th><a wicket:id="sort-plane"><wicket:message key="flight.plane"/></a></th>
+			<th><a wicket:id="sort-start-sale-ticket"><wicket:message key="flight.start.sale"/></a></th>
+			<th><wicket:message key="shedule.book"/></th>
 			<th></th>
 		</tr>
 		
@@ -23,8 +23,8 @@
 			<td><span wicket:id="arrival-time" /></td>
 			<td><span wicket:id="plane" /></td>
 			<td><span wicket:id="start-sale-ticket" /></td>
-			<td><a	wicket:id="booking-link">Book</a></td>
-			<td><a wicket:id="info-link">info</a></td>
+			<td><a	wicket:id="booking-link"><wicket:message key="shedule.book"/></a></td>
+			<td><a wicket:id="info-link"><wicket:message key="shedule.info"/></a></td>
 		</tr>
 	</table>
 </div>	

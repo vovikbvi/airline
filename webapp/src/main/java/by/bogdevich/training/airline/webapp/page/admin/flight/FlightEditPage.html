@@ -1,40 +1,40 @@
 <wicket:extend>
 	
 	<form wicket:id="form" class="edit-admin-form">
-	<h2>Edit flight </h2>
+	<h2><wicket:message key="flight"/></h2>
 	
         <label>
-		<h4>Flight catalog</h4>
+		<h4><wicket:message key="flight.catalog"/>:</h4>
 		<select wicket:id="flightCatalog"></select>
 		</label>
 
 	    <label>
-		<h4>Registration time:</h4>
+		<h4><wicket:message key="flight.registration.time"/>:</h4>
 		<div><span class="date-time" wicket:id="registrTime" /></div>
 		</label>
 
 	    <label>
-		<h4>Departure time:</h4>
+		<h4><wicket:message key="flight.departure.time"/>:</h4>
 		<div><span class="date-time" wicket:id="departureTime" /></div>
 		</label>
 
 	    <label>
-		<h4>Arrival time:</h4>
+		<h4><wicket:message key="flight.arrival.time"/>:</h4>
 		<div><span class="date-time" wicket:id="arrivalTime" /></div>
 		</label>
 
        <label>
-		<h4>Plane</h4>
+		<h4><wicket:message key="flight.plane"/>:</h4>
 		<select wicket:id="plane"></select>
 		</label>
 
 	    <label>
-		<h4>Start sale ticket:</h4>
+		<h4><wicket:message key="flight.start.sale"/>:</h4>
 		<div><input type="text" wicket:id="startSaleTicket" /></div>
 		</label>
  		
 		<div>
-			<button type="submit" wicket:id="save">SAVE</button>
+			<button type="submit" wicket:id="save"><wicket:message key="save"/></button>
 		</div>
 
 	</form>

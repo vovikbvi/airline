@@ -1,14 +1,14 @@
 <wicket:panel>
 	<table class="flightlist-table">
 		<tr>
-			<th><a wicket:id="sort-id">ID</a></th>
-			<th><a wicket:id="sort-flight-catalog">Flight catalog</a></th>
-			<th><a wicket:id="sort-registr-time">Registration time</a></th>
-			<th><a wicket:id="sort-departure-time">Departure time</a></th>
-			<th><a wicket:id="sort-arrival-time">Arrival time</a></th>
-			<th><a wicket:id="sort-plane">Plane</a></th>
-			<th><a wicket:id="sort-start-sale-ticket">Start sale ticket</a></th>
-			<th>Action</th>
+			<th><a wicket:id="sort-id"><wicket:message key="ID"/></a></th>
+			<th><a wicket:id="sort-flight-catalog"><wicket:message key="flight.catalog"/></a></th>
+			<th><a wicket:id="sort-registr-time"><wicket:message key="flight.registration.time"/></a></th>
+			<th><a wicket:id="sort-departure-time"><wicket:message key="flight.departure.time"/></a></th>
+			<th><a wicket:id="sort-arrival-time"><wicket:message key="flight.arrival.time"/></a></th>
+			<th><a wicket:id="sort-plane"><wicket:message key="flight.plane"/></a></th>
+			<th><a wicket:id="sort-start-sale-ticket"><wicket:message key="flight.start.sale"/></a></th>
+			<th><wicket:message key="action"/></th>
 		</tr>
 		
 		<tr wicket:id="rows">
@@ -19,7 +19,8 @@
 			<td><span wicket:id="arrival-time" /></td>
 			<td><span wicket:id="plane" /></td>
 			<td><span wicket:id="start-sale-ticket" /></td>
-			<td><a wicket:id="delete-link">delet</a>/<a	wicket:id="edit-link">edit</a></td>
+			<td><a wicket:id="delete-link"><wicket:message key="delet"/></a>/
+			<a wicket:id="edit-link"><wicket:message key="edit"/></a></td>
 		</tr>
 	</table>
 	<div wicket:id="paging"></div>

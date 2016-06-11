@@ -105,6 +105,7 @@ public class RegistrationPage extends AbstractPage {
 				super.onSubmit();
 				
 				if (userProfile.getId() == null) {
+					userProfile.setCountOder(0);
 					userProfileService.registration(userProfile);
 				} else {
 					userProfileService.update(userProfile);

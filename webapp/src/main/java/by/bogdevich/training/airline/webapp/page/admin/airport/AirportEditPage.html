@@ -1,45 +1,45 @@
 <wicket:extend>
 
 	<form wicket:id="form" class="edit-admin-form">
-			<h2>Airport edit</h2>
+			<h2><wicket:message key="airport.edit"/></h2>
 	
 		<label>
-		<h4>Airport name:</h4>
+		<h4><wicket:message key="airport.name"/>:</h4>
 		<input type="text" wicket:id="name" />
 	    </label>
 	 
 		<label>
-		<h4>Code IATA:</h4>
+		<h4><wicket:message key="airport.IATA"/>:</h4>
 		<input type="text" wicket:id="codeIata" />
 	    </label>
 	 
 		<label>
-		<h4>Code IACO:</h4>
+		<h4><wicket:message key="airport.ICAO"/>:</h4>
 		<input type="text" wicket:id="codeIcao" />
 	    </label>
 	 
 		<label>
-		<h4>City</h4>
+		<h4><wicket:message key="airport.city"/>:</h4>
 		<select wicket:id="city"></select>
 		</label>
 
 		<label>
-		<h4>Class weight</h4>
+		<h4><wicket:message key="airport.class"/>:</h4>
 		<select wicket:id="classWeight"></select>
 		</label>
 
 		<label>
-		<h4>Coordinates X:</h4>
+		<h4><wicket:message key="airport.coordinatesX"/>:</h4>
 		<input type="text" wicket:id="coordinatesX" />
 	    </label>
 	 				
 		<label>
-		<h4>Coordinates Y:</h4>
+		<h4><wicket:message key="airport.coordinatesY"/>:</h4>
 		<input type="text" wicket:id="coordinatesY" />
 	    </label>
 	 				
 		<div>
-			<button type="submit" wicket:id="save">SAVE</button>
+			<button type="submit" wicket:id="save"><wicket:message key="save"/></button>
 		</div>
 
 	</form>

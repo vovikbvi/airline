@@ -2,20 +2,20 @@
 	<table class="table-user">
 		<thead>
 			<tr>
-				<th><a wicket:id="sort-id">ID</a></th>
-				<th><a wicket:id="sort-login">Login</a></th>
-				<th><a wicket:id="sort-pssword">Password</a></th>
-				<th><a wicket:id="sort-first-name">First name</a></th>
-				<th><a wicket:id="sort-last-name">Last name</a></th>
-				<th><a wicket:id="sort-email">E-mail</a></th>
-				<th><a wicket:id="sort-passport-number">Passport number</a></th>
-				<th><a wicket:id="sort-phone-number">Phone number</a></th>
-				<th><a wicket:id="sort-count-oder">Count oder</a></th>
-				<th><a wicket:id="sort-vip">VIP</a></th>
-				<th><a wicket:id="sort-date-registr">Date registr</a></th>
-				<th><a wicket:id="sort-role">Role</a></th>
-				<th><a wicket:id="sort-accept-registr">Accept registr</a></th>
-				<th>Action</th>
+				<th><a wicket:id="sort-id"><wicket:message key="ID"/></a></th>
+				<th><a wicket:id="sort-login"><wicket:message key="user.login"/></a></th>
+				<th><a wicket:id="sort-pssword"><wicket:message key="user.password"/></a></th>
+				<th><a wicket:id="sort-first-name"><wicket:message key="user.first_name"/></a></th>
+				<th><a wicket:id="sort-last-name"><wicket:message key="user.last_name"/></a></th>
+				<th><a wicket:id="sort-email"><wicket:message key="user.email"/></a></th>
+				<th><a wicket:id="sort-passport-number"><wicket:message key="user.passport"/></a></th>
+				<th><a wicket:id="sort-phone-number"><wicket:message key="user.phone"/></a></th>
+				<th><a wicket:id="sort-count-oder"><wicket:message key="user.count_oder"/></a></th>
+				<th><a wicket:id="sort-vip"><wicket:message key="user.VIP"/></a></th>
+				<th><a wicket:id="sort-date-registr"><wicket:message key="user.date_registration"/></a></th>
+				<th><a wicket:id="sort-role"><wicket:message key="user.role"/></a></th>
+				<th><a wicket:id="sort-accept-registr"><wicket:message key="user.accept_registr"/></a></th>
+				<th><wicket:message key="action"/></th>
 			</tr>
 		</thead>
 		<tbody class="table-body">
@@ -34,7 +34,8 @@
 				<td><span wicket:id="role" /></td>
 				<td><input wicket:id="active" type="checkbox" /></td>
 				<td>
-				<a wicket:id="delete-link">delet</a>/<a wicket:id="edit-link">edit</a>
+				<a wicket:id="delete-link"><wicket:message key="delet"/></a>/<a
+				 wicket:id="edit-link"><wicket:message key="edit"/></a>
 				</td>
 			</tr>
 		</tbody>

@@ -17,5 +17,187 @@
 	<entry key="menu.login">LOGIN</entry>
 	<entry key="menu.registr">registration</entry>
 	<entry key="menu.logoul">LOGOUT</entry>
+	
+	<!-- all -->
+	<entry key="ID">ID</entry>
+	<entry key="delet">delete</entry>
+	<entry key="edit">edit</entry>
+	<entry key="save">SAVE</entry>
+	<entry key="action">Action</entry>
+	<entry key="search">Search</entry>
+	<entry key="login">Log in</entry>
+	
+	
+	<!-- home page -->
+	<entry key="from">From</entry>
+	<entry key="to">To</entry>
+	<entry key="from_date">From date</entry>
+	<entry key="to_date">To date</entry>
+	
+	<!-- info page -->
+	<entry key="info.flight_info">Flight info</entry>
+	<entry key="info.free_seats">Free seats</entry>
+	<entry key="info.user_info">User info</entry>
+	<entry key="info.save_ticket">save ticket to PDF</entry>
+
+	<entry key="info.free_business">Free seats business class</entry>
+	<entry key="info.free_first">Free seats first class</entry>
+	<entry key="info.free_economy">Free seats economy</entry>
+	
+	<!-- other UI -->
+	<entry key="ui.paid">paid</entry>
+	<entry key="ui.detail">detail</entry>
+	<entry key="ui.myoders">My oders</entry>
+	<entry key="ui.schedule">Schedule</entry>
+	<entry key="ui.setting">Setting</entry>
+	
+	<!-- Shedule -->
+	<entry key="shedule.number_flight">Number flight</entry>
+	<entry key="shedule.book">Book</entry>
+	<entry key="shedule.info">Info</entry>
+	
+	<!-- payment -->
+	<entry key="payment">Payment</entry>
+	<entry key="payment.cost">Ticket cost</entry>
+	<entry key="payment.name_card">NAME ON CARD</entry>
+	<entry key="payment.card_number">CARD NUMBER</entry>
+	<entry key="payment.expiration">EXPIRATION</entry>
+	<entry key="payment.cvv">CVV NUMBER</entry>
+	
+	<!-- airport -->
+	<entry key="airport">Airport</entry>
+	<entry key="airport.name">Name</entry>
+	<entry key="airport.IATA">Code IATA</entry>
+	<entry key="airport.ICAO">Code ICAO</entry>
+	<entry key="airport.city">City</entry>
+	<entry key="airport.class">Class weight</entry>
+	<entry key="airport.coordinatesX">Coordinates X</entry>
+	<entry key="airport.coordinatesY">Coordinates Y</entry>
+	
+	<entry key="airport.edit">Edit airport</entry>
+	
+	<!-- city -->
+	<entry key="city">City</entry>
+	<entry key="city.name">Name</entry>
+	<entry key="city.country">Country</entry>
+	<entry key="city.timezone">Time zone</entry>
+	
+	<entry key="city.edit">Edit city</entry>
+	
+	
+	<!-- country -->
+	<entry key="country">Country</entry>
+	<entry key="country.name">Country name</entry>
+	<entry key="country.edit">Country edit</entry>
+	
+	<!-- flight -->
+	<entry key="flight">Flights</entry>
+	<entry key="flight.catalog">Flight catalog</entry>
+	<entry key="flight.registration.time">Registration time</entry>
+	<entry key="flight.departure.time">Departure time</entry>
+	<entry key="flight.arrival.time">Arrival time</entry>
+	<entry key="flight.plane">Plane</entry>
+	<entry key="flight.start.sale">Start sale ticket</entry>
+	
+	<entry key="flight.edit">Edit flight</entry>
+	
+	<!-- flight catalog -->
+	<entry key="flightcatalog">Flight catalog</entry>
+	<entry key="flightcatalog.start">Airport start</entry>
+	<entry key="flightcatalog.finish">Airport finish</entry>
+	<entry key="flightcatalog.distance">Distance</entry>
+	<entry key="flightcatalog.international">International</entry>
+	
+	<entry key="flightcatalog.edit">Edit flight catalog</entry>
+	
+	    <!-- manufactured plane-->
+	<entry key="manufactured">Manufactured plane</entry>
+	<entry key="manufactured.name">Name manufactured</entry>
+	
+	<entry key="manufactured.edit">Edit manufactured plane</entry>
+	
+		<!-- model plane -->
+	<entry key="plane_model">Model plane</entry>	
+	<entry key="plane_model.manufactured">Manufactured plane</entry>	
+	<entry key="plane_model.model">Model</entry>	
+	<entry key="plane_model.seats_business">Seats business</entry>	
+	<entry key="plane_model.seats_firstclass">Seats first class</entry>	
+	<entry key="plane_model.seats_economy">Seats economy</entry>	
+	<entry key="plane_model.weight_baggage">Weight baggage</entry>	
+	<entry key="plane_model.speed">avg speed</entry>	
+	<entry key="plane_model.class_weight">Class weight</entry>
+		
+	<entry key="plane_model.edit">Edit model plane</entry>	
+
+		<!-- plane -->
+	<entry key="plane">Plane</entry>	
+	<entry key="plane.model">Model plane</entry>	
+	<entry key="plane.bort_number">Bort number</entry>
+		
+	<entry key="plane.edit">Edit plane</entry>	
+	
+		<!-- price -->
+		
+	<entry key="price">Price</entry>
+	<entry key="price.date_change">Date change</entry>
+	<entry key="price.basic_price">Basic price</entry>
+	
+	<entry key="price.edit">Edit price</entry>
+	
+	<!-- ticket -->
+	<entry key="ticket">Tickets</entry>
+	<entry key="ticket.number_flight">Flight</entry>
+	<entry key="ticket.flight">Flight</entry>
+	<entry key="ticket.passenger">Passenger</entry>
+	<entry key="ticket.paid">Paid</entry>
+	<entry key="ticket.number_seats">Number seats</entry>
+	<entry key="ticket.date_bought">Date bought</entry>
+	<entry key="ticket.baggage">Baggage</entry>
+	<entry key="ticket.weight_baggage">Weight baggage</entry>
+	<entry key="ticket.ticket_class">Ticket class</entry>
+	<entry key="ticket.priority_registration">Priority registration</entry>
+	<entry key="ticket.priority_seats">Priority seats</entry>
+	<entry key="ticket.ticket_costs">Ticket costs</entry>
+	<entry key="ticket.for_baby">For baby</entry>
+	
+	<entry key="ticket.edit">Edit tickets</entry>
+	<entry key="ticket.book">Book tickets</entry>
+	
+	
+		
+		<!-- user profile -->
+
+	<entry key="user">User profile</entry>
+	<entry key="user.login">Login</entry>
+	<entry key="user.password">Password</entry>
+	<entry key="user.first_name">First name</entry>
+	<entry key="user.last_name">Last name</entry>
+	<entry key="user.email">E-mail</entry>
+	<entry key="user.passport">Passport number</entry>
+	<entry key="user.phone">Phone number</entry>
+	<entry key="user.count_oder">Count oder</entry>
+	<entry key="user.VIP">VIP</entry>
+	<entry key="user.date_registration">Date registration</entry>
+	<entry key="user.role">Role</entry>
+	<entry key="user.accept_registr">Accept registr</entry>
+	
+	<entry key="user.edit">Edit user profile</entry>
+
+
+		<!-- feedback -->
+	<entry key="feedback.Contact">Contact Us</entry>	
+	<entry key="feedback.company_name">Low Cost Airline</entry>	
+	<entry key="feedback.phone">Phone</entry>	
+	<entry key="feedback.fax">Fax</entry>	
+	<entry key="feedback.mob">Mob</entry>	
+	<entry key="feedback.addres">Address</entry>	
+	<entry key="feedback.email_us">Email Us</entry>	
+	<entry key="feedback.text">To contact us via email please complete the form below</entry>	
+	<entry key="feedback.name">Name</entry>	
+	<entry key="feedback.email">Email</entry>	
+	<entry key="feedback.message">Message</entry>	
+	
+	
+		
 
 </properties>
