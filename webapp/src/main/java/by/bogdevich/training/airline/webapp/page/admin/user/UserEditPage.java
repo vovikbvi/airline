@@ -112,13 +112,16 @@ public class UserEditPage extends AbstractPage {
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-				
+			try{	
 				if (userProfile.getId() == null) {
 					userProfileService.registration(userProfile);
 				} else {
 					userProfileService.update(userProfile);
 				}
 				setResponsePage(new UsersPage());
+			}catch (Exception e){
+				error("User exist");
+				}
 			}
 		});
 

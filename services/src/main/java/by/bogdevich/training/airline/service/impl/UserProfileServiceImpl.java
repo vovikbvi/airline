@@ -71,7 +71,8 @@ public class UserProfileServiceImpl implements UserProfileService {
 	public void registration(UserProfile userProfile) {
 
 		if (checkUserExist(userProfile.getLogin())) {
-			LOGGER.warn("User exist {}", userProfile.getLogin());
+			//LOGGER.warn("User exist {}", userProfile.getLogin());
+			throw new IllegalArgumentException("User exist");
 		} else {
 			AcceptRegistration(userProfile);
 		}

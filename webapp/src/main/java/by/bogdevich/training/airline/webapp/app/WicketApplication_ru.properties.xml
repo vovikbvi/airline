@@ -18,6 +18,188 @@
 	<entry key="menu.registr">регистрация</entry>
 	<entry key="menu.logoul">ВЫЙТИ</entry>
 
+	<!-- all -->
+	<entry key="ID">№</entry>
+	<entry key="delet">удалить</entry>
+	<entry key="edit">изменить</entry>
+	<entry key="save">СОХРАНИТЬ</entry>
+	<entry key="action">Действие</entry>
+	<entry key="search">Поиск</entry>
+	<entry key="login">Войти</entry>
+	
+	
+	<!-- home page -->
+	<entry key="from">Из</entry>
+	<entry key="to">В</entry>
+	<entry key="from_date">От даты</entry>
+	<entry key="to_date">До даты</entry>
+	
+	<!-- info page -->
+	<entry key="info.flight_info">Информация о полете</entry>
+	<entry key="info.free_seats">Свободные места</entry>
+	<entry key="info.user_info">Пассажир</entry>
+	<entry key="info.save_ticket">Сохранить в PDF</entry>
+
+	<entry key="info.free_business">Свободные мест бизнес класса</entry>
+	<entry key="info.free_first">Свободные мест первого класса</entry>
+	<entry key="info.free_economy">Свободные мест эконом класса</entry>
+	
+	<!-- other UI -->
+	<entry key="ui.paid">Оплатить</entry>
+	<entry key="ui.detail">Подробно</entry>
+	<entry key="ui.myoders">Мои заказы</entry>
+	<entry key="ui.schedule">Расписание</entry>
+	<entry key="ui.setting">Настройки</entry>
+	<entry key="ui.user_registr">Регистрация нового пользователя</entry>
+	<entry key="ui.user_edit">Профиль</entry>
+	<entry key="ui.deletmessage">Запись не возможно удалить т.к. на нее ссылаються другие объекты</entry>
+	<entry key="ui.pay">Оплатить</entry>
+	
+	<!-- Shedule -->
+	<entry key="shedule.number_flight">№ полета</entry>
+	<entry key="shedule.book">Заказать</entry>
+	<entry key="shedule.info">Подробно</entry>
+	
+	<!-- payment -->
+	<entry key="payment">Оплата</entry>
+	<entry key="payment.cost">Стоимость билета</entry>
+	<entry key="payment.name_card">Владелец карты</entry>
+	<entry key="payment.card_number">Нимер карты</entry>
+	<entry key="payment.expiration">Срок действия</entry>
+	<entry key="payment.cvv">CVV номер</entry>
+	
+	<!-- airport -->
+	<entry key="airport">Аэропорт</entry>
+	<entry key="airport.name">Названгие</entry>
+	<entry key="airport.IATA">Код IATA</entry>
+	<entry key="airport.ICAO">Код ICAO</entry>
+	<entry key="airport.city">Город</entry>
+	<entry key="airport.class">Класс </entry>
+	<entry key="airport.coordinatesX">Координата X</entry>
+	<entry key="airport.coordinatesY">Координата Y</entry>
+	
+	<entry key="airport.edit">Измененить/добавить аэропорт</entry>
+	
+	<!-- city -->
+	<entry key="city">Город</entry>
+	<entry key="city.name">Название</entry>
+	<entry key="city.country">Страна</entry>
+	<entry key="city.timezone">Временная зона</entry>
+	
+	<entry key="city.edit">Измененить/добавить город</entry>
+	
+	
+	<!-- country -->
+	<entry key="country">Стана</entry>
+	<entry key="country.name">Название</entry>
+	<entry key="country.edit">Измененить/добавить страну</entry>
+	
+	<!-- flight -->
+	<entry key="flight">Рейс</entry>
+	<entry key="flight.catalog">Справочник рейсов</entry>
+	<entry key="flight.registration.time">Время регистрации</entry>
+	<entry key="flight.departure.time">Время вылета</entry>
+	<entry key="flight.arrival.time">Время приземления</entry>
+	<entry key="flight.plane">Самолет</entry>
+	<entry key="flight.start.sale">Начало продаж</entry>
+	
+	<entry key="flight.edit">Изменить/добавить рейс</entry>
+	
+	<!-- flight catalog -->
+	<entry key="flightcatalog">Справочник рейсов</entry>
+	<entry key="flightcatalog.start">Из аэропорта</entry>
+	<entry key="flightcatalog.finish">В аэропорт</entry>
+	<entry key="flightcatalog.distance">Растояние</entry>
+	<entry key="flightcatalog.international">Международный</entry>
+	
+	<entry key="flightcatalog.edit">Изменирь/добавить справочник рейсов</entry>
+	
+	    <!-- manufactured plane-->
+	<entry key="manufactured">Производитель самолета</entry>
+	<entry key="manufactured.name">Наименование производителя</entry>
+	
+	<entry key="manufactured.edit">Изменить/добавить производителя</entry>
+	
+		<!-- model plane -->
+	<entry key="plane_model">Модель самолета</entry>	
+	<entry key="plane_model.manufactured">Производитель</entry>	
+	<entry key="plane_model.model">Модель</entry>	
+	<entry key="plane_model.seats_business">Мест бизнес класса</entry>	
+	<entry key="plane_model.seats_firstclass">Мест первого класса</entry>	
+	<entry key="plane_model.seats_economy">Мест эконом класса</entry>	
+	<entry key="plane_model.weight_baggage">Вместимость багажного отделения</entry>	
+	<entry key="plane_model.speed">Средняя скорость</entry>	
+	<entry key="plane_model.class_weight">Класс взлетной массы</entry>
+		
+	<entry key="plane_model.edit">Изменить/добавить модель самолета</entry>	
+
+		<!-- plane -->
+	<entry key="plane">Самолет</entry>	
+	<entry key="plane.model">Модель</entry>	
+	<entry key="plane.bort_number">Бортовой номер</entry>
+		
+	<entry key="plane.edit">Изменить/добавить самолет</entry>	
+	
+		<!-- price -->
+		
+	<entry key="price">Пейскурант</entry>
+	<entry key="price.date_change">Дата изменения</entry>
+	<entry key="price.basic_price">Базовая стоимость</entry>
+	
+	<entry key="price.edit">Изменить/добавить пейскурант</entry>
+	
+	<!-- ticket -->
+	<entry key="ticket">Билет</entry>
+	<entry key="ticket.number_flight">Номер рейса</entry>
+	<entry key="ticket.flight">Рейс</entry>
+	<entry key="ticket.passenger">Пассажир</entry>
+	<entry key="ticket.paid">Оплачен</entry>
+	<entry key="ticket.number_seats">Место</entry>
+	<entry key="ticket.date_bought">Дата покупки</entry>
+	<entry key="ticket.baggage">Багаж</entry>
+	<entry key="ticket.weight_baggage">Вес багажа</entry>
+	<entry key="ticket.ticket_class">Класс</entry>
+	<entry key="ticket.priority_registration">Приоритет регистрации</entry>
+	<entry key="ticket.priority_seats">Приоритет пасадки</entry>
+	<entry key="ticket.ticket_costs">Стоимость</entry>
+	<entry key="ticket.for_baby">Детский</entry>
+	
+	<entry key="ticket.edit">Изменить/добавить билет</entry>
+	<entry key="ticket.book">Заказать билет</entry>
+	
+	
+		
+		<!-- user profile -->
+
+	<entry key="user">Пользователь</entry>
+	<entry key="user.login">Логин</entry>
+	<entry key="user.password">Пароль</entry>
+	<entry key="user.first_name">Фамилия</entry>
+	<entry key="user.last_name">Имя</entry>
+	<entry key="user.email">E-mail</entry>
+	<entry key="user.passport">№ паспорта</entry>
+	<entry key="user.phone">Телефон</entry>
+	<entry key="user.count_oder">Колличество заказоа</entry>
+	<entry key="user.VIP">VIP</entry>
+	<entry key="user.date_registration">Дата регистрации</entry>
+	<entry key="user.role">Уровень доступа</entry>
+	<entry key="user.accept_registr">Подтверждение регистрации</entry>
+	
+	<entry key="user.edit">Информация о пользователе</entry>
+
+
+		<!-- feedback -->
+	<entry key="feedback.Contact">Свяжитесь с нами</entry>	
+	<entry key="feedback.company_name">Low Cost Airline</entry>	
+	<entry key="feedback.phone">Телефон</entry>	
+	<entry key="feedback.fax">Факс</entry>	
+	<entry key="feedback.mob">Моб</entry>	
+	<entry key="feedback.addres">Адрес</entry>	
+	<entry key="feedback.email_us">Email</entry>	
+	<entry key="feedback.text">Чтобы связаться с нами по электронной почте, пожалуйста, заполните форму ниже</entry>	
+	<entry key="feedback.name">Имя</entry>	
+	<entry key="feedback.email">Email</entry>	
+	<entry key="feedback.message">Сообщение</entry>	
 
 
 </properties>

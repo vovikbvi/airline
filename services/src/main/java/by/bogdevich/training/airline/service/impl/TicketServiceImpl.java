@@ -168,8 +168,6 @@ public class TicketServiceImpl implements TicketService {
 		ticket.setDateBought(new Date());
 		ticket.setCosts(ticketCost(ticket));
 
-		System.out.println("dgffdfd");
-
 		if (checkLuggageSpace(ticket)) {
 			ticketDao.insert(ticket);
 		} else {

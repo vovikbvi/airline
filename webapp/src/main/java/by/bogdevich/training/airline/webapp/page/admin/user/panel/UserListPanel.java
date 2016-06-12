@@ -8,6 +8,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
@@ -22,12 +23,15 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+
+
 import by.bogdevich.training.airline.dataaccess.filtres.UserProfileFilter;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserProfile_;
 import by.bogdevich.training.airline.service.UserProfileService;
 import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
+import by.bogdevich.training.airline.webapp.page.message.ErrorDelete;
 
 public class UserListPanel extends Panel {
 
@@ -70,11 +74,13 @@ public class UserListPanel extends Panel {
 					public void onClick() {
 						try {
 							userProfileService.delete(userProfile.getId());
+							setResponsePage(new UsersPage());
 						} catch (PersistenceException e) {
-							warn("Impossible delete this record");
+							error("Impossible delete this record");
+							setResponsePage(new ErrorDelete());
 						}
 
-						setResponsePage(new UsersPage());
+				
 					}
 				});
 
@@ -91,7 +97,9 @@ public class UserListPanel extends Panel {
 		add(dataView);
 		add(new PagingNavigator("paging", dataView));
 		add(new FeedbackPanel("feedback"));
-
+	
+	
+		
 		add(new OrderByBorder("sort-id", UserProfile_.id, userProfileDataProvider));
 		add(new OrderByBorder("sort-login", UserProfile_.login, userProfileDataProvider));
 		add(new OrderByBorder("sort-pssword", UserProfile_.password, userProfileDataProvider));

@@ -1,50 +1,6 @@
 <wicket:extend xmlns:wicket="http://wicket.apache.org">
 <h2><label wicket:id="header"></label></h2>
 
-	<form wicket:id="form" class="edit-admin-form">
-	
-	
-	<wicket:enclosure child="login">
-		<label><h4><wicket:message key="user.login"/>:</h4>
-		<input type="text" wicket:id="login" />
-		</label>
-	</wicket:enclosure>	
-	
-	<wicket:enclosure child="password">
-		<label><h4><wicket:message key="user.password"/>:</h4>
-		<input type="text" wicket:id="password" />
-		</label>
-	</wicket:enclosure>
-		
-		<label><h4><wicket:message key="user.first_name"/>:</h4>
-		<input type="text" wicket:id="firstName" />
-		</label>
-		
-		<label><h4><wicket:message key="user.last_name"/>:</h4>
-		<input type="text" wicket:id="lastName" />
-		</label>
-		
-		<label><h4><wicket:message key="user.email"/>:</h4>
-		<input type="text" wicket:id="email" />
-		</label>
-		
-		<label><h4><wicket:message key="user.passport"/>:</h4>
-		<input type="text" wicket:id="passportNumber" />
-		</label>
-		
-		<label><h4><wicket:message key="user.phone"/>:</h4>
-		<input type="text" wicket:id="phoneNumber" />
-		</label>
-		
-		<wicket:enclosure child="countOder">
-		<label><h4><wicket:message key="user.count_oder"/>:</h4>
-		<input type="text" wicket:id="countOder" />
-		</label>
-		</wicket:enclosure>
-				
-		<div><button type="submit" wicket:id="save"><wicket:message key="save"/></button></div>
 
-	</form>
-	<div wicket:id="feedback"></div>
 
 </wicket:extend>

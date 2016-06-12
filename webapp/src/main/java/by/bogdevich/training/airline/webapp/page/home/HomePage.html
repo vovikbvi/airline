@@ -5,6 +5,7 @@
 
 <div class="search-flight">
 	<form wicket:id="form" >
+	<div>
 		<label>
 			<span><wicket:message key="from"/>:</span>
 			<select wicket:id="sitesStart"></select>
@@ -14,7 +15,8 @@
 			<span><wicket:message key="to"/>:</span>	
 			<select wicket:id="sitesFinish"></select>
 		</label>
-		
+	</div>
+	<div>	
 		<label>
 		<span><wicket:message key="from_date"/>:</span>
 		<div><input type="text" wicket:id="dateStartField" /></div>
@@ -24,7 +26,7 @@
 		<span><wicket:message key="to_date"/>:</span>
 		<div><input type="text" wicket:id="dateFinishField" /></div>
 		</label>
-		
+	</div>	
 		<button type="submit" wicket:id="search"><wicket:message key="search"/></button>
 		
 	</form>

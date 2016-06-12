@@ -19,24 +19,29 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.datamodel.UserRole;
+import by.bogdevich.training.airline.service.SemdMail;
 import by.bogdevich.training.airline.service.UserProfileService;
 import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
 import by.bogdevich.training.airline.webapp.common.renderer.UserRoleChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 import by.bogdevich.training.airline.webapp.page.home.HomePage;
 
-//@AuthorizeInstantiation(value = {"ADMIN"})
-//@AuthorizeAction(roles = {"ADMIN"}, action = Action.RENDER)
 public class RegistrationPage extends AbstractPage {
 
 	@Inject
 	private UserProfileService userProfileService;
 
 	private UserProfile userProfile;
+	
+	@Inject
+	private SemdMail semdMail;
+
 	
 	public RegistrationPage() {
 		super();
@@ -53,8 +58,9 @@ public class RegistrationPage extends AbstractPage {
 		super.onInitialize();
 		
 	
-			String stringRegistration = "Registration new user";
-			String stringEditProfile = String.format("Edit my proifile(%s)", userProfile.getLogin());
+			String stringRegistration = getString("ui.user_registr");
+			String stringEditProfile = String.format("%s - %s",getString("ui.user_edit"), userProfile.getLogin());
+			//String stringEditProfile = String.format("Edit my proifile -"+ userProfile.getLogin());
 			
 			String stringHeader = (userProfile.getId() == null) ? stringRegistration : stringEditProfile;
 			add(new Label("header", stringHeader));
@@ -103,20 +109,28 @@ public class RegistrationPage extends AbstractPage {
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-				
+			try{
 				if (userProfile.getId() == null) {
+					
+					
 					userProfile.setCountOder(0);
 					userProfileService.registration(userProfile);
 				} else {
 					userProfileService.update(userProfile);
 				}
+				
 				setResponsePage(new HomePage());
+			}catch (Exception e){
+				error("User exist");
+				}
 			}
+			
 		});
 
 		add(new FeedbackPanel("feedback"));
 
 	    
 	}
+
 
 }

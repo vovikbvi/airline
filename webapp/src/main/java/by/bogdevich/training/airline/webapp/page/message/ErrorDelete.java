@@ -1,12 +1,12 @@
-package by.bogdevich.training.airline.webapp.page.profile;
+package by.bogdevich.training.airline.webapp.page.message;
 
 import org.apache.wicket.markup.html.link.Link;
 
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 
-public class ProfilePage extends AbstractPage {
+public class ErrorDelete extends AbstractPage {
 
-    public ProfilePage() {
+    public ErrorDelete() {
         super();
     }
 
