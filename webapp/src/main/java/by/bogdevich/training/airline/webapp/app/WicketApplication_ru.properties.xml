@@ -29,8 +29,8 @@
 	
 	
 	<!-- home page -->
-	<entry key="from">Из</entry>
-	<entry key="to">В</entry>
+	<entry key="from">Откуда</entry>
+	<entry key="to">Куда</entry>
 	<entry key="from_date">От даты</entry>
 	<entry key="to_date">До даты</entry>
 	
@@ -40,9 +40,9 @@
 	<entry key="info.user_info">Пассажир</entry>
 	<entry key="info.save_ticket">Сохранить в PDF</entry>
 
-	<entry key="info.free_business">Свободные мест бизнес класса</entry>
-	<entry key="info.free_first">Свободные мест первого класса</entry>
-	<entry key="info.free_economy">Свободные мест эконом класса</entry>
+	<entry key="info.free_business">Свободные места бизнес класса</entry>
+	<entry key="info.free_first">Свободные места первого класса</entry>
+	<entry key="info.free_economy">Свободные места эконом класса</entry>
 	
 	<!-- other UI -->
 	<entry key="ui.paid">Оплатить</entry>
@@ -52,11 +52,11 @@
 	<entry key="ui.setting">Настройки</entry>
 	<entry key="ui.user_registr">Регистрация нового пользователя</entry>
 	<entry key="ui.user_edit">Профиль</entry>
-	<entry key="ui.deletmessage">Запись не возможно удалить т.к. на нее ссылаються другие объекты</entry>
+	<entry key="ui.deletmessage">Запись не возможно удалить,т.к. на нее ссылаются другие объекты</entry>
 	<entry key="ui.pay">Оплатить</entry>
 	
 	<entry key="ui.user_exist">Логин занят</entry>
-	<entry key="ui.luggage_full">Извините багажное отделение переполнено</entry>
+	<entry key="ui.luggage_full">Извините,багажное отделение переполнено</entry>
 	<entry key="ui.checkc_class">Аэропорт не может принять этот самолет</entry>
 	
 	
@@ -83,7 +83,7 @@
 	<entry key="airport.coordinatesX">Координата X</entry>
 	<entry key="airport.coordinatesY">Координата Y</entry>
 	
-	<entry key="airport.edit">Измененить/добавить аэропорт</entry>
+	<entry key="airport.edit">Изменить/добавить аэропорт</entry>
 	
 	<!-- city -->
 	<entry key="city">Города</entry>
@@ -91,13 +91,13 @@
 	<entry key="city.country">Страна</entry>
 	<entry key="city.timezone">Временная зона</entry>
 	
-	<entry key="city.edit">Измененить/добавить город</entry>
+	<entry key="city.edit">Изменить/добавить город</entry>
 	
 	
 	<!-- country -->
-	<entry key="country">Станы</entry>
+	<entry key="country">Страны</entry>
 	<entry key="country.name">Название</entry>
-	<entry key="country.edit">Измененить/добавить страну</entry>
+	<entry key="country.edit">Изменить/добавить страну</entry>
 	
 	<!-- flight -->
 	<entry key="flight">Рейсы</entry>
@@ -114,10 +114,10 @@
 	<entry key="flightcatalog">Справочник рейсов</entry>
 	<entry key="flightcatalog.start">Из аэропорта</entry>
 	<entry key="flightcatalog.finish">В аэропорт</entry>
-	<entry key="flightcatalog.distance">Растояние</entry>
+	<entry key="flightcatalog.distance">Расстояние</entry>
 	<entry key="flightcatalog.international">Международный</entry>
 	
-	<entry key="flightcatalog.edit">Изменирь/добавить справочник рейсов</entry>
+	<entry key="flightcatalog.edit">Изменить/добавить справочник рейсов</entry>
 	
 	    <!-- manufactured plane-->
 	<entry key="manufactured">Производители</entry>
@@ -129,9 +129,9 @@
 	<entry key="plane_model">Модели самолетов</entry>	
 	<entry key="plane_model.manufactured">Производитель</entry>	
 	<entry key="plane_model.model">Модель</entry>	
-	<entry key="plane_model.seats_business">Мест бизнес класса</entry>	
-	<entry key="plane_model.seats_firstclass">Мест первого класса</entry>	
-	<entry key="plane_model.seats_economy">Мест эконом класса</entry>	
+	<entry key="plane_model.seats_business">Места бизнес класса</entry>	
+	<entry key="plane_model.seats_firstclass">Места первого класса</entry>	
+	<entry key="plane_model.seats_economy">Места эконом класса</entry>	
 	<entry key="plane_model.weight_baggage">Вместимость багажного отделения</entry>	
 	<entry key="plane_model.speed">Средняя скорость</entry>	
 	<entry key="plane_model.class_weight">Класс взлетной массы</entry>
@@ -147,11 +147,11 @@
 	
 		<!-- price -->
 		
-	<entry key="price">Пейскурант</entry>
+	<entry key="price">Прейскурант</entry>
 	<entry key="price.date_change">Дата изменения</entry>
 	<entry key="price.basic_price">Базовая стоимость</entry>
 	
-	<entry key="price.edit">Изменить/добавить пейскурант</entry>
+	<entry key="price.edit">Изменить/добавить прейскурант</entry>
 	
 	<!-- ticket -->
 	<entry key="ticket">Билеты</entry>
@@ -184,7 +184,7 @@
 	<entry key="user.email">E-mail</entry>
 	<entry key="user.passport">№ паспорта</entry>
 	<entry key="user.phone">Телефон</entry>
-	<entry key="user.count_oder">Колличество заказоа</entry>
+	<entry key="user.count_oder">Колличество заказов</entry>
 	<entry key="user.VIP">VIP</entry>
 	<entry key="user.date_registration">Дата регистрации</entry>
 	<entry key="user.role">Уровень доступа</entry>
@@ -194,11 +194,11 @@
 	
 	<entry key="user.change_password">Изменить пароль</entry>
 	<entry key="user.old_password">Старый пароль</entry>
-	<entry key="user.new_password">Навый пароль</entry>
+	<entry key="user.new_password">Новый пароль</entry>
 	<entry key="user.confirm_password">Подтверждение</entry>
-	<entry key="user.authorization_error">Не верные имя пользователя или пароль</entry>
+	<entry key="user.authorization_error">Неверное имя пользователя или пароль</entry>
 	<entry key="user.incorrect_old_password">неверный старый пароль</entry>
-	<entry key="user.passwords_not_same">Пароли не совподают</entry>
+	<entry key="user.passwords_not_same">Пароли не совпадают</entry>
 	
 
 

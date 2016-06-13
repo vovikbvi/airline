@@ -30,6 +30,12 @@
 			<AppenderRef ref="SERVER_LOGFILE" />
 		</Logger>
 
+		<Logger name="by.bogdevich.training.airline.webapp"
+			level="INFO" additivity="false">
+			<AppenderRef ref="CONSOLE" />
+			<AppenderRef ref="SERVER_LOGFILE" />
+		</Logger>
+
 
 		<Root level="INFO">
 			<AppenderRef ref="CONSOLE" />

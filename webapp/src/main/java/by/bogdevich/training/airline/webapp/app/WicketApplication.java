@@ -10,17 +10,22 @@ import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AnnotationsRoleAuthorizationStrategy;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import by.bogdevich.training.airline.dataaccess.TicketDao;
 import by.bogdevich.training.airline.service.TicketService;
+import by.bogdevich.training.airline.service.impl.AirportServiceImpl;
 import by.bogdevich.training.airline.webapp.page.home.HomePage;
 import by.bogdevich.training.airline.webapp.page.login.LoginPage;
 
 
 @Component("wicketWebApplicationBean")
 public class WicketApplication extends AuthenticatedWebApplication {
+	private static Logger LOGGER = LoggerFactory.getLogger(WicketApplication.class);
+	
     @Inject
     private ApplicationContext applicationContext;
 
@@ -45,7 +50,7 @@ public class WicketApplication extends AuthenticatedWebApplication {
 			
 			@Override
 			public void run() {
-				System.out.println("delete don't paid ticket greater 3 day");
+				LOGGER.info("delete ticket don't paid greater 3 day");
 				ticketService.deleteDontPaidTicket();
 			}
 		}; 

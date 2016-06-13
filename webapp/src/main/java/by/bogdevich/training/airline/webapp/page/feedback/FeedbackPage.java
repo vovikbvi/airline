@@ -59,9 +59,9 @@ public class FeedbackPage extends AbstractPage {
 				
 
 				String toAddr = "vovikbvi@mail.ru";
-				String fromAddr = "LowCostAirlineTrening@gmail.com";
+				String fromAddr = "LowCostAirlineService@gmail.com";
 				String subject = contactName;
-				String body = String.format("%s \n %s", contactPhone,contactMessage);
+				String body = String.format("%s \n %s \n %s", contactPhone, contactMail, contactMessage);
 				semdMail.crunchifyReadyToSendEmail(toAddr, fromAddr, subject, body);
 
 	

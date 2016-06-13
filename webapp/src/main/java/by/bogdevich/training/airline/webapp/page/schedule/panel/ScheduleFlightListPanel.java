@@ -94,7 +94,7 @@ public class ScheduleFlightListPanel extends Panel {
 		// проверить сортировку по plane
 
 		add(new OrderByBorder("sort-id", Flight_.id, searchFlightDataProvider));
-		//add(new OrderByBorder("sort-flight-catalog", FlightCatalog_.id, searchFlightDataProvider));
+		add(new OrderByBorder("sort-flight-catalog", Flight_.flightCatalog, searchFlightDataProvider));
 		add(new OrderByBorder("sort-departure-time", Flight_.departureTime, searchFlightDataProvider));
 		add(new OrderByBorder("sort-arrival-time", Flight_.arrivalTime, searchFlightDataProvider));
 		add(new OrderByBorder("sort-plane", Flight_.plane, searchFlightDataProvider));

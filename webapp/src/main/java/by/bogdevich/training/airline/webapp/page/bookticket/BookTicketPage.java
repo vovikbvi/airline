@@ -65,7 +65,6 @@ public class BookTicketPage extends AbstractPage {
         DropDownChoice<Integer> numberSeatsField = new DropDownChoice<Integer>("numberSeats", getListSeats());
         numberSeatsField.setOutputMarkupId(true);
         numberSeatsField.setOutputMarkupPlaceholderTag(true);
-        //numberSeatsField.setLabel("you nead select ticket type");
         numberSeatsField.setRequired(true);
         form.add(numberSeatsField);
 		
@@ -91,7 +90,6 @@ public class BookTicketPage extends AbstractPage {
 
 		TextField<Double> weightBaggageField = new TextField<>("weightBaggage");
 		form.add(weightBaggageField);
-		//weightBaggageField.setDefaultModelObject(0);
 		weightBaggageField.add(RangeValidator.<Double> range(0d, 1_000_000d));
 		weightBaggageField.setEnabled(false);
 
@@ -143,5 +141,4 @@ public class BookTicketPage extends AbstractPage {
 		ArrayList<Integer> listSeats= new ArrayList<Integer>(ticketService.getListEmtySeats(ticket));
 		return listSeats;
 	}
-
 }
