@@ -58,7 +58,6 @@ public class UserEditPage extends AbstractPage {
 		form.add(loginField);
 		
 		TextField<String> passwordField = new TextField<>("password");
-		passwordField.setVisible(userProfile.getId() == null);
 		passwordField.setRequired(true);
 		form.add(passwordField);
 		
@@ -84,12 +83,10 @@ public class UserEditPage extends AbstractPage {
 		
 		TextField<Integer> countOderField = new TextField<>("countOder");
 		countOderField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
-		//countOderField.setVisible(userProfile.getId() == null);
 		form.add(countOderField);
 		
 		CheckBox vipField = new CheckBox("vip");
 		vipField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
-		//vipField.setVisible(userProfile.getId() == null);
 		form.add(vipField);
 		
 		DateTextField dateRegistrField = new DateTextField("dateRegistr", "dd-MM-yyyy");
@@ -103,11 +100,7 @@ public class UserEditPage extends AbstractPage {
         roleField.setRequired(true);
         form.add(roleField);
         
-		CheckBox aceptRegistrField = new CheckBox("aceptRegistr");
-		aceptRegistrField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
-		form.add(aceptRegistrField);
 
-	
 		form.add(new SubmitLink("save") {
 			@Override
 			public void onSubmit() {

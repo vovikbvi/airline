@@ -33,6 +33,7 @@ import by.bogdevich.training.airline.webapp.page.admin.modelplane.ModelPlaneEdit
 import by.bogdevich.training.airline.webapp.page.admin.modelplane.ModelPlanePage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
+import by.bogdevich.training.airline.webapp.page.message.ErrorDelete;
 
 public class ModelPlaneListPanel extends Panel {
 
@@ -44,7 +45,7 @@ public class ModelPlaneListPanel extends Panel {
 
 		modelPlaneDataProvider modelPlaneDataProvider = new modelPlaneDataProvider();
 
-		DataView<ModelPlane> dataView = new DataView<ModelPlane>("rows", modelPlaneDataProvider, 5) {
+		DataView<ModelPlane> dataView = new DataView<ModelPlane>("rows", modelPlaneDataProvider, 10) {
 			@Override
 			protected void populateItem(Item<ModelPlane> item) {
 				ModelPlane modelPlane = item.getModelObject();
@@ -64,11 +65,12 @@ public class ModelPlaneListPanel extends Panel {
 					public void onClick() {
 						try {
 							modelPlaneService.delete(modelPlane.getId());
+							setResponsePage(new ModelPlanePage());
 						} catch (PersistenceException e) {
 							warn("Impossible delete this record");
+							setResponsePage(new ErrorDelete());
 						}
 
-						setResponsePage(new ModelPlanePage());
 					}
 				});
 

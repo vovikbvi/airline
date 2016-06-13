@@ -31,6 +31,7 @@ import by.bogdevich.training.airline.webapp.page.admin.manufactured.Manufactured
 import by.bogdevich.training.airline.webapp.page.admin.manufactured.ManufacturedPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
+import by.bogdevich.training.airline.webapp.page.message.ErrorDelete;
 
 public class ManufacturedListPanel extends Panel {
 
@@ -42,7 +43,7 @@ public class ManufacturedListPanel extends Panel {
 
 		manufacturedPlaneDataProvider manufacturedPlaneDataProvider = new manufacturedPlaneDataProvider();
 
-		DataView<ManufacturedPlane> dataView = new DataView<ManufacturedPlane>("rows", manufacturedPlaneDataProvider, 5) {
+		DataView<ManufacturedPlane> dataView = new DataView<ManufacturedPlane>("rows", manufacturedPlaneDataProvider, 10) {
 			@Override
 			protected void populateItem(Item<ManufacturedPlane> item) {
 				ManufacturedPlane manufacturedPlane = item.getModelObject();
@@ -55,11 +56,12 @@ public class ManufacturedListPanel extends Panel {
 					public void onClick() {
 						try {
 							manufacturedPlainService.delete(manufacturedPlane.getId());
+							setResponsePage(new ManufacturedPage());
 						} catch (PersistenceException e) {
 							warn("Impossible delete this record");
+							setResponsePage(new ErrorDelete());
 						}
 
-						setResponsePage(new ManufacturedPage());
 					}
 				});
 

@@ -38,11 +38,6 @@ public class UserProfileServiceImpl implements UserProfileService {
 	
 	private void sendMessage(UserProfile userProfile) {
 
-		// Spring Bean file you specified in /src/main/resources folder
-		// String crunchifyConfFile = "service-context.xml";
-		// ConfigurableApplicationContext context = new
-		// ClassPathXmlApplicationContext(crunchifyConfFile);
-
 		String toAddr = userProfile.getEmail();
 		String fromAddr = "LowCostAirlineTrening@gmail.com";
 		String subject = "Registr LowCostAirline";
@@ -63,7 +58,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		userProfile.setVip(false);
 		userProfile.setDateRegistr(new Date());
 		userProfile.setRole(UserRole.PASSANGER);
-		userProfile.setAceptRegistr(false);
+		userProfile.setAceptRegistr(true);
 		userProfileDao.insert(userProfile);
 		LOGGER.info("Add user {}", userProfile);
 	}

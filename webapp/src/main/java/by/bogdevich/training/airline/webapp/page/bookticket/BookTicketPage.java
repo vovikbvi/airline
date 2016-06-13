@@ -6,12 +6,9 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
-import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
-import org.apache.wicket.event.Broadcast;
-import org.apache.wicket.event.IEvent;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
@@ -133,7 +130,7 @@ public class BookTicketPage extends AbstractPage {
 					ticketService.insert(ticket);
 					setResponsePage(new PaymentPage(ticket));
 				} catch (IllegalArgumentException e) {
-					error(e.getMessage());
+					error(getString("ui.luggage_full"));
 				}
 			}
 		});

@@ -235,7 +235,7 @@ td {
 	font-weight: bold;
 }
 
-.edit-admin-form input[type="text"], .edit-admin-form input[type="email"],
+.edit-admin-form input[type="text"], .edit-admin-form input[type="password"],
 	.edit-admin-form textarea, .edit-admin-form select {
 	color: #888;
 	width: 50%;

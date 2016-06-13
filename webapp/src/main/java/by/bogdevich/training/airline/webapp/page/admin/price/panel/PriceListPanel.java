@@ -50,7 +50,7 @@ public class PriceListPanel extends Panel {
 
 		priceDataProvider priceDataProvider = new priceDataProvider();
 
-		DataView<Price> dataView = new DataView<Price>("rows", priceDataProvider, 5) {
+		DataView<Price> dataView = new DataView<Price>("rows", priceDataProvider, 10) {
 			@Override
 			protected void populateItem(Item<Price> item) {
 				Price price = item.getModelObject();

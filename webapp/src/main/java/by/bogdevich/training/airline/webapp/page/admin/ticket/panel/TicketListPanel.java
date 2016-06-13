@@ -43,7 +43,7 @@ public class TicketListPanel extends Panel {
 
 		TicketDataProvider ticketDataProvider = new TicketDataProvider();
 
-		DataView<Ticket> dataView = new DataView<Ticket>("rows", ticketDataProvider, 20) {
+		DataView<Ticket> dataView = new DataView<Ticket>("rows", ticketDataProvider, 10) {
 			@Override
 			protected void populateItem(Item<Ticket> item) {
 				Ticket ticket = item.getModelObject();

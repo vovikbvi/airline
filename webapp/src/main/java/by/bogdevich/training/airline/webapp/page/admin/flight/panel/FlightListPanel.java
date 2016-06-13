@@ -27,6 +27,8 @@ import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.service.FlightService;
 import by.bogdevich.training.airline.webapp.page.admin.flight.FlightEditPage;
 import by.bogdevich.training.airline.webapp.page.admin.flight.FlightPage;
+import by.bogdevich.training.airline.webapp.page.info.FlightInfoPage;
+import by.bogdevich.training.airline.webapp.page.message.ErrorDelete;
 
 public class FlightListPanel extends Panel {
 
@@ -38,7 +40,7 @@ public class FlightListPanel extends Panel {
 
 		flightDataProvider flightDataProvider = new flightDataProvider();
 
-		DataView<Flight> dataView = new DataView<Flight>("rows", flightDataProvider, 20) {
+		DataView<Flight> dataView = new DataView<Flight>("rows", flightDataProvider, 10) {
 			@Override
 			protected void populateItem(Item<Flight> item) {
 				Flight flight = item.getModelObject();
@@ -56,11 +58,12 @@ public class FlightListPanel extends Panel {
 					public void onClick() {
 						try {
 							flightService.delete(flight.getId());
+							setResponsePage(new FlightPage());
 						} catch (PersistenceException e) {
 							warn("Impossible delete this record");
+							setResponsePage(new ErrorDelete());
 						}
 
-						setResponsePage(new FlightPage());
 					}
 				});
 
@@ -70,6 +73,14 @@ public class FlightListPanel extends Panel {
 						setResponsePage(new FlightEditPage(flight));
 					}
 				});
+				
+				item.add(new Link<Void>("info-link") {
+					@Override
+					public void onClick() {
+						setResponsePage(new FlightInfoPage(flight));
+					}
+				});
+
 
 				}
 		};

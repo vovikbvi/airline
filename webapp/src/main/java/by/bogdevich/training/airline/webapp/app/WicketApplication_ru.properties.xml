@@ -55,6 +55,11 @@
 	<entry key="ui.deletmessage">Запись не возможно удалить т.к. на нее ссылаються другие объекты</entry>
 	<entry key="ui.pay">Оплатить</entry>
 	
+	<entry key="ui.user_exist">Логин занят</entry>
+	<entry key="ui.luggage_full">Извините багажное отделение переполнено</entry>
+	<entry key="ui.checkc_class">Аэропорт не может принять этот самолет</entry>
+	
+	
 	<!-- Shedule -->
 	<entry key="shedule.number_flight">№ полета</entry>
 	<entry key="shedule.book">Заказать</entry>
@@ -64,13 +69,13 @@
 	<entry key="payment">Оплата</entry>
 	<entry key="payment.cost">Стоимость билета</entry>
 	<entry key="payment.name_card">Владелец карты</entry>
-	<entry key="payment.card_number">Нимер карты</entry>
+	<entry key="payment.card_number">Номер карты</entry>
 	<entry key="payment.expiration">Срок действия</entry>
 	<entry key="payment.cvv">CVV номер</entry>
 	
 	<!-- airport -->
-	<entry key="airport">Аэропорт</entry>
-	<entry key="airport.name">Названгие</entry>
+	<entry key="airport">Аэропорты</entry>
+	<entry key="airport.name">Название</entry>
 	<entry key="airport.IATA">Код IATA</entry>
 	<entry key="airport.ICAO">Код ICAO</entry>
 	<entry key="airport.city">Город</entry>
@@ -81,7 +86,7 @@
 	<entry key="airport.edit">Измененить/добавить аэропорт</entry>
 	
 	<!-- city -->
-	<entry key="city">Город</entry>
+	<entry key="city">Города</entry>
 	<entry key="city.name">Название</entry>
 	<entry key="city.country">Страна</entry>
 	<entry key="city.timezone">Временная зона</entry>
@@ -90,12 +95,12 @@
 	
 	
 	<!-- country -->
-	<entry key="country">Стана</entry>
+	<entry key="country">Станы</entry>
 	<entry key="country.name">Название</entry>
 	<entry key="country.edit">Измененить/добавить страну</entry>
 	
 	<!-- flight -->
-	<entry key="flight">Рейс</entry>
+	<entry key="flight">Рейсы</entry>
 	<entry key="flight.catalog">Справочник рейсов</entry>
 	<entry key="flight.registration.time">Время регистрации</entry>
 	<entry key="flight.departure.time">Время вылета</entry>
@@ -115,13 +120,13 @@
 	<entry key="flightcatalog.edit">Изменирь/добавить справочник рейсов</entry>
 	
 	    <!-- manufactured plane-->
-	<entry key="manufactured">Производитель самолета</entry>
+	<entry key="manufactured">Производители</entry>
 	<entry key="manufactured.name">Наименование производителя</entry>
 	
 	<entry key="manufactured.edit">Изменить/добавить производителя</entry>
 	
 		<!-- model plane -->
-	<entry key="plane_model">Модель самолета</entry>	
+	<entry key="plane_model">Модели самолетов</entry>	
 	<entry key="plane_model.manufactured">Производитель</entry>	
 	<entry key="plane_model.model">Модель</entry>	
 	<entry key="plane_model.seats_business">Мест бизнес класса</entry>	
@@ -134,7 +139,7 @@
 	<entry key="plane_model.edit">Изменить/добавить модель самолета</entry>	
 
 		<!-- plane -->
-	<entry key="plane">Самолет</entry>	
+	<entry key="plane">Самолеты</entry>	
 	<entry key="plane.model">Модель</entry>	
 	<entry key="plane.bort_number">Бортовой номер</entry>
 		
@@ -149,7 +154,7 @@
 	<entry key="price.edit">Изменить/добавить пейскурант</entry>
 	
 	<!-- ticket -->
-	<entry key="ticket">Билет</entry>
+	<entry key="ticket">Билеты</entry>
 	<entry key="ticket.number_flight">Номер рейса</entry>
 	<entry key="ticket.flight">Рейс</entry>
 	<entry key="ticket.passenger">Пассажир</entry>
@@ -171,7 +176,7 @@
 		
 		<!-- user profile -->
 
-	<entry key="user">Пользователь</entry>
+	<entry key="user">Пользователи</entry>
 	<entry key="user.login">Логин</entry>
 	<entry key="user.password">Пароль</entry>
 	<entry key="user.first_name">Фамилия</entry>
@@ -186,6 +191,15 @@
 	<entry key="user.accept_registr">Подтверждение регистрации</entry>
 	
 	<entry key="user.edit">Информация о пользователе</entry>
+	
+	<entry key="user.change_password">Изменить пароль</entry>
+	<entry key="user.old_password">Старый пароль</entry>
+	<entry key="user.new_password">Навый пароль</entry>
+	<entry key="user.confirm_password">Подтверждение</entry>
+	<entry key="user.authorization_error">Не верные имя пользователя или пароль</entry>
+	<entry key="user.incorrect_old_password">неверный старый пароль</entry>
+	<entry key="user.passwords_not_same">Пароли не совподают</entry>
+	
 
 
 		<!-- feedback -->

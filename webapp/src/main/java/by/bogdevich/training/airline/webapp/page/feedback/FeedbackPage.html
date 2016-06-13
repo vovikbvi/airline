@@ -15,17 +15,17 @@
     <div class="right_details">
       <h1><wicket:message key="feedback.email_us"/> </h1>
           <p><wicket:message key="feedback.text"/>.</p>
-          <form action="formsubmit.php" method="post">
+          <form wicket:id="form" action="formsubmit.php" method="post">
             <fieldset id="contact">
             <label for="your_name"><wicket:message key="feedback.name"/>:</label>
-            <input name="your_name" type="text" class="forms" id="your_name" size="35" />
+            <input name="your_name" wicket:id="contactName" type="text" class="forms" id="your_name" size="35" />
             <label for="your_email"><wicket:message key="feedback.email"/>:</label>
-            <input name="your_email" type="text" class="forms" id="your_email" size="35" />
+            <input name="your_email" wicket:id="contactMail" type="text" class="forms" id="your_email" size="35" />
             <label for="phone"><wicket:message key="feedback.phone"/>:</label>
-            <input name="phone" type="text" class="forms" id="phone" size="35" />
+            <input name="phone" wicket:id="contactPhone" type="text" class="forms" id="phone" size="35" />
             <label for="message"><wicket:message key="feedback.message"/>:</label>
-            <textarea name="message" cols="30" rows="6" class="forms" id="message"></textarea>
-            <input name="submit_button" type="image" class="submit_button" id="submit_button" title="Submit Message" src="images/button_submit2.gif" />
+            <textarea name="message" wicket:id="contactMessage" cols="30" rows="6" class="forms" id="message"></textarea>
+            <input name="submit_button" wicket:id="send" type="image" class="submit_button" id="submit_button" title="Submit Message" src="images/button_submit2.gif" />
             </fieldset>
           </form>
         

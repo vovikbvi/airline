@@ -28,6 +28,7 @@ import by.bogdevich.training.airline.webapp.page.admin.flightcatalog.FlightCatal
 import by.bogdevich.training.airline.webapp.page.admin.flightcatalog.FlightCatalogPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
+import by.bogdevich.training.airline.webapp.page.message.ErrorDelete;
 
 public class FlightCatalogListPanel extends Panel {
 
@@ -39,7 +40,7 @@ public class FlightCatalogListPanel extends Panel {
 
 		flightCatalogDataProvider flightCatalogDataProvider = new flightCatalogDataProvider();
 
-		DataView<FlightCatalog> dataView = new DataView<FlightCatalog>("rows", flightCatalogDataProvider, 20) {
+		DataView<FlightCatalog> dataView = new DataView<FlightCatalog>("rows", flightCatalogDataProvider, 10) {
 			@Override
 			protected void populateItem(Item<FlightCatalog> item) {
 				FlightCatalog flightCatalog = item.getModelObject();
@@ -58,11 +59,12 @@ public class FlightCatalogListPanel extends Panel {
 					public void onClick() {
 						try {
 							flightCatalogService.delete(flightCatalog.getId());
+							setResponsePage(new FlightCatalogPage());
 						} catch (PersistenceException e) {
 							warn("Impossible delete this record");
+							setResponsePage(new ErrorDelete());
 						}
 
-						setResponsePage(new FlightCatalogPage());
 					}
 				});
 

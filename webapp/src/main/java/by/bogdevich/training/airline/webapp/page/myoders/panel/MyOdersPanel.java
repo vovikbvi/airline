@@ -40,7 +40,7 @@ public class MyOdersPanel extends Panel {
 
 		MyOdersProvider myOdersProvider = new MyOdersProvider();
 
-		DataView<Ticket> dataView = new DataView<Ticket>("rows", myOdersProvider, 20) {
+		DataView<Ticket> dataView = new DataView<Ticket>("rows", myOdersProvider, 10) {
 			@Override
 			protected void populateItem(Item<Ticket> item) {
 				Ticket ticket = item.getModelObject();

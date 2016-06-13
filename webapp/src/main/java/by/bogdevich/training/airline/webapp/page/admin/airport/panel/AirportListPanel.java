@@ -6,12 +6,10 @@ import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.persistence.metamodel.SingularAttribute;
 
-import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -22,29 +20,15 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import by.bogdevich.training.airline.dataaccess.filtres.AirportFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.CityFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.CountryFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.FlightCatalogFilter;
-import by.bogdevich.training.airline.dataaccess.filtres.FlightFilter;
 import by.bogdevich.training.airline.datamodel.Airport;
 import by.bogdevich.training.airline.datamodel.Airport_;
-import by.bogdevich.training.airline.datamodel.City;
 import by.bogdevich.training.airline.datamodel.City_;
-import by.bogdevich.training.airline.datamodel.Country;
-import by.bogdevich.training.airline.datamodel.Country_;
-import by.bogdevich.training.airline.datamodel.Flight;
-import by.bogdevich.training.airline.datamodel.FlightCatalog;
-import by.bogdevich.training.airline.datamodel.FlightCatalog_;
 import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.service.AirportService;
-import by.bogdevich.training.airline.service.CityService;
-import by.bogdevich.training.airline.service.CountryService;
-import by.bogdevich.training.airline.service.FlightCatalogService;
-import by.bogdevich.training.airline.service.FlightService;
 import by.bogdevich.training.airline.webapp.page.admin.airport.AirportEditPage;
 import by.bogdevich.training.airline.webapp.page.admin.airport.AirportPage;
-import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
-import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
+import by.bogdevich.training.airline.webapp.page.admin.city.CityPage;
+import by.bogdevich.training.airline.webapp.page.message.ErrorDelete;
 
 public class AirportListPanel extends Panel {
 
@@ -56,7 +40,7 @@ public class AirportListPanel extends Panel {
 
 		airportDataProvider airportDataProvider = new airportDataProvider();
 
-		DataView<Airport> dataView = new DataView<Airport>("rows", airportDataProvider, 20) {
+		DataView<Airport> dataView = new DataView<Airport>("rows", airportDataProvider, 10) {
 			@Override
 			protected void populateItem(Item<Airport> item) {
 				Airport airport = item.getModelObject();
@@ -75,11 +59,12 @@ public class AirportListPanel extends Panel {
 					public void onClick() {
 						try {
 							airportService.delete(airport.getId());
+							setResponsePage(new AirportPage());
 						} catch (PersistenceException e) {
 							warn("Impossible delete this record");
+							setResponsePage(new ErrorDelete());
 						}
 
-						setResponsePage(new AirportPage());
 					}
 				});
 

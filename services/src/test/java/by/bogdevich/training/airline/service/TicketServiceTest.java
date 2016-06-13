@@ -12,6 +12,7 @@ import by.bogdevich.training.airline.datamodel.Plane;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.TicketClass;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -157,7 +158,8 @@ public class TicketServiceTest extends AbstractTest {
 
 		double result = price + factorBusySeats + factorToDateDeparture + factorPrioritySeats
 				+ factorProrityRegistration - factorForBaby + costBaggage;
-
+		result = BigDecimal.valueOf(result).setScale(2,BigDecimal.ROUND_HALF_DOWN).doubleValue();
+		
 		Assert.assertEquals(result, ticket.getCosts(), 3);
 	}
 

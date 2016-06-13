@@ -8,7 +8,6 @@ import javax.persistence.PersistenceException;
 import javax.persistence.metamodel.SingularAttribute;
 
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
-import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.OrderByBorder;
 import org.apache.wicket.extensions.markup.html.repeater.data.sort.SortOrder;
 import org.apache.wicket.extensions.markup.html.repeater.util.SortableDataProvider;
@@ -65,10 +64,8 @@ public class UserListPanel extends Panel {
 				item.add(
 						DateLabel.forDatePattern("date-registr", Model.of(userProfile.getDateRegistr()), "dd-MM-yyyy"));
 				item.add(new Label("role", userProfile.getRole()));
-				CheckBox checkboxRegistr = new CheckBox("active", Model.of(userProfile.getAceptRegistr()));
-				checkboxRegistr.setEnabled(false);
-				item.add(checkboxRegistr);
-
+				
+	
 				item.add(new Link<Void>("delete-link") {
 					@Override
 					public void onClick() {
@@ -78,9 +75,7 @@ public class UserListPanel extends Panel {
 						} catch (PersistenceException e) {
 							error("Impossible delete this record");
 							setResponsePage(new ErrorDelete());
-						}
-
-				
+						}				
 					}
 				});
 
@@ -112,7 +107,6 @@ public class UserListPanel extends Panel {
 		add(new OrderByBorder("sort-vip", UserProfile_.vip, userProfileDataProvider));
 		add(new OrderByBorder("sort-date-registr", UserProfile_.dateRegistr, userProfileDataProvider));
 		add(new OrderByBorder("sort-role", UserProfile_.role, userProfileDataProvider));
-		add(new OrderByBorder("sort-accept-registr", UserProfile_.aceptRegistr, userProfileDataProvider));
 
 	}
 

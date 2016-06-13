@@ -26,6 +26,7 @@ import by.bogdevich.training.airline.datamodel.Flight_;
 import by.bogdevich.training.airline.service.CityService;
 import by.bogdevich.training.airline.webapp.page.admin.city.CityEditPage;
 import by.bogdevich.training.airline.webapp.page.admin.city.CityPage;
+import by.bogdevich.training.airline.webapp.page.message.ErrorDelete;
 
 public class CityListPanel extends Panel {
 
@@ -37,7 +38,7 @@ public class CityListPanel extends Panel {
 
 		cityDataProvider cityDataProvider = new cityDataProvider();
 
-		DataView<City> dataView = new DataView<City>("rows", cityDataProvider, 5) {
+		DataView<City> dataView = new DataView<City>("rows", cityDataProvider, 10) {
 			@Override
 			protected void populateItem(Item<City> item) {
 				City city = item.getModelObject();
@@ -51,11 +52,12 @@ public class CityListPanel extends Panel {
 					public void onClick() {
 						try {
 							cityService.delete(city.getId());
+							setResponsePage(new CityPage());
 						} catch (PersistenceException e) {
 							warn("Impossible delete this record");
+							setResponsePage(new ErrorDelete());
 						}
 
-						setResponsePage(new CityPage());
 					}
 				});
 

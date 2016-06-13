@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -25,7 +24,6 @@ import by.bogdevich.training.airline.datamodel.Flight;
 import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.service.FlightService;
 import by.bogdevich.training.airline.service.PrintTicket;
-import by.bogdevich.training.airline.service.TicketService;
 
 @Service
 public class PrintTicketImpl implements PrintTicket {
@@ -33,20 +31,16 @@ public class PrintTicketImpl implements PrintTicket {
 @Inject
 private FlightService flightService;
 
-//@Inject
-//private TicketService ticketService;
-
 	@Async
  	@Override
 	public void CreatePdf(Ticket ticket) throws FileNotFoundException, DocumentException{
- 	//ticket = ticketService.getTicketWithFetch(ticket);
  	Flight flight = flightService.getFlieghtWithFetch(ticket.getFlight());
 	Document document = new Document(PageSize.A5, 50, 50, 50, 50);
 	Font fontTitle = new Font(Font.FontFamily.HELVETICA, 32, Font.BOLD);
 	Font fontMedium = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
 	Font fontSmal = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
-	
-	String fileName = String.format("TICKET-%s-%s.pdf",ticket.getId(), flight.getId());
+	//String path = "\\temp";
+	String fileName = String.format("TICKET-%s-%s.pdf", ticket.getId(), flight.getId());
 	PdfWriter.getInstance(document, new FileOutputStream(fileName));
 	document.open();
 

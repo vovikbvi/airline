@@ -24,15 +24,15 @@ import by.bogdevich.training.airline.webapp.common.renderer.FlightCatalogChoiceR
 import by.bogdevich.training.airline.webapp.common.renderer.PlaneChoiceRenderer;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 
-@AuthorizeInstantiation(value = {"ADMIN", "OPERATOR"})
+@AuthorizeInstantiation(value = { "ADMIN", "OPERATOR" })
 public class FlightEditPage extends AbstractPage {
 
 	@Inject
 	private FlightService flightService;
-	
+
 	@Inject
 	private FlightCatalogService flightCatalogService;
-	
+
 	@Inject
 	private PlaneService planeService;
 
@@ -50,53 +50,56 @@ public class FlightEditPage extends AbstractPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		
+
 		Form form = new Form("form", new CompoundPropertyModel<Flight>(flight));
 		add(form);
-  
-		ArrayList<FlightCatalog> listFlightCatalog= new ArrayList<FlightCatalog>(flightCatalogService.getAll());
-        DropDownChoice<FlightCatalog> flightField = new DropDownChoice<FlightCatalog>("flightCatalog", listFlightCatalog, FlightCatalogChoiceRenderer.INSTANCE);
-        flightField.setRequired(true);
-        form.add(flightField);
-		
-        DateTimeField registrTimeField = new DateTimeField("registrTime");
-        registrTimeField.setRequired(true);
+
+		ArrayList<FlightCatalog> listFlightCatalog = new ArrayList<FlightCatalog>(flightCatalogService.getAll());
+		DropDownChoice<FlightCatalog> flightField = new DropDownChoice<FlightCatalog>("flightCatalog",
+				listFlightCatalog, FlightCatalogChoiceRenderer.INSTANCE);
+		flightField.setRequired(true);
+		form.add(flightField);
+
+		DateTimeField registrTimeField = new DateTimeField("registrTime");
+		registrTimeField.setRequired(true);
 		form.add(registrTimeField);
 
 		DateTimeField departureTimeField = new DateTimeField("departureTime");
 		departureTimeField.setRequired(true);
 		form.add(departureTimeField);
-		
+
 		DateTimeField arrivalTimeField = new DateTimeField("arrivalTime");
 		arrivalTimeField.setRequired(true);
 		form.add(arrivalTimeField);
-		
-		ArrayList<Plane> listPlane= new ArrayList<Plane>(planeService.getAll());
-        DropDownChoice<Plane> planeField = new DropDownChoice<Plane>("plane", listPlane, PlaneChoiceRenderer.INSTANCE);
-        planeField.setRequired(true);
-        form.add(planeField);
+
+		ArrayList<Plane> listPlane = new ArrayList<Plane>(planeService.getAll());
+		DropDownChoice<Plane> planeField = new DropDownChoice<Plane>("plane", listPlane, PlaneChoiceRenderer.INSTANCE);
+		planeField.setRequired(true);
+		form.add(planeField);
 
 		DateTextField startSaleTicketField = new DateTextField("startSaleTicket", "dd-MM-yyyy");
 		startSaleTicketField.add(new DatePicker());
 		startSaleTicketField.setRequired(true);
 		form.add(startSaleTicketField);
-		
+
 		form.add(new SubmitLink("save") {
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-				
-				if (flight.getId() == null) {
-					flightService.insert(flight);
+				if (flightService.checkClassWeight(flight)) {
+					if (flight.getId() == null) {
+						flightService.insert(flight);
+					} else {
+						flightService.update(flight);
+					}
+					setResponsePage(new FlightPage());
 				} else {
-					flightService.update(flight);
+					error(getString("ui.checkc_class"));
 				}
-
-				setResponsePage(new FlightPage());
 			}
 		});
 
 		add(new FeedbackPanel("feedback"));
-	
+
 	}
 }

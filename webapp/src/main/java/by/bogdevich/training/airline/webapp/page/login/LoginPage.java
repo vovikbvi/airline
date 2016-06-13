@@ -49,7 +49,7 @@ public class LoginPage extends WebPage {
                     // continueToOriginalDestination();
                     setResponsePage(Application.get().getHomePage());
                 } else {
-                    error("authorization error");
+                    error(getString("user.authorization_error"));
                 }
             }
         });

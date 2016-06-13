@@ -38,6 +38,7 @@ import by.bogdevich.training.airline.webapp.page.admin.country.CountryEditPage;
 import by.bogdevich.training.airline.webapp.page.admin.country.CountryPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UserEditPage;
 import by.bogdevich.training.airline.webapp.page.admin.user.UsersPage;
+import by.bogdevich.training.airline.webapp.page.message.ErrorDelete;
 
 public class CountryListPanel extends Panel {
 
@@ -49,7 +50,7 @@ public class CountryListPanel extends Panel {
 
 		countryDataProvider countryDataProvider = new countryDataProvider();
 
-		DataView<Country> dataView = new DataView<Country>("rows", countryDataProvider, 5) {
+		DataView<Country> dataView = new DataView<Country>("rows", countryDataProvider, 10) {
 			@Override
 			protected void populateItem(Item<Country> item) {
 				Country country = item.getModelObject();
@@ -62,11 +63,12 @@ public class CountryListPanel extends Panel {
 					public void onClick() {
 						try {
 							countryService.delete(country.getId());
+							setResponsePage(new CountryPage());
 						} catch (PersistenceException e) {
 							warn("Impossible delete this record");
+							setResponsePage(new ErrorDelete());
 						}
 
-						setResponsePage(new CountryPage());
 					}
 				});
 

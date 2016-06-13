@@ -1,5 +1,6 @@
 package by.bogdevich.training.airline.service.impl;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -159,6 +160,7 @@ public class TicketServiceImpl implements TicketService {
 
 		double result = price + factorBusySeats + factorToDateDeparture + factorPrioritySeats
 				+ factorProrityRegistration - factorForBaby + costBaggage;
+		result = BigDecimal.valueOf(result).setScale(2,BigDecimal.ROUND_HALF_DOWN).doubleValue();
 		return result;
 	}
 

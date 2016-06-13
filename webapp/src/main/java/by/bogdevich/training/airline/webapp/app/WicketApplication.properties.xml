@@ -55,6 +55,10 @@
 	<entry key="ui.deletmessage">You can't delete this record, because there are objects with references to it </entry>
 	<entry key="ui.pay">Pay</entry>
 	
+	<entry key="ui.user_exist">User exist</entry>
+	<entry key="ui.luggage_full">Sorry luggage space is full</entry>
+	<entry key="ui.checkc_class">You can't use this plan for this airport</entry>
+	
 	
 	<!-- Shedule -->
 	<entry key="shedule.number_flight">Number of flight</entry>
@@ -187,6 +191,15 @@
 	<entry key="user.accept_registr">Registration confirmed</entry>
 	
 	<entry key="user.edit">Edit user profile</entry>
+	
+	<entry key="user.change_password">Change password</entry>
+	<entry key="user.old_password">Old password</entry>
+	<entry key="user.new_password">New password</entry>
+	<entry key="user.confirm_password">Confirm password</entry>
+	<entry key="user.authorization_error">authorization error</entry>
+	<entry key="user.incorrect_old_password">incorrect old password</entry>
+	<entry key="user.passwords_not_same">passwords not the same</entry>
+
 
 
 		<!-- feedback -->
