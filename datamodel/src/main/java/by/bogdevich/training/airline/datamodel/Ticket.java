@@ -11,7 +11,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
-import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConverter;
 
 @Entity
 public class Ticket extends AbstractModel {

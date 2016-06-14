@@ -89,9 +89,8 @@ public class ScheduleFlightListPanel extends Panel {
 		};
 
 		add(dataView);
-		add(new PagingNavigator("paging", dataView));
+		add(new PagingNavigator("pagingSearch", dataView));
 
-		// проверить сортировку по plane
 
 		add(new OrderByBorder("sort-id", Flight_.id, searchFlightDataProvider));
 		add(new OrderByBorder("sort-flight-catalog", Flight_.flightCatalog, searchFlightDataProvider));

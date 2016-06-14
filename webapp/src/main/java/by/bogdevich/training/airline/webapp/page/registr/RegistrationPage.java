@@ -88,7 +88,7 @@ public class RegistrationPage extends AbstractPage {
 		
 		TextField<Integer> countOderField = new TextField<>("countOder");
 		countOderField.setVisible(userProfile.getId() != null);
-		countOderField.setVisible(false);
+		countOderField.setEnabled(false);
 		form.add(countOderField);
 		
 

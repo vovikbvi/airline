@@ -88,7 +88,6 @@ public class FlightCatalogListPanel extends Panel {
 		
 		 add(new OrderByBorder("sort-id", FlightCatalog_.id, flightCatalogDataProvider));
 		 add(new OrderByBorder("sort-airport-start", Airport_.name, flightCatalogDataProvider));
-		 add(new OrderByBorder("sort-airport-finish", Airport_.name, flightCatalogDataProvider));
 		 add(new OrderByBorder("sort-distance", FlightCatalog_.distance, flightCatalogDataProvider));
 		 add(new OrderByBorder("sort-international", FlightCatalog_.international, flightCatalogDataProvider));
 

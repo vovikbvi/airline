@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConverter;
 
 @Entity
 public class Price extends AbstractModel {

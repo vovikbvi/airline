@@ -128,7 +128,7 @@ public class BookTicketPage extends AbstractPage {
 					ticketService.insert(ticket);
 					setResponsePage(new PaymentPage(ticket));
 				} catch (IllegalArgumentException e) {
-					error(getString("ui.luggage_full"));
+					error(e.getMessage());
 				}
 			}
 		});

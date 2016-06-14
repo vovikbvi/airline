@@ -39,5 +39,6 @@ public class SchedulePage extends AbstractPage {
 		super.onInitialize();
 
 		add(new ScheduleFlightListPanel("search-flight", selectedCityStart, selectedCityFinish , selectedDateStart, selectedDateFinish));
+		
 	}
 }

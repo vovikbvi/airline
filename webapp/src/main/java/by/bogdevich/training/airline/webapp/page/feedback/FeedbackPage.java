@@ -58,7 +58,7 @@ public class FeedbackPage extends AbstractPage {
 				super.onSubmit();
 				
 
-				String toAddr = "vovikbvi@mail.ru";
+				String toAddr = "LowCostAirlineService@gmail.com";
 				String fromAddr = "LowCostAirlineService@gmail.com";
 				String subject = contactName;
 				String body = String.format("%s \n %s \n %s", contactPhone, contactMail, contactMessage);

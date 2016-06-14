@@ -92,13 +92,8 @@ public class MenuUser extends Panel {
 		}else{
 			isLoginAdminOrOperator = false;
 		}
-		
-		if (isLoginAdminOrOperator) {
-			settingsLink.setVisible(true);
-		}else{
-			settingsLink.setVisible(false);
-		}
-		
+
+			settingsLink.setVisible(isLoginAdminOrOperator);
 
 		Link logIn = new Link("login") {
 			@Override

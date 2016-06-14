@@ -17,8 +17,6 @@ public interface TicketDao extends AbstractDao<Ticket, Long, TicketFilter>{
 
 	Double countAllBaggage(Flight flight);
 
-	Integer getColPassBuisnes();
-
 	List<Integer> getBasySeats(Flight flight, TicketClass ticketClass);
 
 	Long countBusySeats(Flight flight, TicketClass ticketClass);
@@ -26,4 +24,6 @@ public interface TicketDao extends AbstractDao<Ticket, Long, TicketFilter>{
 	Ticket getTicketWithFetch(Ticket ticket);
 
 	void deleteDontPaidTicket();
+
+	Boolean checkBusySeats(Integer numberSeats, TicketClass ticketClass, Flight flight);
 }

@@ -27,7 +27,6 @@ import by.bogdevich.training.airline.webapp.common.renderer.UserRoleChoiceRender
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 
 @AuthorizeInstantiation(value = {"ADMIN"})
-//@AuthorizeAction(roles = {"ADMIN"}, action = Action.RENDER)
 public class UserEditPage extends AbstractPage {
 
 	@Inject
@@ -53,7 +52,7 @@ public class UserEditPage extends AbstractPage {
 		add(form);
 
 		TextField<String> loginField = new TextField<>("login");
-		loginField.setVisible(userProfile.getId() == null);
+		loginField.setEnabled(userProfile.getId() == null);
 		loginField.setRequired(true);
 		form.add(loginField);
 		
@@ -82,21 +81,21 @@ public class UserEditPage extends AbstractPage {
 		form.add(phoneNumberField);
 		
 		TextField<Integer> countOderField = new TextField<>("countOder");
-		countOderField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
+		//countOderField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
 		form.add(countOderField);
 		
 		CheckBox vipField = new CheckBox("vip");
-		vipField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
+		//vipField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
 		form.add(vipField);
 		
 		DateTextField dateRegistrField = new DateTextField("dateRegistr", "dd-MM-yyyy");
-		dateRegistrField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
+		//dateRegistrField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
 		dateRegistrField.setEnabled(false);
 		form.add(dateRegistrField);
 
 		
         DropDownChoice<UserRole> roleField = new DropDownChoice<>("role", Arrays.asList(UserRole.values()), UserRoleChoiceRenderer.INSTANCE);        
-        roleField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles().toString()=="ADMIN");
+        //roleField.setVisible(AuthorizedSession.get().isSignedIn()&&AuthorizedSession.get().getRoles()==UserRole.ADMIN);
         roleField.setRequired(true);
         form.add(roleField);
         

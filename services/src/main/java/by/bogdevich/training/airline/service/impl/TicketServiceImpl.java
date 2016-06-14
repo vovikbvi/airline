@@ -170,10 +170,13 @@ public class TicketServiceImpl implements TicketService {
 		ticket.setDateBought(new Date());
 		ticket.setCosts(ticketCost(ticket));
 
-		if (checkLuggageSpace(ticket)) {
-			ticketDao.insert(ticket);
-		} else {
+		if (!checkLuggageSpace(ticket)) {
 			throw new IllegalArgumentException("luggage space is full");
+		}else if(!ticketDao.checkBusySeats(ticket.getNumberSeats(), ticket.getTicketClass(), flight)){
+			throw new IllegalArgumentException("seats is busy");
+		} else {
+			ticketDao.insert(ticket);
+			
 		}
 
 		LOGGER.info("Insert ticket {}", ticket);
@@ -255,4 +258,6 @@ public class TicketServiceImpl implements TicketService {
 	public void deleteDontPaidTicket(){
 		ticketDao.deleteDontPaidTicket();
 	}
+	
+	
 }

@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import by.bogdevich.training.airline.datamodel.util.LocalDateTimePersistenceConverter;
 
 
 

@@ -38,5 +38,7 @@ public interface TicketService {
 
 	@Transactional
 	void deleteDontPaidTicket();
+
+	
 	
 }

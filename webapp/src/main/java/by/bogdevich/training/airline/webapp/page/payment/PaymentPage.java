@@ -14,6 +14,7 @@ import by.bogdevich.training.airline.datamodel.Ticket;
 import by.bogdevich.training.airline.datamodel.UserProfile;
 import by.bogdevich.training.airline.service.TicketService;
 import by.bogdevich.training.airline.service.UserProfileService;
+import by.bogdevich.training.airline.webapp.app.AuthorizedSession;
 import by.bogdevich.training.airline.webapp.page.AbstractPage;
 import by.bogdevich.training.airline.webapp.page.home.HomePage;
 
@@ -60,8 +61,8 @@ public class PaymentPage extends AbstractPage {
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-					int countOder = ticket.getUserProfile().getCountOder();
-					ticket.getUserProfile().setCountOder(countOder+1);
+					int countOder = AuthorizedSession.get().getLoggedUser().getCountOder();
+					AuthorizedSession.get().getLoggedUser().setCountOder(countOder+1);
 					userProfileService.update(ticket.getUserProfile());
 					ticketService.update(ticket);
 					CreatePdfTicket(ticket);
@@ -69,6 +70,19 @@ public class PaymentPage extends AbstractPage {
 			}
 		});
 
+		Form formDelTicket = new Form("formDelTicket", new CompoundPropertyModel<Ticket>(ticket));
+		add(formDelTicket);
+
+		formDelTicket.add(new SubmitLink("del-ticket") {
+			@Override
+			public void onSubmit() {
+				super.onSubmit();
+				ticketService.delete(ticket.getId());
+					setResponsePage(new HomePage());
+			}
+		});
+
+		
 		add(new FeedbackPanel("feedback"));
 
     

@@ -13,8 +13,8 @@ public class SendMailImpl implements SemdMail {
 	
 	
 	@Autowired
-	private MailSender crunchifymail; // MailSender interface defines a strategy
-										// for sending simple mails
+	private MailSender crunchifymail;
+										
 	@Async
 	@Override
 	public void crunchifyReadyToSendEmail(String toAddress, String fromAddress, String subject, String msgBody) {

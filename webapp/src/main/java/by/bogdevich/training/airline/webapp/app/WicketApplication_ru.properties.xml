@@ -54,6 +54,7 @@
 	<entry key="ui.user_edit">Профиль</entry>
 	<entry key="ui.deletmessage">Запись не возможно удалить,т.к. на нее ссылаются другие объекты</entry>
 	<entry key="ui.pay">Оплатить</entry>
+	<entry key="ui.cancel">Отказаться</entry>
 	
 	<entry key="ui.user_exist">Логин занят</entry>
 	<entry key="ui.luggage_full">Извините,багажное отделение переполнено</entry>

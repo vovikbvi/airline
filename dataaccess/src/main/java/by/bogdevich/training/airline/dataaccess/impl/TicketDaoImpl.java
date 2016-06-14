@@ -39,18 +39,6 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long, TicketFilter> i
 		super(Ticket.class);
 	}
 
-	@Override
-	public Integer getColPassBuisnes() {
-		EntityManager em = getEntityManager();
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Integer> cq = cb.createQuery(Integer.class);
-		Root<ModelPlane> from = cq.from(ModelPlane.class);
-
-		cq.select(from.get(ModelPlane_.colPassangersBuisnes));
-		cq.where(cb.equal(from.get(Ticket_.id), 1));
-		return em.createQuery(cq).getFirstResult();
-
-	}
 
 	@Override
 	public List<Ticket> getRecordsSorted(TicketFilter filter) {
@@ -199,5 +187,28 @@ public class TicketDaoImpl extends AbstractDaoImpl<Ticket, Long, TicketFilter> i
 		.setParameter("delDate", deletDtae).executeUpdate();
 
 	}
-	
+
+	@Override
+	public Boolean checkBusySeats(Integer numberSeats, TicketClass ticketClass, Flight flight) {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		Root<Ticket> from = cq.from(Ticket.class);
+
+		cq.select(cb.count(from.get(Ticket_.numberSeats)));
+
+		Predicate fFlight = cb.equal(from.get(Ticket_.flight), flight);
+		Predicate fSeats = cb.equal(from.get(Ticket_.numberSeats), numberSeats);
+		Predicate fClass = cb.equal(from.get(Ticket_.ticketClass), ticketClass);
+		cq.where(cb.and(fFlight, fSeats, fClass));
+		Boolean result;
+		if (em.createQuery(cq).getSingleResult() > 0) {
+			result = false;
+		} else {
+			result = true;
+		}
+		return result;
+
+	}
+
 }

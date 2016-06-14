@@ -54,6 +54,7 @@
 	<entry key="ui.user_edit">Edit my profile</entry>
 	<entry key="ui.deletmessage">You can't delete this record, because there are objects with references to it </entry>
 	<entry key="ui.pay">Pay</entry>
+	<entry key="ui.cancel">Cancel ticket</entry>
 	
 	<entry key="ui.user_exist">User exist</entry>
 	<entry key="ui.luggage_full">Sorry luggage space is full</entry>
