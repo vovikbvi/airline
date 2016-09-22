@@ -144,7 +144,7 @@
 				<version>4.11</version>
 				<scope>test</scope>
 			</dependency>
-			
+
 			<dependency>
 
 				<!-- for mail -->
@@ -262,8 +262,8 @@
 				<artifactId>itextpdf</artifactId>
 				<version>5.0.6</version>
 			</dependency>
-			
-	
+
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -292,6 +292,24 @@
 					<version>2.4</version> </plugin -->
 			</plugins>
 		</pluginManagement>
+
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
 	</build>
 
 </project>
